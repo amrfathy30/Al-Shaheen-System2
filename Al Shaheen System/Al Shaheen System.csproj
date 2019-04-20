@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85713966-B46F-4DFE-A2AC-20D3D28A487B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Al_Shaheen_System</RootNamespace>
+    <AssemblyName>Al Shaheen System</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Al_Shaheen_System.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="addclientbranches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addclientbranches.Designer.cs">
+      <DependentUpon>addclientbranches.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewclientcompanycontacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewclientcompanycontacts.Designer.cs">
+      <DependentUpon>addnewclientcompanycontacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewclientproduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewclientproduct.Designer.cs">
+      <DependentUpon>addnewclientproduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewcutmuranmaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewcutmuranmaterial.Designer.cs">
+      <DependentUpon>addnewcutmuranmaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewcutprintedmaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewcutprintedmaterial.Designer.cs">
+      <DependentUpon>addnewcutprintedmaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewcutterform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewcutterform.Designer.cs">
+      <DependentUpon>addnewcutterform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewDepartment.Designer.cs">
+      <DependentUpon>AddNewDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewfacecolorform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewfacecolorform.Designer.cs">
+      <DependentUpon>addnewfacecolorform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewfinishedcan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewfinishedcan.Designer.cs">
+      <DependentUpon>addnewfinishedcan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addNewFunctionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addNewFunctionFrm.Designer.cs">
+      <DependentUpon>addNewFunctionFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewItemForSupplierFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddNewItemForSupplierFrm.Designer.cs">
+      <DependentUpon>AddNewItemForSupplierFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewmuranmaterialfd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewmuranmaterialfd.Designer.cs">
+      <DependentUpon>addnewmuranmaterialfd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewprinterform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewprinterform.Designer.cs">
+      <DependentUpon>addnewprinterform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewprintingmaterialfd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewprintingmaterialfd.Designer.cs">
+      <DependentUpon>addnewprintingmaterialfd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewrawtin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewrawtin.Designer.cs">
+      <DependentUpon>addnewrawtin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewrowtinfd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewrowtinfd.Designer.cs">
+      <DependentUpon>addnewrowtinfd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addnewsizesform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewsizesform.Designer.cs">
+      <DependentUpon>addnewsizesform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Addnewstockform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Addnewstockform.Designer.cs">
+      <DependentUpon>Addnewstockform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addSupplierCompanyContacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addSupplierCompanyContacts.Designer.cs">
+      <DependentUpon>addSupplierCompanyContacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="add_new_client_company_btn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add_new_client_company_btn.Designer.cs">
+      <DependentUpon>add_new_client_company_btn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="add_new_supply_company_brach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add_new_supply_company_brach.Designer.cs">
+      <DependentUpon>add_new_supply_company_brach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="add_new_supply_company_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="add_new_supply_company_form.Designer.cs">
+      <DependentUpon>add_new_supply_company_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="allfacecolors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="allfacecolors.Designer.cs">
+      <DependentUpon>allfacecolors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="allprintersform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="allprintersform.Designer.cs">
+      <DependentUpon>allprintersform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AllSelectedSupplierDataFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllSelectedSupplierDataFrm.Designer.cs">
+      <DependentUpon>AllSelectedSupplierDataFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="allstocksform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="allstocksform.Designer.cs">
+      <DependentUpon>allstocksform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="all_clients_data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="all_clients_data.Designer.cs">
+      <DependentUpon>all_clients_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="all_suppliers_data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="all_suppliers_data.Designer.cs">
+      <DependentUpon>all_suppliers_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillOffaddingform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BillOffaddingform.Designer.cs">
+      <DependentUpon>BillOffaddingform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="client_portal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="client_portal.Designer.cs">
+      <DependentUpon>client_portal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DGVPrinter.cs" />
+    <Compile Include="DisplaySelectedSupplierItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplaySelectedSupplierItems.Designer.cs">
+      <DependentUpon>DisplaySelectedSupplierItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="employee_portal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="employee_portal.Designer.cs">
+      <DependentUpon>employee_portal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="getalldepartments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="getalldepartments.Designer.cs">
+      <DependentUpon>getalldepartments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="maintenanceworkorders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="maintenanceworkorders.Designer.cs">
+      <DependentUpon>maintenanceworkorders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistEmp.designer.cs">
+      <DependentUpon>RegistEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RLTaddingform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RLTaddingform.Designer.cs">
+      <DependentUpon>RLTaddingform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="changePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="changePassword.Designer.cs">
+      <DependentUpon>changePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="DatabaseConnectionSettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseConnectionSettingForm.Designer.cs">
+      <DependentUpon>DatabaseConnectionSettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Display_allUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Display_allUsers.Designer.cs">
+      <DependentUpon>Display_allUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bottomaddingform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bottomaddingform.Designer.cs">
+      <DependentUpon>Bottomaddingform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Easyopenaddingform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Easyopenaddingform.Designer.cs">
+      <DependentUpon>Easyopenaddingform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="exchanged_items_db.cs" />
+    <Compile Include="exchangeofprintedmaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="exchangeofprintedmaterial.Designer.cs">
+      <DependentUpon>exchangeofprintedmaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="exchangerawtin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="exchangerawtin.Designer.cs">
+      <DependentUpon>exchangerawtin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exchangeofmurantinbasicinfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exchangeofmurantinbasicinfo.Designer.cs">
+      <DependentUpon>Exchangeofmurantinbasicinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exchangerawtinbasicinfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exchangerawtinbasicinfo.Designer.cs">
+      <DependentUpon>Exchangerawtinbasicinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="exchange_of_cut_printed_material.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="exchange_of_cut_printed_material.Designer.cs">
+      <DependentUpon>exchange_of_cut_printed_material.cs</DependentUpon>
+    </Compile>
+    <Compile Include="exhangeofrawmaterilbyproperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="exhangeofrawmaterilbyproperties.Designer.cs">
+      <DependentUpon>exhangeofrawmaterilbyproperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="getAllEmployeesFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="getAllEmployeesFrm.Designer.cs">
+      <DependentUpon>getAllEmployeesFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="getAllUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="getAllUsers.Designer.cs">
+      <DependentUpon>getAllUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginFrm.Designer.cs">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mainform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mainform.Designer.cs">
+      <DependentUpon>Mainform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="makenewuser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="makenewuser.Designer.cs">
+      <DependentUpon>makenewuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printedcaredsforrawmaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printedcaredsforrawmaterial.Designer.cs">
+      <DependentUpon>printedcaredsforrawmaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printrawmaterialaddingrequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printrawmaterialaddingrequest.Designer.cs">
+      <DependentUpon>printrawmaterialaddingrequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="print_exchange_request.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="print_exchange_request.Designer.cs">
+      <DependentUpon>print_exchange_request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quantities_of_selected_sp_raw_tin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quantities_of_selected_sp_raw_tin.Designer.cs">
+      <DependentUpon>quantities_of_selected_sp_raw_tin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rawmaterialexchangedquantities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rawmaterialexchangedquantities.Designer.cs">
+      <DependentUpon>rawmaterialexchangedquantities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="raw_material_card_info.cs" />
+    <Compile Include="raw_material_second_form_coils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="raw_material_second_form_coils.Designer.cs">
+      <DependentUpon>raw_material_second_form_coils.cs</DependentUpon>
+    </Compile>
+    <Compile Include="raw_tin_all_spcifications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="raw_tin_all_spcifications.Designer.cs">
+      <DependentUpon>raw_tin_all_spcifications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="searchincutprintedmaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="searchincutprintedmaterial.Designer.cs">
+      <DependentUpon>searchincutprintedmaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="searchinfinishedproducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="searchinfinishedproducts.Designer.cs">
+      <DependentUpon>searchinfinishedproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="searchinmuranparcels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="searchinmuranparcels.Designer.cs">
+      <DependentUpon>searchinmuranparcels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="searchinprintedparcels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="searchinprintedparcels.Designer.cs">
+      <DependentUpon>searchinprintedparcels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="searchinrawmaterialform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="searchinrawmaterialform.Designer.cs">
+      <DependentUpon>searchinrawmaterialform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="searchreceivedrawtinbytwodates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="searchreceivedrawtinbytwodates.Designer.cs">
+      <DependentUpon>searchreceivedrawtinbytwodates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="searchwexchangedrawtinbetweentwodates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="searchwexchangedrawtinbetweentwodates.Designer.cs">
+      <DependentUpon>searchwexchangedrawtinbetweentwodates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="showprintedparcelclientsandproducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="showprintedparcelclientsandproducts.Designer.cs">
+      <DependentUpon>showprintedparcelclientsandproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="show_tin_general_infos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="show_tin_general_infos.Designer.cs">
+      <DependentUpon>show_tin_general_infos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_ADDED_PARCELS_OF_FINISHED_PRODUCT.cs" />
+    <Compile Include="SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS.cs" />
+    <Compile Include="sh_Add_ChangeBits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sh_Add_ChangeBits.Designer.cs">
+      <DependentUpon>sh_Add_ChangeBits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_CALCULATE_TOTAL_FINISHED_PRODUCT.cs" />
+    <Compile Include="SH_CLIENTS_BRANCHES.cs" />
+    <Compile Include="SH_CLIENTS_PRODUCTS.cs" />
+    <Compile Include="SH_CLIENT_COMPANY.cs" />
+    <Compile Include="SH_CLIENT_COMPANY_CONTACTS.cs" />
+    <Compile Include="SH_COILS_RAW_MATERIAL.cs" />
+    <Compile Include="SH_CONTAINER_OF_BILL_OFF.cs" />
+    <Compile Include="SH_CONTAINER_OF_BOTTOM.cs" />
+    <Compile Include="SH_CONTAINER_OF_EASY_OPEN.cs" />
+    <Compile Include="SH_CONTAINER_OF_RLT.cs" />
+    <Compile Include="SH_DEPARTEMENTS.cs" />
+    <Compile Include="SH_EMPLOYEES.cs" />
+    <Compile Include="SH_EXCHANGED_PRINTED_MATERIAL_PARCELS.cs" />
+    <Compile Include="sh_exchangel_ChangeBits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sh_exchangel_ChangeBits.Designer.cs">
+      <DependentUpon>sh_exchangel_ChangeBits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_EXCHANGE_OF_MURAN_MATERIAL.cs" />
+    <Compile Include="SH_EXCHANGE_OF_RAW_MATERIAL.cs" />
+    <Compile Include="SH_FACE_COLOR.cs" />
+    <Compile Include="SH_FUNCTION.cs" />
+    <Compile Include="SH_ITEMS.cs" />
+    <Compile Include="SH_ITEM_SIZE.cs" />
+    <Compile Include="SH_PALLETS_OF_CUT_MURAN_MATERIAL.cs" />
+    <Compile Include="SH_PALLETS_OF_CUT_PRINTED_MATERIAL.cs" />
+    <Compile Include="SH_PRINTED_MATERIAL_PARCEL.cs" />
+    <Compile Include="SH_Production_exchange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SH_Production_exchange.Designer.cs">
+      <DependentUpon>SH_Production_exchange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_PRODUCTION_REQUIRMENTS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SH_PRODUCTION_REQUIRMENTS.Designer.cs">
+      <DependentUpon>SH_PRODUCTION_REQUIRMENTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_PRODUCTS_OF_CLIENTS_QUANTITIES.cs" />
+    <Compile Include="SH_PRODUCT_OF_CLIENTS_PARCELS.cs" />
+    <Compile Include="SH_QUANTITIES_COMPUTER_PARTS.cs" />
+    <Compile Include="SH_QUANTITIES_ELECTRICAL_PARTS.cs" />
+    <Compile Include="SH_QUANTITIES_OF_CUT_MURAN_MATERIAL.cs" />
+    <Compile Include="SH_QUANTITIES_OF_CUT_PRINTED_MATERIAL.cs" />
+    <Compile Include="SH_QUANTITIES_OF_PRINTED_MATERIAL.cs" />
+    <Compile Include="SH_QUANTITIES_PRODUCTION_REQUIREMENTS.cs" />
+    <Compile Include="SH_QUANTITIES_RAW_MATERIAL_SPECIFICATION_COILS.cs" />
+    <Compile Include="SH_QUANTITY_OF_BILL_OFF.cs" />
+    <Compile Include="SH_QUANTITY_OF_BOTTOM.cs" />
+    <Compile Include="SH_QUANTITY_OF_EASY_OPEN.cs" />
+    <Compile Include="SH_QUANTITY_OF_MURAN_MATERIAL.cs" />
+    <Compile Include="SH_QUANTITY_OF_RAW_MATERIAL.cs" />
+    <Compile Include="SH_MURAN_MATERIAL_PARCEL.cs" />
+    <Compile Include="SH_QUANTITY_OF_RLT.cs" />
+    <Compile Include="SH_QUNTITIES_MECHNICAL_PARTS.cs" />
+    <Compile Include="SH_RAW_MATERIAL_PARCEL.cs" />
+    <Compile Include="SH_RAW_TIN_GENERAL_INFO.cs" />
+    <Compile Include="sh_Sell_Change_Bits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="sh_Sell_Change_Bits.Designer.cs">
+      <DependentUpon>sh_Sell_Change_Bits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_SHAHEEN_CUTTERS.cs" />
+    <Compile Include="SH_SHAHEEN_STOCK.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_BILL_OFF.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_BOTTOM.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_CUT_MURAN_MATERIAL.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_CUT_PRINTED_MATERIAL.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_EASY_OPEN.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_MURAN_MATERIAL .cs" />
+    <Compile Include="SH_SPECIFICATION_OF_PRINTED_MATERIAL.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL_COILS.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_RLT.cs" />
+    <Compile Include="SH_SUPPLIER_COMPANY_CONTACTS.cs" />
+    <Compile Include="SH_SUPPLIER_ITEMS.cs" />
+    <Compile Include="SH_SUPPLY_COMPANY.cs" />
+    <Compile Include="SH_SUPPLY_COMPANY_BRANCHES.cs" />
+    <Compile Include="SH_TIN_PRINTER.cs" />
+    <Compile Include="SH_USER_ACCOUNTS.cs" />
+    <Compile Include="SH_USER_PERMISIONS.cs" />
+    <Compile Include="SH_WORK_SHOP_WORK_ORDERS.cs" />
+    <Compile Include="updateUserPermissionsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="updateUserPermissionsFrm.Designer.cs">
+      <DependentUpon>updateUserPermissionsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewUserPermisions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewUserPermisions.Designer.cs">
+      <DependentUpon>ViewUserPermisions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="waitingform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="waitingform.Designer.cs">
+      <DependentUpon>waitingform.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="addclientbranches.resx">
+      <DependentUpon>addclientbranches.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewclientcompanycontacts.resx">
+      <DependentUpon>addnewclientcompanycontacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewclientproduct.resx">
+      <DependentUpon>addnewclientproduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewcutmuranmaterial.resx">
+      <DependentUpon>addnewcutmuranmaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewcutprintedmaterial.resx">
+      <DependentUpon>addnewcutprintedmaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewcutterform.resx">
+      <DependentUpon>addnewcutterform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewDepartment.resx">
+      <DependentUpon>AddNewDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewfacecolorform.resx">
+      <DependentUpon>addnewfacecolorform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewfinishedcan.resx">
+      <DependentUpon>addnewfinishedcan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addNewFunctionFrm.resx">
+      <DependentUpon>addNewFunctionFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddNewItemForSupplierFrm.resx">
+      <DependentUpon>AddNewItemForSupplierFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewmuranmaterialfd.resx">
+      <DependentUpon>addnewmuranmaterialfd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewprinterform.resx">
+      <DependentUpon>addnewprinterform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewprintingmaterialfd.resx">
+      <DependentUpon>addnewprintingmaterialfd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewrawtin.resx">
+      <DependentUpon>addnewrawtin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewrowtinfd.resx">
+      <DependentUpon>addnewrowtinfd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewsizesform.resx">
+      <DependentUpon>addnewsizesform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Addnewstockform.resx">
+      <DependentUpon>Addnewstockform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addSupplierCompanyContacts.resx">
+      <DependentUpon>addSupplierCompanyContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add_new_client_company_btn.resx">
+      <DependentUpon>add_new_client_company_btn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add_new_supply_company_brach.resx">
+      <DependentUpon>add_new_supply_company_brach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add_new_supply_company_form.resx">
+      <DependentUpon>add_new_supply_company_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="allfacecolors.resx">
+      <DependentUpon>allfacecolors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="allprintersform.resx">
+      <DependentUpon>allprintersform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllSelectedSupplierDataFrm.resx">
+      <DependentUpon>AllSelectedSupplierDataFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="allstocksform.resx">
+      <DependentUpon>allstocksform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="all_clients_data.resx">
+      <DependentUpon>all_clients_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="all_suppliers_data.resx">
+      <DependentUpon>all_suppliers_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillOffaddingform.resx">
+      <DependentUpon>BillOffaddingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="client_portal.resx">
+      <DependentUpon>client_portal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplaySelectedSupplierItems.resx">
+      <DependentUpon>DisplaySelectedSupplierItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="employee_portal.resx">
+      <DependentUpon>employee_portal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="getalldepartments.resx">
+      <DependentUpon>getalldepartments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="maintenanceworkorders.resx">
+      <DependentUpon>maintenanceworkorders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistEmp.resx">
+      <DependentUpon>RegistEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RLTaddingform.resx">
+      <DependentUpon>RLTaddingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="changePassword.resx">
+      <DependentUpon>changePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatabaseConnectionSettingForm.resx">
+      <DependentUpon>DatabaseConnectionSettingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display_allUsers.resx">
+      <DependentUpon>Display_allUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bottomaddingform.resx">
+      <DependentUpon>Bottomaddingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Easyopenaddingform.resx">
+      <DependentUpon>Easyopenaddingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exchanged_raw_materail_db.rdlc" />
+    <EmbeddedResource Include="exchangeofprintedmaterial.resx">
+      <DependentUpon>exchangeofprintedmaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="exchangerawtin.resx">
+      <DependentUpon>exchangerawtin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exchangeofmurantinbasicinfo.resx">
+      <DependentUpon>Exchangeofmurantinbasicinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exchangerawtinbasicinfo.resx">
+      <DependentUpon>Exchangerawtinbasicinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="exchange_of_cut_printed_material.resx">
+      <DependentUpon>exchange_of_cut_printed_material.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="exhangeofrawmaterilbyproperties.resx">
+      <DependentUpon>exhangeofrawmaterilbyproperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="getAllEmployeesFrm.resx">
+      <DependentUpon>getAllEmployeesFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="getAllUsers.resx">
+      <DependentUpon>getAllUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginFrm.resx">
+      <DependentUpon>LoginFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mainform.resx">
+      <DependentUpon>Mainform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="makenewuser.resx">
+      <DependentUpon>makenewuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new_raw_material_parcels_cards.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printedcaredsforrawmaterial.resx">
+      <DependentUpon>printedcaredsforrawmaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printrawmaterialaddingrequest.resx">
+      <DependentUpon>printrawmaterialaddingrequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="print_exchange_request.resx">
+      <DependentUpon>print_exchange_request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="quantities_of_selected_sp_raw_tin.resx">
+      <DependentUpon>quantities_of_selected_sp_raw_tin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rawmaterialaddingrequestreport.rdlc" />
+    <EmbeddedResource Include="rawmaterialexchangedquantities.resx">
+      <DependentUpon>rawmaterialexchangedquantities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="raw_material_second_form_coils.resx">
+      <DependentUpon>raw_material_second_form_coils.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="raw_tin_all_spcifications.resx">
+      <DependentUpon>raw_tin_all_spcifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="searchincutprintedmaterial.resx">
+      <DependentUpon>searchincutprintedmaterial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="searchinfinishedproducts.resx">
+      <DependentUpon>searchinfinishedproducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="searchinmuranparcels.resx">
+      <DependentUpon>searchinmuranparcels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="searchinprintedparcels.resx">
+      <DependentUpon>searchinprintedparcels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="searchinrawmaterialform.resx">
+      <DependentUpon>searchinrawmaterialform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="searchreceivedrawtinbytwodates.resx">
+      <DependentUpon>searchreceivedrawtinbytwodates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="searchwexchangedrawtinbetweentwodates.resx">
+      <DependentUpon>searchwexchangedrawtinbetweentwodates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="showprintedparcelclientsandproducts.resx">
+      <DependentUpon>showprintedparcelclientsandproducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="show_tin_general_infos.resx">
+      <DependentUpon>show_tin_general_infos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sh_Add_ChangeBits.resx">
+      <DependentUpon>sh_Add_ChangeBits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sh_exchangel_ChangeBits.resx">
+      <DependentUpon>sh_exchangel_ChangeBits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SH_Production_exchange.resx">
+      <DependentUpon>SH_Production_exchange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SH_PRODUCTION_REQUIRMENTS.resx">
+      <DependentUpon>SH_PRODUCTION_REQUIRMENTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="sh_Sell_Change_Bits.resx">
+      <DependentUpon>sh_Sell_Change_Bits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="updateUserPermissionsFrm.resx">
+      <DependentUpon>updateUserPermissionsFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewUserPermisions.resx">
+      <DependentUpon>ViewUserPermisions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="waitingform.resx">
+      <DependentUpon>waitingform.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\SH_QUANTITY_OF_RAW_MATERIAL.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Employee_default_Image.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

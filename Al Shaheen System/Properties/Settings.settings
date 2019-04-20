@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Al_Shaheen_System.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SH_SERVER" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.88.72</Value>
+    </Setting>
+    <Setting Name="SH_DATABASE_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SH_MASTER_DB</Value>
+    </Setting>
+    <Setting Name="SH_AUTH_TYPE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SQL</Value>
+    </Setting>
+    <Setting Name="SH_USER_NAME" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="SH_PASSWORD" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SHuser@123</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>اسم المخزن </Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox7</rd:DefaultName>
+            <Top>0.34396cm</Top>
+            <Left>3.06538cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>0cm</Top>
+        <Left>9.81666cm</Left>
+        <Height>5.3575cm</Height>
+        <Width>9.36562cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>19.47334cm</Height>
+    <Style />
+  </Body>
+  <Width>19.18228cm</Width>
+  <Page>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
+    <LeftMargin>0.5cm</LeftMargin>
+    <RightMargin>0.5cm</RightMargin>
+    <TopMargin>0.5cm</TopMargin>
+    <BottomMargin>0.5cm</BottomMargin>
+    <ColumnSpacing>1.27cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="Al_Shaheen_System">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>eeb8718b-3a71-4e1b-88bd-02d4d8d7b23a</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>Al_Shaheen_System</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="SH_ADDITION_DATE">
+          <DataField>SH_ADDITION_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="SH_COST_OF_QUANTITY">
+          <DataField>SH_COST_OF_QUANTITY</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_DATE_SUPPLY">
+          <DataField>SH_DATE_SUPPLY</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="SH_ID">
+          <DataField>SH_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_COATING">
+          <DataField>SH_ITEM_COATING</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_CODE">
+          <DataField>SH_ITEM_CODE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_FINISH">
+          <DataField>SH_ITEM_FINISH</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_GROSS_WEIGHT">
+          <DataField>SH_ITEM_GROSS_WEIGHT</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_ID">
+          <DataField>SH_ITEM_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_INTENSITY">
+          <DataField>SH_ITEM_INTENSITY</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_LENGTH">
+          <DataField>SH_ITEM_LENGTH</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_NAME">
+          <DataField>SH_ITEM_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_NUMBER_OF_SHEETS">
+          <DataField>SH_ITEM_NUMBER_OF_SHEETS</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_PARCEL_GROSS_WEIGHT">
+          <DataField>SH_ITEM_PARCEL_GROSS_WEIGHT</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_PARCEL_NET_WEIGHT">
+          <DataField>SH_ITEM_PARCEL_NET_WEIGHT</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_TEMPER">
+          <DataField>SH_ITEM_TEMPER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_THICKNESS">
+          <DataField>SH_ITEM_THICKNESS</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_TYPE">
+          <DataField>SH_ITEM_TYPE</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_ITEM_WIDTH">
+          <DataField>SH_ITEM_WIDTH</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_NET_WEIGHT">
+          <DataField>SH_NET_WEIGHT</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_PARCEL_NUMBER">
+          <DataField>SH_PARCEL_NUMBER</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_QUANTITY_OF_RAW_MATERIAL_ID">
+          <DataField>SH_QUANTITY_OF_RAW_MATERIAL_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SH_SPECIFICATION_OF_RAW_MATERIAL_ID">
+          <DataField>SH_SPECIFICATION_OF_RAW_MATERIAL_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SH_STOCK_NAME">
+          <DataField>SH_STOCK_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_SUPPLIER_NAME">
+          <DataField>SH_SUPPLIER_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_SUPPLY_TYPE_NAME">
+          <DataField>SH_SUPPLY_TYPE_NAME</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SH_TON_PRICE">
+          <DataField>SH_TON_PRICE</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="SH_TOTAL_NUMBER_OF_PACKAGES">
+          <DataField>SH_TOTAL_NUMBER_OF_PACKAGES</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE">
+          <DataField>SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Al_Shaheen_System</rd:DataSetName>
+        <rd:TableName>SH_RAW_MATERIAL_PARCEL</rd:TableName>
+        <rd:ObjectDataSourceType>Al_Shaheen_System.SH_RAW_MATERIAL_PARCEL, Al Shaheen System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>f0b0fe6a-3b93-45a4-b5cb-64c6fecb77b1</rd:ReportID>
+</Report>
