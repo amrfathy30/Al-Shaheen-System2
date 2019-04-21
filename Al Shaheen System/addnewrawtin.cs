@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dapper; 
+     
 
 namespace Al_Shaheen_System
 {
@@ -28,6 +30,9 @@ namespace Al_Shaheen_System
         double adding_request_net_weight = 0;
         double adding_request_gross_weight = 0;
         //double item_total_cost = 0;
+
+        DatabaseConnection myconnection = new DatabaseConnection();
+
         public addnewrawtin()
         {
             InitializeComponent();
@@ -39,7 +44,7 @@ namespace Al_Shaheen_System
             try
             {
                 string query = "SELECT * FROM SH_SPECIFICATION_OF_RAW_MATERIAL";
-                DatabaseConnection myconnection = new DatabaseConnection();
+               
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query , DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -47,6 +52,7 @@ namespace Al_Shaheen_System
                 {
                     all_specifications.Add(new SH_SPECIFICATION_OF_RAW_MATERIAL { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_ITEM_COATING = reader["SH_ITEM_COATING"].ToString() , SH_ITEM_CODE = reader["SH_ITEM_CODE"].ToString() , SH_ITEM_FINISH = reader["SH_ITEM_FINISH"].ToString() , SH_ITEM_TEMPER = reader["SH_ITEM_TEMPER"].ToString() , SH_ITEM_TYPE = reader["SH_ITEM_TYPE"].ToString()  });
                 }
+                reader.Close();
                 myconnection.closeConnection();
             }
             catch (Exception ex)
@@ -59,8 +65,7 @@ namespace Al_Shaheen_System
         {
             try
             {
-                string query = "SELECT * FROM SH_SHAHEEN_STOCKS";
-                DatabaseConnection myconnection = new DatabaseConnection();
+                string query = "SELECT * FROM SH_SHAHEEN_STOCKS";           
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query , DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -68,7 +73,7 @@ namespace Al_Shaheen_System
                 {
                     stocks.Add(new SH_SHAHEEN_STOCK { SH_STOCK_NAME  = reader["SH_STOCK_NAME"].ToString() , SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString() , SH_STOCK_ADDRESS_GPS  = reader["SH_STOCK_ADDRESS_GPS"].ToString() });
                 }
-                 
+                reader.Close();               
                 myconnection.closeConnection();
             }
             catch (Exception ex)
@@ -100,8 +105,7 @@ namespace Al_Shaheen_System
             List<string> adding_permission_numbers = new List<string>();
             //get all adding permission numbers
             try
-            {
-                DatabaseConnection myconnection = new DatabaseConnection();
+            {        
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SELECT SH_ADDING_NUMBER FROM SH_QUANTITY_OF_RAW_MATERIAL " , DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -109,13 +113,13 @@ namespace Al_Shaheen_System
                 {
                     adding_permission_numbers.Add(reader["SH_ADDING_NUMBER"].ToString());
                 }
+                reader.Close();
                 myconnection.closeConnection();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR WHILE GETTING ADDING PERMISSION NUMBERS" + ex.ToString() );
             }
-
             //search in the list
             for (int i = 0; i < adding_permission_numbers.Count; i++)
             {
@@ -124,25 +128,25 @@ namespace Al_Shaheen_System
                     return true;
                 }
             }
-
-
             return false;
         }
 
 
         void loadsuppliersdata()
         {
-            string query = "SELECT * FROM SH_SUPPLY_COMPANY";
+            //string query = "SELECT * FROM SH_SUPPLY_COMPANY";
             try
             {
-                DatabaseConnection myconnection = new DatabaseConnection();
+                
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand(query , DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_SUPPLIERS", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    suppliers.Add(new SH_SUPPLY_COMPANY { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_SUPPLY_COMAPNY_NAME = reader["SH_SUPPLY_COMAPNY_NAME"].ToString() , SH_SUPPLY_COMPANY_MOBILE = reader["SH_SUPPLY_COMPANY_MOBILE"].ToString()  , SH_SUPPLY_COMPANY_TELEPHONE = reader["SH_SUPPLY_COMPANY_TELEPHONE"].ToString() , SH_SUPPLY_COMPANY_TYPE = reader["SH_SUPPLY_COMPANY_TYPE"].ToString() });
+                    suppliers.Add(new SH_SUPPLY_COMPANY { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_SUPPLY_COMAPNY_NAME = reader["SH_SUPPLY_COMAPNY_NAME"].ToString(), SH_SUPPLY_COMPANY_MOBILE = reader["SH_SUPPLY_COMPANY_MOBILE"].ToString(), SH_SUPPLY_COMPANY_TELEPHONE = reader["SH_SUPPLY_COMPANY_TELEPHONE"].ToString(), SH_SUPPLY_COMPANY_TYPE = reader["SH_SUPPLY_COMPANY_TYPE"].ToString() });
                 }
+                reader.Close();
                 myconnection.closeConnection();
             }
             catch (Exception)
@@ -150,7 +154,7 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE LOADING SUPLLIERS DATA");
             }
         }
-        async Task<long> check_if_specification_exists_or_not(SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
+       long check_if_specification_exists_or_not(SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
         {
             loadallspecifications();
             long check_result = 0;
@@ -166,15 +170,14 @@ namespace Al_Shaheen_System
             return check_result;
         }
         async Task  update_specifiction_quanities(long sid , SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
-        {
-            
+        {         
             try
             {
                 string query = "UPDATE SH_SPECIFICATION_OF_RAW_MATERIAL SET SH_ITEM_TOTAL_NUMBER_OF_SHEETS = SH_ITEM_TOTAL_NUMBER_OF_SHEETS + @SH_ITEM_TOTAL_NUMBER_OF_SHEETS";
                 query += ", SH_ITEM_TOTAL_NUMBER_OF_PACKAGES = SH_ITEM_TOTAL_NUMBER_OF_PACKAGES + @SH_ITEM_TOTAL_NUMBER_OF_PACKAGES";
                 query += ", SH_TOTAL_NET_WEIGHT = SH_TOTAL_NET_WEIGHT + @SH_TOTAL_NET_WEIGHT, ";
                 query += " SH_TOTAL_GROSS_WEIGHT = SH_TOTAL_GROSS_WEIGHT + @SH_TOTAL_GROSS_WEIGHT WHERE SH_ID = @SH_ID";
-                DatabaseConnection myconnection = new DatabaseConnection();
+                
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                 cmd.Parameters.AddWithValue("@SH_ITEM_TOTAL_NUMBER_OF_SHEETS", anyquantity.SH_TOTAL_NUMBER_OF_SHEETS());
@@ -198,7 +201,6 @@ namespace Al_Shaheen_System
             }
             else
             {
-                //MessageBox.Show("hello");
                 try
                 {
                     string query = "INSERT INTO SH_SPECIFICATION_OF_RAW_MATERIAL";
@@ -212,17 +214,26 @@ namespace Al_Shaheen_System
                     query += ", @SH_CREATION_DATE";
                     query += ",@SH_ITEM_TOTAL_NUMBER_OF_SHEETS , @SH_TOTAL_NET_WEIGHT , @SH_TOTAL_GROSS_WEIGHT) ";
                     query += "SELECT SCOPE_IDENTITY() AS myidentity";
-                    DatabaseConnection myconnection = new DatabaseConnection();
+                    
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                     cmd.Parameters.AddWithValue("@SH_ITEM_LENGTH", double.Parse(item_length_text_box.Text));
                     cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH", double.Parse(item_width_text_box.Text));
                     cmd.Parameters.AddWithValue("@SH_ITEM_THICKNESS", double.Parse(item_thickness_text_box.Text));
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", item_type_combo_box.Text);
+                     this.Invoke((MethodInvoker)delegate ()
+                    {
+                        cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", item_type_combo_box.Text);
+                    });
                     cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "صفيح");
                     cmd.Parameters.AddWithValue("@SH_ITEM_CODE", item_code_text_box.Text);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TEMPER", item_temper_combo_box.Text);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_FINISH", item_finish_combo_box.Text);
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        cmd.Parameters.AddWithValue("@SH_ITEM_TEMPER", item_temper_combo_box.Text);
+                    });
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        cmd.Parameters.AddWithValue("@SH_ITEM_FINISH", item_finish_combo_box.Text);
+                    });
                     cmd.Parameters.AddWithValue("@SH_ITEM_COATING", item_coating_text_box.Text);
                     cmd.Parameters.AddWithValue("@SH_ITEM_INTENSITY", double.Parse(item_intensity_text_box.Text));
                     cmd.Parameters.AddWithValue("@SH_CREATION_DATE", addition_date);
@@ -231,13 +242,16 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NET_WEIGHT", (((double.Parse(item_length_text_box.Text) * double.Parse(item_width_text_box.Text) * double.Parse(item_thickness_text_box.Text)) / 1000000) * double.Parse(item_intensity_text_box.Text)) * double.Parse(all_packages_no_sheets.ToString()));
                     cmd.Parameters.AddWithValue("@SH_TOTAL_GROSS_WEIGHT", all_packages_gross_weight);
                     SqlDataReader reader = cmd.ExecuteReader();
+                    long id = 0;
                     if (reader.Read())
                     {
                         //MessageBox.Show("GENERAL : " + reader["myidentity"].ToString());
-                        return long.Parse(reader["myidentity"].ToString());
+                        id= long.Parse(reader["myidentity"].ToString());
                     }
+                    reader.Close();
 
                     myconnection.closeConnection();
+                    return id;
                 }
                 catch (Exception ex)
                 {
@@ -250,24 +264,26 @@ namespace Al_Shaheen_System
         }
         async Task  save_raw_tin_quantites(long specification_id)
         {
-            
+
+            string query = "INSERT INTO SH_QUANTITY_OF_RAW_MATERIAL ";
+            query += "(SH_SPECIFICATION_OF_RAW_MATERIAL_ID,SH_ADDING_PERMISSION_DATE, SH_ITEM_LENGTH, SH_ITEM_WIDTH,";
+            query += "SH_ITEM_THICKNESS, SH_ITEM_INTENSITY, SH_ITEM_TEMPER, SH_ITEM_FINISH, ";
+            query += "SH_ITEM_COATING,SH_SUPPLIER_NAME, SH_ITEM_TYPE,SH_ITEM_NAME, ";
+            query += "SH_ITEM_CODE,SH_ADDING_NUMBER, SH_ITEM_SHEET_WEIGHT, SH_TOTAL_NUMBER_OF_PACKAGES, ";
+            query += "SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE, SH_NET_WEIGHT,";
+            query += " SH_STOCK_NAME, SH_ADDITION_DATE, SH_ITEM_GROSS_WEIGHT) VALUES( ";
+            query += "@SH_SPECIFICATION_OF_RAW_MATERIAL_ID,@SH_ADDING_PERMISSION_DATE,@SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS";
+            query += ",@SH_ITEM_INTENSITY,@SH_ITEM_TEMPER,@SH_ITEM_FINISH,@SH_ITEM_COATING,@SH_SUPPLIER_NAME,@SH_ITEM_TYPE";
+            query += ",@SH_ITEM_NAME,@SH_ITEM_CODE,@SH_ADDING_NUMBER,@SH_ITEM_SHEET_WEIGHT,@SH_TOTAL_NUMBER_OF_PACKAGES,";
+            query += "@SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE,@SH_NET_WEIGHT,@SH_STOCK_NAME,@SH_ADDITION_DATE,";
+            query += "@SH_ITEM_GROSS_WEIGHT) SELECT SCOPE_IDENTITY() AS myidentity";
+
+            long current_quantity_id = 0;
             for (int i = 0; i < quantities.Count; i++)
             {
                 try
                 {
-                    string query = "INSERT INTO SH_QUANTITY_OF_RAW_MATERIAL ";
-                    query += "(SH_SPECIFICATION_OF_RAW_MATERIAL_ID,SH_ADDING_PERMISSION_DATE, SH_ITEM_LENGTH, SH_ITEM_WIDTH,";
-                    query += "SH_ITEM_THICKNESS, SH_ITEM_INTENSITY, SH_ITEM_TEMPER, SH_ITEM_FINISH, ";
-                    query += "SH_ITEM_COATING,SH_SUPPLIER_NAME, SH_ITEM_TYPE,SH_ITEM_NAME, ";
-                    query += "SH_ITEM_CODE,SH_ADDING_NUMBER, SH_ITEM_SHEET_WEIGHT, SH_TOTAL_NUMBER_OF_PACKAGES, ";
-                    query += "SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE, SH_NET_WEIGHT,";
-                    query += " SH_STOCK_NAME, SH_ADDITION_DATE, SH_ITEM_GROSS_WEIGHT) VALUES( ";
-                    query += "@SH_SPECIFICATION_OF_RAW_MATERIAL_ID,@SH_ADDING_PERMISSION_DATE,@SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS";
-                    query += ",@SH_ITEM_INTENSITY,@SH_ITEM_TEMPER,@SH_ITEM_FINISH,@SH_ITEM_COATING,@SH_SUPPLIER_NAME,@SH_ITEM_TYPE";
-                    query += ",@SH_ITEM_NAME,@SH_ITEM_CODE,@SH_ADDING_NUMBER,@SH_ITEM_SHEET_WEIGHT,@SH_TOTAL_NUMBER_OF_PACKAGES,";
-                    query += "@SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE,@SH_NET_WEIGHT,@SH_STOCK_NAME,@SH_ADDITION_DATE,";
-                    query += "@SH_ITEM_GROSS_WEIGHT) SELECT SCOPE_IDENTITY() AS myidentity";
-                    DatabaseConnection myconnection = new DatabaseConnection();
+               
                     
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
@@ -297,11 +313,21 @@ namespace Al_Shaheen_System
                     if (reader.Read())
                     {
                         //MessageBox.Show("Quantity : "+reader["myidentity"].ToString());
-                        
-                        long ex_or = await saveexamination_order(specification_id, long.Parse(reader["myidentity"].ToString()), i , quantities[i]);
-                        await save_raw_tin_packages(specification_id, i, long.Parse(reader["myidentity"].ToString()), quantities[i].SH_TOTAL_NUMBER_OF_PACKAGES, ex_or , quantities[i].SH_QUANTITY_PARCELS);
-                    }
+                        current_quantity_id = long.Parse(reader["myidentity"].ToString());
+                                     }
+
+                    reader.Close();
+                    long ex_or=0;
                     myconnection.closeConnection();
+                    this.Invoke((MethodInvoker)async delegate ()
+                    {
+                         ex_or = await saveexamination_order(specification_id, current_quantity_id, i, quantities[i]);
+                    });
+
+                    this.Invoke((MethodInvoker)async delegate ()
+                    {
+                        await save_raw_tin_packages(specification_id, i, current_quantity_id, quantities[i].SH_TOTAL_NUMBER_OF_PACKAGES, ex_or, quantities[i].SH_QUANTITY_PARCELS);
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -313,6 +339,7 @@ namespace Al_Shaheen_System
 
         async Task  save_raw_tin_packages(long specification_id, int quanitityindex, long quantity_id, long no_packages, long examination_order_id, List<SH_RAW_MATERIAL_PARCEL> myparcels)
         {
+            long current_parcel = 0;
             for (int i = 0; i < myparcels.Count; i++)
             {
 
@@ -330,7 +357,7 @@ namespace Al_Shaheen_System
                     query += ",@SH_ITEM_FINISH,@SH_SUPPLIER_NAME,@SH_ITEM_COATING,@SH_ITEM_NAME,@SH_ITEM_TYPE,@SH_ITEM_SHEET_WEIGHT";
                     query += ",@SH_ITEM_NUMBER_OF_SHEETS,@SH_ITEM_PARCEL_GROSS_WEIGHT,@SH_ITEM_PARCEL_NET_WEIGHT,@SH_STOCK_NAME,";
                     query += "@SH_ADDITION_DATE) SELECT SCOPE_IDENTITY() AS myidentity";
-                    DatabaseConnection myconnection = new DatabaseConnection();
+                   
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                     cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_RAW_MATERIAL_ID", specification_id);
@@ -346,23 +373,38 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_SUPPLIER_NAME", myparcels[i].SH_SUPPLIER_NAME);
                     cmd.Parameters.AddWithValue("@SH_ITEM_COATING", myparcels[i].SH_ITEM_COATING);
                     cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "صفيح");
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", item_type_combo_box.Text);
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", item_type_combo_box.Text);
+                    });
                     cmd.Parameters.AddWithValue("@SH_ITEM_SHEET_WEIGHT", myparcels[i].SH_NET_WEIGHT);
                     cmd.Parameters.AddWithValue("@SH_ITEM_NUMBER_OF_SHEETS", myparcels[i].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE);
                     cmd.Parameters.AddWithValue("@SH_ITEM_PARCEL_GROSS_WEIGHT", myparcels[i].SH_ITEM_GROSS_WEIGHT);
                     cmd.Parameters.AddWithValue("@SH_ITEM_PARCEL_NET_WEIGHT", myparcels[i].SH_ITEM_PARCEL_NET_WEIGHT);
                     cmd.Parameters.AddWithValue("@SH_STOCK_NAME", quantities[quanitityindex].SH_STOCK_NAME);
                     cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", addition_date);
-                    cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_NUMBER", adding_request_number_text_box.Text);
-                    cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_DATE", DateTime.Parse(adding_permission_date_text_box.Text));
-
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_NUMBER", adding_request_number_text_box.Text);
+                    });
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_DATE", DateTime.Parse(adding_permission_date_text_box.Text));
+                    });
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        last_inserted_packages_ids.Add(new raw_material_card_info { item_number = long.Parse(reader["myidentity"].ToString()), item_code = item_code_text_box.Text, item_name = "صفيح خام ", item_type = item_type_combo_box.Text, stock_name = quantities[quanitityindex].SH_STOCK_NAME, no_sheets = quantities[quanitityindex].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE });
-                        await saveexamination_order_packages(examination_order_id, long.Parse(reader["myidentity"].ToString()));
+                        current_parcel = long.Parse(reader["myidentity"].ToString());
                     }
+                    reader.Close();
                     myconnection.closeConnection();
+                    last_inserted_packages_ids.Add(new raw_material_card_info { item_number = current_parcel, item_code = item_code_text_box.Text, item_name = "صفيح خام ", item_type = item_type_combo_box.Text, stock_name = quantities[quanitityindex].SH_STOCK_NAME, no_sheets = quantities[quanitityindex].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE });
+                    this.Invoke((MethodInvoker)async delegate ()
+                    {
+                        await saveexamination_order_packages(examination_order_id, current_parcel);
+                    });
+
+
                     //   MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                 }
                 catch (Exception EX)
@@ -385,30 +427,43 @@ namespace Al_Shaheen_System
                 query += ",@SH_QUANTITY_OF_RAW_MATERIAL_ID,@SH_DATE_EXAMINATION,@SH_STOCK_MAN_NAME,@SH_TOTAL_NO_PARCELS,";
                 query += "@SH_STOCK_NAME,@SH_TOTAL_NO_SHEETS,@SH_GROSS_WEIGHT,@SH_NET_WEIGHT,@SH_TECHNICAL_MAN";
                 query += ",@SH_EXAMINATION_RESULT,@SH_ADDITION_DATE,@SH_ITEM_STAT) SELECT SCOPE_IDENTITY() AS myidentity";
-                DatabaseConnection myconnection = new DatabaseConnection();
+               
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                 cmd.Parameters.AddWithValue("@SH_EXAMINATION_ORDER_NUMBER" , long.Parse(examination_number_text_box.Text));
                 cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_RAW_MATERIAL_ID", SPECIFICATION_ID );
                 cmd.Parameters.AddWithValue("@SH_QUANTITY_OF_RAW_MATERIAL_ID" , QUANTITY_ID);
-                cmd.Parameters.AddWithValue("@SH_DATE_EXAMINATION", DateTime.Parse(adding_permission_date_text_box.Text));
-                cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME", stock_man_text_box.Text);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_PARCELS", total_no_packges);
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    cmd.Parameters.AddWithValue("@SH_DATE_EXAMINATION", DateTime.Parse(adding_permission_date_text_box.Text));
+                });
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME", stock_man_text_box.Text);
+                });
+                    cmd.Parameters.AddWithValue("@SH_TOTAL_NO_PARCELS", total_no_packges);
                 cmd.Parameters.AddWithValue("@SH_STOCK_NAME" , quantities[quantityindex].SH_STOCK_NAME);
                 cmd.Parameters.AddWithValue("@SH_TOTAL_NO_SHEETS", all_packages_no_sheets);
                 cmd.Parameters.AddWithValue("@SH_GROSS_WEIGHT" , adding_request_gross_weight);
                 cmd.Parameters.AddWithValue("@SH_NET_WEIGHT" , adding_request_net_weight);
-                cmd.Parameters.AddWithValue("@SH_TECHNICAL_MAN", technical_text_box.Text);
-                cmd.Parameters.AddWithValue("@SH_EXAMINATION_RESULT", "NONE");
+                this.Invoke((MethodInvoker)delegate ()
+                {
+                    cmd.Parameters.AddWithValue("@SH_TECHNICAL_MAN", technical_text_box.Text);
+                });
+                    cmd.Parameters.AddWithValue("@SH_EXAMINATION_RESULT", "NONE");
                 cmd.Parameters.AddWithValue("@SH_ITEM_STAT" , "ACCEPTED");
                 cmd.Parameters.AddWithValue("@SH_ADDITION_DATE" , DateTime.Now);
 
                 SqlDataReader reader = cmd.ExecuteReader();
+                long id =0;
                 if (reader.Read())
                 {
 
-                    return long.Parse(reader["myidentity"].ToString()); 
+                    id=  long.Parse(reader["myidentity"].ToString()); 
                 }
+                reader.Close();
+                myconnection.closeConnection();
+                return id;
             }
             catch (Exception ex)
             {
@@ -426,7 +481,7 @@ namespace Al_Shaheen_System
                 string query = "INSERT INTO SH_MINUTES_PACKAGES_EXAMINED_RAW_MATERIAL";
                 query += "(SH_EXAMINATION_OF_RAW_MATERIAL_ID, SH_ITEM_PRACEL_ID) VALUES( ";
                 query += "@SH_EXAMINATION_OF_RAW_MATERIAL_ID,@SH_ITEM_PRACEL_ID)";
-                DatabaseConnection myconnection = new DatabaseConnection();
+               
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query , DatabaseConnection.mConnection);
                 cmd.Parameters.AddWithValue("@SH_EXAMINATION_OF_RAW_MATERIAL_ID", exmination_id);
@@ -473,7 +528,8 @@ namespace Al_Shaheen_System
         }
         private void add_new_quantity_btn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(item_type_combo_box.Text) || string.IsNullOrWhiteSpace(item_length_text_box.Text) || string.IsNullOrWhiteSpace(item_width_text_box.Text) || string.IsNullOrWhiteSpace(item_thickness_text_box.Text))
+            long testnumber = 0;
+            if (!long.TryParse(examination_number_text_box.Text, out testnumber) || string.IsNullOrEmpty(item_type_combo_box.Text) || string.IsNullOrWhiteSpace(item_length_text_box.Text) || string.IsNullOrWhiteSpace(item_width_text_box.Text) || string.IsNullOrWhiteSpace(item_thickness_text_box.Text))
             {
                 //DO NOTHING
                 MessageBox.Show("لا يمكن حفظ البيانات  \n  الرجاء التاكد من كتابة البيانات بشكل صحيح ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
@@ -558,10 +614,7 @@ namespace Al_Shaheen_System
             item_temper_combo_box.SelectedIndex = 0;
         }
 
-        private void supplier_text_box_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
+       
 
         private void adding_request_number_text_box_TextChanged(object sender, EventArgs e)
         {
@@ -704,7 +757,7 @@ namespace Al_Shaheen_System
                 {
                     for (int i = 0; i < quantities.Count; i++)
                     {
-                        long id = await check_if_specification_exists_or_not(quantities[i]);
+                        long id =  check_if_specification_exists_or_not(quantities[i]);
                         if (id == 0)
                         {
                             //error
@@ -721,9 +774,8 @@ namespace Al_Shaheen_System
                         }
                         else
                         {
-                            update_specifiction_quanities(id, quantities[i]);
+                            await update_specifiction_quanities(id, quantities[i]);
                             await save_raw_tin_quantites(id);
-                            MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
                         }
 
@@ -754,7 +806,14 @@ namespace Al_Shaheen_System
         private void savenewrawtinaddingrequest_Click(object sender, EventArgs e)
         {
             //Task task = Task.Run((Action) MyFunction);
-            saverawtindata();
+
+            Task t = new Task(() =>
+            {
+                 saverawtindata();
+            });
+            t.Start();
+          //  MessageBox.Show("");
+          
         }
         private void button1_Click(object sender, EventArgs e)
         {
