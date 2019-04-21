@@ -95,7 +95,7 @@ namespace Al_Shaheen_System
             }
         }
         
-        bool check_existance_of_adding_permission_number(string anynumber)
+        async Task <bool> check_existance_of_adding_permission_number(string anynumber)
         {
             List<string> adding_permission_numbers = new List<string>();
             //get all adding permission numbers
@@ -150,7 +150,7 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE LOADING SUPLLIERS DATA");
             }
         }
-        long check_if_specification_exists_or_not(SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
+        async Task<long> check_if_specification_exists_or_not(SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
         {
             loadallspecifications();
             long check_result = 0;
@@ -165,7 +165,7 @@ namespace Al_Shaheen_System
                
             return check_result;
         }
-        void update_specifiction_quanities(long sid , SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
+        async Task  update_specifiction_quanities(long sid , SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
         {
             
             try
@@ -190,7 +190,7 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR UPDATING QUANTITES IN SPECIFICATION TABLE" + ex.ToString());
             }
         }
-        long savetofirstduration_rawtin()
+        async Task<long> savetofirstduration_rawtin()
         {
             if (!((errorProvider1.GetError(item_length_text_box) == "") && (errorProvider1.GetError(item_width_text_box) == "") && (errorProvider1.GetError(item_thickness_text_box) == "") && (errorProvider1.GetError(item_coating_text_box) == "")))
             {
@@ -233,7 +233,7 @@ namespace Al_Shaheen_System
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        MessageBox.Show("GENERAL : " + reader["myidentity"].ToString());
+                        //MessageBox.Show("GENERAL : " + reader["myidentity"].ToString());
                         return long.Parse(reader["myidentity"].ToString());
                     }
 
@@ -248,7 +248,7 @@ namespace Al_Shaheen_System
             }
             return 0;
         }
-        void save_raw_tin_quantites(long specification_id)
+        async Task  save_raw_tin_quantites(long specification_id)
         {
             
             for (int i = 0; i < quantities.Count; i++)
@@ -298,8 +298,8 @@ namespace Al_Shaheen_System
                     {
                         //MessageBox.Show("Quantity : "+reader["myidentity"].ToString());
                         
-                        long ex_or = saveexamination_order(specification_id, long.Parse(reader["myidentity"].ToString()), i , quantities[i]);
-                        save_raw_tin_packages(specification_id, i, long.Parse(reader["myidentity"].ToString()), quantities[i].SH_TOTAL_NUMBER_OF_PACKAGES, ex_or , quantities[i].SH_QUANTITY_PARCELS);
+                        long ex_or = await saveexamination_order(specification_id, long.Parse(reader["myidentity"].ToString()), i , quantities[i]);
+                        await save_raw_tin_packages(specification_id, i, long.Parse(reader["myidentity"].ToString()), quantities[i].SH_TOTAL_NUMBER_OF_PACKAGES, ex_or , quantities[i].SH_QUANTITY_PARCELS);
                     }
                     myconnection.closeConnection();
                 }
@@ -311,7 +311,7 @@ namespace Al_Shaheen_System
             MessageBox.Show("تم الحفظ بنجاح" , "معلومات" , MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
         }
 
-        void save_raw_tin_packages(long specification_id, int quanitityindex, long quantity_id, long no_packages , long examination_order_id , List<SH_RAW_MATERIAL_PARCEL> myparcels)
+        async Task  save_raw_tin_packages(long specification_id, int quanitityindex, long quantity_id, long no_packages, long examination_order_id, List<SH_RAW_MATERIAL_PARCEL> myparcels)
         {
             for (int i = 0; i < myparcels.Count; i++)
             {
@@ -337,13 +337,13 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_QUANTITY_OF_RAW_MATERIAL_ID", quantity_id);
                     cmd.Parameters.AddWithValue("@SH_PARCEL_NUMBER", year.ToString());
                     cmd.Parameters.AddWithValue("@SH_ITEM_LENGTH", myparcels[i].SH_ITEM_LENGTH);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH",  myparcels[i].SH_ITEM_WIDTH);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH", myparcels[i].SH_ITEM_WIDTH);
                     cmd.Parameters.AddWithValue("@SH_ITEM_THICKNESS", myparcels[i].SH_ITEM_THICKNESS);
                     cmd.Parameters.AddWithValue("@SH_ITEM_INTENSITY", myparcels[i].SH_ITEM_INTENSITY);
                     cmd.Parameters.AddWithValue("@SH_ITEM_TEMPER", myparcels[i].SH_ITEM_TEMPER);
                     cmd.Parameters.AddWithValue("@SH_ITEM_CODE", myparcels[i].SH_ITEM_CODE);
                     cmd.Parameters.AddWithValue("@SH_ITEM_FINISH", myparcels[i].SH_ITEM_FINISH);
-                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_NAME" , myparcels[i].SH_SUPPLIER_NAME);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_NAME", myparcels[i].SH_SUPPLIER_NAME);
                     cmd.Parameters.AddWithValue("@SH_ITEM_COATING", myparcels[i].SH_ITEM_COATING);
                     cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "صفيح");
                     cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", item_type_combo_box.Text);
@@ -353,17 +353,17 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_ITEM_PARCEL_NET_WEIGHT", myparcels[i].SH_ITEM_PARCEL_NET_WEIGHT);
                     cmd.Parameters.AddWithValue("@SH_STOCK_NAME", quantities[quanitityindex].SH_STOCK_NAME);
                     cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", addition_date);
-                    cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_NUMBER" , adding_request_number_text_box.Text );
-                    cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_DATE" , DateTime.Parse(adding_permission_date_text_box.Text) );
+                    cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_NUMBER", adding_request_number_text_box.Text);
+                    cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_DATE", DateTime.Parse(adding_permission_date_text_box.Text));
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        last_inserted_packages_ids.Add(new raw_material_card_info { item_number = long.Parse(reader["myidentity"].ToString()) , item_code = item_code_text_box.Text , item_name = "صفيح خام ", item_type = item_type_combo_box.Text, stock_name = quantities[quanitityindex].SH_STOCK_NAME , no_sheets = quantities[quanitityindex].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE });
-                        saveexamination_order_packages(examination_order_id, long.Parse(reader["myidentity"].ToString()));
+                        last_inserted_packages_ids.Add(new raw_material_card_info { item_number = long.Parse(reader["myidentity"].ToString()), item_code = item_code_text_box.Text, item_name = "صفيح خام ", item_type = item_type_combo_box.Text, stock_name = quantities[quanitityindex].SH_STOCK_NAME, no_sheets = quantities[quanitityindex].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE });
+                        await saveexamination_order_packages(examination_order_id, long.Parse(reader["myidentity"].ToString()));
                     }
                     myconnection.closeConnection();
-                 //   MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                    //   MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                 }
                 catch (Exception EX)
                 {
@@ -372,7 +372,7 @@ namespace Al_Shaheen_System
             }
         }
 
-        long saveexamination_order(long SPECIFICATION_ID , long QUANTITY_ID , int quantityindex , SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
+        async Task <long >saveexamination_order(long SPECIFICATION_ID , long QUANTITY_ID , int quantityindex , SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
         {
 
             try
@@ -419,7 +419,7 @@ namespace Al_Shaheen_System
         }
 
 
-        void saveexamination_order_packages(long exmination_id , long package_id)
+        async Task  saveexamination_order_packages(long exmination_id , long package_id)
         {
             try
             {
@@ -687,55 +687,42 @@ namespace Al_Shaheen_System
 
 
 
-        void saverawtindata()
+        public  async Task saverawtindata()
         {
 
-
-
-
-
-            //Task task = Task.Run((Action) MyFunction);
-
-
-        }
-
-
-
-        private void savenewrawtinaddingrequest_Click(object sender, EventArgs e)
-        {
             if (string.IsNullOrEmpty(adding_request_number_text_box.Text))
             {
                 MessageBox.Show("لا يمكن حفظ البيانات  \n  الرجاء إدخال رقم إذن الإضافة ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
             }
             {
-                if (check_existance_of_adding_permission_number(adding_request_number_text_box.Text))
+                if ( await check_existance_of_adding_permission_number(adding_request_number_text_box.Text))
                 {
-                    MessageBox.Show(" رقم إذن الإضافة قد تم إضافته من قبل الرجاء إدخال رقم جديد  ", "تحذير" , MessageBoxButtons.OK , MessageBoxIcon.Warning , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+                    MessageBox.Show(" رقم إذن الإضافة قد تم إضافته من قبل الرجاء إدخال رقم جديد  ", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                 }
                 else
                 {
                     for (int i = 0; i < quantities.Count; i++)
                     {
-                        long id = check_if_specification_exists_or_not(quantities[i]);
+                        long id = await check_if_specification_exists_or_not(quantities[i]);
                         if (id == 0)
                         {
                             //error
 
-                            long sid = savetofirstduration_rawtin();
+                            long sid = await savetofirstduration_rawtin();
                             if (sid == 0)
                             {
                                 //error
                             }
                             else
                             {
-                                save_raw_tin_quantites(sid);
+                               await save_raw_tin_quantites(sid);
                             }
                         }
                         else
                         {
                             update_specifiction_quanities(id, quantities[i]);
-                            save_raw_tin_quantites(id);
+                            await save_raw_tin_quantites(id);
                             MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
                         }
@@ -754,6 +741,20 @@ namespace Al_Shaheen_System
                     //}
                 }
             }
+
+
+
+          
+
+
+        }
+
+
+
+        private void savenewrawtinaddingrequest_Click(object sender, EventArgs e)
+        {
+            //Task task = Task.Run((Action) MyFunction);
+            saverawtindata();
         }
         private void button1_Click(object sender, EventArgs e)
         {
