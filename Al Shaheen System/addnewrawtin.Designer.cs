@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.item_total_number_of_packages = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.cancelbtn = new System.Windows.Forms.Button();
@@ -61,6 +61,8 @@
             this.no_packages_text_box = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.item_thickness_text_box = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.item_coating_text_box = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.item_sheet_weight_text_box = new System.Windows.Forms.TextBox();
@@ -104,8 +106,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.adding_permission_date_text_box = new System.Windows.Forms.DateTimePicker();
             this.suppliers_combo_box = new System.Windows.Forms.ComboBox();
-            this.item_thickness_text_box = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -422,6 +422,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات الصفيح ";
             // 
+            // item_thickness_text_box
+            // 
+            this.item_thickness_text_box.Location = new System.Drawing.Point(363, 19);
+            this.item_thickness_text_box.Name = "item_thickness_text_box";
+            this.item_thickness_text_box.Size = new System.Drawing.Size(177, 26);
+            this.item_thickness_text_box.TabIndex = 24;
+            this.item_thickness_text_box.TextChanged += new System.EventHandler(this.item_thickness_text_box_TextChanged);
+            this.item_thickness_text_box.Leave += new System.EventHandler(this.item_thickness_text_box_Leave);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(562, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 20);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "السمك";
+            // 
             // item_coating_text_box
             // 
             this.item_coating_text_box.Location = new System.Drawing.Point(43, 149);
@@ -521,7 +539,7 @@
             "SILVER MAT FINISH"});
             this.item_finish_combo_box.Location = new System.Drawing.Point(43, 115);
             this.item_finish_combo_box.Name = "item_finish_combo_box";
-            this.item_finish_combo_box.Size = new System.Drawing.Size(177, 28);
+            this.item_finish_combo_box.Size = new System.Drawing.Size(180, 28);
             this.item_finish_combo_box.TabIndex = 10;
             // 
             // label6
@@ -718,14 +736,14 @@
             this.item_quantities_grid_view.AllowUserToDeleteRows = false;
             this.item_quantities_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.item_quantities_grid_view.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.item_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.item_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.item_quantities_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.item_quantities_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -739,16 +757,16 @@
             this.item_quantities_grid_view.MultiSelect = false;
             this.item_quantities_grid_view.Name = "item_quantities_grid_view";
             this.item_quantities_grid_view.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.item_quantities_grid_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.item_quantities_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.item_quantities_grid_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.item_quantities_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.item_quantities_grid_view.Size = new System.Drawing.Size(688, 140);
             this.item_quantities_grid_view.TabIndex = 36;
             // 
@@ -828,24 +846,6 @@
             this.suppliers_combo_box.Name = "suppliers_combo_box";
             this.suppliers_combo_box.Size = new System.Drawing.Size(242, 28);
             this.suppliers_combo_box.TabIndex = 41;
-            // 
-            // item_thickness_text_box
-            // 
-            this.item_thickness_text_box.Location = new System.Drawing.Point(363, 19);
-            this.item_thickness_text_box.Name = "item_thickness_text_box";
-            this.item_thickness_text_box.Size = new System.Drawing.Size(177, 26);
-            this.item_thickness_text_box.TabIndex = 24;
-            this.item_thickness_text_box.TextChanged += new System.EventHandler(this.item_thickness_text_box_TextChanged);
-            this.item_thickness_text_box.Leave += new System.EventHandler(this.item_thickness_text_box_Leave);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(562, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 20);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "السمك";
             // 
             // addnewrawtin
             // 

@@ -466,5 +466,21 @@ namespace Al_Shaheen_System
                 myform.ShowDialog();
             }
         }
+
+        private void إضافةلونجديدToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            using (addnewcolorpillow myform = new addnewcolorpillow(mEmployee, mAccount, mPermission))
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةنوعجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewtwistoftype myform = new addnewtwistoftype(mEmployee, mAccount, mPermission))
+            {
+                myform.ShowDialog();
+            }
+        }
     }
 }
