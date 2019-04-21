@@ -26,7 +26,7 @@ namespace Al_Shaheen_System
                    // Properties.Settings.Default.SH_SERVER = "SH_PC02";
                     mConnection = new SqlConnection(@"Server = " + Properties.Settings.Default.SH_SERVER + ";Database = " + Properties.Settings.Default.SH_DATABASE_NAME + "; Integrated Security = true ;Connection Timeout=100 ");
                 }
-                //MessageBox.Show(mConnection.ConnectionTimeout.ToString());
+               // MessageBox.Show(mConnection.State.ToString());
             }
             catch (SqlException ex)
             {
