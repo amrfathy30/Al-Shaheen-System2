@@ -268,8 +268,10 @@ namespace Al_Shaheen_System
                     query += "@SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE,@SH_NET_WEIGHT,@SH_STOCK_NAME,@SH_ADDITION_DATE,";
                     query += "@SH_ITEM_GROSS_WEIGHT) SELECT SCOPE_IDENTITY() AS myidentity";
                     DatabaseConnection myconnection = new DatabaseConnection();
+                    
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+
                     cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_RAW_MATERIAL_ID", specification_id);
                     cmd.Parameters.AddWithValue("@SH_ITEM_LENGTH", quantities[i].SH_ITEM_LENGTH);
                     cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH", quantities[i].SH_ITEM_WIDTH);
