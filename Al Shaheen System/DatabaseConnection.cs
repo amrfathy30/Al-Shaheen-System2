@@ -19,12 +19,12 @@ namespace Al_Shaheen_System
                 if (mode == "SQL")
                 {
                   //  Properties.Settings.Default.SH_SERVER = "SH_PC02";
-                    mConnection = new SqlConnection(@"Server = " + Properties.Settings.Default.SH_SERVER + ";Database = " + Properties.Settings.Default.SH_DATABASE_NAME + "; Integrated Security = false ; User ID =  " + Properties.Settings.Default.SH_USER_NAME + " ; Password=  " + Properties.Settings.Default.SH_PASSWORD + " ;Connection Timeout=100");
+                    mConnection = new SqlConnection(@"Server = " + Properties.Settings.Default.SH_SERVER + ";Database = " + Properties.Settings.Default.SH_DATABASE_NAME + "; Integrated Security = false ; User ID =  " + Properties.Settings.Default.SH_USER_NAME + " ; Password=  " + Properties.Settings.Default.SH_PASSWORD + " ;Connection Timeout=100 ; ");
                 }
                 else
                 {
                    // Properties.Settings.Default.SH_SERVER = "SH_PC02";
-                    mConnection = new SqlConnection(@"Server = " + Properties.Settings.Default.SH_SERVER + ";Database = " + Properties.Settings.Default.SH_DATABASE_NAME + "; Integrated Security = true ;Connection Timeout=100 ");
+                    mConnection = new SqlConnection(@"Server = " + Properties.Settings.Default.SH_SERVER + ";Database = " + Properties.Settings.Default.SH_DATABASE_NAME + "; Integrated Security = true ;Connection Timeout=100 ;");
                 }
                // MessageBox.Show(mConnection.State.ToString());
             }
