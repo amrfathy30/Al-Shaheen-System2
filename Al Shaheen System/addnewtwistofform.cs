@@ -19,12 +19,18 @@ namespace Al_Shaheen_System
         List<SH_SUPPLY_COMPANY_BRANCHES> supplier_branches = new List<SH_SUPPLY_COMPANY_BRANCHES>();
         List<SH_TWIST_OF_TYPE> twist_of_types = new List<SH_TWIST_OF_TYPE>();
         List<SH_COLOR_PILLOW> color_pillows = new List<SH_COLOR_PILLOW>();
+        List<SH_FACE_COLOR> faces = new List<SH_FACE_COLOR>();
         List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
         List<SH_CLIENTS_PRODUCTS> client_products = new List<SH_CLIENTS_PRODUCTS>();
+        List<SH_SPECIFICATION_OF_TWIST_OF> specifications = new List<SH_SPECIFICATION_OF_TWIST_OF>();
+        List<SH_QUANTITY_OF_TWIST_OF> QUANTITIES = new List<SH_QUANTITY_OF_TWIST_OF>();
         public addnewtwistofform()
         {
             InitializeComponent();
         }
+
+        long total_no_container = 0;
+
 
         async Task getallsupplier()
         {
@@ -196,7 +202,7 @@ namespace Al_Shaheen_System
                 {
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        clients_combo_box.Items.Add(clients[i].ToString());
+                        clients_combo_box.Items.Add(clients[i].SH_CLIENT_COMPANY_NAME);
                     });
                 }
             }
@@ -223,6 +229,54 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHIlE GetTING CLIENT PRODUCTS DATA "+ex.ToString());
             }
         }        
+        async Task fillclientproductscombobox()
+        {
+            client_product_combo_box.Items.Clear();
+            if (client_products.Count > 0)
+            {
+                for (int i = 0; i < client_products.Count; i++)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        client_product_combo_box.Items.Add(client_products[i].SH_PRODUCT_NAME);
+                    });
+                }               
+            }
+        }
+        async Task getallfacecolors()
+        {
+            faces.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_FACE_COLORS ", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    faces.Add(new SH_FACE_COLOR() { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_FACE_COLOR_NAME = reader["SH_FACE_COLOR_NAME"].ToString() });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING FACE COLORS "+ex.ToString());
+            }
+        }
+        async Task fillfacescombobox()
+        {
+            if (faces.Count > 0)
+            {
+                for (int i = 0; i < faces.Count; i++)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        f2_combo_box.Items.Add(faces[i].SH_FACE_COLOR_NAME);
+                    });
+                }
+            }
+        }
         async Task<long> savetwistofspecification()
         {
             long size_id = 0;
@@ -308,9 +362,76 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHIle SAVing TWiST of CONTAINER "+ex.ToString());
             }
         }
+        async Task getalltwistofspecification()
+        {
+            specifications.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("GET_ALL_SPECIFICATION_OF_TWIST_OF", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CLIENT_PRODUCT_ID = long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()), SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(), SH_FACE_COLOR_ID = long.Parse(reader["SH_FACE_COLOR_ID"].ToString()), SH_FIRST_FACE_PILLOW_OR_NOT = long.Parse(reader["SH_FIRST_FACE_PILLOW_OR_NOT"].ToString()), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()) , SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()) , SH_TWIST_OF_TYPE_ID = long.Parse(reader["SH_TWIST_OF_TYPE_ID"].ToString()), SH_TYPE = reader["SH_TYPE"].ToString()});
+                }
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING ALL TWIST_OF SPECIFICATIONS ");
+            }
+        }
+        async Task<long> CHECK_IF_SPECIFICATION_EXISTS_OR_NOT()
+        {
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("CHECK_IF_TWIST_OF_EXISTS", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", "");
+                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", "");
+                cmd.Parameters.AddWithValue("@SH_SIZE_ID", "");
+                cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", "");
+                cmd.Parameters.AddWithValue("@SH_FACE_COLOR_ID", "");
+                cmd.Parameters.AddWithValue("@SH_TWIST_OF_TYPE_ID", "");
+                cmd.Parameters.AddWithValue("@SH_TYPE", "");
+                cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", "");
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()) , SH_CLIENT_PRODUCT_ID = long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()) , SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString() , SH_FACE_COLOR_ID = long.Parse(reader["SH_FACE_COLOR_ID"].ToString()) , SH_FIRST_FACE_PILLOW_OR_NOT = long.Parse(reader["SH_FIRST_FACE_PILLOW_OR_NOT"].ToString()) , SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()) , SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()) , SH_TWIST_OF_TYPE_ID = long.Parse(reader["SH_TWIST_OF_TYPE_ID"].ToString()) , SH_TYPE = reader["SH_TYPE"].ToString() });
+                }
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE ADDING "+ex.ToString());
+            }
+            return 0;
+        }
+        async Task <long> UPDATE_TWIST_OF_SPECIFICATIONS(long SP_ID )
+        {
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_UPDATE_TWIST_OF_SPECIFICATION_QUANTITIES", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_ID" , SP_ID);
+                this.Invoke((MethodInvoker)delegate()
+                {
+                    cmd.Parameters.AddWithValue("@SH_TOTAL_NO_TEMS",long.Parse(total_number_of_items_text_box.Text) );
+                });
+                cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS" ,total_no_container );
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE UPDATING SPECIFICATIONS OBJECT "+ex.ToString());
+            }
 
-
-
+            return 0;
+        }
         void calculatenoitemsofquantity()
         {
             long testnumber = 0;
@@ -361,6 +482,75 @@ namespace Al_Shaheen_System
         private void twist_type_combo_box_DrawItem(object sender, DrawItemEventArgs e)
         {
               
+        }
+
+        private void addnewtwistofform_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        async void savetwistofdata()
+        {
+            specifications.Clear();
+            CHECK_IF_SPECIFICATION_EXISTS_OR_NOT();
+            if (specifications.Count > 0)
+            {
+                if (specifications.Count == 1)
+                {
+                    long sp_id = await UPDATE_TWIST_OF_SPECIFICATIONS(specifications[0].SH_ID);
+                    long quantity = 0;
+
+                    for (int i = 0; i < QUANTITIES.Count; i++)
+                    {
+                        quantity = await savetwistofquantities(sp_id);
+                        await savetwistofcontainers(sp_id, quantity, QUANTITIES[i].SH_NO_CONTAINERS, addition_permission_number_text_box.Text, QUANTITIES[i].SH_NO_ITEMS_PER_CONTAINER);
+                    }
+                }
+            } else
+            {
+                long sp_id = await savetwistofspecification();
+                long quantity = 0;
+                
+                for (int i = 0; i < QUANTITIES.Count; i++)
+                {
+                    quantity = await savetwistofquantities(sp_id);
+                    await savetwistofcontainers(sp_id , quantity , QUANTITIES[i].SH_NO_CONTAINERS , addition_permission_number_text_box.Text , QUANTITIES[i].SH_NO_ITEMS_PER_CONTAINER);
+                }
+                
+            }
+        }
+
+        private async void addnewtwistofform_ControlAdded(object sender, ControlEventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            await fillclientscombobox();
+            
+
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void add_new_quantity_button_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(clients_combo_box.Text)|| string.IsNullOrWhiteSpace(client_product_combo_box.Text) || string.IsNullOrWhiteSpace(f1_combo_box.Text))
+            {
+                
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                 
+            }else
+            {
+
+            }
+        }
+
+        private void clients_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

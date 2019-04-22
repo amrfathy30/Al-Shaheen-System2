@@ -60,12 +60,12 @@
             this.add_new_quantity_button = new System.Windows.Forms.Button();
             this.remove_quantity_button = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.item_type_combo_box = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.twist_type_combo_box = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.f2_combo_box = new System.Windows.Forms.ComboBox();
-            this.f2_label = new System.Windows.Forms.Label();
+            this.size_label = new System.Windows.Forms.Label();
             this.f1_combo_box = new System.Windows.Forms.ComboBox();
             this.f1_label = new System.Windows.Forms.Label();
             this.client_product_combo_box = new System.Windows.Forms.ComboBox();
@@ -160,7 +160,7 @@
             this.stock_combo_box.FormattingEnabled = true;
             this.stock_combo_box.Location = new System.Drawing.Point(418, 68);
             this.stock_combo_box.Name = "stock_combo_box";
-            this.stock_combo_box.Size = new System.Drawing.Size(245, 33);
+            this.stock_combo_box.Size = new System.Drawing.Size(224, 33);
             this.stock_combo_box.TabIndex = 5;
             // 
             // label4
@@ -195,7 +195,7 @@
             this.suppliers_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.suppliers_combo_box.Location = new System.Drawing.Point(418, 29);
             this.suppliers_combo_box.Name = "suppliers_combo_box";
-            this.suppliers_combo_box.Size = new System.Drawing.Size(245, 33);
+            this.suppliers_combo_box.Size = new System.Drawing.Size(224, 33);
             this.suppliers_combo_box.TabIndex = 1;
             // 
             // label2
@@ -392,6 +392,7 @@
             this.add_new_quantity_button.TabIndex = 5;
             this.add_new_quantity_button.Text = "إضافة كمية ";
             this.add_new_quantity_button.UseVisualStyleBackColor = true;
+            this.add_new_quantity_button.Click += new System.EventHandler(this.add_new_quantity_button_Click);
             // 
             // remove_quantity_button
             // 
@@ -406,12 +407,12 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Controls.Add(this.comboBox10);
+            this.groupBox3.Controls.Add(this.item_type_combo_box);
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.twist_type_combo_box);
             this.groupBox3.Controls.Add(this.label23);
             this.groupBox3.Controls.Add(this.f2_combo_box);
-            this.groupBox3.Controls.Add(this.f2_label);
+            this.groupBox3.Controls.Add(this.size_label);
             this.groupBox3.Controls.Add(this.f1_combo_box);
             this.groupBox3.Controls.Add(this.f1_label);
             this.groupBox3.Controls.Add(this.client_product_combo_box);
@@ -427,22 +428,25 @@
             this.groupBox3.Text = "مواصفات ";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
-            // comboBox10
+            // item_type_combo_box
             // 
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Location = new System.Drawing.Point(19, 139);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(245, 33);
-            this.comboBox10.TabIndex = 19;
+            this.item_type_combo_box.FormattingEnabled = true;
+            this.item_type_combo_box.Items.AddRange(new object[] {
+            "Normal",
+            "Deep"});
+            this.item_type_combo_box.Location = new System.Drawing.Point(19, 139);
+            this.item_type_combo_box.Name = "item_type_combo_box";
+            this.item_type_combo_box.Size = new System.Drawing.Size(245, 33);
+            this.item_type_combo_box.TabIndex = 19;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(277, 140);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(85, 25);
+            this.label20.Size = new System.Drawing.Size(44, 25);
             this.label20.TabIndex = 18;
-            this.label20.Text = "إسم الصنف";
+            this.label20.Text = "النوع";
             // 
             // twist_type_combo_box
             // 
@@ -468,34 +472,34 @@
             this.f2_combo_box.FormattingEnabled = true;
             this.f2_combo_box.Location = new System.Drawing.Point(418, 107);
             this.f2_combo_box.Name = "f2_combo_box";
-            this.f2_combo_box.Size = new System.Drawing.Size(245, 33);
+            this.f2_combo_box.Size = new System.Drawing.Size(224, 33);
             this.f2_combo_box.TabIndex = 15;
             // 
-            // f2_label
+            // size_label
             // 
-            this.f2_label.AutoSize = true;
-            this.f2_label.Location = new System.Drawing.Point(676, 108);
-            this.f2_label.Name = "f2_label";
-            this.f2_label.Size = new System.Drawing.Size(85, 25);
-            this.f2_label.TabIndex = 14;
-            this.f2_label.Text = "إسم الصنف";
+            this.size_label.AutoSize = true;
+            this.size_label.Location = new System.Drawing.Point(709, 111);
+            this.size_label.Name = "size_label";
+            this.size_label.Size = new System.Drawing.Size(54, 25);
+            this.size_label.TabIndex = 14;
+            this.size_label.Text = "المقاس";
             // 
             // f1_combo_box
             // 
             this.f1_combo_box.FormattingEnabled = true;
             this.f1_combo_box.Location = new System.Drawing.Point(418, 68);
             this.f1_combo_box.Name = "f1_combo_box";
-            this.f1_combo_box.Size = new System.Drawing.Size(245, 33);
+            this.f1_combo_box.Size = new System.Drawing.Size(224, 33);
             this.f1_combo_box.TabIndex = 13;
             // 
             // f1_label
             // 
             this.f1_label.AutoSize = true;
-            this.f1_label.Location = new System.Drawing.Point(676, 69);
+            this.f1_label.Location = new System.Drawing.Point(643, 74);
             this.f1_label.Name = "f1_label";
-            this.f1_label.Size = new System.Drawing.Size(85, 25);
+            this.f1_label.Size = new System.Drawing.Size(120, 25);
             this.f1_label.TabIndex = 12;
-            this.f1_label.Text = "إسم الصنف";
+            this.f1_label.Text = "الورنيش الداخلى ";
             // 
             // client_product_combo_box
             // 
@@ -519,13 +523,14 @@
             this.clients_combo_box.FormattingEnabled = true;
             this.clients_combo_box.Location = new System.Drawing.Point(418, 29);
             this.clients_combo_box.Name = "clients_combo_box";
-            this.clients_combo_box.Size = new System.Drawing.Size(245, 33);
+            this.clients_combo_box.Size = new System.Drawing.Size(224, 33);
             this.clients_combo_box.TabIndex = 9;
+            this.clients_combo_box.SelectedIndexChanged += new System.EventHandler(this.clients_combo_box_SelectedIndexChanged);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(676, 30);
+            this.label15.Location = new System.Drawing.Point(685, 33);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(78, 25);
             this.label15.TabIndex = 8;
@@ -636,13 +641,14 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(204, 68);
+            this.checkBox1.Location = new System.Drawing.Point(204, 63);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(60, 29);
             this.checkBox1.TabIndex = 20;
             this.checkBox1.Text = "سادة";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // addnewtwistofform
             // 
@@ -663,6 +669,8 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.Text = "إضافة تويست أوف";
+            this.Load += new System.EventHandler(this.addnewtwistofform_Load);
+            this.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.addnewtwistofform_ControlAdded);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -721,12 +729,12 @@
         private System.Windows.Forms.Button add_new_quantity_button;
         private System.Windows.Forms.Button remove_quantity_button;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox comboBox10;
+        private System.Windows.Forms.ComboBox item_type_combo_box;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox twist_type_combo_box;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox f2_combo_box;
-        private System.Windows.Forms.Label f2_label;
+        private System.Windows.Forms.Label size_label;
         private System.Windows.Forms.ComboBox f1_combo_box;
         private System.Windows.Forms.Label f1_label;
         private System.Windows.Forms.ComboBox client_product_combo_box;

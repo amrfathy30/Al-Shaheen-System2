@@ -147,9 +147,9 @@
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(329, 125);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(52, 20);
+            this.label34.Size = new System.Drawing.Size(86, 20);
             this.label34.TabIndex = 37;
-            this.label34.Text = "الارتفاع";
+            this.label34.Text = "إرتفاع الشرحة";
             // 
             // label30
             // 

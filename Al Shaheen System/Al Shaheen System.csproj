@@ -553,6 +553,7 @@
     <Compile Include="SH_QUANTITY_OF_RAW_MATERIAL.cs" />
     <Compile Include="SH_MURAN_MATERIAL_PARCEL.cs" />
     <Compile Include="SH_QUANTITY_OF_RLT.cs" />
+    <Compile Include="SH_QUANTITY_OF_TWIST_OF.cs" />
     <Compile Include="SH_QUNTITIES_MECHNICAL_PARTS.cs" />
     <Compile Include="SH_RAW_MATERIAL_PARCEL.cs" />
     <Compile Include="SH_RAW_TIN_GENERAL_INFO.cs" />
@@ -574,6 +575,7 @@
     <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL.cs" />
     <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL_COILS.cs" />
     <Compile Include="SH_SPECIFICATION_OF_RLT.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_TWIST_OF.cs" />
     <Compile Include="SH_SUPPLIER_COMPANY_CONTACTS.cs" />
     <Compile Include="SH_SUPPLIER_ITEMS.cs" />
     <Compile Include="SH_SUPPLY_COMPANY.cs" />
