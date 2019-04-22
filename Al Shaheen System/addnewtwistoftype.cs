@@ -50,7 +50,7 @@ namespace Al_Shaheen_System
         async Task filltwist_of_grid_view()
         {
             twist_of_types_grid_view.Rows.Clear();
-            if (twist_of_types.Count>0)
+            if (twist_of_types.Count > 0)
             {
                 for (int i = 0; i < twist_of_types.Count; i++)
                 {
