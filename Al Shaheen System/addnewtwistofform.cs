@@ -14,7 +14,7 @@ namespace Al_Shaheen_System
     public partial class addnewtwistofform : Form
     {
         DatabaseConnection myconnection = new DatabaseConnection();
-
+        List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
         List<SH_SUPPLY_COMPANY> suppliers = new List<SH_SUPPLY_COMPANY>();
         List<SH_SUPPLY_COMPANY_BRANCHES> supplier_branches = new List<SH_SUPPLY_COMPANY_BRANCHES>();
         List<SH_TWIST_OF_TYPE> twist_of_types = new List<SH_TWIST_OF_TYPE>();
@@ -24,14 +24,59 @@ namespace Al_Shaheen_System
         List<SH_CLIENTS_PRODUCTS> client_products = new List<SH_CLIENTS_PRODUCTS>();
         List<SH_SPECIFICATION_OF_TWIST_OF> specifications = new List<SH_SPECIFICATION_OF_TWIST_OF>();
         List<SH_QUANTITY_OF_TWIST_OF> QUANTITIES = new List<SH_QUANTITY_OF_TWIST_OF>();
+        List<SH_ITEM_SIZE> sizes = new List<SH_ITEM_SIZE>();
+        List<SH_CONTAINER_OF_TWIST_OF> mcontainers = new List<SH_CONTAINER_OF_TWIST_OF>();
         public addnewtwistofform()
         {
             InitializeComponent();
         }
 
         long total_no_container = 0;
+        long total_no_items = 0;
+
+        async Task getallstocks()
+        {
+            stocks.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_STOCKS ", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    stocks.Add(new SH_SHAHEEN_STOCK() { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString() , SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString() });
+                }
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING STOCKS INFORMATION "+ex.ToString());
+            }
+        }
+        async Task fillstockscombobox()
+        {
+             await getallstocks();
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                stock_combo_box.Items.Clear();
+            });
+            if (stocks.Count > 0)
+            {
+                for (int i = 0; i < stocks.Count; i++)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        stock_combo_box.Items.Add(stocks[i].SH_STOCK_NAME);
+                    });
+                }
+
+            }
+            
 
 
+
+        }
         async Task getallsupplier()
         {
             suppliers.Clear();
@@ -78,13 +123,15 @@ namespace Al_Shaheen_System
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SH_GET_ALL_SUPPLIER_COMPANTY_BRANCHES", DatabaseConnection.mConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SH_SUPPLY_COMPANTY_ID", supply_company_id);
+                cmd.Parameters.AddWithValue("@SH_SUPPLY_COMPANY_ID", supply_company_id);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    supplier_branches.Add(new SH_SUPPLY_COMPANY_BRANCHES() { SH_COMPANY_BRANCH_ADDRESS_GPS_LINK = reader["SH_COMPANY_BRANCH_ADDRESS_GPS_LINK"].ToString(), SH_COMPANY_BRANCH_ADDRESS_TEXT = reader["SH_COMPANY_BRANCH_ADDRESS_TEXT"].ToString(), SH_COMPANY_BRANCH_NAME = reader["SH_COMPANY_BRANCH_NAME"].ToString(), SH_COMPANY_BRANCH_TYPE = reader["SH_COMPANY_BRANCH_TYPE"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_SUPPLY_COMAPNY_ID = long.Parse(reader["SH_SUPPLY_COMAPNY_ID"].ToString()), SH_SUPPLY_COMPANY_NAME = reader["SH_SUPPLY_COMPANY_NAME"].ToString() });
+                    supplier_branches.Add(new SH_SUPPLY_COMPANY_BRANCHES() { SH_COMPANY_BRANCH_ADDRESS_GPS_LINK = reader["SH_COMPANY_BRANCH_ADDRESS_GPS_LINK"].ToString(), SH_COMPANY_BRANCH_ADDRESS_TEXT = reader["SH_COMPANY_BRANCH_ADDRESS_TEXT"].ToString(), SH_COMPANY_BRANCH_NAME = reader["SH_COMPANY_BRANCH_NAME"].ToString(), SH_COMPANY_BRANCH_TYPE = reader["SH_COMPANY_BRANCH_TYPE"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_SUPPLY_COMAPNY_ID = long.Parse(reader["SH_SUPPLY_COMPANY_ID"].ToString()), SH_SUPPLY_COMPANY_NAME = reader["SH_SUPPLY_COMPANY_NAME"].ToString() });
                 }
+                reader.Close();
                 myconnection.closeConnection();
+              //  MessageBox.Show(supplier_branches.Count.ToString());
             }
             catch (Exception ex)
             {
@@ -93,7 +140,14 @@ namespace Al_Shaheen_System
         }
         async Task fillsupplierbranchcombobox()
         {
-            supplier_branches_combo_box.Items.Clear();
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                supplier_branches_combo_box.Items.Clear();
+            });
+
+           // await getallsupplierbranches();
+
+
             if (supplier_branches.Count > 0)
             {
                 for (int i = 0; i < supplier_branches.Count; i++)
@@ -107,10 +161,12 @@ namespace Al_Shaheen_System
         }
         async Task getalltwistoftypes()
         {
+            twist_of_types.Clear();
             try
             {
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SH_GET_ALL_TWIST_OF_TYPES", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -126,20 +182,23 @@ namespace Al_Shaheen_System
         }
         async Task filltwisttypescombobox()
         {
+            await getalltwistoftypes();
             twist_type_combo_box.Items.Clear();
+           // MessageBox.Show(twist_of_types.Count.ToString());
             if (twist_of_types.Count > 0)
             {
                 for (int i = 0; i < twist_of_types.Count; i++)
                 {
-                    this.Invoke((MethodInvoker)delegate ()
-                    {
-                        twist_type_combo_box.Items.Add(twist_of_types[i].SH_SHORT_TITLE + " \n " + twist_of_types[i].SH_LONG_TITLE.ToLowerInvariant());
-                    });
+                    //this.Invoke((MethodInvoker)delegate()
+                    //{
+                        twist_type_combo_box.Items.Add(twist_of_types[i].SH_SHORT_TITLE);
+                    //});
                 }
             }
         }
         async Task gettwistofcolorspillow()
         {
+            color_pillows.Clear();
             try
             {
                 myconnection.openConnection();
@@ -160,13 +219,19 @@ namespace Al_Shaheen_System
         }
         async Task fillwistofcolorpillowcombobox()
         {
+            await gettwistofcolorspillow();
+            client_product_combo_box.Items.Clear();
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                f1_combo_box.Items.Clear();
+            });
             if (color_pillows.Count > 0)
             {
                 for (int i = 0; i < color_pillows.Count; i++)
                 {
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        f1_combo_box.Items.Add(color_pillows[i].SH_COLOR_NAME);
+                        client_product_combo_box.Items.Add(color_pillows[i].SH_COLOR_NAME);
                     });
                 }
 
@@ -179,11 +244,13 @@ namespace Al_Shaheen_System
             {
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SH_GET_ALL_CLIENTS_DATA" , DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    clients.Add(new SH_CLIENT_COMPANY() { SH_CLIENT_COMPANY_FAX_NUMBER = reader["SH_CLIENT_COMPANY_FAX_NUMBER"].ToString() , SH_CLIENT_COMPANY_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString() , SH_CLIENT_COMPANY_TELEPHONE= reader["SH_CLIENT_COMPANY_TELEPHONE"].ToString(), SH_CLIENT_COMPANY_TYPE= reader["SH_CLIENT_COMPANY_TYPE"].ToString(), SH_ID = long.Parse("SH_ID") });
+                    clients.Add(new SH_CLIENT_COMPANY() { SH_CLIENT_COMPANY_FAX_NUMBER = reader["SH_CLIENT_COMPANY_FAX_NUMBER"].ToString() , SH_CLIENT_COMPANY_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString() , SH_CLIENT_COMPANY_TELEPHONE= reader["SH_CLIENT_COMPANY_TELEPHONE"].ToString(), SH_CLIENT_COMPANY_TYPE= reader["SH_CLIENT_COMPANY_TYPE"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()) });
                 }
+                reader.Close();
                 myconnection.closeConnection();
             }
             catch (Exception ex)
@@ -264,15 +331,53 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GETTING FACE COLORS "+ex.ToString());
             }
         }
+        async Task getallsizesdata()
+        {
+            sizes.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_ITEM_SIZE", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    sizes.Add(new SH_ITEM_SIZE() { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_SIZE_FIRST_DIAMETER = double.Parse(reader["SH_SIZE_FIRST_DIAMETER"].ToString()) , SH_SIZE_FIRST_DIAMETER_NAME = reader["SH_SIZE_FIRST_DIAMETER_NAME"].ToString() , SH_SIZE_NAME = reader["SH_SIZE_NAME"].ToString(), SH_SIZE_SECOND_DIAMETER = double.Parse(reader["SH_SIZE_SECOND_DIAMETER"].ToString()) , SH_SIZE_SECOND_DIAMETER_NAME = reader["SH_SIZE_SECOND_DIAMETER_NAME"].ToString() , SH_SIZE_SHAPE_NAME = reader["SH_SIZE_SHAPE_NAME"].ToString(), SH_SIZE_SURROUNDING = double.Parse(reader["SH_SIZE_SURROUNDING"].ToString())});
+                }
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING SIZES DATA "+ex.ToString());
+            }
+        }
+        async Task fillsizescombobox()
+        {
+            await getallsizesdata();
+            f2_combo_box.Items.Clear();
+            if (sizes.Count>0)
+            {
+                for (int i = 0; i < sizes.Count; i++)
+                {
+                    f2_combo_box.Items.Add(sizes[i].SH_SIZE_NAME);
+                }
+            }
+        }
         async Task fillfacescombobox()
         {
-            if (faces.Count > 0)
+            faces.Clear();
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                f1_combo_box.Items.Clear();
+            });
+            await getallfacecolors();
+                if (faces.Count > 0)
             {
                 for (int i = 0; i < faces.Count; i++)
                 {
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        f2_combo_box.Items.Add(faces[i].SH_FACE_COLOR_NAME);
+                        f1_combo_box.Items.Add(faces[i].SH_FACE_COLOR_NAME);
                     });
                 }
             }
@@ -435,14 +540,15 @@ namespace Al_Shaheen_System
         void calculatenoitemsofquantity()
         {
             long testnumber = 0;
-            if (string.IsNullOrWhiteSpace(no_items_per_container.Text)|| string.IsNullOrWhiteSpace(no_of_containers_text_box.Text))
+            if (string.IsNullOrWhiteSpace(no_items_per_container.Text) || string.IsNullOrWhiteSpace(no_of_containers_text_box.Text))
             {
-             
-            }else
+                no_items_per_quantity.Text = "";
+            }
+            else
             {
                 if (long.TryParse(no_items_per_container.Text, out testnumber) && long.TryParse(no_of_containers_text_box.Text, out testnumber))
                 {
-                    no_items_per_quantity.Text = (long.Parse(no_items_per_container.Text) + long.Parse(no_of_containers_text_box.Text)).ToString();
+                    no_items_per_quantity.Text = (long.Parse(no_items_per_container.Text) * long.Parse(no_of_containers_text_box.Text)).ToString();
                 }
             }
         }
@@ -451,48 +557,64 @@ namespace Al_Shaheen_System
             long testnumber = 0;
             if (string.IsNullOrWhiteSpace(unsimilar_no_items_per_container.Text) || string.IsNullOrWhiteSpace(unsimilar_no_of_containers.Text))
             {
-
+                unsimilar_no_items_per_quantity.Text = "";
             }
             else
             {
                 if (long.TryParse(unsimilar_no_items_per_container.Text, out testnumber) && long.TryParse(unsimilar_no_of_containers.Text, out testnumber))
                 {
-                    unsimilar_no_items_per_quantity.Text = (long.Parse(unsimilar_no_items_per_container.Text) + long.Parse(unsimilar_no_of_containers.Text)).ToString();
+                    unsimilar_no_items_per_quantity.Text = (long.Parse(unsimilar_no_items_per_container.Text) * (long.Parse(unsimilar_no_of_containers.Text))).ToString();
                 }
             }
         }
         void calculatetotalnoofitems()
         {
-            if (string.IsNullOrWhiteSpace(no_items_per_quantity.Text) || string.IsNullOrWhiteSpace(unsimilar_no_items_per_quantity.Text))
+            if (!string.IsNullOrWhiteSpace(no_items_per_quantity.Text) && !string.IsNullOrWhiteSpace(unsimilar_no_items_per_quantity.Text))
             {
                 total_number_of_items_text_box.Text = (long.Parse(no_items_per_quantity.Text)+long.Parse(unsimilar_no_items_per_quantity.Text)).ToString();
             }
+            else if (!string.IsNullOrWhiteSpace(no_items_per_quantity.Text))
+            {
+                total_number_of_items_text_box.Text = no_items_per_quantity.Text;
+            }
+            else if(!string.IsNullOrWhiteSpace(unsimilar_no_items_per_quantity.Text))
+            {
+                total_number_of_items_text_box.Text = unsimilar_no_items_per_quantity.Text;
+            }
         }
-
         private void add_new_twist_of_timer_Tick(object sender, EventArgs e)
         {
             timer_label.Text = DateTime.Now.ToShortDateString();
         }
-
         private void groupBox3_Enter(object sender, EventArgs e)
         {
 
         }
-
         private void twist_type_combo_box_DrawItem(object sender, DrawItemEventArgs e)
         {
               
         }
-
-        private void addnewtwistofform_Load(object sender, EventArgs e)
+        private async void addnewtwistofform_Load(object sender, EventArgs e)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
+            await fillsupplierscombobox();
+           // await getalltwistoftypes();
+            await filltwisttypescombobox();
+            await fillstockscombobox();
+            await getallclientsdata();
+            await fillclientscombobox();
+            await fillfacescombobox();
+            await fillsizescombobox();
+            no_of_containers_text_box.Enabled = true;
+            no_items_per_container.Enabled = true;
+            unsimilar_no_items_per_container.Enabled = false;
+            unsimilar_no_of_containers.Enabled = false;
+            Cursor.Current = Cursors.Default;
         }
-
         async void savetwistofdata()
         {
             specifications.Clear();
-            CHECK_IF_SPECIFICATION_EXISTS_OR_NOT();
+           await CHECK_IF_SPECIFICATION_EXISTS_OR_NOT();
             if (specifications.Count > 0)
             {
                 if (specifications.Count == 1)
@@ -519,38 +641,340 @@ namespace Al_Shaheen_System
                 
             }
         }
-
         private async void addnewtwistofform_ControlAdded(object sender, ControlEventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            await fillclientscombobox();
-            
-
-            Cursor.Current = Cursors.Default;
+           
         }
-
         private void add_new_quantity_button_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(clients_combo_box.Text)|| string.IsNullOrWhiteSpace(client_product_combo_box.Text) || string.IsNullOrWhiteSpace(f1_combo_box.Text))
+            bool cansave = true;
+            if (string.IsNullOrWhiteSpace(suppliers_combo_box.Text))
             {
+                supplier_error_provier.SetError(suppliers_combo_box,"لابد من إدخال إسم المورد");
+                cansave = false;
+            }else
+            {
+                supplier_error_provier.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(supplier_branches_combo_box.Text))
+            {
+                supplier_branches_error_provider.SetError(supplier_branches_combo_box, "لابد من تحديد إسم فرع المورد");
+                cansave = false;
+            }else
+            {
+                supplier_branches_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(stock_combo_box.Text))
+            {
+                stocks_combo_box_error_provider.SetError(stock_combo_box , "لابد من تحديد إسم المخزن ");
+                cansave = false;
+            }else
+            {
+                stocks_combo_box_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(addition_permission_number_text_box.Text))
+            {
+                addition_permission_number_error_provider.SetError(addition_permission_number_text_box, "لابد من إدخال رقم إذن الإضافة");
+                cansave = false;
+            }else
+            {
+                addition_permission_number_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(clients_combo_box.Text))
+            {
+                clients_combo_box_error_provider.SetError(clients_combo_box ," لابد من تحديد إسم العميل");
+                cansave = false;
+            }else
+            {
+                clients_combo_box_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(client_product_combo_box.Text))
+            {
+                client_product_combo_box_error_provide.SetError(client_product_combo_box, "لابد من إختيار إسم الصنف للعميل");
+                cansave = false;
+            }else
+            {
+                client_product_combo_box_error_provide.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(f1_combo_box.Text))
+            {
+                f1_combo_box_error_provider.SetError(f1_combo_box,"لابد من تحديد الورنيش الداخلى");
+                cansave = false;
+            }else
+            {
+                f1_combo_box_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(f2_combo_box.Text))
+            {
+                f2_combo_box_error_provider.SetError(f2_combo_box,"لابد من تحديد المقاس");
+                cansave = false;
+            }else
+            {
+                f2_combo_box_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(twist_type_combo_box.Text))
+            {
+                twist_type_combo_box_error_provider.SetError(twist_type_combo_box,"لابد من تحديد نوع التويست أوف");
+                cansave = false;
+            }else
+            {
+                twist_type_combo_box_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(item_type_combo_box.Text))
+            {
+                item_type_combo_box_error_provider.SetError(item_type_combo_box,"لابد من تحديد نوع التويست");
+                cansave = false;
+            }else
+            {
+                item_type_combo_box_error_provider.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(container_type_combo_box.Text))
+            {
+                container_type_combo_box_error_provider.SetError(container_type_combo_box, "لابد من تحديد نوع التعبئة");
+                cansave = false;
+            }else
+            {
+                container_type_combo_box_error_provider.Clear();
+            }
+            if (!unsimilarquantities_check_box.Checked)
+            {
+                if (string.IsNullOrWhiteSpace(no_of_containers_text_box.Text))
+                {
+                    no_of_container_text_box_error_provider.SetError(no_of_containers_text_box , "لابد من كتابة العدد");
+                    cansave = false;
+                }else
+                {
+                    no_of_container_text_box_error_provider.Clear();
+                }
+                if (string.IsNullOrWhiteSpace(no_items_per_container_text_box.Text))
+                {
+                    no_of_items_per_container_error_provider.SetError(no_items_per_container_text_box, "لابد من كتابة العدد");
+                    cansave = false;
+                }else
+                {
+                    no_of_items_per_container_error_provider.Clear();
+                }               
+            }else
+            {
+                if (string.IsNullOrWhiteSpace(unsimilar_no_of_containers.Text))
+                {
+                    unsimilar_no_of_containers_error_provider.SetError(unsimilar_no_of_containers, "لابد من كتابة العدد");
+                    cansave = false;
+                }else
+                {
+                    unsimilar_no_of_containers_error_provider.Clear();
+                }
+                if (string.IsNullOrWhiteSpace(unsimilar_no_items_per_container.Text))
+                {
+                    unsimilar_no_items_per_container_error_provider.SetError(unsimilar_no_items_per_container, "لابد من كتابة العدد");
+                    cansave = false;
+                }else
+                {
+                    unsimilar_no_items_per_container_error_provider.Clear();
+                }
+            }
+
+            if (cansave)
+            {
+                MessageBox.Show("Cansave");
+                for (int i = 0; i < long.Parse(no_of_containers_text_box.Text); i++)
+                {
+                    mcontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text , SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(no_items_per_container.Text) , SH_CONTAINER_NAME = container_type_combo_box.Text});
+                }
+                MessageBox.Show("added containers");
+                QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text , SH_NO_CONTAINERS = long.Parse(no_of_containers_text_box.Text) , /*SH_NO_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container_text_box.Text) ,*/ SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID , SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID , SH_TOTAL_NO_OF_ITEMS = long.Parse(no_items_per_quantity.Text) , containers = mcontainers, suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME , supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME});
+
+                MessageBox.Show("added quantities");
+
+
+                filltwistofgridview();
+                mcontainers.Clear();
+            }
+        }
+
+        void filltwistofgridview()
+        {
+            twist_of_quantities_grid_view.Rows.Clear();
+            if (QUANTITIES.Count>0)
+            {
+                for (int i = 0; i < QUANTITIES.Count; i++)
+                {
+                    twist_of_quantities_grid_view.Rows.Add(new string[] { (i + 1).ToString(), QUANTITIES[i].suppliername, QUANTITIES[i].supplierbranchname ,QUANTITIES[i].containers[0].SH_CONTAINER_NAME , QUANTITIES[i].SH_NO_CONTAINERS.ToString() , QUANTITIES[i].containers[0].SH_NO_ITEMS.ToString() , QUANTITIES[i].SH_TOTAL_NO_OF_ITEMS.ToString() });
+
+                }
+            }
+        }
+
+
+        private async void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pillow_check_box.Checked)
+            {
+                //fill client_product_combo_box with pillow colors
+                client_product_combo_box.Text = "";
+                client_products_label.Text = "اللون";
+
+                await fillwistofcolorpillowcombobox();
+            }
+            else
+            {
+                //fill client_product_combo_box with client products
+                if (!string.IsNullOrWhiteSpace(clients_combo_box.Text))
+                {
+                    client_product_combo_box.Text = "";
+                    client_products_label.Text = "إسم الصنف";
+                    await getallclientproducts(clients[clients_combo_box.SelectedIndex].SH_ID);
+                    await fillclientproductscombobox();
+                }else
+                {
+                    MessageBox.Show(" لابد من تحديد العميل أولا ", "تحذير" , MessageBoxButtons.OK , MessageBoxIcon.Warning , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+                }
+            }
+        }
+        private async void clients_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(clients_combo_box.Text))
+            {
+                if (clients_combo_box_error_provider.GetError(clients_combo_box) !="")
+                {
+                    clients_combo_box_error_provider.Clear();
+                }
+            }
+            if (pillow_check_box.Checked)
+            {
+
+            }
+            else
+            {            
+                await getallclientproducts(clients[clients_combo_box.SelectedIndex].SH_ID);
+                client_product_combo_box.Text = "";
+                await fillclientproductscombobox();
+            }   
+        }
+        private async void client_product_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pillow_check_box.Checked)
+            {
+                //fill sizes combo box 
+                // fill all muran colors
+                f2_combo_box.Enabled = true;
+                await fillsizescombobox();
+            }
+            else
+            {
+                //fill with client product size
+                f2_combo_box.SelectedIndex = (int)client_products[client_product_combo_box.SelectedIndex].SH_ID-1;
+                // make sizes combo box disabled
+                f2_combo_box.Enabled = false;
+                // fill all muran colors
+            }
+        }
+        private async void suppliers_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(suppliers_combo_box.Text))
+            {
+                if (supplier_error_provier.GetError(suppliers_combo_box)!="")
+                {
+                    supplier_error_provier.Clear();
+                }
+                // fill supplier branches combo box 
+                await getallsupplierbranches(suppliers[suppliers_combo_box.SelectedIndex].SH_ID);
+                await fillsupplierbranchcombobox();
+            }
+            else
+            {
+                MessageBox.Show("لابد من تحديد إسم المورد أولا", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            }
+        }
+
+        private void container_type_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            no_of_containers_label.Text = "عدد "+container_type_combo_box.Text;
+            unsimilar_no_of_containers_label.Text = "عدد "+ container_type_combo_box.Text;
+            unsimilar_no_items_per_container_label.Text = "الكمية / " + container_type_combo_box.Text;
+            no_items_per_container_text_box.Text = "الكمية / " + container_type_combo_box.Text;
+        }
+
+        private void no_of_containers_text_box_TextChanged(object sender, EventArgs e)
+        {
+            calculatenoitemsofquantity();
+        }
+
+        private void no_items_per_container_TextChanged(object sender, EventArgs e)
+        {
+            calculatenoitemsofquantity();
+        }
+
+        private void unsimilar_no_of_containers_TextChanged(object sender, EventArgs e)
+        {
+            calculatenoitemsofunsimilarquantity();
+        }
+
+        private void unsimilar_no_items_per_container_TextChanged(object sender, EventArgs e)
+        {
+            calculatenoitemsofunsimilarquantity();
+        }
+
+        private void no_items_per_quantity_TextChanged(object sender, EventArgs e)
+        {
+            calculatetotalnoofitems();
+        }
+
+        private void unsimilar_no_items_per_quantity_TextChanged(object sender, EventArgs e)
+        {
+            calculatetotalnoofitems();
+        }
+
+        private void unsimilarquantities_check_box_CheckedChanged(object sender, EventArgs e)
+        {
+            if (unsimilarquantities_check_box.Checked)
+            {
+                no_of_containers_text_box.Enabled = false;
+                no_items_per_container.Enabled = false;
+                unsimilar_no_items_per_container.Enabled = true;
+                unsimilar_no_of_containers.Enabled = true;
+            }
+            else
+            {
+                no_of_containers_text_box.Enabled = true;
+                no_items_per_container.Enabled = true;
+                unsimilar_no_items_per_container.Enabled = false;
+                unsimilar_no_of_containers.Enabled = false;
+            }
+        }
+
+        private void supplier_branches_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(supplier_branches_combo_box.Text))
+            {
+                if (supplier_branches_error_provider.GetError(supplier_branches_combo_box)!="")
+                {
+                    supplier_branches_error_provider.Clear();
+                }
                 
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void stock_combo_box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            if (!string.IsNullOrWhiteSpace(stock_combo_box.Text))
             {
-                 
-            }else
-            {
-
+                if (stocks_combo_box_error_provider.GetError(stock_combo_box) != "")
+                {
+                    stocks_combo_box_error_provider.Clear();
+                }
             }
         }
 
-        private void clients_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        private void addition_permission_number_text_box_TextChanged(object sender, EventArgs e)
         {
-            
+            if (!string.IsNullOrWhiteSpace(addition_permission_number_text_box.Text))
+            {
+                if (addition_permission_number_error_provider.GetError(addition_permission_number_text_box)!="")
+                {
+                    addition_permission_number_error_provider.Clear();
+                }
+            }
         }
     }
 }

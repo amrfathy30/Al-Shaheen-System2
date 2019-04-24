@@ -16,6 +16,11 @@ namespace Al_Shaheen_System
         public DateTime SH_ADDITION_DATE { get; set; }
         public string SH_ADDITION_PERMISSION_NUMBER { get; set; }
         public long SH_SUPPLIER_ID { get; set; }
+        public string suppliername { get; set; }
         public long SH_SUPPLIER_BRANCH_ID { get; set; }
+        public string supplierbranchname { get; set; }
+
+        public List<SH_CONTAINER_OF_TWIST_OF> containers;
+        
     }
 }

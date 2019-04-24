@@ -78,6 +78,10 @@
             this.المقاساتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.إضافةمقاسجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.جميعالمقاساتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.الألوانالسادةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.إضافةلونجديدToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.أنواعالتويستأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.إضافةنوعجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.المشترياتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.الموردينToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.إضافةموردجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,10 +106,6 @@
             this.المستخدمينToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.جميعToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logged_user_name_label = new System.Windows.Forms.Label();
-            this.الألوانالسادةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.إضافةلونجديدToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.أنواعالتويستأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.إضافةنوعجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -372,6 +372,7 @@
             this.تويستأوفToolStripMenuItem.Name = "تويستأوفToolStripMenuItem";
             this.تويستأوفToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
             this.تويستأوفToolStripMenuItem.Text = "تويست أوف";
+            this.تويستأوفToolStripMenuItem.Click += new System.EventHandler(this.تويستأوفToolStripMenuItem_Click);
             // 
             // طبةبلاستيكToolStripMenuItem
             // 
@@ -456,7 +457,7 @@
             this.إضافةعميلجديدToolStripMenuItem,
             this.بياناتالعملاءToolStripMenuItem});
             this.العملاءToolStripMenuItem.Name = "العملاءToolStripMenuItem";
-            this.العملاءToolStripMenuItem.Size = new System.Drawing.Size(200, 32);
+            this.العملاءToolStripMenuItem.Size = new System.Drawing.Size(239, 32);
             this.العملاءToolStripMenuItem.Text = "العملاء";
             // 
             // إضافةعميلجديدToolStripMenuItem
@@ -479,7 +480,7 @@
             this.إضافةلونجديدToolStripMenuItem,
             this.جميعالألوانToolStripMenuItem});
             this.الورنشةToolStripMenuItem.Name = "الورنشةToolStripMenuItem";
-            this.الورنشةToolStripMenuItem.Size = new System.Drawing.Size(200, 32);
+            this.الورنشةToolStripMenuItem.Size = new System.Drawing.Size(239, 32);
             this.الورنشةToolStripMenuItem.Text = "الورنشة ";
             // 
             // إضافةلونجديدToolStripMenuItem
@@ -502,7 +503,7 @@
             this.إضافةمقاسجديدToolStripMenuItem,
             this.جميعالمقاساتToolStripMenuItem});
             this.المقاساتToolStripMenuItem.Name = "المقاساتToolStripMenuItem";
-            this.المقاساتToolStripMenuItem.Size = new System.Drawing.Size(200, 32);
+            this.المقاساتToolStripMenuItem.Size = new System.Drawing.Size(239, 32);
             this.المقاساتToolStripMenuItem.Text = "المقاسات ";
             // 
             // إضافةمقاسجديدToolStripMenuItem
@@ -517,6 +518,36 @@
             this.جميعالمقاساتToolStripMenuItem.Name = "جميعالمقاساتToolStripMenuItem";
             this.جميعالمقاساتToolStripMenuItem.Size = new System.Drawing.Size(238, 32);
             this.جميعالمقاساتToolStripMenuItem.Text = "جميع المقاسات ";
+            // 
+            // الألوانالسادةToolStripMenuItem
+            // 
+            this.الألوانالسادةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.إضافةلونجديدToolStripMenuItem1});
+            this.الألوانالسادةToolStripMenuItem.Name = "الألوانالسادةToolStripMenuItem";
+            this.الألوانالسادةToolStripMenuItem.Size = new System.Drawing.Size(239, 32);
+            this.الألوانالسادةToolStripMenuItem.Text = "الألوان السادة ";
+            // 
+            // إضافةلونجديدToolStripMenuItem1
+            // 
+            this.إضافةلونجديدToolStripMenuItem1.Name = "إضافةلونجديدToolStripMenuItem1";
+            this.إضافةلونجديدToolStripMenuItem1.Size = new System.Drawing.Size(218, 32);
+            this.إضافةلونجديدToolStripMenuItem1.Text = "إضافة لون جديد ";
+            this.إضافةلونجديدToolStripMenuItem1.Click += new System.EventHandler(this.إضافةلونجديدToolStripMenuItem1_Click);
+            // 
+            // أنواعالتويستأوفToolStripMenuItem
+            // 
+            this.أنواعالتويستأوفToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.إضافةنوعجديدToolStripMenuItem});
+            this.أنواعالتويستأوفToolStripMenuItem.Name = "أنواعالتويستأوفToolStripMenuItem";
+            this.أنواعالتويستأوفToolStripMenuItem.Size = new System.Drawing.Size(239, 32);
+            this.أنواعالتويستأوفToolStripMenuItem.Text = "أنواع التويست أوف";
+            // 
+            // إضافةنوعجديدToolStripMenuItem
+            // 
+            this.إضافةنوعجديدToolStripMenuItem.Name = "إضافةنوعجديدToolStripMenuItem";
+            this.إضافةنوعجديدToolStripMenuItem.Size = new System.Drawing.Size(212, 32);
+            this.إضافةنوعجديدToolStripMenuItem.Text = "إضافة نوع جديد";
+            this.إضافةنوعجديدToolStripMenuItem.Click += new System.EventHandler(this.إضافةنوعجديدToolStripMenuItem_Click);
             // 
             // المشترياتToolStripMenuItem
             // 
@@ -698,36 +729,6 @@
             this.logged_user_name_label.Name = "logged_user_name_label";
             this.logged_user_name_label.Size = new System.Drawing.Size(0, 17);
             this.logged_user_name_label.TabIndex = 1;
-            // 
-            // الألوانالسادةToolStripMenuItem
-            // 
-            this.الألوانالسادةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.إضافةلونجديدToolStripMenuItem1});
-            this.الألوانالسادةToolStripMenuItem.Name = "الألوانالسادةToolStripMenuItem";
-            this.الألوانالسادةToolStripMenuItem.Size = new System.Drawing.Size(200, 32);
-            this.الألوانالسادةToolStripMenuItem.Text = "الألوان السادة ";
-            // 
-            // إضافةلونجديدToolStripMenuItem1
-            // 
-            this.إضافةلونجديدToolStripMenuItem1.Name = "إضافةلونجديدToolStripMenuItem1";
-            this.إضافةلونجديدToolStripMenuItem1.Size = new System.Drawing.Size(218, 32);
-            this.إضافةلونجديدToolStripMenuItem1.Text = "إضافة لون جديد ";
-            this.إضافةلونجديدToolStripMenuItem1.Click += new System.EventHandler(this.إضافةلونجديدToolStripMenuItem1_Click);
-            // 
-            // أنواعالتويستأوفToolStripMenuItem
-            // 
-            this.أنواعالتويستأوفToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.إضافةنوعجديدToolStripMenuItem});
-            this.أنواعالتويستأوفToolStripMenuItem.Name = "أنواعالتويستأوفToolStripMenuItem";
-            this.أنواعالتويستأوفToolStripMenuItem.Size = new System.Drawing.Size(239, 32);
-            this.أنواعالتويستأوفToolStripMenuItem.Text = "أنواع التويست أوف";
-            // 
-            // إضافةنوعجديدToolStripMenuItem
-            // 
-            this.إضافةنوعجديدToolStripMenuItem.Name = "إضافةنوعجديدToolStripMenuItem";
-            this.إضافةنوعجديدToolStripMenuItem.Size = new System.Drawing.Size(212, 32);
-            this.إضافةنوعجديدToolStripMenuItem.Text = "إضافة نوع جديد";
-            this.إضافةنوعجديدToolStripMenuItem.Click += new System.EventHandler(this.إضافةنوعجديدToolStripMenuItem_Click);
             // 
             // Mainform
             // 

@@ -482,5 +482,13 @@ namespace Al_Shaheen_System
                 myform.ShowDialog();
             }
         }
+
+        private void تويستأوفToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewtwistofform myform = new addnewtwistofform())
+            {
+                myform.ShowDialog();
+            }
+        }
     }
 }

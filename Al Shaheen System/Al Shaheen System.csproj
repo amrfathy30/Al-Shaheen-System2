@@ -507,6 +507,7 @@
     <Compile Include="SH_CONTAINER_OF_BOTTOM.cs" />
     <Compile Include="SH_CONTAINER_OF_EASY_OPEN.cs" />
     <Compile Include="SH_CONTAINER_OF_RLT.cs" />
+    <Compile Include="SH_CONTAINER_OF_TWIST_OF.cs" />
     <Compile Include="SH_DEPARTEMENTS.cs" />
     <Compile Include="SH_EMPLOYEES.cs" />
     <Compile Include="SH_EXCHANGED_PRINTED_MATERIAL_PARCELS.cs" />

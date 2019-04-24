@@ -180,9 +180,9 @@ namespace Al_Shaheen_System
                         {
                             getEmployeeData();
                             getUserPermission();
-                            MessageBox.Show("logged");
+                          //  MessageBox.Show("logged");
                              this.Hide();
-                        MessageBox.Show(shemp.SH_EMPLOYEE_NAME);
+                        //    MessageBox.Show(shemp.SH_EMPLOYEE_NAME);
                             Mainform forms = new Mainform(shemp, account, shuserPerm);
 
                             forms.ShowDialog();
