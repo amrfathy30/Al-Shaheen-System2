@@ -490,5 +490,13 @@ namespace Al_Shaheen_System
                 myform.ShowDialog();
             }
         }
+
+        private void إضافةمقاسجديدToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            using (addnewtwistofsize myform = new addnewtwistofsize())
+            {
+                myform.ShowDialog();
+            }
+        }
     }
 }

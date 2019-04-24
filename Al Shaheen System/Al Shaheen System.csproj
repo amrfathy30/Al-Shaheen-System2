@@ -176,6 +176,12 @@
     <Compile Include="addnewtwistofform.Designer.cs">
       <DependentUpon>addnewtwistofform.cs</DependentUpon>
     </Compile>
+    <Compile Include="addnewtwistofsize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewtwistofsize.Designer.cs">
+      <DependentUpon>addnewtwistofsize.cs</DependentUpon>
+    </Compile>
     <Compile Include="addnewtwistoftype.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -582,6 +588,7 @@
     <Compile Include="SH_SUPPLY_COMPANY.cs" />
     <Compile Include="SH_SUPPLY_COMPANY_BRANCHES.cs" />
     <Compile Include="SH_TIN_PRINTER.cs" />
+    <Compile Include="SH_TWIST_OF_SIZE.cs" />
     <Compile Include="SH_TWIST_OF_TYPE.cs" />
     <Compile Include="SH_USER_ACCOUNTS.cs" />
     <Compile Include="SH_USER_PERMISIONS.cs" />
@@ -663,6 +670,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addnewtwistofform.resx">
       <DependentUpon>addnewtwistofform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewtwistofsize.resx">
+      <DependentUpon>addnewtwistofsize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addnewtwistoftype.resx">
       <DependentUpon>addnewtwistoftype.cs</DependentUpon>
