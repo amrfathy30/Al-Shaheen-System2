@@ -31,8 +31,10 @@ namespace Al_Shaheen_System
             InitializeComponent();
         }
 
-        long total_no_container = 0;
-        long total_no_items = 0;
+        long total_no_container_cartons = 0;
+        long total_no_container_pallets = 0;
+        long total_no_items_cartons = 0;
+        long total_no_items_pallets = 0;
 
         async Task getallstocks()
         {
@@ -379,7 +381,7 @@ namespace Al_Shaheen_System
                 }
             }
         }
-        async Task<long> savetwistofspecification()
+        async Task<long> savetwistofspecification(string container_name , long totalnoitems, long no_containers)
         {
          
             myconnection.openConnection();
@@ -390,9 +392,9 @@ namespace Al_Shaheen_System
             cmd.Parameters.AddWithValue("SH_FACE_COLOR_ID", faces[f1_combo_box.SelectedIndex].SH_ID);
             cmd.Parameters.AddWithValue("SH_TWIST_OF_TYPE_ID", twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID);
             cmd.Parameters.AddWithValue("SH_TYPE", item_type_combo_box.Text);
-            cmd.Parameters.AddWithValue("SH_CONTAINER_NAME", container_type_combo_box.Text);
-            cmd.Parameters.AddWithValue("SH_NO_OF_CONTAINERS", 0);
-            cmd.Parameters.AddWithValue("SH_TOTAL_NO_TEMS", 0);
+            cmd.Parameters.AddWithValue("SH_CONTAINER_NAME", container_name);
+            cmd.Parameters.AddWithValue("SH_NO_OF_CONTAINERS", no_containers);
+            cmd.Parameters.AddWithValue("SH_TOTAL_NO_TEMS", totalnoitems);
 
             if (pillow_check_box.Checked)
             {
@@ -428,20 +430,22 @@ namespace Al_Shaheen_System
             // MessageBox.Show(quantity.SH_SUPPLIER_BRANCH_ID.ToString());
             try
             {
+                //SH_SAVE_NEW_TWIST_OF_QUANTITIES
                 myconnection.openConnection();
                 string query = "INSERT INTO SH_QUANTITY_OF_TWIST_OF";
-                query += "(SH_SUPPLIER_ID, SH_ADDITION_PERMISSION_NUMBER, SH_SUPPLIER_BRANCH_ID, SH_TOTAL_NO_OF_ITEMS, SH_NO_ITEMS_PER_CONTAINER, SH_NO_CONTAINERS, SH_SPECIFICATION_OF_TWIST_OF_ID)";
-                query += " VALUES(@SH_SUPPLIER_ID,@SH_ADDITION_PERMISSION_NUMBER,@SH_SUPPLIER_BRANCH_ID,@SH_TOTAL_NO_OF_ITEMS,@SH_NO_ITEMS_PER_CONTAINER,@SH_NO_CONTAINERS,@SH_SPECIFICATION_OF_TWIST_OF_ID)";
+                query += "(SH_SUPPLIER_ID, SH_ADDITION_PERMISSION_NUMBER, SH_SUPPLIER_BRANCH_ID, SH_TOTAL_NO_OF_ITEMS, SH_NO_ITEMS_PER_CONTAINER, SH_NO_CONTAINERS, SH_SPECIFICATION_OF_TWIST_OF_ID,SH_CONTAINER_NAME)";
+                query += " VALUES(@SH_SUPPLIER_ID,@SH_ADDITION_PERMISSION_NUMBER,@SH_SUPPLIER_BRANCH_ID,@SH_TOTAL_NO_OF_ITEMS,@SH_NO_ITEMS_PER_CONTAINER,@SH_NO_CONTAINERS,@SH_SPECIFICATION_OF_TWIST_OF_ID,@SH_CONTAINER_NAME)";
                 query += "SELECT SCOPE_IDENTITY() AS myidentity";
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                // cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_TWIST_OF_ID", sp_id);
-                cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", 0);
-                cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER",0);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_OF_ITEMS", 0);
-                cmd.Parameters.AddWithValue("@SH_ADDITION_PERMISSION_NUMBER", 0);
-                cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", 0);
-                cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID",0);
+                cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", quantity.SH_NO_CONTAINERS);
+                cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER",quantity.SH_NO_ITEMS_PER_CONTAINER);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_OF_ITEMS",quantity.SH_TOTAL_NO_OF_ITEMS);
+                cmd.Parameters.AddWithValue("@SH_ADDITION_PERMISSION_NUMBER", quantity.SH_ADDITION_PERMISSION_NUMBER);
+                cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", quantity.SH_SUPPLIER_ID);
+                cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID",quantity.SH_SUPPLIER_BRANCH_ID);
+                cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", quantity.SH_CONTAINER_NAME);
                 SqlDataReader reader = cmd.ExecuteReader();
                 long myidentity = 0;
                 if (reader.Read())
@@ -462,6 +466,7 @@ namespace Al_Shaheen_System
         }
         async Task savetwistofcontainers(long sp_id , long qu_id ,  List<SH_CONTAINER_OF_TWIST_OF> containers)
         {
+            MessageBox.Show(containers.Count.ToString());
             try
             {
                 //DataTable dt = new DataTable();
@@ -470,38 +475,38 @@ namespace Al_Shaheen_System
                 //dt.Columns.Add(new DataColumn("SH_ADDTION_DATE", typeof(DateTime)));
                 //dt.Columns.Add(new DataColumn("SH_NO_ITEMS", typeof(long)));
                 //dt.Columns.Add(new DataColumn("SH_CONTAINER_NAME", typeof(string)));
-
                 string query = "INSERT INTO SH_CONTAINER_OF_TWIST_OF";
                 query += "(SH_CONTAINER_NAME, SH_NO_ITEMS, SH_ADDITION_PERMISSION_NUMBER, SH_QUANTITY_OF_TWIST_OF_ID, SH_ADDTION_DATE)";
                 query += " VALUES(@SH_CONTAINER_NAME,@SH_NO_ITEMS,@SH_ADDITION_PERMISSION_NUMBER,@SH_QUANTITY_OF_TWIST_OF_ID,@SH_ADDTION_DATE)";
-
-
                 //for (int i = 0; i < containers.Count; i++)
                 //{
                 //  //  dt.Rows.Add(qu_id,containers[i].SH_ADDITION_PERMISSION_NUMBER,DateTime.Now ,containers[i].SH_NO_ITEMS, containers[i].SH_CONTAINER_NAME);
                 //    dt.Rows.Add(0,0, DateTime.Now, 0, 0);
                 //}
-                myconnection.openConnection();
+                // myconnection.openConnection();
                 //SqlCommand cmd = new SqlCommand("SAVE_NEW_TWIST_OF_CONTAINER", DatabaseConnection.mConnection);
-                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                //SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                 // cmd.CommandType = CommandType.StoredProcedure;
                 // cmd.Parameters.AddWithValue("@SH_TWIST_OF_CONTAINER_DATA",dt);
+                MessageBox.Show(containers.Count.ToString());
+               
                 for (int i = 0; i < containers.Count; i++)
                 {
-                    cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", 0);
-                    cmd.Parameters.AddWithValue("@SH_NO_ITEMS", 0);
-                    cmd.Parameters.AddWithValue("@SH_ADDITION_PERMISSION_NUMBER", 0);
-                    cmd.Parameters.AddWithValue("@SH_QUANTITY_OF_TWIST_OF_ID", 0);
-                    cmd.Parameters.AddWithValue("@SH_ADDTION_DATE",0);
+                    myconnection.openConnection();
+                    SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                    cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", containers[i].SH_CONTAINER_NAME);
+                    cmd.Parameters.AddWithValue("@SH_NO_ITEMS", containers[i].SH_NO_ITEMS);
+                    cmd.Parameters.AddWithValue("@SH_ADDITION_PERMISSION_NUMBER", containers[i].SH_ADDITION_PERMISSION_NUMBER);
+                    cmd.Parameters.AddWithValue("@SH_QUANTITY_OF_TWIST_OF_ID", qu_id);
+                    cmd.Parameters.AddWithValue("@SH_ADDTION_DATE",containers[i].SH_ADDTION_DATE);
                     cmd.ExecuteNonQuery();
+                    myconnection.closeConnection();
                 }
-
-             //   cmd.ExecuteNonQuery();
-                myconnection.closeConnection();
+               //cmd.ExecuteNonQuery();    
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHIle SAVing TWiST of CONTAINER "+ex.ToString());
+                MessageBox.Show("ERROR WHILE SAVING TWIST of CONTAINERS "+ex.ToString());
             }
         }
         async Task getalltwistofspecification()
@@ -517,6 +522,7 @@ namespace Al_Shaheen_System
                 {
                     specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CLIENT_PRODUCT_ID = long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()), SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(), SH_FACE_COLOR_ID = long.Parse(reader["SH_FACE_COLOR_ID"].ToString()), SH_FIRST_FACE_PILLOW_OR_NOT = long.Parse(reader["SH_FIRST_FACE_PILLOW_OR_NOT"].ToString()), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()), SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()), SH_TWIST_OF_TYPE_ID = long.Parse(reader["SH_TWIST_OF_TYPE_ID"].ToString()), SH_TYPE = reader["SH_TYPE"].ToString() });
                 }
+                reader.Close();
                 myconnection.closeConnection();
             }
             catch (Exception ex)
@@ -524,84 +530,94 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GETTING ALL TWIST_OF SPECIFICATIONS ");
             }
         }
-        async Task<long> CHECK_IF_SPECIFICATION_EXISTS_OR_NOT()
-        {          
-            if (specifications.Count>0)
+        async Task<long> CHECK_IF_SPECIFICATION_EXISTS_OR_NOT(string containername)
+        {
+            specifications.Clear();
+            await getalltwistofspecification();
+
+            if (specifications.Count > 0)
             {
                 for (int i = 0; i < specifications.Count; i++)
                 {
-                    if (specifications[i].SH_CLIENT_ID == clients[clients_combo_box.SelectedIndex].SH_ID && specifications[i].SH_SIZE_ID == sizes[f2_combo_box.SelectedIndex].SH_ID && specifications[i].SH_TWIST_OF_TYPE_ID == twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID )
+                    if (specifications[i].SH_CLIENT_ID == clients[clients_combo_box.SelectedIndex].SH_ID && specifications[i].SH_SIZE_ID == sizes[f2_combo_box.SelectedIndex].SH_ID && specifications[i].SH_TWIST_OF_TYPE_ID == twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID && string.Compare(specifications[i].SH_CONTAINER_NAME, containername) == 0 && specifications[i].SH_FACE_COLOR_ID == faces[f1_combo_box.SelectedIndex].SH_ID)
                     {
-                        if (pillow_check_box.Checked && specifications[i].SH_PILLOW_COLOR_ID == color_pillows[client_product_combo_box.SelectedIndex].SH_ID )
+                        if (pillow_check_box.Checked && specifications[i].SH_PILLOW_COLOR_ID == color_pillows[client_product_combo_box.SelectedIndex].SH_ID)
                         {
                             return specifications[i].SH_ID;
                         }
-                        else if ((!pillow_check_box.Checked)&& specifications[i].SH_CLIENT_PRODUCT_ID==clients[client_product_combo_box.SelectedIndex].SH_ID )
+                        else if ((!pillow_check_box.Checked) && specifications[i].SH_CLIENT_PRODUCT_ID == client_products[client_product_combo_box.SelectedIndex].SH_ID)
                         {
                             return specifications[i].SH_ID;
                         }
                     }
                 }
             }
-            //try
-            //{
-            //    myconnection.openConnection();
-            //    SqlCommand cmd = new SqlCommand("CHECK_IF_TWIST_OF_EXISTS", DatabaseConnection.mConnection);
-            //    cmd.CommandType = CommandType.StoredProcedure;
-            //    cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[clients_combo_box.SelectedIndex].SH_ID);
-            //    if (pillow_check_box.Checked)
-            //    {
-            //        cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", 0);
-            //        cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", color_pillows[client_product_combo_box.SelectedIndex].SH_ID);
-            //    }else
-            //    {
-            //        cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", client_products[client_product_combo_box.SelectedIndex].SH_ID);
-            //        cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", 0);
-            //    }
-            //    MessageBox.Show("GETTING");
+            else
+            {
+                //try
+                //{
+                //    myconnection.openConnection();
+                //    SqlCommand cmd = new SqlCommand("CHECK_IF_TWIST_OF_EXISTS", DatabaseConnection.mConnection);
+                //    cmd.CommandType = CommandType.StoredProcedure;
+                //    cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[clients_combo_box.SelectedIndex].SH_ID);
+                //    if (pillow_check_box.Checked)
+                //    {
+                //        cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", 0);
+                //        cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", color_pillows[client_product_combo_box.SelectedIndex].SH_ID);
+                //    }else
+                //    {
+                //        cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", client_products[client_product_combo_box.SelectedIndex].SH_ID);
+                //        cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", 0);
+                //    }
+                //    MessageBox.Show("GETTING");
 
-            //    cmd.Parameters.AddWithValue("@SH_SIZE_ID", sizes[f2_combo_box.SelectedIndex].SH_ID);               
-            //    cmd.Parameters.AddWithValue("@SH_FACE_COLOR_ID", faces[f1_combo_box.SelectedIndex].SH_ID);
-            //    cmd.Parameters.AddWithValue("@SH_TWIST_OF_TYPE_ID", twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID);
-            //    cmd.Parameters.AddWithValue("@SH_TYPE", item_type_combo_box.Text);
-            //    cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", container_type_combo_box.Text);
-            //    SqlDataReader reader = cmd.ExecuteReader();
-            //    MessageBox.Show("IN");
-            //    while (reader.Read())
-            //    {
-            //        specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()) , SH_CLIENT_PRODUCT_ID = long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()) , SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString() , SH_FACE_COLOR_ID = long.Parse(reader["SH_FACE_COLOR_ID"].ToString()) , SH_FIRST_FACE_PILLOW_OR_NOT = long.Parse(reader["SH_FIRST_FACE_PILLOW_OR_NOT"].ToString()) , SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()) , SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()) , SH_TWIST_OF_TYPE_ID = long.Parse(reader["SH_TWIST_OF_TYPE_ID"].ToString()) , SH_TYPE = reader["SH_TYPE"].ToString() });
-            //    }
-            //    MessageBox.Show("OUT");
-            //    reader.Close();
-            //    myconnection.closeConnection();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("ERROR WHILE ADDING TWIST OFF SPECIFICATION  "+ex.ToString());
-            //}
+                //    cmd.Parameters.AddWithValue("@SH_SIZE_ID", sizes[f2_combo_box.SelectedIndex].SH_ID);               
+                //    cmd.Parameters.AddWithValue("@SH_FACE_COLOR_ID", faces[f1_combo_box.SelectedIndex].SH_ID);
+                //    cmd.Parameters.AddWithValue("@SH_TWIST_OF_TYPE_ID", twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID);
+                //    cmd.Parameters.AddWithValue("@SH_TYPE", item_type_combo_box.Text);
+                //    cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", container_type_combo_box.Text);
+                //    SqlDataReader reader = cmd.ExecuteReader();
+                //    MessageBox.Show("IN");
+                //    while (reader.Read())
+                //    {
+                //        specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()) , SH_CLIENT_PRODUCT_ID = long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()) , SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString() , SH_FACE_COLOR_ID = long.Parse(reader["SH_FACE_COLOR_ID"].ToString()) , SH_FIRST_FACE_PILLOW_OR_NOT = long.Parse(reader["SH_FIRST_FACE_PILLOW_OR_NOT"].ToString()) , SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()) , SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()) , SH_TWIST_OF_TYPE_ID = long.Parse(reader["SH_TWIST_OF_TYPE_ID"].ToString()) , SH_TYPE = reader["SH_TYPE"].ToString() });
+                //    }
+                //    MessageBox.Show("OUT");
+                //    reader.Close();
+                //    myconnection.closeConnection();
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("ERROR WHILE ADDING TWIST OFF SPECIFICATION  "+ex.ToString());
+                //}
+                return 0;
+            }
             return 0;
         }
-        async Task <long> UPDATE_TWIST_OF_SPECIFICATIONS(long SP_ID )
+        async Task UPDATE_TWIST_OF_SPECIFICATIONS(long SP_ID , long total_no_container , long total_no_items )
         {
+
             try
             {
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SH_UPDATE_TWIST_OF_SPECIFICATION_QUANTITIES", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SH_ID" , SP_ID);
-                this.Invoke((MethodInvoker)delegate()
-                {
-                    cmd.Parameters.AddWithValue("@SH_TOTAL_NO_TEMS",long.Parse(total_number_of_items_text_box.Text) );
-                });
+                //this.Invoke((MethodInvoker)delegate()
+                //{
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_TEMS", total_no_items );
+                //});
                 cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS" ,total_no_container );
                 cmd.ExecuteNonQuery();
                 myconnection.closeConnection();
+                MessageBox.Show("Success updating specifications");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR WHILE UPDATING SPECIFICATIONS OBJECT "+ex.ToString());
             }
 
-            return 0;
+           
         }
         void calculatenoitemsofquantity()
         {
@@ -681,41 +697,149 @@ namespace Al_Shaheen_System
         {
             try
             {
-                specifications.Clear();
-                await CHECK_IF_SPECIFICATION_EXISTS_OR_NOT();
-                if (specifications.Count > 0)
+                if (QUANTITIES.Count > 0)
                 {
-                    if (specifications.Count == 1)
+                    for (int i = 0; i < QUANTITIES.Count; i++)
                     {
-                        long sp_id = await UPDATE_TWIST_OF_SPECIFICATIONS(specifications[0].SH_ID);
-                        long quantity = 0;
-                        //MessageBox.Show(sp_id.ToString());
-                        for (int i = 0; i < QUANTITIES.Count; i++)
+                        if (string.Compare(QUANTITIES[i].SH_CONTAINER_NAME,"بالتة")==0)
                         {
-                            quantity = await savetwistofquantities(sp_id, QUANTITIES[i]);
-                            await savetwistofcontainers(sp_id, quantity, QUANTITIES[i].containers);
+                            long sp_id = await CHECK_IF_SPECIFICATION_EXISTS_OR_NOT(QUANTITIES[i].SH_CONTAINER_NAME);
+                            if (sp_id!=0)
+                            {
+                                await UPDATE_TWIST_OF_SPECIFICATIONS(sp_id,total_no_container_pallets , total_no_items_pallets);
+                                long qu_id = await savetwistofquantities(sp_id , QUANTITIES[i]);
+                                MessageBox.Show("Quantity id : "+qu_id.ToString());
+                                await savetwistofcontainers(sp_id, qu_id , QUANTITIES[i].containers);
+                            }else
+                            {
+                                sp_id = await savetwistofspecification("بالتة" , total_no_items_pallets, total_no_container_pallets);
+                                long qu_id = await savetwistofquantities(sp_id, QUANTITIES[i]);
+                                MessageBox.Show("Quantity id : " + qu_id.ToString());
+                                await savetwistofcontainers(sp_id, qu_id, QUANTITIES[i].containers);
+                            }
+                        }else
+                        {
+                            long sp_id = await CHECK_IF_SPECIFICATION_EXISTS_OR_NOT(QUANTITIES[i].SH_CONTAINER_NAME);
+                            if (sp_id != 0)
+                            {
+                                await UPDATE_TWIST_OF_SPECIFICATIONS(sp_id, total_no_container_cartons , total_no_items_cartons);
+                                long qu_id = await savetwistofquantities(sp_id, QUANTITIES[i]);
+                                MessageBox.Show("Quantity id : " + qu_id.ToString());
+                                await savetwistofcontainers(sp_id, qu_id, QUANTITIES[i].containers);
+                            }
+                            else
+                            {
+                                sp_id = await savetwistofspecification("كرتونة", total_no_items_cartons, total_no_container_cartons);
+                                long qu_id = await savetwistofquantities(sp_id, QUANTITIES[i]);
+                                MessageBox.Show("Quantity id : " + qu_id.ToString());
+                                await savetwistofcontainers(sp_id, qu_id, QUANTITIES[i].containers);
+                            }
                         }
                     }
                 }
-                else
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                if (total_no_container_cartons !=0 )
                 {
-                    long sp_id = await savetwistofspecification();
-                    long quantity = 0;
-                    //MessageBox.Show(sp_id.ToString());
-                    for (int i = 0; i < QUANTITIES.Count; i++)
-                    {
-                        quantity = await savetwistofquantities(sp_id, QUANTITIES[i]);
-                        await savetwistofcontainers(sp_id, quantity, QUANTITIES[i].containers);
-                    }
+                    //specifications.Clear();
+                    //await CHECK_IF_SPECIFICATION_EXISTS_OR_NOT("كرتونة");
+                    //if (specifications.Count > 0)
+                    //{
+                    //    if (specifications.Count == 1)
+                    //    {
+                    //        long sp_id = await UPDATE_TWIST_OF_SPECIFICATIONS(specifications[0].SH_ID, total_no_container_cartons);
+                    //        long quantity = 0;
+                    //        //MessageBox.Show(sp_id.ToString());
+                    //        MessageBox.Show(QUANTITIES.Count.ToString());
+                    //        for (int i = 0; i < QUANTITIES.Count; i++)
+                    //        {
+                    //            quantity = await savetwistofquantities(sp_id, QUANTITIES[i]);
+                    //            await savetwistofcontainers(sp_id, quantity, QUANTITIES[i].containers);
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    long sp_id = await savetwistofspecification("كرتونة", total_no_items_cartons , total_no_container_cartons);
+                    //    long quantity = 0;
+                    //    //MessageBox.Show(sp_id.ToString());
+                    //    for (int i = 0; i < QUANTITIES.Count; i++)
+                    //    {
+                    //        quantity = await savetwistofquantities(sp_id, QUANTITIES[i]);
+                    //        await savetwistofcontainers(sp_id, quantity, QUANTITIES[i].containers);
+                    //    }
+
+                    //}
+                    //MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
                 }
-                MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                
+                
+                
+                if (total_no_container_pallets !=0)
+                {
+                    //        specifications.Clear();
+                    //        await CHECK_IF_SPECIFICATION_EXISTS_OR_NOT("بالتة");
+                    //        if (specifications.Count > 0)
+                    //        {
+                    //            if (specifications.Count == 1)
+                    //            {
+                    //                long sp_id = await UPDATE_TWIST_OF_SPECIFICATIONS(specifications[0].SH_ID, total_no_container_pallets);
+                    //                long quantity = 0;
+                    //                //MessageBox.Show(sp_id.ToString());
+                    //                for (int i = 0; i < QUANTITIES.Count; i++)
+                    //                {
+                    //                    quantity = await savetwistofquantities(sp_id, QUANTITIES[i]);
+                    //                    await savetwistofcontainers(sp_id, quantity, QUANTITIES[i].containers);
+                    //                }
+                    //            }
+                    //        }
+                    //        else
+                    //        {
+                    //            long sp_id = await savetwistofspecification("بالتة" , total_no_items_pallets , total_no_container_pallets);
+                    //            long quantity = 0;
+                    //            //MessageBox.Show(sp_id.ToString());
+                    //            for (int i = 0; i < QUANTITIES.Count; i++)
+                    //            {
+                    //                quantity = await savetwistofquantities(sp_id, QUANTITIES[i]);
+                    //                await savetwistofcontainers(sp_id, quantity, QUANTITIES[i].containers);
+                    //            }
 
+                    //        }
+                    //        MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+
+
+
+                }
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHIlE SAVE ");
-                MessageBox.Show("لم يتم الحفظ بنجاح", "خطأ", MessageBoxButtons.OK , MessageBoxIcon.Error , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+                MessageBox.Show("ERROR WHIlE SAVE " + ex.ToString());
+                MessageBox.Show("لم يتم الحفظ بنجاح", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
             }
         }
@@ -851,36 +975,73 @@ namespace Al_Shaheen_System
                     unsimilar_no_items_per_container_error_provider.Clear();
                 }
             }
-
             if (cansave)
             {
-               // MessageBox.Show("Cansave");
+                // MessageBox.Show("Cansave");
+                // MessageBox.Show(addition_permission_number_text_box.Text);
+                List<SH_CONTAINER_OF_TWIST_OF> anycontainers = new List<SH_CONTAINER_OF_TWIST_OF>();
                 if (unsimilarquantities_check_box.Checked)
                 {
+                    //    //MessageBox.Show(unsimilar_no_items_per_quantity.Text);
                     for (int i = 0; i < long.Parse(unsimilar_no_of_containers.Text); i++)
                     {
-                        mcontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(unsimilar_no_items_per_container.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
+                        anycontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(unsimilar_no_items_per_container.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
                     }
-                  
-                    QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(unsimilar_no_of_containers.Text), /*SH_NO_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container_text_box.Text) ,*/ SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(no_items_per_quantity.Text), containers = mcontainers, suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
-                    total_no_container += long.Parse(unsimilar_no_of_containers.Text);
+                    QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(unsimilar_no_of_containers.Text), SH_NO_ITEMS_PER_CONTAINER = long.Parse(unsimilar_no_items_per_container.Text), SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(unsimilar_no_items_per_quantity.Text), containers = anycontainers , suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME , SH_CONTAINER_NAME = container_type_combo_box.Text });
+                    if (container_type_combo_box.SelectedIndex == 0)
+                    {
+                        //MessageBox.Show(container_type_combo_box.SelectedIndex.ToString());
+                        total_no_container_cartons += long.Parse(unsimilar_no_of_containers.Text);
+                        total_no_items_cartons += long.Parse(unsimilar_no_items_per_quantity.Text);
+                    }
+                    else
+                    {
+                        //MessageBox.Show(container_type_combo_box.SelectedIndex.ToString());
+                        total_no_container_pallets += long.Parse(unsimilar_no_of_containers.Text);
+                        total_no_items_pallets += long.Parse(unsimilar_no_items_per_quantity.Text);
+                    }
                 }
                 else
                 {
-                   // MessageBox.Show("Cansave");
-                    for (int i = 0; i < long.Parse(no_of_containers_text_box.Text); i++)
+                    // MessageBox.Show("Cansave");
+                    //MessageBox.Show(no_items_per_quantity.Text);
+                    //for (int i = 0; i < long.Parse(no_of_containers_text_box.Text); i++)
+                    //{
+                    //    mcontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(no_items_per_container.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
+                    //}
+                    ////MessageBox.Show("added containers");
+                    //QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(no_of_containers_text_box.Text), SH_NO_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container_text_box.Text), SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(no_items_per_quantity.Text), containers = mcontainers, suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
+                    ////MessageBox.Show("added quantities");
+                    //total_no_container += long.Parse(no_of_containers_text_box.Text);
+                    //for (int i = 0; i < long.Parse(no_of_containers_text_box.Text); i++)
+                    //{
+                    //    mcontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(no_items_per_container_text_box.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
+                    //}
+                    //QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(no_of_containers_text_box.Text), SH_NO_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container_text_box.Text), SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(no_items_per_quantity.Text), containers = mcontainers, suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
+                    //total_no_container += long.Parse(no_of_containers_text_box.Text);
+                    try
                     {
-                        mcontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(no_items_per_container.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
+                        List<SH_CONTAINER_OF_TWIST_OF> mycontainers = new List<SH_CONTAINER_OF_TWIST_OF>();
+                        for (int i = 0; i < long.Parse(no_of_containers_text_box.Text); i++)
+                        {
+                            mycontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(no_items_per_container.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
+                        }
+                        QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(no_of_containers_text_box.Text), SH_NO_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container.Text), SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(no_items_per_quantity.Text), containers = mycontainers, suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME,SH_CONTAINER_NAME= container_type_combo_box.Text });
+                        if (container_type_combo_box.SelectedIndex == 0)
+                        {
+                            total_no_container_cartons += long.Parse(no_of_containers_text_box.Text);
+                            total_no_items_cartons += long.Parse(no_items_per_quantity.Text);
+                        }else
+                        {
+                            total_no_container_pallets += long.Parse(no_of_containers_text_box.Text);
+                            total_no_items_pallets += long.Parse(no_items_per_quantity.Text);
+                        }
+                    }catch(Exception ex)
+                    {
+                        MessageBox.Show("ERROR WHILE ADDING NEW QUANTITIES "+ex.ToString());
                     }
-                    //MessageBox.Show("added containers");
-                    QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(no_of_containers_text_box.Text), /*SH_NO_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container_text_box.Text) ,*/ SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(no_items_per_quantity.Text), containers = mcontainers, suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
-
-                    //MessageBox.Show("added quantities");
-                    total_no_container += long.Parse(no_of_containers_text_box.Text);
-                }
-                
-
-
+                    }
+                // MessageBox.Show(no_items_per_container.Text);
                 filltwistofgridview();
                 mcontainers.Clear();
             }
@@ -1060,9 +1221,7 @@ namespace Al_Shaheen_System
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
-
-            savetwistofdata();
-            
+            savetwistofdata();     
         }
     }
 }

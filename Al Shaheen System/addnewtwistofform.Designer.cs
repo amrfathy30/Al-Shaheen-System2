@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.addition_permission_number_text_box = new System.Windows.Forms.TextBox();
@@ -44,7 +44,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.no_items_per_quantity = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.total_number_of_items_text_box = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -55,11 +54,9 @@
             this.unsimilar_no_of_containers = new System.Windows.Forms.TextBox();
             this.unsimilarquantities_check_box = new System.Windows.Forms.CheckBox();
             this.no_items_per_container_text_box = new System.Windows.Forms.Label();
-            this.no_items_per_container = new System.Windows.Forms.TextBox();
             this.no_of_containers_label = new System.Windows.Forms.Label();
             this.container_type_combo_box = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.no_of_containers_text_box = new System.Windows.Forms.TextBox();
             this.twist_of_quantities_grid_view = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,6 +100,9 @@
             this.unsimilar_no_items_per_container_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.twist_type_combo_box_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.item_type_combo_box_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.no_of_containers_text_box = new System.Windows.Forms.TextBox();
+            this.no_items_per_container = new System.Windows.Forms.TextBox();
+            this.no_items_per_quantity = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.twist_of_quantities_grid_view)).BeginInit();
@@ -226,9 +226,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.no_items_per_quantity);
+            this.groupBox2.Controls.Add(this.no_items_per_container);
+            this.groupBox2.Controls.Add(this.no_of_containers_text_box);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.no_items_per_quantity);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.total_number_of_items_text_box);
             this.groupBox2.Controls.Add(this.label11);
@@ -239,11 +241,9 @@
             this.groupBox2.Controls.Add(this.unsimilar_no_of_containers);
             this.groupBox2.Controls.Add(this.unsimilarquantities_check_box);
             this.groupBox2.Controls.Add(this.no_items_per_container_text_box);
-            this.groupBox2.Controls.Add(this.no_items_per_container);
             this.groupBox2.Controls.Add(this.no_of_containers_label);
             this.groupBox2.Controls.Add(this.container_type_combo_box);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.no_of_containers_text_box);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(15, 383);
             this.groupBox2.Name = "groupBox2";
@@ -269,15 +269,6 @@
             this.label9.Size = new System.Drawing.Size(87, 25);
             this.label9.TabIndex = 18;
             this.label9.Text = "الكمية الكلية";
-            // 
-            // no_items_per_quantity
-            // 
-            this.no_items_per_quantity.Enabled = false;
-            this.no_items_per_quantity.Location = new System.Drawing.Point(21, 103);
-            this.no_items_per_quantity.Name = "no_items_per_quantity";
-            this.no_items_per_quantity.Size = new System.Drawing.Size(131, 30);
-            this.no_items_per_quantity.TabIndex = 17;
-            this.no_items_per_quantity.TextChanged += new System.EventHandler(this.no_items_per_quantity_TextChanged);
             // 
             // label14
             // 
@@ -368,14 +359,6 @@
             this.no_items_per_container_text_box.TabIndex = 5;
             this.no_items_per_container_text_box.Text = "الكمية / التعبئة";
             // 
-            // no_items_per_container
-            // 
-            this.no_items_per_container.Location = new System.Drawing.Point(280, 103);
-            this.no_items_per_container.Name = "no_items_per_container";
-            this.no_items_per_container.Size = new System.Drawing.Size(131, 30);
-            this.no_items_per_container.TabIndex = 4;
-            this.no_items_per_container.TextChanged += new System.EventHandler(this.no_items_per_container_TextChanged);
-            // 
             // no_of_containers_label
             // 
             this.no_of_containers_label.AutoSize = true;
@@ -406,28 +389,20 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "نوع التعبئة";
             // 
-            // no_of_containers_text_box
-            // 
-            this.no_of_containers_text_box.Location = new System.Drawing.Point(534, 103);
-            this.no_of_containers_text_box.Name = "no_of_containers_text_box";
-            this.no_of_containers_text_box.Size = new System.Drawing.Size(131, 30);
-            this.no_of_containers_text_box.TabIndex = 0;
-            this.no_of_containers_text_box.TextChanged += new System.EventHandler(this.no_of_containers_text_box_TextChanged);
-            // 
             // twist_of_quantities_grid_view
             // 
             this.twist_of_quantities_grid_view.AllowUserToAddRows = false;
             this.twist_of_quantities_grid_view.AllowUserToDeleteRows = false;
             this.twist_of_quantities_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.twist_of_quantities_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.twist_of_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.twist_of_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.twist_of_quantities_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.twist_of_quantities_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -437,14 +412,14 @@
             this.Column5,
             this.Column6,
             this.Column7});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.twist_of_quantities_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.twist_of_quantities_grid_view.DefaultCellStyle = dataGridViewCellStyle6;
             this.twist_of_quantities_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.twist_of_quantities_grid_view.Location = new System.Drawing.Point(15, 686);
             this.twist_of_quantities_grid_view.Name = "twist_of_quantities_grid_view";
@@ -785,6 +760,30 @@
             this.item_type_combo_box_error_provider.ContainerControl = this;
             this.item_type_combo_box_error_provider.RightToLeft = true;
             // 
+            // no_of_containers_text_box
+            // 
+            this.no_of_containers_text_box.Location = new System.Drawing.Point(534, 103);
+            this.no_of_containers_text_box.Name = "no_of_containers_text_box";
+            this.no_of_containers_text_box.Size = new System.Drawing.Size(131, 30);
+            this.no_of_containers_text_box.TabIndex = 20;
+            this.no_of_containers_text_box.TextChanged += new System.EventHandler(this.no_of_containers_text_box_TextChanged);
+            // 
+            // no_items_per_container
+            // 
+            this.no_items_per_container.Location = new System.Drawing.Point(279, 103);
+            this.no_items_per_container.Name = "no_items_per_container";
+            this.no_items_per_container.Size = new System.Drawing.Size(131, 30);
+            this.no_items_per_container.TabIndex = 21;
+            this.no_items_per_container.TextChanged += new System.EventHandler(this.no_items_per_container_TextChanged);
+            // 
+            // no_items_per_quantity
+            // 
+            this.no_items_per_quantity.Enabled = false;
+            this.no_items_per_quantity.Location = new System.Drawing.Point(21, 103);
+            this.no_items_per_quantity.Name = "no_items_per_quantity";
+            this.no_items_per_quantity.Size = new System.Drawing.Size(131, 30);
+            this.no_items_per_quantity.TabIndex = 22;
+            // 
             // addnewtwistofform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -849,10 +848,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox container_type_combo_box;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox no_of_containers_text_box;
         private System.Windows.Forms.CheckBox unsimilarquantities_check_box;
         private System.Windows.Forms.Label no_items_per_container_text_box;
-        private System.Windows.Forms.TextBox no_items_per_container;
         private System.Windows.Forms.Label no_of_containers_label;
         private System.Windows.Forms.DataGridView twist_of_quantities_grid_view;
         private System.Windows.Forms.Label label14;
@@ -882,7 +879,6 @@
         private System.Windows.Forms.Button save_btn;
         private System.Windows.Forms.Button cancel_btn;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox no_items_per_quantity;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Timer add_new_twist_of_timer;
         private System.Windows.Forms.ErrorProvider supplier_error_provier;
@@ -908,5 +904,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.TextBox no_items_per_quantity;
+        private System.Windows.Forms.TextBox no_items_per_container;
+        private System.Windows.Forms.TextBox no_of_containers_text_box;
     }
 }
