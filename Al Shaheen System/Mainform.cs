@@ -498,5 +498,18 @@ namespace Al_Shaheen_System
                 myform.ShowDialog();
             }
         }
+
+        private void غطاءبلاستيكللعبواتToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewplasticcoverform myform = new addnewplasticcoverform())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void الموظفينToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace Al_Shaheen_System
                 {
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        twist_of_types_grid_view.Rows.Add(new string[] { (i + 1).ToString(), twist_of_types[i].SH_SHORT_TITLE, twist_of_types[i].SH_LONG_TITLE });
+                        twist_of_types_grid_view.Rows.Add(new string[] { (i + 1).ToString(), twist_of_types[i].SH_SHORT_TITLE, twist_of_types[i].SH_LONG_TITLE , twist_of_types[i].SH_KIND });
                     });
                     }
             }
@@ -67,11 +67,11 @@ namespace Al_Shaheen_System
             try
             {
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_GET_ALL_TWIST_OF_TYPES", DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SH_GET_TWIST_OF_TYPES_DATA ", DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    twist_of_types.Add(new SH_TWIST_OF_TYPE() { SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()) , SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString() , SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()) , SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString() , SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_LONG_TITLE = reader["SH_LONG_TITLE"].ToString() , SH_SHORT_TITLE = reader["SH_SHORT_TITLE"].ToString() });
+                    twist_of_types.Add(new SH_TWIST_OF_TYPE() { SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()) , SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString() , SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()) , SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString() , SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_LONG_TITLE = reader["SH_LONG_TITLE"].ToString() , SH_SHORT_TITLE = reader["SH_SHORT_TITLE"].ToString() , SH_KIND = reader["SH_KIND"].ToString() });
                 }
                 reader.Close();
                 myconnection.closeConnection();
@@ -107,6 +107,7 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_NAME", mAccount.SH_EMP_USER_NAME);
                     cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mAccount.SH_EMP_ID);
                     cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_NAME", mAccount.SH_EMP_NAME);
+                    cmd.Parameters.AddWithValue("@SH_KIND" , type_kind_text_box.Text);
                     cmd.ExecuteNonQuery();
                     myconnection.closeConnection();
                     MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);

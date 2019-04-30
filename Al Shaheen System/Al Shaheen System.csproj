@@ -170,6 +170,12 @@
     <Compile Include="Addnewstockform.Designer.cs">
       <DependentUpon>Addnewstockform.cs</DependentUpon>
     </Compile>
+    <Compile Include="addnewplasticcoverform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewplasticcoverform.Designer.cs">
+      <DependentUpon>addnewplasticcoverform.cs</DependentUpon>
+    </Compile>
     <Compile Include="addnewtwistofform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -509,6 +515,7 @@
     <Compile Include="SH_CLIENT_COMPANY_CONTACTS.cs" />
     <Compile Include="SH_COILS_RAW_MATERIAL.cs" />
     <Compile Include="SH_COLOR_PILLOW.cs" />
+    <Compile Include="SH_CONTAINERS_OF_PLASTIC_COVER.cs" />
     <Compile Include="SH_CONTAINER_OF_BILL_OFF.cs" />
     <Compile Include="SH_CONTAINER_OF_BOTTOM.cs" />
     <Compile Include="SH_CONTAINER_OF_EASY_OPEN.cs" />
@@ -557,6 +564,7 @@
     <Compile Include="SH_QUANTITY_OF_BOTTOM.cs" />
     <Compile Include="SH_QUANTITY_OF_EASY_OPEN.cs" />
     <Compile Include="SH_QUANTITY_OF_MURAN_MATERIAL.cs" />
+    <Compile Include="SH_QUANTITY_OF_PLASTIC_COVER.cs" />
     <Compile Include="SH_QUANTITY_OF_RAW_MATERIAL.cs" />
     <Compile Include="SH_MURAN_MATERIAL_PARCEL.cs" />
     <Compile Include="SH_QUANTITY_OF_RLT.cs" />
@@ -578,6 +586,7 @@
     <Compile Include="SH_SPECIFICATION_OF_CUT_PRINTED_MATERIAL.cs" />
     <Compile Include="SH_SPECIFICATION_OF_EASY_OPEN.cs" />
     <Compile Include="SH_SPECIFICATION_OF_MURAN_MATERIAL .cs" />
+    <Compile Include="SH_SPECIFICATION_OF_PLASTIC_COVER.cs" />
     <Compile Include="SH_SPECIFICATION_OF_PRINTED_MATERIAL.cs" />
     <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL.cs" />
     <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL_COILS.cs" />
@@ -667,6 +676,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Addnewstockform.resx">
       <DependentUpon>Addnewstockform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addnewplasticcoverform.resx">
+      <DependentUpon>addnewplasticcoverform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addnewtwistofform.resx">
       <DependentUpon>addnewtwistofform.cs</DependentUpon>

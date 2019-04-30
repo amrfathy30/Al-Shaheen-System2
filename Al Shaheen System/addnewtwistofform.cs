@@ -23,9 +23,13 @@ namespace Al_Shaheen_System
         List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
         List<SH_CLIENTS_PRODUCTS> client_products = new List<SH_CLIENTS_PRODUCTS>();
         List<SH_SPECIFICATION_OF_TWIST_OF> specifications = new List<SH_SPECIFICATION_OF_TWIST_OF>();
+        List<SH_SPECIFICATION_OF_TWIST_OF> form_specifications = new List<SH_SPECIFICATION_OF_TWIST_OF>();
+
         List<SH_QUANTITY_OF_TWIST_OF> QUANTITIES = new List<SH_QUANTITY_OF_TWIST_OF>();
         List<SH_TWIST_OF_SIZE> sizes = new List<SH_TWIST_OF_SIZE>();
         List<SH_CONTAINER_OF_TWIST_OF> mcontainers = new List<SH_CONTAINER_OF_TWIST_OF>();
+        List<string> item_types = new List<string>();
+
         public addnewtwistofform()
         {
             InitializeComponent();
@@ -36,6 +40,46 @@ namespace Al_Shaheen_System
         long total_no_items_cartons = 0;
         long total_no_items_pallets = 0;
 
+
+        void getallitemtypes()
+        {
+            try
+            {
+                item_types.Clear();
+                
+                    string query = "SELECT DISTINCT SH_KIND FROM SH_TWIST_OF_TYPE";
+                    myconnection.openConnection();
+                    SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        item_types.Add(reader["SH_KIND"].ToString());
+                    }
+                    reader.Close();
+                    myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING TWIST OF TYPES KINDS "+ex.ToString());
+            }
+        }
+        void fillitemtypescombobox()
+        {
+            item_type_combo_box.Items.Clear();
+            getallitemtypes();
+            if (item_types.Count>0)
+            {
+                for (int i = 0; i < item_types.Count; i++)
+                {
+                    item_type_combo_box.Items.Add(item_types[i]);
+                }
+            }
+        }
+
+
+
+
+        
         async Task getallstocks()
         {
             stocks.Clear();
@@ -162,6 +206,7 @@ namespace Al_Shaheen_System
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SH_GET_ALL_TWIST_OF_TYPES", DatabaseConnection.mConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_KIND" , item_types[item_type_combo_box.SelectedIndex]);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -681,12 +726,13 @@ namespace Al_Shaheen_System
             Cursor.Current = Cursors.WaitCursor;
             await fillsupplierscombobox();
            // await getalltwistoftypes();
-            await filltwisttypescombobox();
+            //await filltwisttypescombobox();
             await fillstockscombobox();
             await getallclientsdata();
             await fillclientscombobox();
             await fillfacescombobox();
             await fillsizescombobox();
+            fillitemtypescombobox();
             no_of_containers_text_box.Enabled = true;
             no_items_per_container.Enabled = true;
             unsimilar_no_items_per_container.Enabled = false;
@@ -987,7 +1033,16 @@ namespace Al_Shaheen_System
                     {
                         anycontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(unsimilar_no_items_per_container.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
                     }
-                    QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(unsimilar_no_of_containers.Text), SH_NO_ITEMS_PER_CONTAINER = long.Parse(unsimilar_no_items_per_container.Text), SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(unsimilar_no_items_per_quantity.Text), containers = anycontainers , suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME , SH_CONTAINER_NAME = container_type_combo_box.Text });
+                    //if (pillow_check_box.Checked)
+                    //{
+                    //    form_specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID, SH_FACE_COLOR_ID = faces[f1_combo_box.SelectedIndex].SH_ID, SH_CLIENT_PRODUCT_ID = 0 , SH_PILLOW_COLOR_ID= color_pillows[client_product_combo_box.SelectedIndex].SH_ID , SH_FIRST_FACE_PILLOW_OR_NOT=1 , SH_TYPE = item_type_combo_box.Text , SH_TWIST_OF_TYPE_ID = twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID , SH_SIZE_ID = sizes[f2_combo_box.SelectedIndex].SH_ID, clientname = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME , clientproductname = "0" , facecolorname = faces[f1_combo_box.SelectedIndex].SH_FACE_COLOR_NAME , sizetitle = sizes[f2_combo_box.SelectedIndex].SH_TWIST_OF_SIZE_VALUE.ToString(), pillowcolorname = color_pillows[client_product_combo_box.SelectedIndex].SH_COLOR_NAME});
+
+                    //}else
+                    //{
+                    //    form_specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID, SH_FACE_COLOR_ID = faces[f1_combo_box.SelectedIndex].SH_ID, SH_CLIENT_PRODUCT_ID = client_products[client_product_combo_box.SelectedIndex].SH_ID, SH_PILLOW_COLOR_ID = color_pillows[client_product_combo_box.SelectedIndex].SH_ID, SH_FIRST_FACE_PILLOW_OR_NOT = 0, SH_TYPE = item_type_combo_box.Text, SH_TWIST_OF_TYPE_ID = twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID, SH_SIZE_ID = sizes[f2_combo_box.SelectedIndex].SH_ID, clientname = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME, clientproductname = client_products[client_product_combo_box.SelectedIndex].SH_PRODUCT_NAME, facecolorname = faces[f1_combo_box.SelectedIndex].SH_FACE_COLOR_NAME, sizetitle = sizes[f2_combo_box.SelectedIndex].SH_TWIST_OF_SIZE_VALUE.ToString(), pillowcolorname = "0" });
+
+                    //}
+                    QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(unsimilar_no_of_containers.Text), SH_NO_ITEMS_PER_CONTAINER = long.Parse(unsimilar_no_items_per_container.Text), SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(unsimilar_no_items_per_quantity.Text), containers = anycontainers , suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME , SH_CONTAINER_NAME = container_type_combo_box.Text , SH_SPECIFICATION_OF_TWIST_OF_ID = form_specifications.Count-1 });
                     if (container_type_combo_box.SelectedIndex == 0)
                     {
                         //MessageBox.Show(container_type_combo_box.SelectedIndex.ToString());
@@ -1026,6 +1081,16 @@ namespace Al_Shaheen_System
                         {
                             mycontainers.Add(new SH_CONTAINER_OF_TWIST_OF() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_NO_ITEMS = long.Parse(no_items_per_container.Text), SH_CONTAINER_NAME = container_type_combo_box.Text });
                         }
+                        if (pillow_check_box.Checked)
+                        {
+                            form_specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID, SH_FACE_COLOR_ID = faces[f1_combo_box.SelectedIndex].SH_ID, SH_CLIENT_PRODUCT_ID = 0, SH_PILLOW_COLOR_ID = color_pillows[client_product_combo_box.SelectedIndex].SH_ID, SH_FIRST_FACE_PILLOW_OR_NOT = 1, SH_TYPE = item_type_combo_box.Text, SH_TWIST_OF_TYPE_ID = twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID, SH_SIZE_ID = sizes[f2_combo_box.SelectedIndex].SH_ID, clientname = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME, clientproductname = "0", facecolorname = faces[f1_combo_box.SelectedIndex].SH_FACE_COLOR_NAME, sizetitle = sizes[f2_combo_box.SelectedIndex].SH_TWIST_OF_SIZE_VALUE.ToString(), pillowcolorname = color_pillows[client_product_combo_box.SelectedIndex].SH_COLOR_NAME });
+
+                        }
+                        else
+                        {
+                            form_specifications.Add(new SH_SPECIFICATION_OF_TWIST_OF() { SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID, SH_FACE_COLOR_ID = faces[f1_combo_box.SelectedIndex].SH_ID, SH_CLIENT_PRODUCT_ID = client_products[client_product_combo_box.SelectedIndex].SH_ID, SH_PILLOW_COLOR_ID = color_pillows[client_product_combo_box.SelectedIndex].SH_ID, SH_FIRST_FACE_PILLOW_OR_NOT = 0, SH_TYPE = item_type_combo_box.Text, SH_TWIST_OF_TYPE_ID = twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID, SH_SIZE_ID = sizes[f2_combo_box.SelectedIndex].SH_ID, clientname = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME, clientproductname = client_products[client_product_combo_box.SelectedIndex].SH_PRODUCT_NAME, facecolorname = faces[f1_combo_box.SelectedIndex].SH_FACE_COLOR_NAME, sizetitle = sizes[f2_combo_box.SelectedIndex].SH_TWIST_OF_SIZE_VALUE.ToString(), pillowcolorname = "0" });
+
+                        }
                         QUANTITIES.Add(new SH_QUANTITY_OF_TWIST_OF() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_CONTAINERS = long.Parse(no_of_containers_text_box.Text), SH_NO_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container.Text), SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_TOTAL_NO_OF_ITEMS = long.Parse(no_items_per_quantity.Text), containers = mycontainers, suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME,SH_CONTAINER_NAME= container_type_combo_box.Text });
                         if (container_type_combo_box.SelectedIndex == 0)
                         {
@@ -1047,6 +1112,127 @@ namespace Al_Shaheen_System
             }
         }
 
+        int check_if_specification_exists_or_not()
+        {
+            if (form_specifications.Count > 0)
+            {
+                for (int i = 0; i < form_specifications.Count; i++)
+                {
+                    long client_id = clients[clients_combo_box.SelectedIndex].SH_ID;
+                    string clientname = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME;
+                    long pillow_or_not = 0;
+                    long client_product_id = 0;
+                    string client_product_name = "0";
+                    long pillow_color_id = 0;
+                    string pillow_color_name = "0";
+                    if (pillow_check_box.Checked)
+                    {
+                        pillow_or_not = 1;
+                        pillow_color_id = color_pillows[client_product_combo_box.SelectedIndex].SH_ID;
+                        pillow_color_name = color_pillows[client_product_combo_box.SelectedIndex].SH_COLOR_NAME;
+                    } else
+                    {
+                        pillow_or_not = 0;
+                        client_product_id = client_products[client_product_combo_box.SelectedIndex].SH_ID;
+                        client_product_name = client_products[client_product_combo_box.SelectedIndex].SH_PRODUCT_NAME;
+                     }
+                    long size_id = sizes[f2_combo_box.SelectedIndex].SH_ID;
+                    string sizetitle = sizes[f2_combo_box.SelectedIndex].SH_TWIST_OF_SIZE_VALUE.ToString();
+                    long face_id = faces[f1_combo_box.SelectedIndex].SH_ID;
+                    string face_name = faces[f1_combo_box.SelectedIndex].SH_FACE_COLOR_NAME;
+                    long twist_type_id = twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID;
+                    string twist_type_name = twist_of_types[twist_type_combo_box.SelectedIndex].SH_SHORT_TITLE;
+                    string item_type = item_type_combo_box.Text;
+
+                    if (form_specifications[i].SH_CLIENT_ID==client_id  && string.Compare(form_specifications[i].clientname,clientname)==0 && form_specifications[i].SH_FACE_COLOR_ID == face_id && string.Compare(form_specifications[i].SH_CONTAINER_NAME, container_type_combo_box.Text)==0 && form_specifications[i].SH_TWIST_OF_TYPE_ID == twist_type_id && string.Compare(form_specifications[i].SH_TYPE,item_type)==0 && form_specifications[i].SH_SIZE_ID == size_id)
+                    {
+                        if (pillow_or_not==1)
+                        {
+
+                            if (form_specifications[i].SH_PILLOW_COLOR_ID == pillow_color_id)
+                            {
+                                return i;
+                            }
+
+                        }else
+                        {
+                            if (form_specifications[i].SH_CLIENT_PRODUCT_ID == client_product_id)
+                            {
+                                return i;
+                            }
+                        }
+                    }
+
+
+
+                }
+            }
+            return -1;
+        }
+
+        int addnewspecification ()
+        {
+            int res = check_if_specification_exists_or_not();
+            if (res != -1)
+            {
+                //there is one 
+                //return this 
+                return res;
+            }
+            else
+            {
+
+
+                long client_id = clients[clients_combo_box.SelectedIndex].SH_ID;
+                string clientname = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME;
+                long pillow_or_not = 0;
+                long client_product_id = 0;
+                string client_product_name = "0";
+                long pillow_color_id = 0;
+                string pillow_color_name = "0";
+                if (pillow_check_box.Checked)
+                {
+                    pillow_or_not = 1;
+                    pillow_color_id = color_pillows[client_product_combo_box.SelectedIndex].SH_ID;
+                    pillow_color_name = color_pillows[client_product_combo_box.SelectedIndex].SH_COLOR_NAME;
+                }
+                else
+                {
+                    pillow_or_not = 0;
+                    client_product_id = client_products[client_product_combo_box.SelectedIndex].SH_ID;
+                    client_product_name = client_products[client_product_combo_box.SelectedIndex].SH_PRODUCT_NAME;
+                }
+                long size_id = sizes[f2_combo_box.SelectedIndex].SH_ID;
+                string sizetitle = sizes[f2_combo_box.SelectedIndex].SH_TWIST_OF_SIZE_VALUE.ToString();
+                long face_id = faces[f1_combo_box.SelectedIndex].SH_ID;
+                string face_name = faces[f1_combo_box.SelectedIndex].SH_FACE_COLOR_NAME;
+                long twist_type_id = twist_of_types[twist_type_combo_box.SelectedIndex].SH_ID;
+                string twist_type_name = twist_of_types[twist_type_combo_box.SelectedIndex].SH_SHORT_TITLE;
+                string item_type = item_type_combo_box.Text;
+
+                SH_SPECIFICATION_OF_TWIST_OF anyspecification = new SH_SPECIFICATION_OF_TWIST_OF();
+                anyspecification.clientname = clientname;
+                anyspecification.clientproductname = client_product_name;
+                anyspecification.SH_CLIENT_ID = client_id;
+                anyspecification.SH_CLIENT_PRODUCT_ID = client_product_id;
+                anyspecification.SH_CONTAINER_NAME = container_type_combo_box.Text;
+                anyspecification.SH_FACE_COLOR_ID = face_id;
+                anyspecification.facecolorname = face_name;
+                anyspecification.SH_FIRST_FACE_PILLOW_OR_NOT = pillow_or_not;
+             //   anyspecification.
+
+
+
+
+
+
+            }
+            return -1;
+        }
+
+
+
+
         void filltwistofgridview()
         {
             twist_of_quantities_grid_view.Rows.Clear();
@@ -1054,7 +1240,25 @@ namespace Al_Shaheen_System
             {
                 for (int i = 0; i < QUANTITIES.Count; i++)
                 {
-                    twist_of_quantities_grid_view.Rows.Add(new string[] { (i + 1).ToString(), QUANTITIES[i].suppliername, QUANTITIES[i].supplierbranchname ,QUANTITIES[i].containers[0].SH_CONTAINER_NAME , QUANTITIES[i].SH_NO_CONTAINERS.ToString() , QUANTITIES[i].containers[0].SH_NO_ITEMS.ToString() , QUANTITIES[i].SH_TOTAL_NO_OF_ITEMS.ToString() });
+                    string[] myitem = new string[11];
+                    myitem[0] = (i+1).ToString();
+                    myitem[1] = QUANTITIES[i].suppliername;
+                    myitem[2] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].clientname;
+                    if (form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].SH_FIRST_FACE_PILLOW_OR_NOT==1)
+                    {
+                        myitem[3] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].clientproductname;
+                    }else
+                    {
+                        myitem[3] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].clientproductname;
+                    }
+
+                    myitem[4] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].sizetitle;
+                    myitem[5] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].facecolorname;
+                    myitem[6] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].SH_CONTAINER_NAME;
+                    myitem[7] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].twisttypename;
+                    myitem[8] = form_specifications[(int)QUANTITIES[i].SH_SPECIFICATION_OF_TWIST_OF_ID].SH_NO_OF_CONTAINERS.ToString();
+                   // myitem[9] = ;
+                    twist_of_quantities_grid_view.Rows.Add(myitem);
 
                 }
             }
@@ -1222,6 +1426,12 @@ namespace Al_Shaheen_System
         private async void save_btn_Click(object sender, EventArgs e)
         {
             savetwistofdata();     
+        }
+
+        private void item_type_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getalltwistoftypes();
+            filltwisttypescombobox();
         }
     }
 }
