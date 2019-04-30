@@ -538,6 +538,7 @@
     <Compile Include="SH_ITEM_SIZE.cs" />
     <Compile Include="SH_PALLETS_OF_CUT_MURAN_MATERIAL.cs" />
     <Compile Include="SH_PALLETS_OF_CUT_PRINTED_MATERIAL.cs" />
+    <Compile Include="SH_PLASTIC_COVER_DATA.cs" />
     <Compile Include="SH_PRINTED_MATERIAL_PARCEL.cs" />
     <Compile Include="SH_Production_exchange.cs">
       <SubType>Form</SubType>
@@ -597,6 +598,7 @@
     <Compile Include="SH_SUPPLY_COMPANY.cs" />
     <Compile Include="SH_SUPPLY_COMPANY_BRANCHES.cs" />
     <Compile Include="SH_TIN_PRINTER.cs" />
+    <Compile Include="SH_TWIST_OF_DATA.cs" />
     <Compile Include="SH_TWIST_OF_SIZE.cs" />
     <Compile Include="SH_TWIST_OF_TYPE.cs" />
     <Compile Include="SH_USER_ACCOUNTS.cs" />

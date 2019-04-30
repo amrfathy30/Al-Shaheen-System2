@@ -13,6 +13,7 @@ namespace Al_Shaheen_System
 {
     public partial class addnewplasticcoverform : Form
     {
+        List<SH_PLASTIC_COVER_DATA> form_data = new List<SH_PLASTIC_COVER_DATA>();
         DatabaseConnection myconnection = new DatabaseConnection();
         List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
         List<SH_SUPPLY_COMPANY> suppliers = new List<SH_SUPPLY_COMPANY>();
@@ -33,7 +34,7 @@ namespace Al_Shaheen_System
 
         async Task loadallspecifications()
         {
-            
+            specifications.Clear();
             try
             {
                 myconnection.openConnection();
@@ -41,7 +42,7 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    specifications.Add(new SH_SPECIFICATION_OF_PLASTIC_COVER() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_LOGO_OR_NOT = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()), SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()), SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())});
+                    specifications.Add(new SH_SPECIFICATION_OF_PLASTIC_COVER() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_LOGO_OR_NOT = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()), SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()), SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()) , SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString())});
                 }
                 reader.Close();
                 myconnection.closeConnection();
@@ -50,27 +51,20 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILe GETTING SPECIFicATIONS DATA "+ex.ToString());
             }
         }
-        async Task check_if_specification_exists_or_not()
+        async Task<long> check_if_specification_exists_or_not(SH_PLASTIC_COVER_DATA mydata)
         {
-            long logo = 0;
-            if (logo_or_not.Checked)
-            {
-                logo = 1;
-            }else
-            {
-                logo = 0;
-            }
+            loadallspecifications();
             try
             {
                 if (specifications.Count>0)
                 {
-                    //for (int i = 0; i < specifications.Count; i++)
-                    //{
-                    //    if (specifications[i].SH_CLIENT_ID == clients[clients_combo_box.SelectedIndex].SH_ID && specifications[i].SH_LOGO_OR_NOT == logo && specifications[i].SH_SIZE_ID = sizes[sizes_combo_box.SelectedIndex].SH_ID )
-                    //    {
-
-                    //    }
-                    //}
+                    for (int i = 0; i < specifications.Count; i++)
+                    {
+                        if (specifications[i].SH_CLIENT_ID == mydata.client.SH_ID && specifications[i].SH_LOGO_OR_NOT == mydata.logo_or_not && specifications[i].SH_SIZE_ID == mydata.size.SH_ID && string.Compare(specifications[i].SH_CONTAINER_NAME, mydata.container_name)==0)
+                        {
+                            return specifications[i].SH_ID;
+                        }
+                    }
 
                 }
             }
@@ -78,8 +72,116 @@ namespace Al_Shaheen_System
             {
                 MessageBox.Show("ERROR WHIlE ADDING CHEckiNG NEW SPECiFIcATIONS"+ex.ToString());
             }
+            return 0;
         }
+        async Task<long> save_new_specification(SH_PLASTIC_COVER_DATA mydata)
+        {
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_INSERT_NEW_PLASTIC_COVER_SPECIFICATION" , DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mydata.client.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_SIZE_ID", mydata.size.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_LOGO_OR_NOT", mydata.logo_or_not);
+                cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", mydata.no_of_containers);
+                cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME",mydata.container_name);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS",mydata.total_no_items());
+                cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID",mydata.pillow_color.SH_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                long myid = 0;
+                if (reader.Read())
+                {
+                    myid=  long.Parse(reader["myidentity"].ToString());
+                }
+                reader.Close();   
+                myconnection.closeConnection();
+                return myid;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE ADDING NEW SPECIFICATION "+ex.ToString());
+            }
+            return 0;
+        }
+        async Task upsate_specifications(long sp_id,SH_PLASTIC_COVER_DATA mydata)
+        {
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_UPDATE_PLASTIC_COVER_SPECIFICATION_QUANTITIES", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS" , mydata.no_of_containers);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS" , mydata.total_no_items());
+                cmd.Parameters.AddWithValue("@SH_SP_ID" , sp_id);
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE UPDATING SPECIFICATIONS "+ex.ToString());
+            }
+        }
+        async Task<long> save_new_plastic_cover_quantities (long sp_id , SH_PLASTIC_COVER_DATA mydata)
+        {
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_PLASTIC_COVER_QUANTITIES" , DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_PLASTIC_COVER_ID", sp_id);
+                cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", mydata.supplier.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID", mydata.supplier_branch.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", mydata.addition_date);
+                cmd.Parameters.AddWithValue("@SH_ADDITION_PERMISSION_NUMBER", mydata.addition_permission_number);
+                cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", mydata.container_name);
+                cmd.Parameters.AddWithValue("@SH_NO_OF_ITEMS_PER_CONTAINER", mydata.no_items_per_container);
+                cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", mydata.no_of_containers);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", mydata.total_no_items());
+        
+                SqlDataReader reader = cmd.ExecuteReader();
+                long myid = 0;
+                if (reader.Read())
+                {
+                    myid= long.Parse(reader["myidentity"].ToString());
+                }
+                reader.Close();
 
+                myconnection.closeConnection();
+                return myid;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE ADDING NEW PLASTIC COVER QIANTITIES "+ex.ToString());
+            }
+            return 0;
+        }
+        async Task save_plastic_cover_containers ( long qu_id,    SH_PLASTIC_COVER_DATA mydata)
+        {
+            try
+            {
+                myconnection.openConnection();
+                for (int i = 0; i < mydata.no_of_containers; i++)
+                {
+                    SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_PLASTIC_COVER_CONTAINER", DatabaseConnection.mConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SH_QUANTITY_OF_PLASTIC_COVER_ID", qu_id);
+                    cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", mydata.container_name);
+                    cmd.Parameters.AddWithValue("@SH_ADDTION_DATE", mydata.addition_date);
+                    cmd.Parameters.AddWithValue("@SH_NO_ITEMS", mydata.no_items_per_container);
+                    cmd.Parameters.AddWithValue("@SH_ADDITION_PERMISSION_NUMBER", mydata.addition_permission_number);
+                    cmd.ExecuteNonQuery();
+                }
+                
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE SAVING NEW PLASTIC COVER CONTAINERS "+ex.ToString());
+            }
+
+
+        }
 
         
         void loadaallsizes()
@@ -497,25 +599,36 @@ namespace Al_Shaheen_System
             if (cansave)
             {
 
-                if (unsimilarquantities_check_box.Checked)
+                //if (unsimilarquantities_check_box.Checked)
+                //{
+                //    List<SH_CONTAINERS_OF_PLASTIC_COVER> anycontainers = new List<SH_CONTAINERS_OF_PLASTIC_COVER>();
+                //    for (int i = 0; i < long.Parse(unsimilar_no_of_containers.Text); i++)
+                //    {
+                //        anycontainers.Add(new SH_CONTAINERS_OF_PLASTIC_COVER() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_ITEMS = long.Parse(unsimilar_no_items_per_container.Text) });
+                //    }
+
+                //    QUANTITIES.Add(new SH_QUANTITY_OF_PLASTIC_COVER() { SH_ADDITION_DATE = DateTime.Now , SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text , SH_NO_OF_CONTAINERS = long.Parse(unsimilar_no_of_containers.Text) , SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_OF_ITEMS_PER_CONTAINER = long.Parse(unsimilar_no_items_per_container.Text) , SH_TOTAL_NO_ITEMS = long.Parse(unsimilar_no_items_per_quantity.Text), SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID , SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID , suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME , supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
+                //}else
+                //{
+                //    List<SH_CONTAINERS_OF_PLASTIC_COVER> anycontainers = new List<SH_CONTAINERS_OF_PLASTIC_COVER>();
+                //    for (int i = 0; i < long.Parse(no_items_per_container.Text); i++)
+                //    {
+                //        anycontainers.Add(new SH_CONTAINERS_OF_PLASTIC_COVER() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_ITEMS = long.Parse(no_items_per_container.Text) });
+                //    }
+                //    QUANTITIES.Add(new SH_QUANTITY_OF_PLASTIC_COVER() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_OF_CONTAINERS = long.Parse(no_of_containers_text_box.Text), SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_OF_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container.Text), SH_TOTAL_NO_ITEMS = long.Parse(no_items_per_quantity.Text), SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID , suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
+
+                //}
+
+                long logo_or_not = 0;
+                if (logo_or_not_check_box.Checked)
                 {
-                    List<SH_CONTAINERS_OF_PLASTIC_COVER> anycontainers = new List<SH_CONTAINERS_OF_PLASTIC_COVER>();
-                    for (int i = 0; i < long.Parse(unsimilar_no_of_containers.Text); i++)
-                    {
-                        anycontainers.Add(new SH_CONTAINERS_OF_PLASTIC_COVER() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_ITEMS = long.Parse(unsimilar_no_items_per_container.Text) });
-                    }
-                    
-                    QUANTITIES.Add(new SH_QUANTITY_OF_PLASTIC_COVER() { SH_ADDITION_DATE = DateTime.Now , SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text , SH_NO_OF_CONTAINERS = long.Parse(unsimilar_no_of_containers.Text) , SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_OF_ITEMS_PER_CONTAINER = long.Parse(unsimilar_no_items_per_container.Text) , SH_TOTAL_NO_ITEMS = long.Parse(unsimilar_no_items_per_quantity.Text), SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID , SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID , suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME , supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
+                    logo_or_not = 1;
                 }else
                 {
-                    List<SH_CONTAINERS_OF_PLASTIC_COVER> anycontainers = new List<SH_CONTAINERS_OF_PLASTIC_COVER>();
-                    for (int i = 0; i < long.Parse(no_items_per_container.Text); i++)
-                    {
-                        anycontainers.Add(new SH_CONTAINERS_OF_PLASTIC_COVER() { SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_ADDTION_DATE = DateTime.Now, SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_ITEMS = long.Parse(no_items_per_container.Text) });
-                    }
-                    QUANTITIES.Add(new SH_QUANTITY_OF_PLASTIC_COVER() { SH_ADDITION_DATE = DateTime.Now, SH_ADDITION_PERMISSION_NUMBER = addition_permission_number_text_box.Text, SH_NO_OF_CONTAINERS = long.Parse(no_of_containers_text_box.Text), SH_CONTAINER_NAME = "الكيس البلاستيك", SH_NO_OF_ITEMS_PER_CONTAINER = long.Parse(no_items_per_container.Text), SH_TOTAL_NO_ITEMS = long.Parse(no_items_per_quantity.Text), SH_SUPPLIER_ID = suppliers[suppliers_combo_box.SelectedIndex].SH_ID, SH_SUPPLIER_BRANCH_ID = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_ID , suppliername = suppliers[suppliers_combo_box.SelectedIndex].SH_SUPPLY_COMAPNY_NAME, supplierbranchname = supplier_branches[supplier_branches_combo_box.SelectedIndex].SH_COMPANY_BRANCH_NAME });
-                    
+                    logo_or_not = 0;
                 }
+                form_data.Add(new SH_PLASTIC_COVER_DATA() { addition_date = DateTime.Now , addition_permission_number = addition_permission_number_text_box.Text , client = clients[clients_combo_box.SelectedIndex] , container_name = "أكياس بلاستيك", logo_or_not  = logo_or_not , no_items_per_container = long.Parse(no_items_per_container.Text) , no_of_containers = long.Parse(no_of_containers_text_box.Text) , size = sizes[sizes_combo_box.SelectedIndex] , supplier = suppliers[suppliers_combo_box.SelectedIndex] , supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex] , pillow_color = color_pillows[client_product_combo_box.SelectedIndex]});
+
                 fillplasticovergridview();
             }
         }
@@ -539,11 +652,27 @@ namespace Al_Shaheen_System
         void fillplasticovergridview()
         {
             twist_of_quantities_grid_view.Rows.Clear();
-            if (QUANTITIES.Count>0)
+            if (form_data.Count>0)
             {
-                for (int i = 0; i < QUANTITIES.Count; i++)
+                for (int i = 0; i < form_data.Count; i++)
                 {
-                    twist_of_quantities_grid_view.Rows.Add(new string[] { (i+1).ToString() , QUANTITIES[i].suppliername , QUANTITIES[i].supplierbranchname , QUANTITIES[i].SH_NO_OF_CONTAINERS.ToString(), QUANTITIES[i].SH_NO_OF_ITEMS_PER_CONTAINER.ToString(), QUANTITIES[i].SH_TOTAL_NO_ITEMS.ToString() });
+                    string[] myparams = new string[9];
+                    myparams[0] = (i+1).ToString();
+                    myparams[1] = (form_data[i].supplier.SH_SUPPLY_COMAPNY_NAME);
+                    myparams[2] = form_data[i].client.SH_CLIENT_COMPANY_NAME;
+                    myparams[3] = form_data[i].pillow_color.SH_COLOR_NAME;
+                    if (form_data[i].logo_or_not==1)
+                    {
+                        myparams[4] = "يوجد لوجو";
+                    }else
+                    {
+                        myparams[4] = "لا يوجد لوجو";
+                    }
+                    //myparams[5] = form_data[i].container_name;
+                    myparams[5] = form_data[i].no_of_containers.ToString();
+                    myparams[6] = form_data[i].no_items_per_container.ToString();
+                    myparams[7] = form_data[i].total_no_items().ToString();
+                    twist_of_quantities_grid_view.Rows.Add(myparams);
                 }
 
             }
@@ -658,34 +787,39 @@ namespace Al_Shaheen_System
 
         private async void save_btn_Click(object sender, EventArgs e)
         {
-               
+            savenewplasticcoverdata();
         }
 
-
-        void savenewplasticcoverdata()
+        async void savenewplasticcoverdata()
         {
             try
             {
-                if (QUANTITIES.Count > 0)
+                if (form_data.Count > 0)
                 {
-                    //loadallspecifications
-                    //check_if_specification_exists_or_not
-                    //exist    update quantities
-                    //not exist save specification 
-
-                    //saveitemsquantities
-                    //savecontainers
-                    for (int i = 0; i < QUANTITIES.Count; i++)
+                    Cursor.Current = Cursors.WaitCursor;
+                    for (int i = 0; i < form_data.Count; i++)
                     {
-
+                        long sp_id = await check_if_specification_exists_or_not(form_data[i]);
+                        if (sp_id !=0)
+                        {
+                            await upsate_specifications(sp_id,form_data[i]);
+                           long q_id =  await save_new_plastic_cover_quantities(sp_id, form_data[i]);
+                            await save_plastic_cover_containers(q_id , form_data[i]);
+                        }else
+                        {
+                            sp_id = await save_new_specification(form_data[i]);
+                            long q_id = await save_new_plastic_cover_quantities(sp_id, form_data[i]);
+                            await save_plastic_cover_containers(q_id, form_data[i]);
+                        }
                     }
-
+                    MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+                    Cursor.Current = Cursors.Default;
                 }
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE ADDING NEW DATA");
+                MessageBox.Show("ERROR WHILE ADDING NEW DATA" +ex.ToString());
             }
         }
 
