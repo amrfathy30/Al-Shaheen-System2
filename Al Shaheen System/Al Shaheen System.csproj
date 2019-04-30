@@ -128,6 +128,12 @@
     <Compile Include="AddNewItemForSupplierFrm.Designer.cs">
       <DependentUpon>AddNewItemForSupplierFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="addnewmoldsize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewmoldsize.Designer.cs">
+      <DependentUpon>addnewmoldsize.cs</DependentUpon>
+    </Compile>
     <Compile Include="addnewmuranmaterialfd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +182,12 @@
     <Compile Include="addnewplasticcoverform.Designer.cs">
       <DependentUpon>addnewplasticcoverform.cs</DependentUpon>
     </Compile>
+    <Compile Include="addnewplasticmoldform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewplasticmoldform.Designer.cs">
+      <DependentUpon>addnewplasticmoldform.cs</DependentUpon>
+    </Compile>
     <Compile Include="addnewtwistofform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,6 +205,12 @@
     </Compile>
     <Compile Include="addnewtwistoftype.Designer.cs">
       <DependentUpon>addnewtwistoftype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addplasticmoldtype.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addplasticmoldtype.Designer.cs">
+      <DependentUpon>addplasticmoldtype.cs</DependentUpon>
     </Compile>
     <Compile Include="addSupplierCompanyContacts.cs">
       <SubType>Form</SubType>
@@ -516,6 +534,7 @@
     <Compile Include="SH_COILS_RAW_MATERIAL.cs" />
     <Compile Include="SH_COLOR_PILLOW.cs" />
     <Compile Include="SH_CONTAINERS_OF_PLASTIC_COVER.cs" />
+    <Compile Include="SH_CONTAINERS_OF_PLASTIC_MOLD.cs" />
     <Compile Include="SH_CONTAINER_OF_BILL_OFF.cs" />
     <Compile Include="SH_CONTAINER_OF_BOTTOM.cs" />
     <Compile Include="SH_CONTAINER_OF_EASY_OPEN.cs" />
@@ -536,9 +555,12 @@
     <Compile Include="SH_FUNCTION.cs" />
     <Compile Include="SH_ITEMS.cs" />
     <Compile Include="SH_ITEM_SIZE.cs" />
+    <Compile Include="SH_MOLD_SIZE.cs" />
+    <Compile Include="SH_MOLD_TYPES.cs" />
     <Compile Include="SH_PALLETS_OF_CUT_MURAN_MATERIAL.cs" />
     <Compile Include="SH_PALLETS_OF_CUT_PRINTED_MATERIAL.cs" />
     <Compile Include="SH_PLASTIC_COVER_DATA.cs" />
+    <Compile Include="SH_PLASTIC_MOLD_DATA.cs" />
     <Compile Include="SH_PRINTED_MATERIAL_PARCEL.cs" />
     <Compile Include="SH_Production_exchange.cs">
       <SubType>Form</SubType>
@@ -566,6 +588,7 @@
     <Compile Include="SH_QUANTITY_OF_EASY_OPEN.cs" />
     <Compile Include="SH_QUANTITY_OF_MURAN_MATERIAL.cs" />
     <Compile Include="SH_QUANTITY_OF_PLASTIC_COVER.cs" />
+    <Compile Include="SH_QUANTITY_OF_PLASTIC_MOLD.cs" />
     <Compile Include="SH_QUANTITY_OF_RAW_MATERIAL.cs" />
     <Compile Include="SH_MURAN_MATERIAL_PARCEL.cs" />
     <Compile Include="SH_QUANTITY_OF_RLT.cs" />
@@ -588,6 +611,7 @@
     <Compile Include="SH_SPECIFICATION_OF_EASY_OPEN.cs" />
     <Compile Include="SH_SPECIFICATION_OF_MURAN_MATERIAL .cs" />
     <Compile Include="SH_SPECIFICATION_OF_PLASTIC_COVER.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_PLASTIC_MOLD.cs" />
     <Compile Include="SH_SPECIFICATION_OF_PRINTED_MATERIAL.cs" />
     <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL.cs" />
     <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL_COILS.cs" />
@@ -658,6 +682,9 @@
     <EmbeddedResource Include="AddNewItemForSupplierFrm.resx">
       <DependentUpon>AddNewItemForSupplierFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="addnewmoldsize.resx">
+      <DependentUpon>addnewmoldsize.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addnewmuranmaterialfd.resx">
       <DependentUpon>addnewmuranmaterialfd.cs</DependentUpon>
     </EmbeddedResource>
@@ -682,6 +709,9 @@
     <EmbeddedResource Include="addnewplasticcoverform.resx">
       <DependentUpon>addnewplasticcoverform.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="addnewplasticmoldform.resx">
+      <DependentUpon>addnewplasticmoldform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addnewtwistofform.resx">
       <DependentUpon>addnewtwistofform.cs</DependentUpon>
     </EmbeddedResource>
@@ -690,6 +720,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="addnewtwistoftype.resx">
       <DependentUpon>addnewtwistoftype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addplasticmoldtype.resx">
+      <DependentUpon>addplasticmoldtype.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="addSupplierCompanyContacts.resx">
       <DependentUpon>addSupplierCompanyContacts.cs</DependentUpon>

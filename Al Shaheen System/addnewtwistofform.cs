@@ -1141,8 +1141,9 @@ namespace Al_Shaheen_System
             }
             else
             {            
-                await getallclientproducts(clients[clients_combo_box.SelectedIndex].SH_ID);
+                
                 client_product_combo_box.Text = "";
+                await getallclientproducts(clients[clients_combo_box.SelectedIndex].SH_ID);
                 await fillclientproductscombobox();
             }   
         }

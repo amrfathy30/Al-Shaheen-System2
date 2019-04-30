@@ -108,6 +108,8 @@
             this.المستخدمينToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.جميعToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logged_user_name_label = new System.Windows.Forms.Label();
+            this.أنواعالطبةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.إضافةنوعطبةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -381,6 +383,7 @@
             this.طبةبلاستيكToolStripMenuItem.Name = "طبةبلاستيكToolStripMenuItem";
             this.طبةبلاستيكToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
             this.طبةبلاستيكToolStripMenuItem.Text = "طبة بلاستيك ";
+            this.طبةبلاستيكToolStripMenuItem.Click += new System.EventHandler(this.طبةبلاستيكToolStripMenuItem_Click);
             // 
             // غطاءبلاستيكللعبواتToolStripMenuItem
             // 
@@ -450,7 +453,8 @@
             this.المقاساتToolStripMenuItem,
             this.الألوانالسادةToolStripMenuItem,
             this.أنواعالتويستأوفToolStripMenuItem,
-            this.مقاساتالتويستأوفToolStripMenuItem});
+            this.مقاساتالتويستأوفToolStripMenuItem,
+            this.أنواعالطبةToolStripMenuItem});
             this.المبيعاتToolStripMenuItem.Name = "المبيعاتToolStripMenuItem";
             this.المبيعاتToolStripMenuItem.Size = new System.Drawing.Size(102, 32);
             this.المبيعاتToolStripMenuItem.Text = "المبيعات ";
@@ -750,6 +754,21 @@
             this.logged_user_name_label.Size = new System.Drawing.Size(0, 17);
             this.logged_user_name_label.TabIndex = 1;
             // 
+            // أنواعالطبةToolStripMenuItem
+            // 
+            this.أنواعالطبةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.إضافةنوعطبةToolStripMenuItem});
+            this.أنواعالطبةToolStripMenuItem.Name = "أنواعالطبةToolStripMenuItem";
+            this.أنواعالطبةToolStripMenuItem.Size = new System.Drawing.Size(269, 32);
+            this.أنواعالطبةToolStripMenuItem.Text = "أنواع الطبة ";
+            // 
+            // إضافةنوعطبةToolStripMenuItem
+            // 
+            this.إضافةنوعطبةToolStripMenuItem.Name = "إضافةنوعطبةToolStripMenuItem";
+            this.إضافةنوعطبةToolStripMenuItem.Size = new System.Drawing.Size(207, 32);
+            this.إضافةنوعطبةToolStripMenuItem.Text = "إضافة نوع طبة";
+            this.إضافةنوعطبةToolStripMenuItem.Click += new System.EventHandler(this.إضافةنوعطبةToolStripMenuItem_Click);
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -855,5 +874,7 @@
         private System.Windows.Forms.ToolStripMenuItem إضافةنوعجديدToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem مقاساتالتويستأوفToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةمقاسجديدToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem أنواعالطبةToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem إضافةنوعطبةToolStripMenuItem;
     }
 }

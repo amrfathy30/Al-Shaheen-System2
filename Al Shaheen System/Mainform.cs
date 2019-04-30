@@ -511,5 +511,21 @@ namespace Al_Shaheen_System
         {
 
         }
+
+        private void إضافةنوعطبةToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addplasticmoldtype myform = new addplasticmoldtype())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void طبةبلاستيكToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewplasticmoldform myform = new addnewplasticmoldform())
+            {
+                myform.ShowDialog();
+            }
+        }
     }
 }

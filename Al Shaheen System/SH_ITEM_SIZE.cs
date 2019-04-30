@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Al_Shaheen_System
 {
-    class SH_ITEM_SIZE
+    public class SH_ITEM_SIZE
     {
         public long SH_ID { get; set; }
         public string SH_SIZE_NAME { get; set; }

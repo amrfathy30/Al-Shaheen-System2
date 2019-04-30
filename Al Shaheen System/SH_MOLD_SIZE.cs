@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Al_Shaheen_System
 {
-    public class SH_SHAHEEN_STOCK
+    public class SH_MOLD_SIZE
     {
         public long SH_ID { get; set; }
-        public string SH_STOCK_NAME { get; set; }
-        public string SH_STOCK_ADDRESS_TEXT { get; set; }
-        public string SH_STOCK_ADDRESS_GPS { get; set; }
+        public double SH_MOLD_SIZE_VALUE { get; set; }
     }
 }
