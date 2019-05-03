@@ -47,6 +47,7 @@
             this.gridViewAllUsers.AllowUserToAddRows = false;
             this.gridViewAllUsers.AllowUserToDeleteRows = false;
             this.gridViewAllUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridViewAllUsers.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -74,7 +75,7 @@
             this.gridViewAllUsers.Name = "gridViewAllUsers";
             this.gridViewAllUsers.ReadOnly = true;
             this.gridViewAllUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridViewAllUsers.Size = new System.Drawing.Size(893, 364);
+            this.gridViewAllUsers.Size = new System.Drawing.Size(912, 506);
             this.gridViewAllUsers.TabIndex = 0;
             // 
             // Column1
@@ -109,42 +110,51 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(215, 31);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(178, 33);
             this.button2.TabIndex = 3;
             this.button2.Text = "تغير كلمه السر";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // setuserpermissionsform
             // 
+            this.setuserpermissionsform.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.setuserpermissionsform.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setuserpermissionsform.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.setuserpermissionsform.Location = new System.Drawing.Point(722, 31);
+            this.setuserpermissionsform.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.setuserpermissionsform.Location = new System.Drawing.Point(741, 31);
             this.setuserpermissionsform.Name = "setuserpermissionsform";
             this.setuserpermissionsform.Size = new System.Drawing.Size(183, 33);
             this.setuserpermissionsform.TabIndex = 4;
             this.setuserpermissionsform.Text = "صلاحيات المستخدم";
-            this.setuserpermissionsform.UseVisualStyleBackColor = true;
+            this.setuserpermissionsform.UseVisualStyleBackColor = false;
             this.setuserpermissionsform.Click += new System.EventHandler(this.setuserpermissionsform_Click);
             // 
             // bttnDisplayAllUserData
             // 
+            this.bttnDisplayAllUserData.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bttnDisplayAllUserData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttnDisplayAllUserData.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttnDisplayAllUserData.Location = new System.Drawing.Point(32, 31);
+            this.bttnDisplayAllUserData.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bttnDisplayAllUserData.Location = new System.Drawing.Point(12, 31);
             this.bttnDisplayAllUserData.Name = "bttnDisplayAllUserData";
             this.bttnDisplayAllUserData.Size = new System.Drawing.Size(158, 34);
             this.bttnDisplayAllUserData.TabIndex = 1;
             this.bttnDisplayAllUserData.Text = "عرض تفاصيل المستخدم";
-            this.bttnDisplayAllUserData.UseVisualStyleBackColor = true;
+            this.bttnDisplayAllUserData.UseVisualStyleBackColor = false;
             this.bttnDisplayAllUserData.Click += new System.EventHandler(this.bttnDisplayAllUserData_Click);
             // 
             // Display_allUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(917, 452);
+            this.ClientSize = new System.Drawing.Size(936, 594);
             this.Controls.Add(this.setuserpermissionsform);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.bttnDisplayAllUserData);

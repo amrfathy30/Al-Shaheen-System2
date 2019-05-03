@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Al_Shaheen_System
 {
-    class SH_CLIENTS_PRODUCTS
+    public class SH_CLIENTS_PRODUCTS
     {
         public long SH_ID { get; set; }
         public long SH_CLIENT_ID { get; set; }

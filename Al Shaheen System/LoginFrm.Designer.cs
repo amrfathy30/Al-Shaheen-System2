@@ -37,12 +37,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.server_configuration_btn = new System.Windows.Forms.LinkLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtUserName
             // 
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserName.Location = new System.Drawing.Point(177, 207);
+            this.txtUserName.Location = new System.Drawing.Point(164, 358);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(211, 31);
             this.txtUserName.TabIndex = 0;
@@ -50,7 +52,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(177, 242);
+            this.txtPassword.Location = new System.Drawing.Point(164, 410);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(211, 31);
@@ -60,67 +62,75 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(409, 207);
+            this.label1.Location = new System.Drawing.Point(419, 358);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 25);
+            this.label1.Size = new System.Drawing.Size(116, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "اسم المستخدم";
+            this.label1.Text = "Username ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(432, 245);
+            this.label2.Location = new System.Drawing.Point(419, 413);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 25);
             this.label2.TabIndex = 3;
             // 
             // bttnLogin
             // 
+            this.bttnLogin.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bttnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttnLogin.Location = new System.Drawing.Point(396, 302);
+            this.bttnLogin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.bttnLogin.Location = new System.Drawing.Point(164, 516);
             this.bttnLogin.Name = "bttnLogin";
             this.bttnLogin.Size = new System.Drawing.Size(112, 40);
             this.bttnLogin.TabIndex = 4;
-            this.bttnLogin.Text = "دخول";
-            this.bttnLogin.UseVisualStyleBackColor = true;
+            this.bttnLogin.Text = "Login";
+            this.bttnLogin.UseVisualStyleBackColor = false;
             this.bttnLogin.Click += new System.EventHandler(this.bttnLogin_Click);
             // 
             // bttnCancel
             // 
+            this.bttnCancel.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bttnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttnCancel.Location = new System.Drawing.Point(177, 302);
+            this.bttnCancel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.bttnCancel.Location = new System.Drawing.Point(422, 516);
             this.bttnCancel.Name = "bttnCancel";
             this.bttnCancel.Size = new System.Drawing.Size(109, 40);
             this.bttnCancel.TabIndex = 5;
-            this.bttnCancel.Text = "الغاء";
-            this.bttnCancel.UseVisualStyleBackColor = true;
+            this.bttnCancel.Text = "Cancel";
+            this.bttnCancel.UseVisualStyleBackColor = false;
             this.bttnCancel.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(409, 245);
+            this.label3.Location = new System.Drawing.Point(419, 413);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 25);
+            this.label3.Size = new System.Drawing.Size(112, 25);
             this.label3.TabIndex = 6;
-            this.label3.Text = "كلمه المرور";
+            this.label3.Text = "Password ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(162, 101);
+            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label4.Font = new System.Drawing.Font("MS Outlook", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label4.Location = new System.Drawing.Point(12, 268);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(355, 50);
+            this.label4.Size = new System.Drawing.Size(544, 42);
             this.label4.TabIndex = 7;
-            this.label4.Text = "برنامج إدارة أل شاهين ";
+            this.label4.Text = "Al Shaheen Managment System";
             // 
             // server_configuration_btn
             // 
             this.server_configuration_btn.AutoSize = true;
-            this.server_configuration_btn.Location = new System.Drawing.Point(708, 463);
+            this.server_configuration_btn.Location = new System.Drawing.Point(883, 641);
             this.server_configuration_btn.Name = "server_configuration_btn";
             this.server_configuration_btn.Size = new System.Drawing.Size(36, 13);
             this.server_configuration_btn.TabIndex = 8;
@@ -128,11 +138,32 @@
             this.server_configuration_btn.Text = "config";
             this.server_configuration_btn.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.server_configuration_btn_LinkClicked);
             // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = global::Al_Shaheen_System.Properties.Resources.shaheenlogo;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.Location = new System.Drawing.Point(589, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(330, 357);
+            this.panel2.TabIndex = 10;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::Al_Shaheen_System.Properties.Resources.logo;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(561, 218);
+            this.panel1.TabIndex = 9;
+            // 
             // LoginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 488);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(931, 663);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.server_configuration_btn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -144,6 +175,7 @@
             this.Controls.Add(this.txtUserName);
             this.Name = "LoginFrm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "تسجيل الدخول";
             this.ResumeLayout(false);
@@ -162,5 +194,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel server_configuration_btn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

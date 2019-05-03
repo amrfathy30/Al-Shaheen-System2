@@ -315,7 +315,7 @@ namespace Al_Shaheen_System
 
         private void قاعاووشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (Bottomaddingform myform = new Bottomaddingform())
+            using (addnewBottom myform = new addnewBottom())
             {
                 myform.ShowDialog();
             }
@@ -323,15 +323,15 @@ namespace Al_Shaheen_System
 
         private void pennyLeverRLTبيلأوفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (RLTaddingform myform = new RLTaddingform())
-            {
-                myform.ShowDialog();
-            }
+            //using (RLTaddingform myform = new RLTaddingform())
+            //{
+            //    myform.ShowDialog();
+            //}
         }
 
         private void بيلأوفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (BillOffaddingform myform = new BillOffaddingform())
+            using (addnewpeeloff myform = new addnewpeeloff())
             {
                 myform.ShowDialog();
             }
@@ -526,6 +526,116 @@ namespace Al_Shaheen_System
             {
                 myform.ShowDialog();
             }
+        }
+
+        private void إضافةمقاسجديدToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            using (addnewmoldsize myform = new addnewmoldsize())
+            {
+                myform.ShowDialog();
+            }
+
+        }
+
+        private void إضافةإستخدامجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addneweasyopenusage myform = new addneweasyopenusage())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةنوعخامةجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewmaterialtype myform = new addnewmaterialtype())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةنوعبوياتالوشToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewbottelfacepaintingcolortype myform = new addnewbottelfacepaintingcolortype())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةنوعالوشToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewbottlefacetype myform = new addnewbottlefacetype())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةمقاسلليدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewhandsize myform = new addnewhandsize())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةنوعيدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewhandtype myform = new addnewhandtype())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةمقاسغطاءصفيحةToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewcoverplatesize myform = new addnewcoverplatesize())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةقطرقلاووظToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewscrewsize myform  = new addnewscrewsize())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةإستخدامالقلاووظToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewscrewusage myform = new addnewscrewusage())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void وشToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewfaceproduct myform = new addnewfaceproduct())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةمقاسأيروسولجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewaerosolsize myform = new addnewaerosolsize())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إضافةنوعأيروسولجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewaerosoltype myform = new addnewaerosoltype())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void إغلاقToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

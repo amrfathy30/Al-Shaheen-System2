@@ -42,6 +42,7 @@ namespace Al_Shaheen_System
                 shemp.SH_EMPLOYEE_NAME = rd1["SH_EMPLOYEE_NAME"].ToString();
                 shemp.SH_EMPLOYEE_NATIONAL_ID = rd1["SH_EMPLOYEE_NATIONAL_ID"].ToString();     
             }
+            rd1.Close();
             myconnection.closeConnection();
 
         }
@@ -55,7 +56,7 @@ namespace Al_Shaheen_System
                  SqlCommand com2 = new SqlCommand("getpermissionOneEmp", DatabaseConnection.mConnection);
                 com2.CommandType = CommandType.StoredProcedure;
                // problem
-                 com2.Parameters.AddWithValue("@empid", shemp.SH_ID);
+                 com2.Parameters.AddWithValue("@empid", account.SH_ID);
                 SqlDataReader red = com2.ExecuteReader();
                 if (red.Read())
                 {
@@ -67,8 +68,8 @@ namespace Al_Shaheen_System
                     shuserPerm.SH_OPEN_DISPLAY_ALLUSERS = long.Parse(red["SH_OPEN_DISPLAY_ALLUSERS"].ToString());
                     shuserPerm.SH_OPEN_SELECT_USER_PERMISION = long.Parse(red["SH_OPEN_SELECT_USER_PERMISION"].ToString());
                     shuserPerm.SH_RAW_TIN_MATERIAL = long.Parse(red["SH_RAW_TIN_MATERIAL"].ToString());
-                    shuserPerm.SH_EMP_ID = long.Parse(red["SH_EMP_ID"].ToString());
-                    shuserPerm.SH_EMP_NAME = red["SH_EMP_NAME"].ToString();
+                    shuserPerm.SH_ACCOUNT_ID = long.Parse(red["SH_ACCOUNT_ID"].ToString());
+                    shuserPerm.SH_ACCOUNT_NAME = red["SH_ACCOUNT_NAME"].ToString();
                     shuserPerm.SH_SHOW_ALL_CLIENTS = long.Parse(red["SH_SHOW_ALL_CLIENTS"].ToString());
                     shuserPerm.SH_OPEN_DASH_BOARD = long.Parse(red["SH_OPEN_DASH_BOARD"].ToString());
                     shuserPerm.SH_OPEN_REGIST_EMP = long.Parse(red["SH_OPEN_REGIST_EMP"].ToString());

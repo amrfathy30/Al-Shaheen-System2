@@ -52,7 +52,7 @@ namespace Al_Shaheen_System
                 SqlCommand comm = new SqlCommand("ADDNEWUSER", DatabaseConnection.mConnection);
                 comm.CommandType = CommandType.StoredProcedure;
                 comm.Parameters.AddWithValue("@EMP_ID", myEmployee.SH_ID);
-                comm.Parameters.AddWithValue("@EMP_NAME", myEmployee.SH_DEPARTMENT_NAME);
+                comm.Parameters.AddWithValue("@EMP_NAME", myEmployee.SH_EMPLOYEE_NAME);
                 comm.Parameters.AddWithValue("@EMP_USER_NAME", txtEmpUserName.Text);
                 comm.Parameters.AddWithValue("@EMP_PASSWORD", txtEmpPassword.Text);
                 comm.Parameters.AddWithValue("@CREATIONDATE", DateTime.Now);

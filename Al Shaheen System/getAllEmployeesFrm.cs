@@ -128,8 +128,8 @@ namespace Al_Shaheen_System
                 {
                     perm.SH_ID = long.Parse(red["SH_ID"].ToString());
                     
-                    perm.SH_EMP_ID = long.Parse(red["SH_EMP_ID"].ToString());
-                    perm.SH_EMP_NAME = red["SH_EMP_NAME"].ToString();
+                    perm.SH_ACCOUNT_ID = long.Parse(red["SH_ACCOUNT_ID"].ToString());
+                    perm.SH_ACCOUNT_NAME = red["SH_ACCOUNT_NAME"].ToString();
 
 
                 }

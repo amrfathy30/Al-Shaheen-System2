@@ -25,17 +25,17 @@ namespace Al_Shaheen_System
         {
             try
             {
-                SqlConnection conn = new SqlConnection(@"server=SH_PC202\SH_SYSTEM_DB;Initial Catalog=sh_test_db;Integrated Security=true");
-                conn.Open();
-                SqlCommand comm = new SqlCommand("select SH_EMP_ID,SH_EMP_NAME FROM SH_USER_ACCOUNTS", conn);
+                DatabaseConnection conn = new DatabaseConnection();
+                conn.openConnection();
+                SqlCommand comm = new SqlCommand("select SH_EMP_ID,SH_EMP_NAME FROM SH_USER_ACCOUNTS", DatabaseConnection.mConnection);
                 SqlDataReader rd = comm.ExecuteReader();
                 while (rd.Read())
                 {
 
-                    USERS.Add(new SH_USER_PERMISIONS() { SH_EMP_ID = long.Parse(rd["SH_EMP_ID"].ToString()), SH_EMP_NAME = (rd["SH_EMP_NAME"].ToString()) });
+                    USERS.Add(new SH_USER_PERMISIONS() { SH_ACCOUNT_ID = long.Parse(rd["SH_ACCOUNT_ID"].ToString()), SH_ACCOUNT_NAME = (rd["SH_ACCOUNT_NAME"].ToString()) });
                 }
 
-                conn.Close();
+                conn.closeConnection();
             }
             catch (Exception)
             {
@@ -54,7 +54,7 @@ namespace Al_Shaheen_System
             {
                 for (int i = 0; i < USERS.Count; i++)
                 {
-                    gridViewGetAllUsers.Rows.Add(new string[] { (i + 1).ToString(), USERS[i].SH_EMP_ID.ToString(), USERS[i].SH_EMP_NAME });
+                    gridViewGetAllUsers.Rows.Add(new string[] { (i + 1).ToString(), USERS[i].SH_ACCOUNT_ID.ToString(), USERS[i].SH_ACCOUNT_NAME });
                 }
             }
         }

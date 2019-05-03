@@ -9,8 +9,8 @@ namespace Al_Shaheen_System
  public class SH_USER_PERMISIONS
     {
         public long SH_ID;
-        public long SH_EMP_ID;
-        public string SH_EMP_NAME;
+        public long SH_ACCOUNT_ID;
+        public string SH_ACCOUNT_NAME;
         public long SH_OPEN_CHANGE_PASSWORD = 0;
         public long SH_OPEN_DASH_BOARD = 0;
         public long SH_OPEN_DISPLAY_ALLUSERS = 0;

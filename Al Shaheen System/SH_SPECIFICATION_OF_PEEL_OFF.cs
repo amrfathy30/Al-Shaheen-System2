@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Al_Shaheen_System
 {
-    public class SH_SPECIFICATION_OF_BILL_OFF
+    public class SH_SPECIFICATION_OF_PEEL_OFF
     {
         public long SH_ID { get; set; }
         public string SH_RAW_MATERIAL_TYPE { get; set; }

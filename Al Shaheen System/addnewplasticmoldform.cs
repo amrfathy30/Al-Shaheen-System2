@@ -24,7 +24,7 @@ namespace Al_Shaheen_System
         List<SH_MOLD_TYPES> MOLD_TYPES = new List<SH_MOLD_TYPES>();
         List<SH_SPECIFICATION_OF_PLASTIC_MOLD> specifications = new List<SH_SPECIFICATION_OF_PLASTIC_MOLD>();
         List<SH_QUANTITY_OF_PLASTIC_MOLD> QUANTITIES = new List<SH_QUANTITY_OF_PLASTIC_MOLD>();
-        List<SH_TWIST_OF_SIZE> sizes = new List<SH_TWIST_OF_SIZE>();
+        List<SH_MOLD_SIZE> sizes = new List<SH_MOLD_SIZE>();
         List<SH_CONTAINERS_OF_PLASTIC_MOLD> mcontainers = new List<SH_CONTAINERS_OF_PLASTIC_MOLD>();
         List<string> item_types = new List<string>();
 
@@ -411,12 +411,12 @@ namespace Al_Shaheen_System
             {
                 sizes.Clear();
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_GET_ALL_TWIST_OF_SIZES_DATA", DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_SIZES_DATA", DatabaseConnection.mConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    sizes.Add(new SH_TWIST_OF_SIZE() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_TWIST_OF_SIZE_VALUE = long.Parse(reader["SH_TWIST_OF_SIZE_VALUE"].ToString()) });
+                    sizes.Add(new SH_MOLD_SIZE() { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_MOLD_SIZE_VALUE = double.Parse(reader["SH_MOLD_SIZE_VALUE"].ToString()) });
                 }
                 reader.Close();
                 myconnection.closeConnection();
@@ -435,7 +435,7 @@ namespace Al_Shaheen_System
             {
                 for (int i = 0; i < sizes.Count; i++)
                 {
-                    f2_combo_box.Items.Add(sizes[i].SH_TWIST_OF_SIZE_VALUE.ToString());
+                    f2_combo_box.Items.Add(Math.Round(sizes[i].SH_MOLD_SIZE_VALUE,1).ToString());
                 }
             }
         }
@@ -724,7 +724,7 @@ namespace Al_Shaheen_System
                     myitem[1] = form_data[i].supplier.SH_SUPPLY_COMAPNY_NAME;
                     myitem[2] = form_data[i].client.SH_CLIENT_COMPANY_NAME;
                     myitem[3] = form_data[i].color.SH_COLOR_NAME;
-                    myitem[4] = form_data[i].size.SH_TWIST_OF_SIZE_VALUE.ToString();
+                    myitem[4] = Math.Round(form_data[i].size.SH_MOLD_SIZE_VALUE,1).ToString();
                     myitem[5] = form_data[i].mold_types.SH_MOLD_TYPE_NAME;
                     myitem[6] = form_data[i].container_name;
                     myitem[7] = form_data[i].no_of_containers.ToString();

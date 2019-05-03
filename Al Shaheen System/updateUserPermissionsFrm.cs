@@ -30,23 +30,18 @@ namespace Al_Shaheen_System
         void loadUserPermisions()
         {
             string query = "select * from SH_USER_PERMISIONS";
-
             try
             {
                 DatabaseConnection conn = new DatabaseConnection();
                 conn.openConnection();
-
                 SqlCommand comm = new SqlCommand(query, DatabaseConnection.mConnection);
-
                 SqlDataReader red = comm.ExecuteReader();
                 while (red.Read())
                 {
-                     
-                    userPermList.Add(new SH_USER_PERMISIONS { SH_ID=long.Parse(red["SH_ID"].ToString()), SH_EMP_ID=long.Parse(red["SH_EMP_ID"].ToString()), SH_EMP_NAME=red["SH_EMP_NAME"].ToString() });
+                    userPermList.Add(new SH_USER_PERMISIONS { SH_ID=long.Parse(red["SH_ID"].ToString()), SH_ACCOUNT_ID=long.Parse(red["SH_ACCOUNT_ID"].ToString()), SH_ACCOUNT_NAME=red["SH_ACCOUNT_NAME"].ToString() });
                 }
-
+                red.Close();
                 conn.closeConnection();
-
             }
             catch (Exception ex)
             {
@@ -61,11 +56,10 @@ namespace Al_Shaheen_System
             {
                 for (int i = 0; i < userPermList.Count; i++)
                 {
-                    if ((string.Compare(userPermList[i].SH_EMP_NAME, acc.SH_EMP_NAME) == 0))
+                    if ((string.Compare(userPermList[i].SH_ACCOUNT_NAME, acc.SH_EMP_USER_NAME) == 0))
                     {
-                        spc_id = userPermList[i].SH_EMP_ID;
+                        spc_id = userPermList[i].SH_ACCOUNT_ID;
                         return spc_id;
-
                     }
                 }
                 
@@ -79,12 +73,10 @@ namespace Al_Shaheen_System
             try
             {
 
-                userPerm.SH_EMP_ID = acc.SH_EMP_ID;
-                userPerm.SH_EMP_NAME = acc.SH_EMP_NAME;
-
+               
 
                 string query = " INSERT INTO SH_USER_PERMISIONS ";
-                query += "(SH_EMP_ID, SH_EMP_NAME, SH_OPEN_CHANGE_PASSWORD, SH_OPEN_DASH_BOARD, SH_OPEN_GETALL_EMP, SH_OPEN_DISPLAY_ALLUSERS, SH_OPEN_MAKE_NEW_USER, SH_OPEN_REGIST_EMP,";
+                query += "(SH_ACCOUNT_ID, SH_ACCOUNT_NAME, SH_OPEN_CHANGE_PASSWORD, SH_OPEN_DASH_BOARD, SH_OPEN_GETALL_EMP, SH_OPEN_DISPLAY_ALLUSERS, SH_OPEN_MAKE_NEW_USER, SH_OPEN_REGIST_EMP,";
                 query += " SH_OPEN_SELECT_USER_PERMISION, SH_ADD_NEW_CLIENT_COMPANY, SH_ADD_NEW_CLIENT_BRANCH, SH_SHOW_ALL_CLIENTS, SH_ADD_NEW_SUPPLIER, SH_ADD_NEW_SUPPLIER_BRANCH,";
                 query += " SH_SHOW_ALL_SUPPLIERS, SH_MAIN_TIN_STOCK, SH_RAW_TIN_MATERIAL, SH_ADD_NEW_RAW_TIN_FIRST_DURATION, SH_ADD_NEW_RAW_TIN, SH_EXCHANGE_RAW_TIN_PARCEL_NO,";
                 query += " SH_EXCHANGE_RAW_TIN_PROPERTIES, SH_ADD_NEW_MURAN_TIN, SH_EXCHANGE_MURAN_TIN, SH_ADD_NEW_PRINTED_TIN, SH_EXCHANGE_PRINTED_TIN, SH_ADD_NEW_SIZE, SH_ADD_NEW_CUT_RAW_TIN,";
@@ -93,7 +85,7 @@ namespace Al_Shaheen_System
                 query += " SH_DEPARTMENT_SECRETARY, SH_DEPARTMENT_ACCOUNTING, SH_DEPARTMENT_IT, SH_DEPARTMENT_PRODUCTION, SH_IT_SERVER_SETTINGS, SH_ADD_NEW_DEPARTMENT, SH_ADD_NEW_JOB,";
                 query += " SH_ADD_NEW_PRODUCT_CLIENT, SH_ADD_NEW_COLOR, SH_ADD_PRODUCTION_REQUIRMENT, SH_EXCHANGE_PRODUCTION_REQUIRMENT, SH_ADD_CHANGE_BITS, SH_EXCHANGE_CHANGE_BITS,";
                 query += " SH_ADD_EASY_OPEN, SH_EXCHANGE_EASY_OPEN, SH_ADD_TIN_CANS, SH_EXCHANGE_TIN_CANS, SH_ADD_NEW_RLT, SH_EXCHANGE_RLT, SH_ADD_NEW_BOTTOM, SH_EXCHANGE_BOTTOM)";
-                query += " VALUES(@SH_EMP_ID, @SH_EMP_NAME, @SH_OPEN_CHANGE_PASSWORD, @SH_OPEN_DASH_BOARD, @SH_OPEN_GETALL_EMP, @SH_OPEN_DISPLAY_ALLUSERS, @SH_OPEN_MAKE_NEW_USER, @SH_OPEN_REGIST_EMP, ";
+                query += " VALUES(@SH_ACCOUNT_ID, @SH_ACCOUNT_NAME, @SH_OPEN_CHANGE_PASSWORD, @SH_OPEN_DASH_BOARD, @SH_OPEN_GETALL_EMP, @SH_OPEN_DISPLAY_ALLUSERS, @SH_OPEN_MAKE_NEW_USER, @SH_OPEN_REGIST_EMP, ";
                 query += " @SH_OPEN_SELECT_USER_PERMISION, @SH_ADD_NEW_CLIENT_COMPANY, @SH_ADD_NEW_CLIENT_BRANCH, @SH_SHOW_ALL_CLIENTS, @SH_ADD_NEW_SUPPLIER, @SH_ADD_NEW_SUPPLIER_BRANCH, ";
                 query += " @SH_SHOW_ALL_SUPPLIERS, @SH_MAIN_TIN_STOCK, @SH_RAW_TIN_MATERIAL, @SH_ADD_NEW_RAW_TIN_FIRST_DURATION, @SH_ADD_NEW_RAW_TIN, @SH_EXCHANGE_RAW_TIN_PARCEL_NO, ";
                 query += " @SH_EXCHANGE_RAW_TIN_PROPERTIES, @SH_ADD_NEW_MURAN_TIN, @SH_EXCHANGE_MURAN_TIN, @SH_ADD_NEW_PRINTED_TIN, @SH_EXCHANGE_PRINTED_TIN, @SH_ADD_NEW_SIZE, @SH_ADD_NEW_CUT_RAW_TIN, ";
@@ -105,8 +97,8 @@ namespace Al_Shaheen_System
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query , DatabaseConnection.mConnection);
-                cmd.Parameters.AddWithValue("@SH_EMP_ID", acc.SH_EMP_ID);
-                cmd.Parameters.AddWithValue("@SH_EMP_NAME", acc.SH_EMP_NAME);
+                cmd.Parameters.AddWithValue("@SH_ACCOUNT_ID", acc.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_ACCOUNT_NAME", acc.SH_EMP_USER_NAME);
                 cmd.Parameters.AddWithValue("@SH_OPEN_CHANGE_PASSWORD" , userPerm.SH_OPEN_CHANGE_PASSWORD);
                 cmd.Parameters.AddWithValue("@SH_OPEN_DASH_BOARD", userPerm.SH_OPEN_DASH_BOARD);
                 cmd.Parameters.AddWithValue("@SH_OPEN_GETALL_EMP" , userPerm.SH_OPEN_GETALL_EMP);

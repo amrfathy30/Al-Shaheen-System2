@@ -38,7 +38,7 @@ namespace Al_Shaheen_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE GETTING ALL MOLD SIZEs FORM DB "+ex.ToString());
+                MessageBox.Show("ERROR WHILE GETTING ALL MOLD SIZES FORM DB "+ex.ToString());
             }
         }
         async Task savenewmoldsize()
@@ -62,6 +62,7 @@ namespace Al_Shaheen_System
         async Task fillsizesgridview()
         {
             await getallsizesdata();
+            sizes_grid_view.Rows.Clear();
             try
             {
                 if (sizes.Count > 0)
@@ -95,6 +96,21 @@ namespace Al_Shaheen_System
 
             }
 
+        }
+
+        private async void addnewmoldsize_Load(object sender, EventArgs e)
+        {
+            await fillsizesgridview();
+        }
+
+        private void new_btn_Click(object sender, EventArgs e)
+        {
+            size_title_text_box.Text = "";
+        }
+
+        private void cancel_btn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
