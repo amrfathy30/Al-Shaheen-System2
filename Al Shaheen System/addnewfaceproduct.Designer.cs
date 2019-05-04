@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.mold_panel = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
@@ -42,6 +44,7 @@
             this.mold_sizes_combo_box = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.printing_panel = new System.Windows.Forms.Panel();
+            this.printing_image_box = new System.Windows.Forms.PictureBox();
             this.printing_shape_type_combo_box = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -58,6 +61,7 @@
             this.addition_permission_number_text_box = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.stock_man_text_box = new System.Windows.Forms.TextBox();
             this.work_order_number_text_box = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -69,6 +73,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.save_easy_open_btn = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.no_of_boxes_text_box = new System.Windows.Forms.TextBox();
             this.total_no_of_items_text_box = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.no_items_per_box_text_box = new System.Windows.Forms.TextBox();
@@ -80,20 +85,19 @@
             this.label14 = new System.Windows.Forms.Label();
             this.aerosol_type_text_box = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.printing_image_box = new System.Windows.Forms.PictureBox();
             this.sizes_combo_box = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.no_of_boxes_text_box = new System.Windows.Forms.TextBox();
-            this.stock_man_text_box = new System.Windows.Forms.TextBox();
+            this.form_data_grid_view = new System.Windows.Forms.DataGridView();
             this.mold_panel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.printing_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.printing_image_box)).BeginInit();
             this.qlawooz_panel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.printing_image_box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form_data_grid_view)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -179,6 +183,7 @@
             this.hand_type_combo_box.Name = "hand_type_combo_box";
             this.hand_type_combo_box.Size = new System.Drawing.Size(220, 33);
             this.hand_type_combo_box.TabIndex = 5;
+            
             // 
             // hand_or_not_combo_box
             // 
@@ -189,6 +194,7 @@
             this.hand_or_not_combo_box.TabIndex = 4;
             this.hand_or_not_combo_box.Text = "يوجد يد ";
             this.hand_or_not_combo_box.UseVisualStyleBackColor = true;
+            this.hand_or_not_combo_box.CheckedChanged += new System.EventHandler(this.hand_or_not_combo_box_CheckedChanged) ;
             // 
             // label5
             // 
@@ -238,6 +244,14 @@
             this.printing_panel.Size = new System.Drawing.Size(954, 159);
             this.printing_panel.TabIndex = 2;
             this.printing_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.printing_panel_Paint);
+            // 
+            // printing_image_box
+            // 
+            this.printing_image_box.Location = new System.Drawing.Point(120, 0);
+            this.printing_image_box.Name = "printing_image_box";
+            this.printing_image_box.Size = new System.Drawing.Size(183, 153);
+            this.printing_image_box.TabIndex = 10;
+            this.printing_image_box.TabStop = false;
             // 
             // printing_shape_type_combo_box
             // 
@@ -396,6 +410,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات المورد";
             // 
+            // stock_man_text_box
+            // 
+            this.stock_man_text_box.Enabled = false;
+            this.stock_man_text_box.Location = new System.Drawing.Point(121, 77);
+            this.stock_man_text_box.Name = "stock_man_text_box";
+            this.stock_man_text_box.Size = new System.Drawing.Size(222, 30);
+            this.stock_man_text_box.TabIndex = 29;
+            // 
             // work_order_number_text_box
             // 
             this.work_order_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -482,6 +504,7 @@
             this.button2.TabIndex = 21;
             this.button2.Text = "إلغاء";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -495,6 +518,7 @@
             this.button1.TabIndex = 20;
             this.button1.Text = "جديد";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // save_easy_open_btn
             // 
@@ -508,6 +532,7 @@
             this.save_easy_open_btn.TabIndex = 19;
             this.save_easy_open_btn.Text = "حفظ";
             this.save_easy_open_btn.UseVisualStyleBackColor = false;
+            this.save_easy_open_btn.Click += new System.EventHandler(this.save_easy_open_btn_Click);
             // 
             // groupBox7
             // 
@@ -524,6 +549,15 @@
             this.groupBox7.TabIndex = 18;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "التعبئة";
+            // 
+            // no_of_boxes_text_box
+            // 
+            this.no_of_boxes_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.no_of_boxes_text_box.Location = new System.Drawing.Point(511, 76);
+            this.no_of_boxes_text_box.Name = "no_of_boxes_text_box";
+            this.no_of_boxes_text_box.Size = new System.Drawing.Size(221, 30);
+            this.no_of_boxes_text_box.TabIndex = 15;
+            this.no_of_boxes_text_box.TextChanged += new System.EventHandler(this.no_of_boxes_text_box_TextChanged);
             // 
             // total_no_of_items_text_box
             // 
@@ -630,14 +664,6 @@
             this.panel1.Size = new System.Drawing.Size(952, 155);
             this.panel1.TabIndex = 10;
             // 
-            // printing_image_box
-            // 
-            this.printing_image_box.Location = new System.Drawing.Point(120, 0);
-            this.printing_image_box.Name = "printing_image_box";
-            this.printing_image_box.Size = new System.Drawing.Size(183, 153);
-            this.printing_image_box.TabIndex = 10;
-            this.printing_image_box.TabStop = false;
-            // 
             // sizes_combo_box
             // 
             this.sizes_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -657,21 +683,35 @@
             this.label21.TabIndex = 25;
             this.label21.Text = "المقاس";
             // 
-            // no_of_boxes_text_box
+            // form_data_grid_view
             // 
-            this.no_of_boxes_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.no_of_boxes_text_box.Location = new System.Drawing.Point(511, 76);
-            this.no_of_boxes_text_box.Name = "no_of_boxes_text_box";
-            this.no_of_boxes_text_box.Size = new System.Drawing.Size(221, 30);
-            this.no_of_boxes_text_box.TabIndex = 15;
-            this.no_of_boxes_text_box.TextChanged += new System.EventHandler(this.no_of_boxes_text_box_TextChanged);
-            // 
-            // stock_man_text_box
-            // 
-            this.stock_man_text_box.Location = new System.Drawing.Point(121, 77);
-            this.stock_man_text_box.Name = "stock_man_text_box";
-            this.stock_man_text_box.Size = new System.Drawing.Size(222, 30);
-            this.stock_man_text_box.TabIndex = 29;
+            this.form_data_grid_view.AllowUserToAddRows = false;
+            this.form_data_grid_view.AllowUserToDeleteRows = false;
+            this.form_data_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.form_data_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.form_data_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle4;
+            this.form_data_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.form_data_grid_view.Location = new System.Drawing.Point(8, 680);
+            this.form_data_grid_view.Name = "form_data_grid_view";
+            this.form_data_grid_view.ReadOnly = true;
+            this.form_data_grid_view.Size = new System.Drawing.Size(952, 249);
+            this.form_data_grid_view.TabIndex = 27;
             // 
             // addnewfaceproduct
             // 
@@ -679,6 +719,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(973, 980);
+            this.Controls.Add(this.form_data_grid_view);
             this.Controls.Add(this.sizes_combo_box);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.remove_quantity_btn);
@@ -709,6 +750,7 @@
             this.panel2.PerformLayout();
             this.printing_panel.ResumeLayout(false);
             this.printing_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.printing_image_box)).EndInit();
             this.qlawooz_panel.ResumeLayout(false);
             this.qlawooz_panel.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -719,7 +761,7 @@
             this.groupBox7.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.printing_image_box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form_data_grid_view)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -784,5 +826,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox no_of_boxes_text_box;
         private System.Windows.Forms.TextBox stock_man_text_box;
+        private System.Windows.Forms.DataGridView form_data_grid_view;
     }
 }

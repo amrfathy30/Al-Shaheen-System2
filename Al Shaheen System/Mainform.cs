@@ -611,7 +611,7 @@ namespace Al_Shaheen_System
 
         private void وشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewfaceproduct myform = new addnewfaceproduct())
+            using (addnewfaceproduct myform = new addnewfaceproduct(mEmployee))
             {
                 myform.ShowDialog();
             }

@@ -10,7 +10,10 @@ namespace Al_Shaheen_System
     {
         public string addition_permission_number { get; set; }
         public string work_order_number { get; set; }
+        public SH_SHAHEEN_STOCK stock { get; set; }
+        public SH_EMPLOYEES stock_man { get; set; }
         public DateTime addition_date { get; set; }
+        public SH_BOTTLE_FACE_TYPES bottle_face_type { get; set; }
         public long no_items_per_box { get; set; }
         public long no_of_boxes { get; set; }
         public long total_no_items { get; set; }
