@@ -170,34 +170,43 @@
             // 
             // save_new_client_product_btn
             // 
+            this.save_new_client_product_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.save_new_client_product_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_new_client_product_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.save_new_client_product_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.save_new_client_product_btn.Location = new System.Drawing.Point(4, 610);
             this.save_new_client_product_btn.Name = "save_new_client_product_btn";
             this.save_new_client_product_btn.Size = new System.Drawing.Size(117, 40);
             this.save_new_client_product_btn.TabIndex = 46;
             this.save_new_client_product_btn.Text = "حفظ ";
-            this.save_new_client_product_btn.UseVisualStyleBackColor = true;
+            this.save_new_client_product_btn.UseVisualStyleBackColor = false;
             this.save_new_client_product_btn.Click += new System.EventHandler(this.save_new_client_product_btn_Click);
             // 
             // new_client_product_btn
             // 
+            this.new_client_product_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.new_client_product_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.new_client_product_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.new_client_product_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.new_client_product_btn.Location = new System.Drawing.Point(160, 610);
             this.new_client_product_btn.Name = "new_client_product_btn";
             this.new_client_product_btn.Size = new System.Drawing.Size(125, 40);
             this.new_client_product_btn.TabIndex = 47;
             this.new_client_product_btn.Text = "جديد";
-            this.new_client_product_btn.UseVisualStyleBackColor = true;
+            this.new_client_product_btn.UseVisualStyleBackColor = false;
             // 
             // cancel_btn
             // 
+            this.cancel_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancel_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cancel_btn.Location = new System.Drawing.Point(319, 610);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(110, 40);
             this.cancel_btn.TabIndex = 48;
             this.cancel_btn.Text = "إلغاء";
-            this.cancel_btn.UseVisualStyleBackColor = true;
+            this.cancel_btn.UseVisualStyleBackColor = false;
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
             // client_name_text_box
@@ -334,6 +343,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.product_name_text_box);
             this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(23, 216);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(430, 165);
@@ -343,13 +353,16 @@
             // 
             // add_new_face_btn
             // 
+            this.add_new_face_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.add_new_face_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_face_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_new_face_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.add_new_face_btn.Location = new System.Drawing.Point(14, 98);
             this.add_new_face_btn.Name = "add_new_face_btn";
             this.add_new_face_btn.Size = new System.Drawing.Size(127, 35);
             this.add_new_face_btn.TabIndex = 53;
             this.add_new_face_btn.Text = "إضافة وجة جديد";
-            this.add_new_face_btn.UseVisualStyleBackColor = true;
+            this.add_new_face_btn.UseVisualStyleBackColor = false;
             // 
             // faces_combo_box
             // 
@@ -422,6 +435,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1282, 674);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);

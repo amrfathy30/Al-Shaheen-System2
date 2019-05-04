@@ -193,7 +193,7 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR UPDATING QUANTITES IN SPECIFICATION TABLE" + ex.ToString());
             }
         }
-        async Task<long> savetofirstduration_rawtin()
+        async Task<long> savetofirstduration_rawtin( SH_QUANTITY_OF_RAW_MATERIAL myquantity)
         {
             if (!((errorProvider1.GetError(item_length_text_box) == "") && (errorProvider1.GetError(item_width_text_box) == "") && (errorProvider1.GetError(item_thickness_text_box) == "") && (errorProvider1.GetError(item_coating_text_box) == "")))
             {
@@ -217,30 +217,30 @@ namespace Al_Shaheen_System
                     
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_LENGTH", double.Parse(item_length_text_box.Text));
-                    cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH", double.Parse(item_width_text_box.Text));
-                    cmd.Parameters.AddWithValue("@SH_ITEM_THICKNESS", double.Parse(item_thickness_text_box.Text));
+                    cmd.Parameters.AddWithValue("@SH_ITEM_LENGTH", myquantity.SH_ITEM_LENGTH);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH", myquantity.SH_ITEM_WIDTH);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_THICKNESS", myquantity.SH_ITEM_THICKNESS);
                      this.Invoke((MethodInvoker)delegate ()
                     {
-                        cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", item_type_combo_box.Text);
+                        cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", myquantity.SH_ITEM_TYPE);
                     });
                     cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "صفيح");
-                    cmd.Parameters.AddWithValue("@SH_ITEM_CODE", item_code_text_box.Text);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_CODE",myquantity.SH_ITEM_CODE);
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        cmd.Parameters.AddWithValue("@SH_ITEM_TEMPER", item_temper_combo_box.Text);
+                        cmd.Parameters.AddWithValue("@SH_ITEM_TEMPER", myquantity.SH_ITEM_TEMPER);
                     });
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        cmd.Parameters.AddWithValue("@SH_ITEM_FINISH", item_finish_combo_box.Text);
+                        cmd.Parameters.AddWithValue("@SH_ITEM_FINISH", myquantity.SH_ITEM_FINISH);
                     });
-                    cmd.Parameters.AddWithValue("@SH_ITEM_COATING", item_coating_text_box.Text);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_INTENSITY", double.Parse(item_intensity_text_box.Text));
-                    cmd.Parameters.AddWithValue("@SH_CREATION_DATE", addition_date);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TOTAL_NUMBER_OF_PACKAGES", total_no_packges);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TOTAL_NUMBER_OF_SHEETS", all_packages_no_sheets);
-                    cmd.Parameters.AddWithValue("@SH_TOTAL_NET_WEIGHT", (((double.Parse(item_length_text_box.Text) * double.Parse(item_width_text_box.Text) * double.Parse(item_thickness_text_box.Text)) / 1000000) * double.Parse(item_intensity_text_box.Text)) * double.Parse(all_packages_no_sheets.ToString()));
-                    cmd.Parameters.AddWithValue("@SH_TOTAL_GROSS_WEIGHT", all_packages_gross_weight);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_COATING", myquantity.SH_ITEM_COATING);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_INTENSITY", myquantity.SH_ITEM_INTENSITY);
+                    cmd.Parameters.AddWithValue("@SH_CREATION_DATE", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_TOTAL_NUMBER_OF_PACKAGES",myquantity.SH_TOTAL_NUMBER_OF_PACKAGES);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_TOTAL_NUMBER_OF_SHEETS",myquantity.SH_TOTAL_NUMBER_OF_SHEETS());
+                    cmd.Parameters.AddWithValue("@SH_TOTAL_NET_WEIGHT",  myquantity.SH_NET_WEIGHT);
+                    cmd.Parameters.AddWithValue("@SH_TOTAL_GROSS_WEIGHT", myquantity.SH_ITEM_GROSS_WEIGHT);
                     SqlDataReader reader = cmd.ExecuteReader();
                     long id = 0;
                     if (reader.Read())
@@ -262,12 +262,11 @@ namespace Al_Shaheen_System
             }
             return 0;
         }
-        async Task  save_raw_tin_quantites(long specification_id)
+        async Task  save_raw_tin_quantites(long specification_id ,SH_QUANTITY_OF_RAW_MATERIAL myquantity )
         {
 
             long current_quantity_id = 0;
-            for (int i = 0; i < quantities.Count; i++)
-            {
+           
                 try
                 {
                     string query = "INSERT INTO SH_QUANTITY_OF_RAW_MATERIAL ";
@@ -288,55 +287,54 @@ namespace Al_Shaheen_System
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
 
                     cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_RAW_MATERIAL_ID", specification_id);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_LENGTH", quantities[i].SH_ITEM_LENGTH);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH", quantities[i].SH_ITEM_WIDTH);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_THICKNESS", quantities[i].SH_ITEM_THICKNESS);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_INTENSITY", quantities[i].SH_ITEM_INTENSITY);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TEMPER", quantities[i].SH_ITEM_TEMPER);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_LENGTH", myquantity.SH_ITEM_LENGTH);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_WIDTH", myquantity.SH_ITEM_WIDTH);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_THICKNESS", myquantity.SH_ITEM_THICKNESS);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_INTENSITY", myquantity.SH_ITEM_INTENSITY);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_TEMPER", myquantity.SH_ITEM_TEMPER);
                     cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_DATE" , DateTime.Parse(adding_permission_date_text_box.Text));
                     cmd.Parameters.AddWithValue("@SH_ADDING_NUMBER" , adding_request_number_text_box.Text);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_FINISH", quantities[i].SH_ITEM_FINISH);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_COATING", quantities[i].SH_ITEM_COATING);
-                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_NAME", quantities[i].SH_SUPPLIER_NAME);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", quantities[i].SH_ITEM_TYPE);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_FINISH", myquantity.SH_ITEM_FINISH);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_COATING", myquantity.SH_ITEM_COATING);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_NAME", myquantity.SH_SUPPLIER_NAME);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", myquantity.SH_ITEM_TYPE);
                     cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "صفيح");
-                    cmd.Parameters.AddWithValue("@SH_ITEM_CODE", quantities[i].SH_ITEM_CODE);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_SHEET_WEIGHT", quantities[i].SH_ITEM_PARCEL_NET_WEIGHT);
-                    cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_PACKAGES", quantities[i].SH_TOTAL_NUMBER_OF_PACKAGES);
-                    cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE", quantities[i].SH_TOTAL_NUMBER_OF_SHEETS());
-                    cmd.Parameters.AddWithValue("@SH_NET_WEIGHT", quantities[i].SH_NET_WEIGHT);
-                    cmd.Parameters.AddWithValue("@SH_STOCK_NAME", quantities[i].SH_STOCK_NAME);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_CODE", myquantity.SH_ITEM_CODE);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_SHEET_WEIGHT", myquantity.SH_ITEM_PARCEL_NET_WEIGHT);
+                    cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_PACKAGES", myquantity.SH_TOTAL_NUMBER_OF_PACKAGES);
+                    cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE", myquantity.SH_TOTAL_NUMBER_OF_SHEETS());
+                    cmd.Parameters.AddWithValue("@SH_NET_WEIGHT", myquantity.SH_NET_WEIGHT);
+                    cmd.Parameters.AddWithValue("@SH_STOCK_NAME", myquantity.SH_STOCK_NAME);
                     cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", addition_date);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_GROSS_WEIGHT", quantities[i].SH_ITEM_GROSS_WEIGHT);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_GROSS_WEIGHT", myquantity.SH_ITEM_GROSS_WEIGHT);
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
                         //MessageBox.Show("Quantity : "+reader["myidentity"].ToString());
                         current_quantity_id = long.Parse(reader["myidentity"].ToString());
-                                     }
+                    }
 
                     reader.Close();
                     long ex_or=0;
                     myconnection.closeConnection();
                     this.Invoke((MethodInvoker)async delegate ()
                     {
-                         ex_or = await saveexamination_order(specification_id, current_quantity_id, i, quantities[i]);
+                        ex_or = await saveexamination_order(specification_id, current_quantity_id, myquantity);
                     });
 
                     this.Invoke((MethodInvoker)async delegate ()
                     {
-                        await save_raw_tin_packages(specification_id, i, current_quantity_id, quantities[i].SH_TOTAL_NUMBER_OF_PACKAGES, ex_or, quantities[i].SH_QUANTITY_PARCELS);
+                        await save_raw_tin_packages(specification_id, current_quantity_id, myquantity.SH_TOTAL_NUMBER_OF_PACKAGES, ex_or, myquantity.SH_QUANTITY_PARCELS, myquantity);
                     });
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("ERROR WHILE SAVING IN SH_QUANTITY_OF_RAW_MATERIAL" + ex.ToString());
                 }
-            }
-            MessageBox.Show("تم الحفظ بنجاح" , "معلومات" , MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+            
         }
 
-        async Task  save_raw_tin_packages(long specification_id, int quanitityindex, long quantity_id, long no_packages, long examination_order_id, List<SH_RAW_MATERIAL_PARCEL> myparcels)
+        async Task  save_raw_tin_packages(long specification_id,  long quantity_id, long no_packages, long examination_order_id, List<SH_RAW_MATERIAL_PARCEL> myparcels, SH_QUANTITY_OF_RAW_MATERIAL myquantity)
         {
             long current_parcel = 0;
             for (int i = 0; i < myparcels.Count; i++)
@@ -380,7 +378,7 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_ITEM_NUMBER_OF_SHEETS", myparcels[i].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE);
                     cmd.Parameters.AddWithValue("@SH_ITEM_PARCEL_GROSS_WEIGHT", myparcels[i].SH_ITEM_GROSS_WEIGHT);
                     cmd.Parameters.AddWithValue("@SH_ITEM_PARCEL_NET_WEIGHT", myparcels[i].SH_ITEM_PARCEL_NET_WEIGHT);
-                    cmd.Parameters.AddWithValue("@SH_STOCK_NAME", quantities[quanitityindex].SH_STOCK_NAME);
+                    cmd.Parameters.AddWithValue("@SH_STOCK_NAME", myquantity.SH_STOCK_NAME);
                     cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", addition_date);
                     this.Invoke((MethodInvoker)delegate ()
                     {
@@ -397,7 +395,7 @@ namespace Al_Shaheen_System
                     }
                     reader.Close();
                     myconnection.closeConnection();
-                    last_inserted_packages_ids.Add(new raw_material_card_info { item_number = current_parcel, item_code = item_code_text_box.Text, item_name = "صفيح خام ", item_type = item_type_combo_box.Text, stock_name = quantities[quanitityindex].SH_STOCK_NAME, no_sheets = quantities[quanitityindex].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE });
+                    last_inserted_packages_ids.Add(new raw_material_card_info { item_number = current_parcel, item_code = item_code_text_box.Text, item_name = "صفيح خام ", item_type = item_type_combo_box.Text, stock_name = myquantity.SH_STOCK_NAME, no_sheets = myquantity.SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE });
                     this.Invoke((MethodInvoker)async delegate ()
                     {
                         await saveexamination_order_packages(examination_order_id, current_parcel);
@@ -413,7 +411,7 @@ namespace Al_Shaheen_System
             }
         }
 
-        async Task <long >saveexamination_order(long SPECIFICATION_ID , long QUANTITY_ID , int quantityindex , SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
+        async Task <long >saveexamination_order(long SPECIFICATION_ID , long QUANTITY_ID , SH_QUANTITY_OF_RAW_MATERIAL anyquantity)
         {
 
             try
@@ -441,7 +439,7 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME", stock_man_text_box.Text);
                 });
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NO_PARCELS", total_no_packges);
-                cmd.Parameters.AddWithValue("@SH_STOCK_NAME" , quantities[quantityindex].SH_STOCK_NAME);
+                cmd.Parameters.AddWithValue("@SH_STOCK_NAME" , anyquantity.SH_STOCK_NAME);
                 cmd.Parameters.AddWithValue("@SH_TOTAL_NO_SHEETS", all_packages_no_sheets);
                 cmd.Parameters.AddWithValue("@SH_GROSS_WEIGHT" , adding_request_gross_weight);
                 cmd.Parameters.AddWithValue("@SH_NET_WEIGHT" , adding_request_net_weight);
@@ -754,6 +752,7 @@ namespace Al_Shaheen_System
                 }
                 else
                 {
+                    
                     for (int i = 0; i < quantities.Count; i++)
                     {
                         long id =  check_if_specification_exists_or_not(quantities[i]);
@@ -761,20 +760,20 @@ namespace Al_Shaheen_System
                         {
                             //error
 
-                            long sid = await savetofirstduration_rawtin();
+                            long sid = await savetofirstduration_rawtin(quantities[i]);
                             if (sid == 0)
                             {
                                 //error
                             }
                             else
                             {
-                               await save_raw_tin_quantites(sid);
+                               await save_raw_tin_quantites(sid , quantities[i]);
                             }
                         }
                         else
                         {
                             await update_specifiction_quanities(id, quantities[i]);
-                            await save_raw_tin_quantites(id);
+                            await save_raw_tin_quantites(id, quantities[i]);
 
                         }
 
@@ -784,35 +783,41 @@ namespace Al_Shaheen_System
                         //}
                     }
                 }
-                if (last_inserted_packages_ids.Count > 1)
-                {
-                    //using (printedcaredsforrawmaterial myform = new printedcaredsforrawmaterial(this.last_inserted_packages_ids))
-                    //{ 
-                    //    myform.ShowDialog();
-                    //}
-                }
+                //if (last_inserted_packages_ids.Count > 1)
+                //{
+                //    //using (printedcaredsforrawmaterial myform = new printedcaredsforrawmaterial(this.last_inserted_packages_ids))
+                //    //{ 
+                //    //    myform.ShowDialog();
+                //    //}
+                //}
+
+                MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+
+
             }
 
 
 
-          
+
 
 
         }
 
 
 
-        private void savenewrawtinaddingrequest_Click(object sender, EventArgs e)
+        private async void savenewrawtinaddingrequest_Click(object sender, EventArgs e)
         {
             //Task task = Task.Run((Action) MyFunction);
+            Cursor.Current = Cursors.WaitCursor;
+            //Task t = new Task(async () =>
+            //{
+            await saverawtindata();
+            //});
+            //t.Start();
+            Cursor.Current = Cursors.Default;
+            //  MessageBox.Show("");
 
-            Task t = new Task(() =>
-            {
-                 saverawtindata();
-            });
-            t.Start();
-          //  MessageBox.Show("");
-          
         }
         private void button1_Click(object sender, EventArgs e)
         {

@@ -18,15 +18,14 @@ namespace Al_Shaheen_System
         List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
         List<SH_SUPPLY_COMPANY> suppliers = new List<SH_SUPPLY_COMPANY>();
         List<SH_SUPPLY_COMPANY_BRANCHES> supplier_branches = new List<SH_SUPPLY_COMPANY_BRANCHES>();
-     
         List<SH_COLOR_PILLOW> color_pillows = new List<SH_COLOR_PILLOW>();
-     
+
         List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
-  
+
         List<SH_SPECIFICATION_OF_PLASTIC_COVER> specifications = new List<SH_SPECIFICATION_OF_PLASTIC_COVER>();
         List<SH_QUANTITY_OF_PLASTIC_COVER> QUANTITIES = new List<SH_QUANTITY_OF_PLASTIC_COVER>();
         List<SH_ITEM_SIZE> sizes = new List<SH_ITEM_SIZE>();
-      
+
         public addnewplasticcoverform()
         {
             InitializeComponent();
@@ -42,13 +41,13 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    specifications.Add(new SH_SPECIFICATION_OF_PLASTIC_COVER() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_LOGO_OR_NOT = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()), SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()), SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()) , SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString())});
+                    specifications.Add(new SH_SPECIFICATION_OF_PLASTIC_COVER() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_LOGO_OR_NOT = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()), SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()), SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()), SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()) });
                 }
                 reader.Close();
                 myconnection.closeConnection();
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILe GETTING SPECIFicATIONS DATA "+ex.ToString());
+                MessageBox.Show("ERROR WHILe GETTING SPECIFicATIONS DATA " + ex.ToString());
             }
         }
         async Task<long> check_if_specification_exists_or_not(SH_PLASTIC_COVER_DATA mydata)
@@ -56,11 +55,11 @@ namespace Al_Shaheen_System
             loadallspecifications();
             try
             {
-                if (specifications.Count>0)
+                if (specifications.Count > 0)
                 {
                     for (int i = 0; i < specifications.Count; i++)
                     {
-                        if (specifications[i].SH_CLIENT_ID == mydata.client.SH_ID && specifications[i].SH_LOGO_OR_NOT == mydata.logo_or_not && specifications[i].SH_SIZE_ID == mydata.size.SH_ID && string.Compare(specifications[i].SH_CONTAINER_NAME, mydata.container_name)==0)
+                        if (specifications[i].SH_CLIENT_ID == mydata.client.SH_ID && specifications[i].SH_LOGO_OR_NOT == mydata.logo_or_not && specifications[i].SH_SIZE_ID == mydata.size.SH_ID && string.Compare(specifications[i].SH_CONTAINER_NAME, mydata.container_name) == 0)
                         {
                             return specifications[i].SH_ID;
                         }
@@ -70,7 +69,7 @@ namespace Al_Shaheen_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHIlE ADDING CHEckiNG NEW SPECiFIcATIONS"+ex.ToString());
+                MessageBox.Show("ERROR WHIlE ADDING CHEckiNG NEW SPECiFIcATIONS" + ex.ToString());
             }
             return 0;
         }
@@ -79,55 +78,55 @@ namespace Al_Shaheen_System
             try
             {
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_INSERT_NEW_PLASTIC_COVER_SPECIFICATION" , DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SH_INSERT_NEW_PLASTIC_COVER_SPECIFICATION", DatabaseConnection.mConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mydata.client.SH_ID);
                 cmd.Parameters.AddWithValue("@SH_SIZE_ID", mydata.size.SH_ID);
                 cmd.Parameters.AddWithValue("@SH_LOGO_OR_NOT", mydata.logo_or_not);
                 cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", mydata.no_of_containers);
-                cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME",mydata.container_name);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS",mydata.total_no_items());
-                cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID",mydata.pillow_color.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", mydata.container_name);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", mydata.total_no_items());
+                cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", mydata.pillow_color.SH_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 long myid = 0;
                 if (reader.Read())
                 {
-                    myid=  long.Parse(reader["myidentity"].ToString());
+                    myid = long.Parse(reader["myidentity"].ToString());
                 }
-                reader.Close();   
+                reader.Close();
                 myconnection.closeConnection();
                 return myid;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE ADDING NEW SPECIFICATION "+ex.ToString());
+                MessageBox.Show("ERROR WHILE ADDING NEW SPECIFICATION " + ex.ToString());
             }
             return 0;
         }
-        async Task upsate_specifications(long sp_id,SH_PLASTIC_COVER_DATA mydata)
+        async Task upsate_specifications(long sp_id, SH_PLASTIC_COVER_DATA mydata)
         {
             try
             {
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SH_UPDATE_PLASTIC_COVER_SPECIFICATION_QUANTITIES", DatabaseConnection.mConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS" , mydata.no_of_containers);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS" , mydata.total_no_items());
-                cmd.Parameters.AddWithValue("@SH_SP_ID" , sp_id);
+                cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", mydata.no_of_containers);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", mydata.total_no_items());
+                cmd.Parameters.AddWithValue("@SH_SP_ID", sp_id);
                 cmd.ExecuteNonQuery();
                 myconnection.closeConnection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE UPDATING SPECIFICATIONS "+ex.ToString());
+                MessageBox.Show("ERROR WHILE UPDATING SPECIFICATIONS " + ex.ToString());
             }
         }
-        async Task<long> save_new_plastic_cover_quantities (long sp_id , SH_PLASTIC_COVER_DATA mydata)
+        async Task<long> save_new_plastic_cover_quantities(long sp_id, SH_PLASTIC_COVER_DATA mydata)
         {
             try
             {
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_PLASTIC_COVER_QUANTITIES" , DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_PLASTIC_COVER_QUANTITIES", DatabaseConnection.mConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_PLASTIC_COVER_ID", sp_id);
                 cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", mydata.supplier.SH_ID);
@@ -138,12 +137,12 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_NO_OF_ITEMS_PER_CONTAINER", mydata.no_items_per_container);
                 cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", mydata.no_of_containers);
                 cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", mydata.total_no_items());
-        
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 long myid = 0;
                 if (reader.Read())
                 {
-                    myid= long.Parse(reader["myidentity"].ToString());
+                    myid = long.Parse(reader["myidentity"].ToString());
                 }
                 reader.Close();
 
@@ -152,11 +151,11 @@ namespace Al_Shaheen_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE ADDING NEW PLASTIC COVER QIANTITIES "+ex.ToString());
+                MessageBox.Show("ERROR WHILE ADDING NEW PLASTIC COVER QIANTITIES " + ex.ToString());
             }
             return 0;
         }
-        async Task save_plastic_cover_containers ( long qu_id,    SH_PLASTIC_COVER_DATA mydata)
+        async Task save_plastic_cover_containers(long qu_id, SH_PLASTIC_COVER_DATA mydata)
         {
             try
             {
@@ -172,18 +171,18 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_ADDITION_PERMISSION_NUMBER", mydata.addition_permission_number);
                     cmd.ExecuteNonQuery();
                 }
-                
+
                 myconnection.closeConnection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE SAVING NEW PLASTIC COVER CONTAINERS "+ex.ToString());
+                MessageBox.Show("ERROR WHILE SAVING NEW PLASTIC COVER CONTAINERS " + ex.ToString());
             }
 
 
         }
 
-        
+
         void loadaallsizes()
         {
             sizes.Clear();
@@ -238,18 +237,18 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    stocks.Add(new SH_SHAHEEN_STOCK() { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString() , SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString() });
+                    stocks.Add(new SH_SHAHEEN_STOCK() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString(), SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString() });
                 }
                 myconnection.closeConnection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE GETTING STOCKS INFORMATION "+ex.ToString());
+                MessageBox.Show("ERROR WHILE GETTING STOCKS INFORMATION " + ex.ToString());
             }
         }
         async Task fillstockscombobox()
         {
-             await getallstocks();
+            await getallstocks();
             this.Invoke((MethodInvoker)delegate ()
             {
                 stock_combo_box.Items.Clear();
@@ -265,6 +264,12 @@ namespace Al_Shaheen_System
                 }
             }
         }
+       
+
+
+
+
+
         async Task getallsupplier()
         {
             suppliers.Clear();

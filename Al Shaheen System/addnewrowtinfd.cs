@@ -570,12 +570,12 @@ namespace Al_Shaheen_System
         }
         private void add_new_raw_tn_info_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //using (addnewrowtinfd myform = new addnewrowtinfd())
-            //{
-            //    myform.ShowDialog();
-            //}
-            //this.Close();
+            this.Hide();
+            using (addnewrowtinfd myform = new addnewrowtinfd(mEmployee, mAccount, mPermission))
+            {
+                myform.ShowDialog();
+            }
+            this.Close();
         }
         private void groupBox1_Enter(object sender, EventArgs e)
         {

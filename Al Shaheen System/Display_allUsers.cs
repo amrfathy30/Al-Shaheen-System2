@@ -115,7 +115,6 @@ namespace Al_Shaheen_System
                 emp.SH_ID = long.Parse(rd1["SH_ID"].ToString());
                 emp.SH_EMPLOYEE_NAME = rd1["SH_EMPLOYEE_NAME"].ToString();
                 emp.SH_EMPLOYEE_NATIONAL_ID = rd1["SH_EMPLOYEE_NATIONAL_ID"].ToString();
-
             }
             myconnection.closeConnection();
             return emp;

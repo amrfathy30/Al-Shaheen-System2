@@ -66,41 +66,51 @@
             // 
             // save_new_color_btn
             // 
+            this.save_new_color_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.save_new_color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_new_color_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.save_new_color_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.save_new_color_btn.Location = new System.Drawing.Point(12, 148);
             this.save_new_color_btn.Name = "save_new_color_btn";
             this.save_new_color_btn.Size = new System.Drawing.Size(114, 41);
             this.save_new_color_btn.TabIndex = 3;
             this.save_new_color_btn.Text = "حفظ ";
-            this.save_new_color_btn.UseVisualStyleBackColor = true;
+            this.save_new_color_btn.UseVisualStyleBackColor = false;
             this.save_new_color_btn.Click += new System.EventHandler(this.save_new_color_btn_Click);
             // 
             // new_color_btn
             // 
+            this.new_color_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.new_color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.new_color_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.new_color_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.new_color_btn.Location = new System.Drawing.Point(177, 148);
             this.new_color_btn.Name = "new_color_btn";
             this.new_color_btn.Size = new System.Drawing.Size(118, 41);
             this.new_color_btn.TabIndex = 4;
             this.new_color_btn.Text = "جديد";
-            this.new_color_btn.UseVisualStyleBackColor = true;
+            this.new_color_btn.UseVisualStyleBackColor = false;
             this.new_color_btn.Click += new System.EventHandler(this.new_color_btn_Click);
             // 
             // cancel_btn
             // 
+            this.cancel_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancel_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.cancel_btn.Location = new System.Drawing.Point(358, 148);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(120, 41);
             this.cancel_btn.TabIndex = 5;
             this.cancel_btn.Text = "إلغاء";
-            this.cancel_btn.UseVisualStyleBackColor = true;
+            this.cancel_btn.UseVisualStyleBackColor = false;
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
             // addnewfacecolorform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(504, 201);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.new_color_btn);

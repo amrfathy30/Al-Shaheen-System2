@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.color_name_text_box = new System.Windows.Forms.TextBox();
@@ -51,7 +50,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(94, 21);
+            this.label1.Location = new System.Drawing.Point(96, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(253, 39);
             this.label1.TabIndex = 0;
@@ -61,7 +61,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 123);
+            this.label2.Location = new System.Drawing.Point(18, 124);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 25);
             this.label2.TabIndex = 1;
@@ -70,24 +71,27 @@
             // color_name_text_box
             // 
             this.color_name_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.color_name_text_box.Location = new System.Drawing.Point(131, 123);
+            this.color_name_text_box.Location = new System.Drawing.Point(132, 124);
+            this.color_name_text_box.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.color_name_text_box.Name = "color_name_text_box";
-            this.color_name_text_box.Size = new System.Drawing.Size(266, 30);
+            this.color_name_text_box.Size = new System.Drawing.Size(268, 30);
             this.color_name_text_box.TabIndex = 2;
             // 
             // color_code_text_box
             // 
             this.color_code_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.color_code_text_box.Location = new System.Drawing.Point(131, 164);
+            this.color_code_text_box.Location = new System.Drawing.Point(132, 162);
+            this.color_code_text_box.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.color_code_text_box.Name = "color_code_text_box";
-            this.color_code_text_box.Size = new System.Drawing.Size(266, 30);
+            this.color_code_text_box.Size = new System.Drawing.Size(268, 30);
             this.color_code_text_box.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(20, 167);
+            this.label3.Location = new System.Drawing.Point(18, 169);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 25);
             this.label3.TabIndex = 4;
@@ -95,40 +99,53 @@
             // 
             // save_btn
             // 
+            this.save_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.save_btn.Location = new System.Drawing.Point(25, 285);
+            this.save_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.save_btn.Location = new System.Drawing.Point(24, 286);
+            this.save_btn.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.save_btn.Name = "save_btn";
-            this.save_btn.Size = new System.Drawing.Size(101, 37);
+            this.save_btn.Size = new System.Drawing.Size(102, 39);
             this.save_btn.TabIndex = 5;
             this.save_btn.Text = "حفظ";
-            this.save_btn.UseVisualStyleBackColor = true;
+            this.save_btn.UseVisualStyleBackColor = false;
             this.save_btn.Click += new System.EventHandler(this.save_btn_Click);
             // 
             // cancel
             // 
+            this.cancel.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancel.Location = new System.Drawing.Point(303, 285);
+            this.cancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cancel.Location = new System.Drawing.Point(306, 286);
+            this.cancel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(94, 37);
+            this.cancel.Size = new System.Drawing.Size(96, 39);
             this.cancel.TabIndex = 6;
             this.cancel.Text = "إلغاء";
-            this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.UseVisualStyleBackColor = false;
             // 
             // new_btn
             // 
+            this.new_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.new_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.new_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.new_btn.Location = new System.Drawing.Point(175, 285);
+            this.new_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.new_btn.Location = new System.Drawing.Point(174, 286);
+            this.new_btn.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.new_btn.Name = "new_btn";
-            this.new_btn.Size = new System.Drawing.Size(91, 37);
+            this.new_btn.Size = new System.Drawing.Size(90, 39);
             this.new_btn.TabIndex = 7;
             this.new_btn.Text = "جديد";
-            this.new_btn.UseVisualStyleBackColor = true;
+            this.new_btn.UseVisualStyleBackColor = false;
             // 
             // colors_pillow_grid_view
             // 
             this.colors_pillow_grid_view.AllowUserToAddRows = false;
             this.colors_pillow_grid_view.AllowUserToDeleteRows = false;
             this.colors_pillow_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.colors_pillow_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -150,20 +167,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.colors_pillow_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colors_pillow_grid_view.Location = new System.Drawing.Point(415, 44);
+            this.colors_pillow_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.colors_pillow_grid_view.Location = new System.Drawing.Point(414, 46);
+            this.colors_pillow_grid_view.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.colors_pillow_grid_view.Name = "colors_pillow_grid_view";
             this.colors_pillow_grid_view.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colors_pillow_grid_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colors_pillow_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.colors_pillow_grid_view.Size = new System.Drawing.Size(386, 278);
+            this.colors_pillow_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.colors_pillow_grid_view.Size = new System.Drawing.Size(384, 280);
             this.colors_pillow_grid_view.TabIndex = 8;
             // 
             // Column1
@@ -188,7 +199,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 334);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(816, 332);
             this.Controls.Add(this.colors_pillow_grid_view);
             this.Controls.Add(this.new_btn);
             this.Controls.Add(this.cancel);
@@ -198,6 +210,7 @@
             this.Controls.Add(this.color_name_text_box);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.Name = "addnewcolorpillow";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxDeptName = new System.Windows.Forms.TextBox();
@@ -48,7 +49,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(94, 102);
+            this.label1.Location = new System.Drawing.Point(50, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 24);
             this.label1.TabIndex = 0;
@@ -56,20 +57,23 @@
             // 
             // buttonSave
             // 
+            this.buttonSave.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(83, 337);
+            this.buttonSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonSave.Location = new System.Drawing.Point(39, 362);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(110, 46);
+            this.buttonSave.Size = new System.Drawing.Size(110, 38);
             this.buttonSave.TabIndex = 1;
             this.buttonSave.Text = "حفظ";
-            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // textBoxDeptName
             // 
             this.textBoxDeptName.Enabled = false;
             this.textBoxDeptName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDeptName.Location = new System.Drawing.Point(179, 102);
+            this.textBoxDeptName.Location = new System.Drawing.Point(135, 102);
             this.textBoxDeptName.Name = "textBoxDeptName";
             this.textBoxDeptName.Size = new System.Drawing.Size(199, 29);
             this.textBoxDeptName.TabIndex = 2;
@@ -77,7 +81,7 @@
             // textBoxFnName
             // 
             this.textBoxFnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFnName.Location = new System.Drawing.Point(179, 161);
+            this.textBoxFnName.Location = new System.Drawing.Point(135, 161);
             this.textBoxFnName.Name = "textBoxFnName";
             this.textBoxFnName.Size = new System.Drawing.Size(199, 29);
             this.textBoxFnName.TabIndex = 4;
@@ -86,7 +90,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(85, 168);
+            this.label2.Location = new System.Drawing.Point(41, 168);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 24);
             this.label2.TabIndex = 5;
@@ -94,31 +98,37 @@
             // 
             // buttonNew
             // 
+            this.buttonNew.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonNew.Location = new System.Drawing.Point(679, 337);
+            this.buttonNew.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.buttonNew.Location = new System.Drawing.Point(635, 362);
             this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(100, 46);
+            this.buttonNew.Size = new System.Drawing.Size(100, 38);
             this.buttonNew.TabIndex = 7;
             this.buttonNew.Text = "جديد";
-            this.buttonNew.UseVisualStyleBackColor = true;
+            this.buttonNew.UseVisualStyleBackColor = false;
             this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
             // 
             // bttnCancel
             // 
+            this.bttnCancel.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.bttnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bttnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bttnCancel.Location = new System.Drawing.Point(367, 337);
+            this.bttnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.bttnCancel.Location = new System.Drawing.Point(323, 362);
             this.bttnCancel.Name = "bttnCancel";
-            this.bttnCancel.Size = new System.Drawing.Size(98, 46);
+            this.bttnCancel.Size = new System.Drawing.Size(98, 38);
             this.bttnCancel.TabIndex = 8;
             this.bttnCancel.Text = "الغاء";
-            this.bttnCancel.UseVisualStyleBackColor = true;
+            this.bttnCancel.UseVisualStyleBackColor = false;
             this.bttnCancel.Click += new System.EventHandler(this.bttnCancel_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(280, 24);
+            this.label3.Location = new System.Drawing.Point(236, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(229, 39);
             this.label3.TabIndex = 9;
@@ -129,9 +139,10 @@
             this.functions_grid_view.AllowUserToAddRows = false;
             this.functions_grid_view.AllowUserToDeleteRows = false;
             this.functions_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.functions_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -141,18 +152,27 @@
             this.functions_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            this.functions_grid_view.Location = new System.Drawing.Point(405, 102);
-            this.functions_grid_view.Name = "functions_grid_view";
-            this.functions_grid_view.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.functions_grid_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.functions_grid_view.Size = new System.Drawing.Size(374, 214);
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.functions_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
+            this.functions_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.functions_grid_view.Location = new System.Drawing.Point(361, 102);
+            this.functions_grid_view.Name = "functions_grid_view";
+            this.functions_grid_view.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.functions_grid_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.functions_grid_view.Size = new System.Drawing.Size(374, 237);
             this.functions_grid_view.TabIndex = 10;
             // 
             // Column1
@@ -171,7 +191,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 412);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(764, 412);
             this.Controls.Add(this.functions_grid_view);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.bttnCancel);
