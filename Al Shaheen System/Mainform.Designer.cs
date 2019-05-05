@@ -98,6 +98,9 @@
             this.الخاماتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.إضافةنوعخامةجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.الحساباتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.الشجرةالمحاسبيةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.عرضالحساباتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.إضافةحسابجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.الصيانةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.الورشةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.إضافةأوامرشغلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,6 +131,7 @@
             this.إضافةنوعأيروسولجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logged_user_name_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.أرصدةالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -353,7 +357,8 @@
             this.طبةبلاستيكToolStripMenuItem,
             this.غطاءبلاستيكللعبواتToolStripMenuItem,
             this.صرفالمنتجالتامToolStripMenuItem,
-            this.وشToolStripMenuItem});
+            this.وشToolStripMenuItem,
+            this.أرصدةالمنتجالتامToolStripMenuItem});
             this.مخزنالمنتجالتامToolStripMenuItem.Name = "مخزنالمنتجالتامToolStripMenuItem";
             this.مخزنالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(230, 32);
             this.مخزنالمنتجالتامToolStripMenuItem.Text = "مخزن المنتج التام ";
@@ -697,9 +702,34 @@
             // 
             // الحساباتToolStripMenuItem
             // 
+            this.الحساباتToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.الشجرةالمحاسبيةToolStripMenuItem});
             this.الحساباتToolStripMenuItem.Name = "الحساباتToolStripMenuItem";
             this.الحساباتToolStripMenuItem.Size = new System.Drawing.Size(105, 32);
             this.الحساباتToolStripMenuItem.Text = "الحسابات ";
+            // 
+            // الشجرةالمحاسبيةToolStripMenuItem
+            // 
+            this.الشجرةالمحاسبيةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.عرضالحساباتToolStripMenuItem,
+            this.إضافةحسابجديدToolStripMenuItem});
+            this.الشجرةالمحاسبيةToolStripMenuItem.Name = "الشجرةالمحاسبيةToolStripMenuItem";
+            this.الشجرةالمحاسبيةToolStripMenuItem.Size = new System.Drawing.Size(233, 32);
+            this.الشجرةالمحاسبيةToolStripMenuItem.Text = "الشجرة المحاسبية ";
+            // 
+            // عرضالحساباتToolStripMenuItem
+            // 
+            this.عرضالحساباتToolStripMenuItem.Name = "عرضالحساباتToolStripMenuItem";
+            this.عرضالحساباتToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.عرضالحساباتToolStripMenuItem.Text = "عرض الحسابات ";
+            this.عرضالحساباتToolStripMenuItem.Click += new System.EventHandler(this.عرضالحساباتToolStripMenuItem_Click);
+            // 
+            // إضافةحسابجديدToolStripMenuItem
+            // 
+            this.إضافةحسابجديدToolStripMenuItem.Name = "إضافةحسابجديدToolStripMenuItem";
+            this.إضافةحسابجديدToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.إضافةحسابجديدToolStripMenuItem.Text = "إضافة حساب جديد ";
+            this.إضافةحسابجديدToolStripMenuItem.Click += new System.EventHandler(this.إضافةحسابجديدToolStripMenuItem_Click);
             // 
             // الصيانةToolStripMenuItem
             // 
@@ -938,6 +968,13 @@
             this.panel1.Size = new System.Drawing.Size(1188, 646);
             this.panel1.TabIndex = 2;
             // 
+            // أرصدةالمنتجالتامToolStripMenuItem
+            // 
+            this.أرصدةالمنتجالتامToolStripMenuItem.Name = "أرصدةالمنتجالتامToolStripMenuItem";
+            this.أرصدةالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
+            this.أرصدةالمنتجالتامToolStripMenuItem.Text = "أرصدة المنتج التام";
+            this.أرصدةالمنتجالتامToolStripMenuItem.Click += new System.EventHandler(this.أرصدةالمنتجالتامToolStripMenuItem_Click);
+            // 
             // Mainform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1067,5 +1104,9 @@
         private System.Windows.Forms.ToolStripMenuItem إضافةمقاسأيروسولجديدToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةنوعأيروسولجديدToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem الشجرةالمحاسبيةToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem عرضالحساباتToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem إضافةحسابجديدToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem أرصدةالمنتجالتامToolStripMenuItem;
     }
 }

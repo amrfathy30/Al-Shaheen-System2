@@ -637,5 +637,26 @@ namespace Al_Shaheen_System
         {
             this.Close();
         }
+
+        private void إضافةحسابجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewacccounttreeitem myform = new addnewacccounttreeitem())
+            {
+                myform.ShowDialog();
+            }
+        }
+
+        private void عرضالحساباتToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void أرصدةالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (allfinishedproductsdata myform = new allfinishedproductsdata())
+            {
+                myform.ShowDialog();
+            }
+        }
     }
 }

@@ -263,10 +263,7 @@ namespace Al_Shaheen_System
         {
             await gettwistofcolorspillow();
             client_product_combo_box.Items.Clear();
-            this.Invoke((MethodInvoker)delegate ()
-            {
-                f1_combo_box.Items.Clear();
-            });
+           
             if (color_pillows.Count > 0)
             {
                 for (int i = 0; i < color_pillows.Count; i++)

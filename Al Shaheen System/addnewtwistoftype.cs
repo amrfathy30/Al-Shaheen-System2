@@ -29,19 +29,17 @@ namespace Al_Shaheen_System
 
         async Task<long> check_if_twist_type_exist()
         {
-            long myid = 0;
+            
             if (twist_of_types.Count>0)
             {
                 for (int i = 0; i < twist_of_types.Count; i++)
                 {
-                    this.Invoke((MethodInvoker)delegate ()
-                    {
-                        if (string.Compare(twist_of_types[i].SH_SHORT_TITLE , item_short_name_text_box.Text)==0 && string.Compare(twist_of_types[i].SH_LONG_TITLE, item_definition_text_box.Text)==0)
+                     if (string.Compare(twist_of_types[i].SH_SHORT_TITLE , item_short_name_text_box.Text)==0 && string.Compare(twist_of_types[i].SH_LONG_TITLE, item_definition_text_box.Text)==0 && string.Compare(twist_of_types[i].SH_KIND , type_kind_text_box.Text)==0)
                         {
-                            myid= twist_of_types[i].SH_ID;
+                            return  twist_of_types[i].SH_ID;
                         }
-                    });
-                    return myid;
+                    
+                    
                 }
             }
             return 0;
@@ -49,6 +47,7 @@ namespace Al_Shaheen_System
 
         async Task filltwist_of_grid_view()
         {
+
             this.Invoke((MethodInvoker)delegate ()
             {
                 twist_of_types_grid_view.Rows.Clear();
@@ -70,9 +69,11 @@ namespace Al_Shaheen_System
             try
             {
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_GET_TWIST_OF_TYPES_DATA ", DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SH_GET_TWIST_OF_TYPES_DATA", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                    
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                while (reader.Read())
                 {
                     twist_of_types.Add(new SH_TWIST_OF_TYPE() { SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()) , SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString() , SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()) , SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString() , SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_LONG_TITLE = reader["SH_LONG_TITLE"].ToString() , SH_SHORT_TITLE = reader["SH_SHORT_TITLE"].ToString() , SH_KIND = reader["SH_KIND"].ToString() });
                 }
@@ -81,8 +82,7 @@ namespace Al_Shaheen_System
             }
             catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show("ERROR WHILE GETTING TWIST OFF TYPES DATA "+ex.ToString());
             }
         }
 
@@ -123,15 +123,15 @@ namespace Al_Shaheen_System
 
         }
 
-        private void save_btn_Click(object sender, EventArgs e)
+        private async void save_btn_Click(object sender, EventArgs e)
         {
-            Task t = new Task(async () =>
-            {
-                await savenewtwidt_of_type();
-                await getalltwist_of_types();
-                await filltwist_of_grid_view();
-            });
-            t.Start();
+            //Task t = new Task(async () =>
+            //{
+            await savenewtwidt_of_type();
+            await getalltwist_of_types();
+            await filltwist_of_grid_view();
+            //});
+            //t.Start();
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
