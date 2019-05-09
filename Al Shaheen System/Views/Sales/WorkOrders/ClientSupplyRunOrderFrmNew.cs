@@ -2031,6 +2031,8 @@ namespace Al_Shaheen_System
                 double num = double.Parse(textBoxSubmitted.Text);
                 textBoxSubmitted.Text = num.ToString();
             }
+        
+
         }
 
         private void textBoxWhenDelivered_Leave(object sender, EventArgs e)
@@ -2043,6 +2045,9 @@ namespace Al_Shaheen_System
             {
                 double num = double.Parse(textBoxWhenDelivered.Text);
                 textBoxWhenDelivered.Text = num.ToString();
+
+
+
             }
         }
 
