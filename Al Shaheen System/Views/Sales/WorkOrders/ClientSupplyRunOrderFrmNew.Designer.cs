@@ -31,11 +31,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxOrderWorkClient = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxDateNow = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.textBoxClientSuppNum = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBoxClients = new System.Windows.Forms.ComboBox();
+            this.clients_combo_box = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxourFactory = new System.Windows.Forms.ComboBox();
             this.radioButtonToTheClient = new System.Windows.Forms.RadioButton();
@@ -49,8 +47,28 @@
             this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.panelMoneyAfterReciving = new System.Windows.Forms.Panel();
+            this.labelBankName3 = new System.Windows.Forms.Label();
+            this.comboBoxBankName3 = new System.Windows.Forms.ComboBox();
             this.labelDateOFSheck3 = new System.Windows.Forms.Label();
             this.dateTimePickerChek3 = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.comboBoxPaymentWay3 = new System.Windows.Forms.ComboBox();
+            this.textBoxRemaining = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBoxAfterReciving = new System.Windows.Forms.ComboBox();
+            this.labelAfterReciving = new System.Windows.Forms.Label();
+            this.panelMoneyInReciving = new System.Windows.Forms.Panel();
+            this.comboBoxBankName2 = new System.Windows.Forms.ComboBox();
+            this.labelBankName2 = new System.Windows.Forms.Label();
+            this.labelDateOFSheck2 = new System.Windows.Forms.Label();
+            this.dateTimePickerChek2 = new System.Windows.Forms.DateTimePicker();
+            this.label21 = new System.Windows.Forms.Label();
+            this.comboBoxPaymentWay2 = new System.Windows.Forms.ComboBox();
+            this.textBoxWhenDelivered = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.comboBoxBankName1 = new System.Windows.Forms.ComboBox();
+            this.labelBankName1 = new System.Windows.Forms.Label();
             this.comboBoxCurrency = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxTotatalWithTax = new System.Windows.Forms.TextBox();
@@ -59,14 +77,8 @@
             this.textBoxTax1 = new System.Windows.Forms.TextBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.checkBoxTax1 = new System.Windows.Forms.CheckBox();
-            this.labelDateOFSheck2 = new System.Windows.Forms.Label();
             this.labelDateOFSheck1 = new System.Windows.Forms.Label();
-            this.dateTimePickerChek2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerChek1 = new System.Windows.Forms.DateTimePicker();
-            this.label22 = new System.Windows.Forms.Label();
-            this.comboBoxPaymentWay3 = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.comboBoxPaymentWay2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxPaymentWay1 = new System.Windows.Forms.ComboBox();
             this.textBoxTotalPrice = new System.Windows.Forms.TextBox();
@@ -75,28 +87,28 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxItemPrice = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxRemaining = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.comboBoxAfterReciving = new System.Windows.Forms.ComboBox();
-            this.labelAfterReciving = new System.Windows.Forms.Label();
-            this.textBoxWhenDelivered = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.textBoxSubmitted = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.comboBoxProducts = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
+            this.client_product_combo_box = new System.Windows.Forms.ComboBox();
+            this.client_products_label = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.comboBoxItemType = new System.Windows.Forms.ComboBox();
             this.panelFace = new System.Windows.Forms.Panel();
+            this.labelMoldFaceShape = new System.Windows.Forms.Label();
             this.comboBoxTabaDaiametr = new System.Windows.Forms.ComboBox();
             this.labelBoyatType = new System.Windows.Forms.Label();
+            this.comboBoxMoldFaceShape = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
             this.comboBoxFaceType = new System.Windows.Forms.ComboBox();
             this.comboBoxBoyatFace = new System.Windows.Forms.ComboBox();
             this.panelCansDesc = new System.Windows.Forms.Panel();
+            this.panelNeck = new System.Windows.Forms.Panel();
+            this.radioButtonHasNeck = new System.Windows.Forms.RadioButton();
+            this.radioButtonHasNONeck = new System.Windows.Forms.RadioButton();
+            this.label35 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.comboBoxPowderColor = new System.Windows.Forms.ComboBox();
@@ -110,8 +122,6 @@
             this.radioButtonManualWeld = new System.Windows.Forms.RadioButton();
             this.radioButtonweld = new System.Windows.Forms.RadioButton();
             this.radioButtonDakWasl = new System.Windows.Forms.RadioButton();
-            this.label35 = new System.Windows.Forms.Label();
-            this.checkBoxHasNeck = new System.Windows.Forms.CheckBox();
             this.groupBoxTaghleef = new System.Windows.Forms.GroupBox();
             this.label37 = new System.Windows.Forms.Label();
             this.comboBox19 = new System.Windows.Forms.ComboBox();
@@ -130,7 +140,6 @@
             this.comboBox17 = new System.Windows.Forms.ComboBox();
             this.panelTaba = new System.Windows.Forms.Panel();
             this.label57 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.comboBoxCanTabaColor = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -138,7 +147,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.comboBoxCanTabaDaimetr = new System.Windows.Forms.ComboBox();
             this.panelTypeOFFace = new System.Windows.Forms.Panel();
-            this.radioButtonTinCover = new System.Windows.Forms.RadioButton();
             this.radioButtonNormalEOE = new System.Windows.Forms.RadioButton();
             this.radioButtonFaceCover = new System.Windows.Forms.RadioButton();
             this.radioButtonPeelOffCover = new System.Windows.Forms.RadioButton();
@@ -148,7 +156,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.radioButtonHaveNoCover = new System.Windows.Forms.RadioButton();
             this.radioButtonHaveCover = new System.Windows.Forms.RadioButton();
-            this.label41 = new System.Windows.Forms.Label();
             this.panelPlasticCover = new System.Windows.Forms.Panel();
             this.comboBoxDaimetrCover = new System.Windows.Forms.ComboBox();
             this.comboBoxCoverColor = new System.Windows.Forms.ComboBox();
@@ -156,16 +163,15 @@
             this.label51 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.panelTwistProp = new System.Windows.Forms.Panel();
+            this.label62 = new System.Windows.Forms.Label();
+            this.twist_item_type_combo_box = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.comboBoxTwistColor = new System.Windows.Forms.ComboBox();
-            this.radioButtonMediumTwist = new System.Windows.Forms.RadioButton();
-            this.radioButtonDeepTwist = new System.Windows.Forms.RadioButton();
-            this.radioButtonNormalTwist = new System.Windows.Forms.RadioButton();
+            this.f1_combo_box = new System.Windows.Forms.ComboBox();
             this.label53 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.comboBoxTwistSize = new System.Windows.Forms.ComboBox();
+            this.f2_combo_box = new System.Windows.Forms.ComboBox();
             this.label52 = new System.Windows.Forms.Label();
-            this.comboBoxTwistTypes = new System.Windows.Forms.ComboBox();
+            this.twist_type_combo_box = new System.Windows.Forms.ComboBox();
             this.panelPlasticTaba = new System.Windows.Forms.Panel();
             this.label55 = new System.Windows.Forms.Label();
             this.comboBoxPlasticTabaType = new System.Windows.Forms.ComboBox();
@@ -184,13 +190,11 @@
             this.radioButtonInsidBead = new System.Windows.Forms.RadioButton();
             this.radioButtonOutSideBead = new System.Windows.Forms.RadioButton();
             this.radioButtonNoPeding = new System.Windows.Forms.RadioButton();
-            this.panelRLT = new System.Windows.Forms.Panel();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.comboBoxRLTDaimetr = new System.Windows.Forms.ComboBox();
             this.panelHavePlasticCover = new System.Windows.Forms.Panel();
+            this.labelCanPlasticCoverColor = new System.Windows.Forms.Label();
+            this.radioButtonPlasticCoverOfCanHasLogo = new System.Windows.Forms.RadioButton();
+            this.radioButtonPlasticCoverOfCanHasNoLogo = new System.Windows.Forms.RadioButton();
             this.label27 = new System.Windows.Forms.Label();
-            this.checkBoxPlasticCoverLogo = new System.Windows.Forms.CheckBox();
             this.comboBoxPlasticCoverColor = new System.Windows.Forms.ComboBox();
             this.checkBoxHavePlasticCover = new System.Windows.Forms.CheckBox();
             this.panelPeelOFF = new System.Windows.Forms.Panel();
@@ -198,6 +202,8 @@
             this.label58 = new System.Windows.Forms.Label();
             this.comboBoxPeelOffDaimetr = new System.Windows.Forms.ComboBox();
             this.panelPecies = new System.Windows.Forms.Panel();
+            this.textBoxThichness = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.comboBoxNumberOfColors = new System.Windows.Forms.ComboBox();
@@ -205,7 +211,6 @@
             this.checkBoxThick = new System.Windows.Forms.CheckBox();
             this.radioButton3Pecies = new System.Windows.Forms.RadioButton();
             this.radioButton2Peices = new System.Windows.Forms.RadioButton();
-            this.checkBoxOutMuran = new System.Windows.Forms.CheckBox();
             this.checkBoxHasMold = new System.Windows.Forms.CheckBox();
             this.panelEasyopen = new System.Windows.Forms.Panel();
             this.comboBoxDiametrEoE = new System.Windows.Forms.ComboBox();
@@ -218,10 +223,44 @@
             this.comboBoxOutSideMuran = new System.Windows.Forms.ComboBox();
             this.labelinsideMuran = new System.Windows.Forms.Label();
             this.comboBoxInsideMuran = new System.Windows.Forms.ComboBox();
+            this.textBoxDateNow = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panelCansOutMuran = new System.Windows.Forms.Panel();
+            this.radioButtonCanHasNoOutMuran = new System.Windows.Forms.RadioButton();
+            this.radioButtonCanHasOutMuran = new System.Windows.Forms.RadioButton();
+            this.labelCanMold10 = new System.Windows.Forms.Label();
+            this.panelRLT = new System.Windows.Forms.Panel();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.comboBoxRLTDaimetr = new System.Windows.Forms.ComboBox();
+            this.panelCanButtom = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.radioButtonCanHasButtom = new System.Windows.Forms.RadioButton();
+            this.radioButtonCanHasNoButtom = new System.Windows.Forms.RadioButton();
+            this.textBoxCanDaimetr = new System.Windows.Forms.TextBox();
+            this.labelCanDaimetr = new System.Windows.Forms.Label();
+            this.textBoxHightOFButtle = new System.Windows.Forms.TextBox();
+            this.labelHightOfButtle = new System.Windows.Forms.Label();
+            this.pillow_check_box = new System.Windows.Forms.CheckBox();
+            this.panelTinCover = new System.Windows.Forms.Panel();
+            this.labelInFaceTin = new System.Windows.Forms.Label();
+            this.comboBoxInTinFace = new System.Windows.Forms.ComboBox();
+            this.labelOutFaceTin = new System.Windows.Forms.Label();
+            this.comboBoxOutTinFace = new System.Windows.Forms.ComboBox();
+            this.radioButtonHasTinCover = new System.Windows.Forms.RadioButton();
+            this.radioButtonHasNoTinCover = new System.Windows.Forms.RadioButton();
+            this.panelCanButtomDetail = new System.Windows.Forms.Panel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.comboBoxCan_Buttom_in_muran = new System.Windows.Forms.ComboBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.comboBoxCan_Buttom_out_muran = new System.Windows.Forms.ComboBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panelMoneyAfterReciving.SuspendLayout();
+            this.panelMoneyInReciving.SuspendLayout();
             this.panelFace.SuspendLayout();
             this.panelCansDesc.SuspendLayout();
+            this.panelNeck.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panelWeldType.SuspendLayout();
             this.groupBoxTaghleef.SuspendLayout();
@@ -233,18 +272,22 @@
             this.panelPlasticTaba.SuspendLayout();
             this.panelUPlipe.SuspendLayout();
             this.panelPeeding.SuspendLayout();
-            this.panelRLT.SuspendLayout();
             this.panelHavePlasticCover.SuspendLayout();
             this.panelPeelOFF.SuspendLayout();
             this.panelPecies.SuspendLayout();
             this.panelEasyopen.SuspendLayout();
+            this.panelCansOutMuran.SuspendLayout();
+            this.panelRLT.SuspendLayout();
+            this.panelCanButtom.SuspendLayout();
+            this.panelTinCover.SuspendLayout();
+            this.panelCanButtomDetail.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(282, 12);
+            this.label1.Location = new System.Drawing.Point(324, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 20);
             this.label1.TabIndex = 0;
@@ -254,7 +297,7 @@
             // 
             this.textBoxOrderWorkClient.Enabled = false;
             this.textBoxOrderWorkClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxOrderWorkClient.Location = new System.Drawing.Point(436, 12);
+            this.textBoxOrderWorkClient.Location = new System.Drawing.Point(487, 12);
             this.textBoxOrderWorkClient.Name = "textBoxOrderWorkClient";
             this.textBoxOrderWorkClient.Size = new System.Drawing.Size(177, 26);
             this.textBoxOrderWorkClient.TabIndex = 1;
@@ -263,35 +306,16 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 75);
+            this.label2.Location = new System.Drawing.Point(10, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "اسم العميل";
             // 
-            // textBoxDateNow
-            // 
-            this.textBoxDateNow.Enabled = false;
-            this.textBoxDateNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxDateNow.Location = new System.Drawing.Point(1044, 73);
-            this.textBoxDateNow.Name = "textBoxDateNow";
-            this.textBoxDateNow.Size = new System.Drawing.Size(195, 26);
-            this.textBoxDateNow.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(973, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "تاريخ اليوم";
-            // 
             // textBoxClientSuppNum
             // 
             this.textBoxClientSuppNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxClientSuppNum.Location = new System.Drawing.Point(785, 73);
+            this.textBoxClientSuppNum.Location = new System.Drawing.Point(831, 9);
             this.textBoxClientSuppNum.Name = "textBoxClientSuppNum";
             this.textBoxClientSuppNum.Size = new System.Drawing.Size(164, 26);
             this.textBoxClientSuppNum.TabIndex = 7;
@@ -300,25 +324,25 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(669, 75);
+            this.label4.Location = new System.Drawing.Point(711, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "رقم امر توريد العميل";
             // 
-            // comboBoxClients
+            // clients_combo_box
             // 
-            this.comboBoxClients.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBoxClients.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxClients.BackColor = System.Drawing.SystemColors.Window;
-            this.comboBoxClients.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxClients.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.comboBoxClients.FormattingEnabled = true;
-            this.comboBoxClients.Location = new System.Drawing.Point(77, 72);
-            this.comboBoxClients.Name = "comboBoxClients";
-            this.comboBoxClients.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxClients.TabIndex = 8;
-            this.comboBoxClients.SelectedIndexChanged += new System.EventHandler(this.comboBoxClients_SelectedIndexChanged);
+            this.clients_combo_box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.clients_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.clients_combo_box.BackColor = System.Drawing.SystemColors.Window;
+            this.clients_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clients_combo_box.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.clients_combo_box.FormattingEnabled = true;
+            this.clients_combo_box.Location = new System.Drawing.Point(77, 72);
+            this.clients_combo_box.Name = "clients_combo_box";
+            this.clients_combo_box.Size = new System.Drawing.Size(193, 33);
+            this.clients_combo_box.TabIndex = 8;
+            this.clients_combo_box.SelectedIndexChanged += new System.EventHandler(this.comboBoxClients_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -344,9 +368,6 @@
             // comboBoxourFactory
             // 
             this.comboBoxourFactory.FormattingEnabled = true;
-            this.comboBoxourFactory.Items.AddRange(new object[] {
-            "فرع العاشر",
-            "فرع ابوزعبل"});
             this.comboBoxourFactory.Location = new System.Drawing.Point(15, 25);
             this.comboBoxourFactory.Name = "comboBoxourFactory";
             this.comboBoxourFactory.Size = new System.Drawing.Size(161, 28);
@@ -458,8 +479,10 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.labelDateOFSheck3);
-            this.groupBox2.Controls.Add(this.dateTimePickerChek3);
+            this.groupBox2.Controls.Add(this.panelMoneyAfterReciving);
+            this.groupBox2.Controls.Add(this.panelMoneyInReciving);
+            this.groupBox2.Controls.Add(this.comboBoxBankName1);
+            this.groupBox2.Controls.Add(this.labelBankName1);
             this.groupBox2.Controls.Add(this.comboBoxCurrency);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.textBoxTotatalWithTax);
@@ -468,14 +491,8 @@
             this.groupBox2.Controls.Add(this.textBoxTax1);
             this.groupBox2.Controls.Add(this.checkBox14);
             this.groupBox2.Controls.Add(this.checkBoxTax1);
-            this.groupBox2.Controls.Add(this.labelDateOFSheck2);
             this.groupBox2.Controls.Add(this.labelDateOFSheck1);
-            this.groupBox2.Controls.Add(this.dateTimePickerChek2);
             this.groupBox2.Controls.Add(this.dateTimePickerChek1);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.comboBoxPaymentWay3);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.comboBoxPaymentWay2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.comboBoxPaymentWay1);
             this.groupBox2.Controls.Add(this.textBoxTotalPrice);
@@ -484,12 +501,6 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.textBoxItemPrice);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBoxRemaining);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.comboBoxAfterReciving);
-            this.groupBox2.Controls.Add(this.labelAfterReciving);
-            this.groupBox2.Controls.Add(this.textBoxWhenDelivered);
-            this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.textBoxSubmitted);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -500,25 +511,269 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "طريقه السداد";
             // 
+            // panelMoneyAfterReciving
+            // 
+            this.panelMoneyAfterReciving.Controls.Add(this.labelBankName3);
+            this.panelMoneyAfterReciving.Controls.Add(this.comboBoxBankName3);
+            this.panelMoneyAfterReciving.Controls.Add(this.labelDateOFSheck3);
+            this.panelMoneyAfterReciving.Controls.Add(this.dateTimePickerChek3);
+            this.panelMoneyAfterReciving.Controls.Add(this.label22);
+            this.panelMoneyAfterReciving.Controls.Add(this.comboBoxPaymentWay3);
+            this.panelMoneyAfterReciving.Controls.Add(this.textBoxRemaining);
+            this.panelMoneyAfterReciving.Controls.Add(this.label15);
+            this.panelMoneyAfterReciving.Controls.Add(this.comboBoxAfterReciving);
+            this.panelMoneyAfterReciving.Controls.Add(this.labelAfterReciving);
+            this.panelMoneyAfterReciving.Location = new System.Drawing.Point(62, 190);
+            this.panelMoneyAfterReciving.Name = "panelMoneyAfterReciving";
+            this.panelMoneyAfterReciving.Size = new System.Drawing.Size(1144, 33);
+            this.panelMoneyAfterReciving.TabIndex = 67;
+            // 
+            // labelBankName3
+            // 
+            this.labelBankName3.AutoSize = true;
+            this.labelBankName3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBankName3.Location = new System.Drawing.Point(232, 10);
+            this.labelBankName3.Name = "labelBankName3";
+            this.labelBankName3.Size = new System.Drawing.Size(56, 20);
+            this.labelBankName3.TabIndex = 74;
+            this.labelBankName3.Text = "اسم البنك";
+            this.labelBankName3.Visible = false;
+            // 
+            // comboBoxBankName3
+            // 
+            this.comboBoxBankName3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBoxBankName3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxBankName3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxBankName3.FormattingEnabled = true;
+            this.comboBoxBankName3.Items.AddRange(new object[] {
+            "CIB",
+            "ابوظبي الاسلامي",
+            "الاهلى"});
+            this.comboBoxBankName3.Location = new System.Drawing.Point(87, 2);
+            this.comboBoxBankName3.Name = "comboBoxBankName3";
+            this.comboBoxBankName3.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxBankName3.TabIndex = 73;
+            this.comboBoxBankName3.Visible = false;
+            // 
             // labelDateOFSheck3
             // 
             this.labelDateOFSheck3.AutoSize = true;
             this.labelDateOFSheck3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDateOFSheck3.Location = new System.Drawing.Point(568, 199);
+            this.labelDateOFSheck3.Location = new System.Drawing.Point(446, 10);
             this.labelDateOFSheck3.Name = "labelDateOFSheck3";
             this.labelDateOFSheck3.Size = new System.Drawing.Size(94, 20);
-            this.labelDateOFSheck3.TabIndex = 59;
+            this.labelDateOFSheck3.TabIndex = 72;
             this.labelDateOFSheck3.Text = "تاريخ الاستحقاق";
             this.labelDateOFSheck3.Visible = false;
             // 
             // dateTimePickerChek3
             // 
             this.dateTimePickerChek3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerChek3.Location = new System.Drawing.Point(446, 196);
+            this.dateTimePickerChek3.Location = new System.Drawing.Point(324, 7);
             this.dateTimePickerChek3.Name = "dateTimePickerChek3";
             this.dateTimePickerChek3.Size = new System.Drawing.Size(116, 26);
-            this.dateTimePickerChek3.TabIndex = 58;
+            this.dateTimePickerChek3.TabIndex = 71;
             this.dateTimePickerChek3.Visible = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(705, 5);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(69, 20);
+            this.label22.TabIndex = 70;
+            this.label22.Text = "طريقه الدفع";
+            // 
+            // comboBoxPaymentWay3
+            // 
+            this.comboBoxPaymentWay3.FormattingEnabled = true;
+            this.comboBoxPaymentWay3.Items.AddRange(new object[] {
+            "نقدا ",
+            "شيك",
+            "ايداع بالبنك"});
+            this.comboBoxPaymentWay3.Location = new System.Drawing.Point(573, 2);
+            this.comboBoxPaymentWay3.Name = "comboBoxPaymentWay3";
+            this.comboBoxPaymentWay3.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxPaymentWay3.TabIndex = 69;
+            this.comboBoxPaymentWay3.SelectedIndexChanged += new System.EventHandler(this.comboBoxPaymentWay3_SelectedIndexChanged_1);
+            // 
+            // textBoxRemaining
+            // 
+            this.textBoxRemaining.Enabled = false;
+            this.textBoxRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRemaining.Location = new System.Drawing.Point(813, 4);
+            this.textBoxRemaining.Name = "textBoxRemaining";
+            this.textBoxRemaining.Size = new System.Drawing.Size(164, 26);
+            this.textBoxRemaining.TabIndex = 68;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(983, 5);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(74, 20);
+            this.label15.TabIndex = 67;
+            this.label15.Text = "المبلغ المؤجل";
+            // 
+            // comboBoxAfterReciving
+            // 
+            this.comboBoxAfterReciving.FormattingEnabled = true;
+            this.comboBoxAfterReciving.Items.AddRange(new object[] {
+            "7 ايام",
+            "15 ايام",
+            "30 يوم",
+            "45 يوم",
+            "60 يوم"});
+            this.comboBoxAfterReciving.Location = new System.Drawing.Point(87, 0);
+            this.comboBoxAfterReciving.Name = "comboBoxAfterReciving";
+            this.comboBoxAfterReciving.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxAfterReciving.TabIndex = 66;
+            this.comboBoxAfterReciving.Visible = false;
+            // 
+            // labelAfterReciving
+            // 
+            this.labelAfterReciving.AutoSize = true;
+            this.labelAfterReciving.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAfterReciving.Location = new System.Drawing.Point(227, 8);
+            this.labelAfterReciving.Name = "labelAfterReciving";
+            this.labelAfterReciving.Size = new System.Drawing.Size(69, 20);
+            this.labelAfterReciving.TabIndex = 21;
+            this.labelAfterReciving.Text = "بعد الاستلام";
+            this.labelAfterReciving.Visible = false;
+            // 
+            // panelMoneyInReciving
+            // 
+            this.panelMoneyInReciving.Controls.Add(this.comboBoxBankName2);
+            this.panelMoneyInReciving.Controls.Add(this.labelBankName2);
+            this.panelMoneyInReciving.Controls.Add(this.labelDateOFSheck2);
+            this.panelMoneyInReciving.Controls.Add(this.dateTimePickerChek2);
+            this.panelMoneyInReciving.Controls.Add(this.label21);
+            this.panelMoneyInReciving.Controls.Add(this.comboBoxPaymentWay2);
+            this.panelMoneyInReciving.Controls.Add(this.textBoxWhenDelivered);
+            this.panelMoneyInReciving.Controls.Add(this.label13);
+            this.panelMoneyInReciving.Location = new System.Drawing.Point(170, 150);
+            this.panelMoneyInReciving.Name = "panelMoneyInReciving";
+            this.panelMoneyInReciving.Size = new System.Drawing.Size(1039, 35);
+            this.panelMoneyInReciving.TabIndex = 66;
+            // 
+            // comboBoxBankName2
+            // 
+            this.comboBoxBankName2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBoxBankName2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxBankName2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxBankName2.FormattingEnabled = true;
+            this.comboBoxBankName2.Items.AddRange(new object[] {
+            "CIB",
+            "ابوظبي الاسلامي",
+            "الاهلى"});
+            this.comboBoxBankName2.Location = new System.Drawing.Point(40, 0);
+            this.comboBoxBankName2.Name = "comboBoxBankName2";
+            this.comboBoxBankName2.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxBankName2.TabIndex = 71;
+            this.comboBoxBankName2.Visible = false;
+            // 
+            // labelBankName2
+            // 
+            this.labelBankName2.AutoSize = true;
+            this.labelBankName2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBankName2.Location = new System.Drawing.Point(176, 3);
+            this.labelBankName2.Name = "labelBankName2";
+            this.labelBankName2.Size = new System.Drawing.Size(56, 20);
+            this.labelBankName2.TabIndex = 70;
+            this.labelBankName2.Text = "اسم البنك";
+            this.labelBankName2.Visible = false;
+            // 
+            // labelDateOFSheck2
+            // 
+            this.labelDateOFSheck2.AutoSize = true;
+            this.labelDateOFSheck2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDateOFSheck2.Location = new System.Drawing.Point(392, 11);
+            this.labelDateOFSheck2.Name = "labelDateOFSheck2";
+            this.labelDateOFSheck2.Size = new System.Drawing.Size(94, 20);
+            this.labelDateOFSheck2.TabIndex = 69;
+            this.labelDateOFSheck2.Text = "تاريخ الاستحقاق";
+            this.labelDateOFSheck2.Visible = false;
+            // 
+            // dateTimePickerChek2
+            // 
+            this.dateTimePickerChek2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerChek2.Location = new System.Drawing.Point(270, 8);
+            this.dateTimePickerChek2.Name = "dateTimePickerChek2";
+            this.dateTimePickerChek2.Size = new System.Drawing.Size(116, 26);
+            this.dateTimePickerChek2.TabIndex = 68;
+            this.dateTimePickerChek2.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(650, 3);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(69, 20);
+            this.label21.TabIndex = 67;
+            this.label21.Text = "طريقه الدفع";
+            // 
+            // comboBoxPaymentWay2
+            // 
+            this.comboBoxPaymentWay2.FormattingEnabled = true;
+            this.comboBoxPaymentWay2.Items.AddRange(new object[] {
+            "نقدا",
+            "شيك",
+            "ايداع بالبنك"});
+            this.comboBoxPaymentWay2.Location = new System.Drawing.Point(518, 0);
+            this.comboBoxPaymentWay2.Name = "comboBoxPaymentWay2";
+            this.comboBoxPaymentWay2.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxPaymentWay2.TabIndex = 66;
+            this.comboBoxPaymentWay2.SelectedIndexChanged += new System.EventHandler(this.comboBoxPaymentWay2_SelectedIndexChanged_1);
+            // 
+            // textBoxWhenDelivered
+            // 
+            this.textBoxWhenDelivered.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxWhenDelivered.Location = new System.Drawing.Point(758, 5);
+            this.textBoxWhenDelivered.Name = "textBoxWhenDelivered";
+            this.textBoxWhenDelivered.Size = new System.Drawing.Size(164, 26);
+            this.textBoxWhenDelivered.TabIndex = 65;
+            this.textBoxWhenDelivered.Text = "0";
+            this.textBoxWhenDelivered.TextChanged += new System.EventHandler(this.textBoxWhenDelivered_TextChanged_1);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(928, 8);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(71, 20);
+            this.label13.TabIndex = 64;
+            this.label13.Text = "عند الاستلام";
+            // 
+            // comboBoxBankName1
+            // 
+            this.comboBoxBankName1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBoxBankName1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxBankName1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxBankName1.FormattingEnabled = true;
+            this.comboBoxBankName1.Items.AddRange(new object[] {
+            "CIB",
+            "ابوظبي الاسلامي",
+            "الاهلى"});
+            this.comboBoxBankName1.Location = new System.Drawing.Point(217, 112);
+            this.comboBoxBankName1.Name = "comboBoxBankName1";
+            this.comboBoxBankName1.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxBankName1.TabIndex = 61;
+            this.comboBoxBankName1.Visible = false;
+            // 
+            // labelBankName1
+            // 
+            this.labelBankName1.AutoSize = true;
+            this.labelBankName1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBankName1.Location = new System.Drawing.Point(356, 114);
+            this.labelBankName1.Name = "labelBankName1";
+            this.labelBankName1.Size = new System.Drawing.Size(56, 20);
+            this.labelBankName1.TabIndex = 60;
+            this.labelBankName1.Text = "اسم البنك";
+            this.labelBankName1.Visible = false;
             // 
             // comboBoxCurrency
             // 
@@ -603,17 +858,6 @@
             this.checkBoxTax1.UseVisualStyleBackColor = true;
             this.checkBoxTax1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // labelDateOFSheck2
-            // 
-            this.labelDateOFSheck2.AutoSize = true;
-            this.labelDateOFSheck2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDateOFSheck2.Location = new System.Drawing.Point(569, 161);
-            this.labelDateOFSheck2.Name = "labelDateOFSheck2";
-            this.labelDateOFSheck2.Size = new System.Drawing.Size(94, 20);
-            this.labelDateOFSheck2.TabIndex = 49;
-            this.labelDateOFSheck2.Text = "تاريخ الاستحقاق";
-            this.labelDateOFSheck2.Visible = false;
-            // 
             // labelDateOFSheck1
             // 
             this.labelDateOFSheck1.AutoSize = true;
@@ -625,15 +869,6 @@
             this.labelDateOFSheck1.Text = "تاريخ الاستحقاق";
             this.labelDateOFSheck1.Visible = false;
             // 
-            // dateTimePickerChek2
-            // 
-            this.dateTimePickerChek2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerChek2.Location = new System.Drawing.Point(447, 158);
-            this.dateTimePickerChek2.Name = "dateTimePickerChek2";
-            this.dateTimePickerChek2.Size = new System.Drawing.Size(116, 26);
-            this.dateTimePickerChek2.TabIndex = 47;
-            this.dateTimePickerChek2.Visible = false;
-            // 
             // dateTimePickerChek1
             // 
             this.dateTimePickerChek1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -642,50 +877,6 @@
             this.dateTimePickerChek1.Size = new System.Drawing.Size(116, 26);
             this.dateTimePickerChek1.TabIndex = 46;
             this.dateTimePickerChek1.Visible = false;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(827, 194);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(69, 20);
-            this.label22.TabIndex = 45;
-            this.label22.Text = "طريقه الدفع";
-            // 
-            // comboBoxPaymentWay3
-            // 
-            this.comboBoxPaymentWay3.FormattingEnabled = true;
-            this.comboBoxPaymentWay3.Items.AddRange(new object[] {
-            "نقدا ",
-            "شيك"});
-            this.comboBoxPaymentWay3.Location = new System.Drawing.Point(695, 191);
-            this.comboBoxPaymentWay3.Name = "comboBoxPaymentWay3";
-            this.comboBoxPaymentWay3.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxPaymentWay3.TabIndex = 44;
-            this.comboBoxPaymentWay3.SelectedIndexChanged += new System.EventHandler(this.comboBoxPaymentWay3_SelectedIndexChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(827, 153);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(69, 20);
-            this.label21.TabIndex = 43;
-            this.label21.Text = "طريقه الدفع";
-            // 
-            // comboBoxPaymentWay2
-            // 
-            this.comboBoxPaymentWay2.FormattingEnabled = true;
-            this.comboBoxPaymentWay2.Items.AddRange(new object[] {
-            "نقدا",
-            "شيك"});
-            this.comboBoxPaymentWay2.Location = new System.Drawing.Point(695, 150);
-            this.comboBoxPaymentWay2.Name = "comboBoxPaymentWay2";
-            this.comboBoxPaymentWay2.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxPaymentWay2.TabIndex = 42;
-            this.comboBoxPaymentWay2.SelectedIndexChanged += new System.EventHandler(this.comboBoxPaymentWay2_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -702,7 +893,8 @@
             this.comboBoxPaymentWay1.FormattingEnabled = true;
             this.comboBoxPaymentWay1.Items.AddRange(new object[] {
             "نقد",
-            "شيك"});
+            "شيك",
+            "ايداع بالبنك"});
             this.comboBoxPaymentWay1.Location = new System.Drawing.Point(695, 114);
             this.comboBoxPaymentWay1.Name = "comboBoxPaymentWay1";
             this.comboBoxPaymentWay1.Size = new System.Drawing.Size(121, 28);
@@ -771,72 +963,6 @@
             this.label6.TabIndex = 25;
             this.label6.Text = "سعر الوحده\r\n";
             // 
-            // textBoxRemaining
-            // 
-            this.textBoxRemaining.Enabled = false;
-            this.textBoxRemaining.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRemaining.Location = new System.Drawing.Point(935, 193);
-            this.textBoxRemaining.Name = "textBoxRemaining";
-            this.textBoxRemaining.Size = new System.Drawing.Size(164, 26);
-            this.textBoxRemaining.TabIndex = 24;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1105, 194);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(74, 20);
-            this.label15.TabIndex = 23;
-            this.label15.Text = "المبلغ المؤجل";
-            // 
-            // comboBoxAfterReciving
-            // 
-            this.comboBoxAfterReciving.FormattingEnabled = true;
-            this.comboBoxAfterReciving.Items.AddRange(new object[] {
-            "7 ايام",
-            "15 ايام",
-            "30 يوم",
-            "45 يوم",
-            "60 يوم"});
-            this.comboBoxAfterReciving.Location = new System.Drawing.Point(209, 189);
-            this.comboBoxAfterReciving.Name = "comboBoxAfterReciving";
-            this.comboBoxAfterReciving.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxAfterReciving.TabIndex = 22;
-            this.comboBoxAfterReciving.Visible = false;
-            // 
-            // labelAfterReciving
-            // 
-            this.labelAfterReciving.AutoSize = true;
-            this.labelAfterReciving.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAfterReciving.Location = new System.Drawing.Point(336, 192);
-            this.labelAfterReciving.Name = "labelAfterReciving";
-            this.labelAfterReciving.Size = new System.Drawing.Size(69, 20);
-            this.labelAfterReciving.TabIndex = 21;
-            this.labelAfterReciving.Text = "بعد الاستلام";
-            this.labelAfterReciving.Visible = false;
-            // 
-            // textBoxWhenDelivered
-            // 
-            this.textBoxWhenDelivered.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWhenDelivered.Location = new System.Drawing.Point(935, 155);
-            this.textBoxWhenDelivered.Name = "textBoxWhenDelivered";
-            this.textBoxWhenDelivered.Size = new System.Drawing.Size(164, 26);
-            this.textBoxWhenDelivered.TabIndex = 20;
-            this.textBoxWhenDelivered.Text = "0";
-            this.textBoxWhenDelivered.TextChanged += new System.EventHandler(this.textBoxWhenDelivered_TextChanged);
-            this.textBoxWhenDelivered.Leave += new System.EventHandler(this.textBoxWhenDelivered_Leave);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(1105, 158);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 20);
-            this.label13.TabIndex = 19;
-            this.label13.Text = "عند الاستلام";
-            // 
             // textBoxSubmitted
             // 
             this.textBoxSubmitted.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -864,7 +990,7 @@
             this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonSave.Location = new System.Drawing.Point(124, 893);
+            this.buttonSave.Location = new System.Drawing.Point(122, 916);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(124, 33);
             this.buttonSave.TabIndex = 15;
@@ -878,7 +1004,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(663, 893);
+            this.button2.Location = new System.Drawing.Point(672, 916);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(124, 33);
             this.button2.TabIndex = 16;
@@ -892,7 +1018,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(1076, 893);
+            this.button3.Location = new System.Drawing.Point(1076, 916);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(124, 33);
             this.button3.TabIndex = 17;
@@ -900,32 +1026,33 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // comboBoxProducts
+            // client_product_combo_box
             // 
-            this.comboBoxProducts.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.comboBoxProducts.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxProducts.FormattingEnabled = true;
-            this.comboBoxProducts.Location = new System.Drawing.Point(287, 73);
-            this.comboBoxProducts.Name = "comboBoxProducts";
-            this.comboBoxProducts.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxProducts.TabIndex = 20;
+            this.client_product_combo_box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.client_product_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.client_product_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.client_product_combo_box.FormattingEnabled = true;
+            this.client_product_combo_box.Location = new System.Drawing.Point(628, 72);
+            this.client_product_combo_box.Name = "client_product_combo_box";
+            this.client_product_combo_box.Size = new System.Drawing.Size(121, 28);
+            this.client_product_combo_box.TabIndex = 20;
+            this.client_product_combo_box.SelectedIndexChanged += new System.EventHandler(this.comboBoxProducts_SelectedIndexChanged);
             // 
-            // label28
+            // client_products_label
             // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(219, 75);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(69, 20);
-            this.label28.TabIndex = 19;
-            this.label28.Text = "اسم الصنف";
+            this.client_products_label.AutoSize = true;
+            this.client_products_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.client_products_label.Location = new System.Drawing.Point(557, 76);
+            this.client_products_label.Name = "client_products_label";
+            this.client_products_label.Size = new System.Drawing.Size(69, 20);
+            this.client_products_label.TabIndex = 19;
+            this.client_products_label.Text = "اسم الصنف";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(423, 75);
+            this.label20.Location = new System.Drawing.Point(303, 79);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(71, 20);
             this.label20.TabIndex = 43;
@@ -944,7 +1071,7 @@
             "Normal end",
             "غطاء بلاستيك",
             "طبة"});
-            this.comboBoxItemType.Location = new System.Drawing.Point(500, 69);
+            this.comboBoxItemType.Location = new System.Drawing.Point(380, 74);
             this.comboBoxItemType.Name = "comboBoxItemType";
             this.comboBoxItemType.Size = new System.Drawing.Size(160, 28);
             this.comboBoxItemType.TabIndex = 42;
@@ -952,16 +1079,29 @@
             // 
             // panelFace
             // 
+            this.panelFace.Controls.Add(this.labelMoldFaceShape);
             this.panelFace.Controls.Add(this.comboBoxTabaDaiametr);
             this.panelFace.Controls.Add(this.labelBoyatType);
+            this.panelFace.Controls.Add(this.comboBoxMoldFaceShape);
             this.panelFace.Controls.Add(this.label33);
             this.panelFace.Controls.Add(this.comboBoxFaceType);
             this.panelFace.Controls.Add(this.comboBoxBoyatFace);
-            this.panelFace.Location = new System.Drawing.Point(500, 804);
+            this.panelFace.Location = new System.Drawing.Point(609, 760);
             this.panelFace.Name = "panelFace";
-            this.panelFace.Size = new System.Drawing.Size(449, 35);
+            this.panelFace.Size = new System.Drawing.Size(613, 34);
             this.panelFace.TabIndex = 48;
             this.panelFace.Visible = false;
+            // 
+            // labelMoldFaceShape
+            // 
+            this.labelMoldFaceShape.AutoSize = true;
+            this.labelMoldFaceShape.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMoldFaceShape.Location = new System.Drawing.Point(117, 11);
+            this.labelMoldFaceShape.Name = "labelMoldFaceShape";
+            this.labelMoldFaceShape.Size = new System.Drawing.Size(63, 20);
+            this.labelMoldFaceShape.TabIndex = 74;
+            this.labelMoldFaceShape.Text = "شكل الوش";
+            this.labelMoldFaceShape.Visible = false;
             // 
             // comboBoxTabaDaiametr
             // 
@@ -973,7 +1113,7 @@
             "42",
             "75",
             "52"});
-            this.comboBoxTabaDaiametr.Location = new System.Drawing.Point(76, 6);
+            this.comboBoxTabaDaiametr.Location = new System.Drawing.Point(232, 3);
             this.comboBoxTabaDaiametr.Name = "comboBoxTabaDaiametr";
             this.comboBoxTabaDaiametr.Size = new System.Drawing.Size(96, 28);
             this.comboBoxTabaDaiametr.TabIndex = 72;
@@ -983,18 +1123,31 @@
             // 
             this.labelBoyatType.AutoSize = true;
             this.labelBoyatType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBoyatType.Location = new System.Drawing.Point(178, 9);
+            this.labelBoyatType.Location = new System.Drawing.Point(329, 11);
             this.labelBoyatType.Name = "labelBoyatType";
             this.labelBoyatType.Size = new System.Drawing.Size(77, 20);
             this.labelBoyatType.TabIndex = 71;
             this.labelBoyatType.Text = "الوش البويات";
             this.labelBoyatType.Visible = false;
             // 
+            // comboBoxMoldFaceShape
+            // 
+            this.comboBoxMoldFaceShape.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxMoldFaceShape.FormattingEnabled = true;
+            this.comboBoxMoldFaceShape.Items.AddRange(new object[] {
+            "فلات",
+            "مسلوب"});
+            this.comboBoxMoldFaceShape.Location = new System.Drawing.Point(15, 6);
+            this.comboBoxMoldFaceShape.Name = "comboBoxMoldFaceShape";
+            this.comboBoxMoldFaceShape.Size = new System.Drawing.Size(96, 28);
+            this.comboBoxMoldFaceShape.TabIndex = 73;
+            this.comboBoxMoldFaceShape.Visible = false;
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(385, 6);
+            this.label33.Location = new System.Drawing.Point(538, 9);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(60, 20);
             this.label33.TabIndex = 70;
@@ -1008,7 +1161,7 @@
             "بويات",
             "طبه",
             "قلاوظ"});
-            this.comboBoxFaceType.Location = new System.Drawing.Point(288, 3);
+            this.comboBoxFaceType.Location = new System.Drawing.Point(439, 3);
             this.comboBoxFaceType.Name = "comboBoxFaceType";
             this.comboBoxFaceType.Size = new System.Drawing.Size(96, 28);
             this.comboBoxFaceType.TabIndex = 69;
@@ -1022,7 +1175,7 @@
             "امريكي",
             "اسباني",
             "ايطالي"});
-            this.comboBoxBoyatFace.Location = new System.Drawing.Point(76, 3);
+            this.comboBoxBoyatFace.Location = new System.Drawing.Point(232, 6);
             this.comboBoxBoyatFace.Name = "comboBoxBoyatFace";
             this.comboBoxBoyatFace.Size = new System.Drawing.Size(96, 28);
             this.comboBoxBoyatFace.TabIndex = 66;
@@ -1031,6 +1184,7 @@
             // 
             // panelCansDesc
             // 
+            this.panelCansDesc.Controls.Add(this.panelNeck);
             this.panelCansDesc.Controls.Add(this.label43);
             this.panelCansDesc.Controls.Add(this.label34);
             this.panelCansDesc.Controls.Add(this.comboBoxPowderColor);
@@ -1041,9 +1195,55 @@
             this.panelCansDesc.Controls.Add(this.groupBoxTaghleef);
             this.panelCansDesc.Location = new System.Drawing.Point(3, 435);
             this.panelCansDesc.Name = "panelCansDesc";
-            this.panelCansDesc.Size = new System.Drawing.Size(1242, 131);
+            this.panelCansDesc.Size = new System.Drawing.Size(1242, 133);
             this.panelCansDesc.TabIndex = 49;
             this.panelCansDesc.Visible = false;
+            // 
+            // panelNeck
+            // 
+            this.panelNeck.Controls.Add(this.radioButtonHasNeck);
+            this.panelNeck.Controls.Add(this.radioButtonHasNONeck);
+            this.panelNeck.Controls.Add(this.label35);
+            this.panelNeck.Location = new System.Drawing.Point(837, 68);
+            this.panelNeck.Name = "panelNeck";
+            this.panelNeck.Size = new System.Drawing.Size(403, 32);
+            this.panelNeck.TabIndex = 76;
+            this.panelNeck.Visible = false;
+            // 
+            // radioButtonHasNeck
+            // 
+            this.radioButtonHasNeck.AutoSize = true;
+            this.radioButtonHasNeck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonHasNeck.Location = new System.Drawing.Point(281, 4);
+            this.radioButtonHasNeck.Name = "radioButtonHasNeck";
+            this.radioButtonHasNeck.Size = new System.Drawing.Size(91, 24);
+            this.radioButtonHasNeck.TabIndex = 67;
+            this.radioButtonHasNeck.TabStop = true;
+            this.radioButtonHasNeck.Text = "يوجد Neck";
+            this.radioButtonHasNeck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.radioButtonHasNeck.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHasNONeck
+            // 
+            this.radioButtonHasNONeck.AutoSize = true;
+            this.radioButtonHasNONeck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonHasNONeck.Location = new System.Drawing.Point(172, 8);
+            this.radioButtonHasNONeck.Name = "radioButtonHasNONeck";
+            this.radioButtonHasNONeck.Size = new System.Drawing.Size(104, 24);
+            this.radioButtonHasNONeck.TabIndex = 66;
+            this.radioButtonHasNONeck.TabStop = true;
+            this.radioButtonHasNONeck.Text = "لا يوجد Neck";
+            this.radioButtonHasNONeck.UseVisualStyleBackColor = true;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(382, 8);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(20, 24);
+            this.label35.TabIndex = 65;
+            this.label35.Text = "4";
             // 
             // label43
             // 
@@ -1059,11 +1259,11 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(1209, 101);
+            this.label34.Location = new System.Drawing.Point(1219, 104);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(20, 24);
             this.label34.TabIndex = 70;
-            this.label34.Text = "4";
+            this.label34.Text = "5";
             // 
             // comboBoxPowderColor
             // 
@@ -1071,8 +1271,8 @@
             this.comboBoxPowderColor.FormattingEnabled = true;
             this.comboBoxPowderColor.Items.AddRange(new object[] {
             "ابيض",
-            "ابيض ذهبي"});
-            this.comboBoxPowderColor.Location = new System.Drawing.Point(800, 98);
+            "فضى"});
+            this.comboBoxPowderColor.Location = new System.Drawing.Point(773, 100);
             this.comboBoxPowderColor.Name = "comboBoxPowderColor";
             this.comboBoxPowderColor.Size = new System.Drawing.Size(121, 28);
             this.comboBoxPowderColor.TabIndex = 69;
@@ -1082,7 +1282,7 @@
             // 
             this.labelPowderColor.AutoSize = true;
             this.labelPowderColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPowderColor.Location = new System.Drawing.Point(927, 101);
+            this.labelPowderColor.Location = new System.Drawing.Point(906, 102);
             this.labelPowderColor.Name = "labelPowderColor";
             this.labelPowderColor.Size = new System.Drawing.Size(62, 20);
             this.labelPowderColor.TabIndex = 68;
@@ -1093,7 +1293,7 @@
             // 
             this.radioButtonNoPowder.AutoSize = true;
             this.radioButtonNoPowder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonNoPowder.Location = new System.Drawing.Point(997, 101);
+            this.radioButtonNoPowder.Location = new System.Drawing.Point(1025, 105);
             this.radioButtonNoPowder.Name = "radioButtonNoPowder";
             this.radioButtonNoPowder.Size = new System.Drawing.Size(88, 24);
             this.radioButtonNoPowder.TabIndex = 67;
@@ -1105,7 +1305,7 @@
             // 
             this.radioButtonPowder.AutoSize = true;
             this.radioButtonPowder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonPowder.Location = new System.Drawing.Point(1121, 102);
+            this.radioButtonPowder.Location = new System.Drawing.Point(1130, 109);
             this.radioButtonPowder.Name = "radioButtonPowder";
             this.radioButtonPowder.Size = new System.Drawing.Size(79, 24);
             this.radioButtonPowder.TabIndex = 66;
@@ -1120,22 +1320,20 @@
             this.panel5.Controls.Add(this.panelWeldType);
             this.panel5.Controls.Add(this.radioButtonweld);
             this.panel5.Controls.Add(this.radioButtonDakWasl);
-            this.panel5.Controls.Add(this.label35);
-            this.panel5.Controls.Add(this.checkBoxHasNeck);
-            this.panel5.Location = new System.Drawing.Point(600, 6);
+            this.panel5.Location = new System.Drawing.Point(584, 35);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(633, 63);
+            this.panel5.Size = new System.Drawing.Size(651, 31);
             this.panel5.TabIndex = 64;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(609, 0);
+            this.label11.Location = new System.Drawing.Point(632, 4);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(20, 24);
             this.label11.TabIndex = 44;
-            this.label11.Text = "2";
+            this.label11.Text = "3";
             // 
             // panelWeldType
             // 
@@ -1143,7 +1341,7 @@
             this.panelWeldType.Controls.Add(this.radioButtonManualWeld);
             this.panelWeldType.Location = new System.Drawing.Point(42, 3);
             this.panelWeldType.Name = "panelWeldType";
-            this.panelWeldType.Size = new System.Drawing.Size(410, 36);
+            this.panelWeldType.Size = new System.Drawing.Size(410, 24);
             this.panelWeldType.TabIndex = 43;
             this.panelWeldType.Visible = false;
             // 
@@ -1175,7 +1373,7 @@
             // 
             this.radioButtonweld.AutoSize = true;
             this.radioButtonweld.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonweld.Location = new System.Drawing.Point(551, 7);
+            this.radioButtonweld.Location = new System.Drawing.Point(578, 8);
             this.radioButtonweld.Name = "radioButtonweld";
             this.radioButtonweld.Size = new System.Drawing.Size(47, 24);
             this.radioButtonweld.TabIndex = 42;
@@ -1195,27 +1393,6 @@
             this.radioButtonDakWasl.TabStop = true;
             this.radioButtonDakWasl.Text = "دق وصل";
             this.radioButtonDakWasl.UseVisualStyleBackColor = true;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(609, 35);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(20, 24);
-            this.label35.TabIndex = 65;
-            this.label35.Text = "3";
-            // 
-            // checkBoxHasNeck
-            // 
-            this.checkBoxHasNeck.AutoSize = true;
-            this.checkBoxHasNeck.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxHasNeck.Location = new System.Drawing.Point(508, 35);
-            this.checkBoxHasNeck.Name = "checkBoxHasNeck";
-            this.checkBoxHasNeck.Size = new System.Drawing.Size(92, 24);
-            this.checkBoxHasNeck.TabIndex = 60;
-            this.checkBoxHasNeck.Text = "يوجد Neck";
-            this.checkBoxHasNeck.UseVisualStyleBackColor = true;
             // 
             // groupBoxTaghleef
             // 
@@ -1278,11 +1455,11 @@
             // 
             this.labelnum5.AutoSize = true;
             this.labelnum5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelnum5.Location = new System.Drawing.Point(14, 583);
+            this.labelnum5.Location = new System.Drawing.Point(453, 12);
             this.labelnum5.Name = "labelnum5";
             this.labelnum5.Size = new System.Drawing.Size(20, 24);
             this.labelnum5.TabIndex = 45;
-            this.labelnum5.Text = "5";
+            this.labelnum5.Text = "6";
             this.labelnum5.Visible = false;
             // 
             // comboBox6
@@ -1400,16 +1577,15 @@
             // panelTaba
             // 
             this.panelTaba.Controls.Add(this.label57);
-            this.panelTaba.Controls.Add(this.label26);
             this.panelTaba.Controls.Add(this.label44);
             this.panelTaba.Controls.Add(this.comboBoxCanTabaColor);
             this.panelTaba.Controls.Add(this.label25);
             this.panelTaba.Controls.Add(this.comboBoxCanTabaType);
             this.panelTaba.Controls.Add(this.label24);
             this.panelTaba.Controls.Add(this.comboBoxCanTabaDaimetr);
-            this.panelTaba.Location = new System.Drawing.Point(3, 791);
+            this.panelTaba.Location = new System.Drawing.Point(114, 818);
             this.panelTaba.Name = "panelTaba";
-            this.panelTaba.Size = new System.Drawing.Size(491, 39);
+            this.panelTaba.Size = new System.Drawing.Size(448, 47);
             this.panelTaba.TabIndex = 60;
             this.panelTaba.Visible = false;
             // 
@@ -1417,27 +1593,17 @@
             // 
             this.label57.AutoSize = true;
             this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.Location = new System.Drawing.Point(328, 11);
+            this.label57.Location = new System.Drawing.Point(309, 9);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(19, 20);
             this.label57.TabIndex = 76;
             this.label57.Text = "مم";
             // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(458, 9);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(30, 24);
-            this.label26.TabIndex = 75;
-            this.label26.Text = "10";
-            // 
             // label44
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(115, 12);
+            this.label44.Location = new System.Drawing.Point(101, 9);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(34, 20);
             this.label44.TabIndex = 70;
@@ -1451,7 +1617,7 @@
             "اخضر",
             "اصفر",
             "احمر"});
-            this.comboBoxCanTabaColor.Location = new System.Drawing.Point(13, 9);
+            this.comboBoxCanTabaColor.Location = new System.Drawing.Point(3, 8);
             this.comboBoxCanTabaColor.Name = "comboBoxCanTabaColor";
             this.comboBoxCanTabaColor.Size = new System.Drawing.Size(96, 28);
             this.comboBoxCanTabaColor.TabIndex = 69;
@@ -1460,7 +1626,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(262, 12);
+            this.label25.Location = new System.Drawing.Point(240, 10);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(60, 20);
             this.label25.TabIndex = 68;
@@ -1473,7 +1639,7 @@
             this.comboBoxCanTabaType.Items.AddRange(new object[] {
             "عادي",
             "تليسكوب"});
-            this.comboBoxCanTabaType.Location = new System.Drawing.Point(166, 8);
+            this.comboBoxCanTabaType.Location = new System.Drawing.Point(141, 6);
             this.comboBoxCanTabaType.Name = "comboBoxCanTabaType";
             this.comboBoxCanTabaType.Size = new System.Drawing.Size(93, 28);
             this.comboBoxCanTabaType.TabIndex = 67;
@@ -1482,7 +1648,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(396, 12);
+            this.label24.Location = new System.Drawing.Point(383, 12);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(61, 20);
             this.label24.TabIndex = 66;
@@ -1498,41 +1664,29 @@
             "42",
             "75",
             "52"});
-            this.comboBoxCanTabaDaimetr.Location = new System.Drawing.Point(350, 8);
+            this.comboBoxCanTabaDaimetr.Location = new System.Drawing.Point(331, 8);
             this.comboBoxCanTabaDaimetr.Name = "comboBoxCanTabaDaimetr";
             this.comboBoxCanTabaDaimetr.Size = new System.Drawing.Size(46, 28);
             this.comboBoxCanTabaDaimetr.TabIndex = 65;
             // 
             // panelTypeOFFace
             // 
-            this.panelTypeOFFace.Controls.Add(this.radioButtonTinCover);
             this.panelTypeOFFace.Controls.Add(this.radioButtonNormalEOE);
             this.panelTypeOFFace.Controls.Add(this.radioButtonFaceCover);
             this.panelTypeOFFace.Controls.Add(this.radioButtonPeelOffCover);
             this.panelTypeOFFace.Controls.Add(this.radioButtonRLTCover);
             this.panelTypeOFFace.Controls.Add(this.radioButtonEasyOpen);
             this.panelTypeOFFace.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelTypeOFFace.Location = new System.Drawing.Point(3, 723);
+            this.panelTypeOFFace.Location = new System.Drawing.Point(3, 734);
             this.panelTypeOFFace.Name = "panelTypeOFFace";
-            this.panelTypeOFFace.Size = new System.Drawing.Size(508, 31);
+            this.panelTypeOFFace.Size = new System.Drawing.Size(478, 29);
             this.panelTypeOFFace.TabIndex = 61;
             this.panelTypeOFFace.Visible = false;
-            // 
-            // radioButtonTinCover
-            // 
-            this.radioButtonTinCover.AutoSize = true;
-            this.radioButtonTinCover.Location = new System.Drawing.Point(30, 3);
-            this.radioButtonTinCover.Name = "radioButtonTinCover";
-            this.radioButtonTinCover.Size = new System.Drawing.Size(91, 24);
-            this.radioButtonTinCover.TabIndex = 76;
-            this.radioButtonTinCover.TabStop = true;
-            this.radioButtonTinCover.Text = "غطاء صفيح";
-            this.radioButtonTinCover.UseVisualStyleBackColor = true;
             // 
             // radioButtonNormalEOE
             // 
             this.radioButtonNormalEOE.AutoSize = true;
-            this.radioButtonNormalEOE.Location = new System.Drawing.Point(374, 4);
+            this.radioButtonNormalEOE.Location = new System.Drawing.Point(307, 0);
             this.radioButtonNormalEOE.Name = "radioButtonNormalEOE";
             this.radioButtonNormalEOE.Size = new System.Drawing.Size(44, 24);
             this.radioButtonNormalEOE.TabIndex = 75;
@@ -1544,7 +1698,7 @@
             // radioButtonFaceCover
             // 
             this.radioButtonFaceCover.AutoSize = true;
-            this.radioButtonFaceCover.Location = new System.Drawing.Point(135, 3);
+            this.radioButtonFaceCover.Location = new System.Drawing.Point(48, 0);
             this.radioButtonFaceCover.Name = "radioButtonFaceCover";
             this.radioButtonFaceCover.Size = new System.Drawing.Size(47, 24);
             this.radioButtonFaceCover.TabIndex = 39;
@@ -1556,7 +1710,7 @@
             // radioButtonPeelOffCover
             // 
             this.radioButtonPeelOffCover.AutoSize = true;
-            this.radioButtonPeelOffCover.Location = new System.Drawing.Point(188, 4);
+            this.radioButtonPeelOffCover.Location = new System.Drawing.Point(121, 4);
             this.radioButtonPeelOffCover.Name = "radioButtonPeelOffCover";
             this.radioButtonPeelOffCover.Size = new System.Drawing.Size(100, 24);
             this.radioButtonPeelOffCover.TabIndex = 38;
@@ -1568,7 +1722,7 @@
             // radioButtonRLTCover
             // 
             this.radioButtonRLTCover.AutoSize = true;
-            this.radioButtonRLTCover.Location = new System.Drawing.Point(298, 4);
+            this.radioButtonRLTCover.Location = new System.Drawing.Point(244, 3);
             this.radioButtonRLTCover.Name = "radioButtonRLTCover";
             this.radioButtonRLTCover.Size = new System.Drawing.Size(57, 24);
             this.radioButtonRLTCover.TabIndex = 37;
@@ -1580,7 +1734,7 @@
             // radioButtonEasyOpen
             // 
             this.radioButtonEasyOpen.AutoSize = true;
-            this.radioButtonEasyOpen.Location = new System.Drawing.Point(430, 3);
+            this.radioButtonEasyOpen.Location = new System.Drawing.Point(385, 4);
             this.radioButtonEasyOpen.Name = "radioButtonEasyOpen";
             this.radioButtonEasyOpen.Size = new System.Drawing.Size(61, 24);
             this.radioButtonEasyOpen.TabIndex = 36;
@@ -1594,10 +1748,9 @@
             this.panelCover.Controls.Add(this.label23);
             this.panelCover.Controls.Add(this.radioButtonHaveNoCover);
             this.panelCover.Controls.Add(this.radioButtonHaveCover);
-            this.panelCover.Controls.Add(this.label41);
-            this.panelCover.Location = new System.Drawing.Point(3, 691);
+            this.panelCover.Location = new System.Drawing.Point(3, 695);
             this.panelCover.Name = "panelCover";
-            this.panelCover.Size = new System.Drawing.Size(477, 29);
+            this.panelCover.Size = new System.Drawing.Size(477, 33);
             this.panelCover.TabIndex = 62;
             this.panelCover.Visible = false;
             // 
@@ -1605,17 +1758,17 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(444, 7);
+            this.label23.Location = new System.Drawing.Point(454, 7);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(20, 24);
             this.label23.TabIndex = 76;
-            this.label23.Text = "8";
+            this.label23.Text = "9";
             // 
             // radioButtonHaveNoCover
             // 
             this.radioButtonHaveNoCover.AutoSize = true;
             this.radioButtonHaveNoCover.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonHaveNoCover.Location = new System.Drawing.Point(228, 3);
+            this.radioButtonHaveNoCover.Location = new System.Drawing.Point(208, 2);
             this.radioButtonHaveNoCover.Name = "radioButtonHaveNoCover";
             this.radioButtonHaveNoCover.Size = new System.Drawing.Size(92, 24);
             this.radioButtonHaveNoCover.TabIndex = 75;
@@ -1628,7 +1781,7 @@
             // 
             this.radioButtonHaveCover.AutoSize = true;
             this.radioButtonHaveCover.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonHaveCover.Location = new System.Drawing.Point(322, 3);
+            this.radioButtonHaveCover.Location = new System.Drawing.Point(331, 7);
             this.radioButtonHaveCover.Name = "radioButtonHaveCover";
             this.radioButtonHaveCover.Size = new System.Drawing.Size(113, 24);
             this.radioButtonHaveCover.TabIndex = 74;
@@ -1637,16 +1790,6 @@
             this.radioButtonHaveCover.UseVisualStyleBackColor = true;
             this.radioButtonHaveCover.CheckedChanged += new System.EventHandler(this.radioButtonHaveCover_CheckedChanged);
             // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(384, 7);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(20, 24);
-            this.label41.TabIndex = 73;
-            this.label41.Text = "7";
-            // 
             // panelPlasticCover
             // 
             this.panelPlasticCover.Controls.Add(this.comboBoxDaimetrCover);
@@ -1654,9 +1797,9 @@
             this.panelPlasticCover.Controls.Add(this.checkBoxHasAklasheh);
             this.panelPlasticCover.Controls.Add(this.label51);
             this.panelPlasticCover.Controls.Add(this.label42);
-            this.panelPlasticCover.Location = new System.Drawing.Point(10, 848);
+            this.panelPlasticCover.Location = new System.Drawing.Point(787, 857);
             this.panelPlasticCover.Name = "panelPlasticCover";
-            this.panelPlasticCover.Size = new System.Drawing.Size(449, 39);
+            this.panelPlasticCover.Size = new System.Drawing.Size(435, 47);
             this.panelPlasticCover.TabIndex = 63;
             this.panelPlasticCover.Visible = false;
             // 
@@ -1722,89 +1865,64 @@
             // 
             // panelTwistProp
             // 
+            this.panelTwistProp.Controls.Add(this.label62);
+            this.panelTwistProp.Controls.Add(this.twist_item_type_combo_box);
             this.panelTwistProp.Controls.Add(this.label29);
-            this.panelTwistProp.Controls.Add(this.comboBoxTwistColor);
-            this.panelTwistProp.Controls.Add(this.radioButtonMediumTwist);
-            this.panelTwistProp.Controls.Add(this.radioButtonDeepTwist);
-            this.panelTwistProp.Controls.Add(this.radioButtonNormalTwist);
+            this.panelTwistProp.Controls.Add(this.f1_combo_box);
             this.panelTwistProp.Controls.Add(this.label53);
             this.panelTwistProp.Controls.Add(this.label31);
-            this.panelTwistProp.Controls.Add(this.comboBoxTwistSize);
+            this.panelTwistProp.Controls.Add(this.f2_combo_box);
             this.panelTwistProp.Controls.Add(this.label52);
-            this.panelTwistProp.Controls.Add(this.comboBoxTwistTypes);
+            this.panelTwistProp.Controls.Add(this.twist_type_combo_box);
             this.panelTwistProp.Location = new System.Drawing.Point(514, 654);
             this.panelTwistProp.Name = "panelTwistProp";
-            this.panelTwistProp.Size = new System.Drawing.Size(476, 90);
+            this.panelTwistProp.Size = new System.Drawing.Size(725, 44);
             this.panelTwistProp.TabIndex = 64;
             this.panelTwistProp.Visible = false;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(129, 8);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(36, 20);
+            this.label62.TabIndex = 48;
+            this.label62.Text = "النوع";
+            // 
+            // twist_item_type_combo_box
+            // 
+            this.twist_item_type_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.twist_item_type_combo_box.FormattingEnabled = true;
+            this.twist_item_type_combo_box.Location = new System.Drawing.Point(42, 8);
+            this.twist_item_type_combo_box.Name = "twist_item_type_combo_box";
+            this.twist_item_type_combo_box.Size = new System.Drawing.Size(86, 28);
+            this.twist_item_type_combo_box.TabIndex = 47;
             // 
             // label29
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(157, 22);
+            this.label29.Location = new System.Drawing.Point(268, 9);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(69, 20);
-            this.label29.TabIndex = 50;
-            this.label29.Text = "لون التوست";
+            this.label29.Size = new System.Drawing.Size(92, 20);
+            this.label29.TabIndex = 46;
+            this.label29.Text = "الورنيش الداخلى";
             // 
-            // comboBoxTwistColor
+            // f1_combo_box
             // 
-            this.comboBoxTwistColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxTwistColor.FormattingEnabled = true;
-            this.comboBoxTwistColor.Items.AddRange(new object[] {
-            "احمر",
-            "اخضر ",
-            "اصفر"});
-            this.comboBoxTwistColor.Location = new System.Drawing.Point(32, 16);
-            this.comboBoxTwistColor.Name = "comboBoxTwistColor";
-            this.comboBoxTwistColor.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxTwistColor.TabIndex = 49;
-            // 
-            // radioButtonMediumTwist
-            // 
-            this.radioButtonMediumTwist.AutoSize = true;
-            this.radioButtonMediumTwist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonMediumTwist.Location = new System.Drawing.Point(302, 3);
-            this.radioButtonMediumTwist.Name = "radioButtonMediumTwist";
-            this.radioButtonMediumTwist.Size = new System.Drawing.Size(83, 24);
-            this.radioButtonMediumTwist.TabIndex = 48;
-            this.radioButtonMediumTwist.TabStop = true;
-            this.radioButtonMediumTwist.Text = "medium";
-            this.radioButtonMediumTwist.UseVisualStyleBackColor = true;
-            this.radioButtonMediumTwist.CheckedChanged += new System.EventHandler(this.radioButtonMediumTwist_CheckedChanged);
-            // 
-            // radioButtonDeepTwist
-            // 
-            this.radioButtonDeepTwist.AutoSize = true;
-            this.radioButtonDeepTwist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonDeepTwist.Location = new System.Drawing.Point(225, 3);
-            this.radioButtonDeepTwist.Name = "radioButtonDeepTwist";
-            this.radioButtonDeepTwist.Size = new System.Drawing.Size(66, 24);
-            this.radioButtonDeepTwist.TabIndex = 47;
-            this.radioButtonDeepTwist.TabStop = true;
-            this.radioButtonDeepTwist.Text = "Deep";
-            this.radioButtonDeepTwist.UseVisualStyleBackColor = true;
-            this.radioButtonDeepTwist.CheckedChanged += new System.EventHandler(this.radioButtonDeepTwist_CheckedChanged_1);
-            // 
-            // radioButtonNormalTwist
-            // 
-            this.radioButtonNormalTwist.AutoSize = true;
-            this.radioButtonNormalTwist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonNormalTwist.Location = new System.Drawing.Point(391, 3);
-            this.radioButtonNormalTwist.Name = "radioButtonNormalTwist";
-            this.radioButtonNormalTwist.Size = new System.Drawing.Size(77, 24);
-            this.radioButtonNormalTwist.TabIndex = 46;
-            this.radioButtonNormalTwist.TabStop = true;
-            this.radioButtonNormalTwist.Text = "Normal";
-            this.radioButtonNormalTwist.UseVisualStyleBackColor = true;
-            this.radioButtonNormalTwist.CheckedChanged += new System.EventHandler(this.radioButtonNormalTwist_CheckedChanged_1);
+            this.f1_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.f1_combo_box.FormattingEnabled = true;
+            this.f1_combo_box.Location = new System.Drawing.Point(179, 3);
+            this.f1_combo_box.Name = "f1_combo_box";
+            this.f1_combo_box.Size = new System.Drawing.Size(86, 28);
+            this.f1_combo_box.TabIndex = 45;
             // 
             // label53
             // 
             this.label53.AutoSize = true;
             this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.Location = new System.Drawing.Point(5, 51);
+            this.label53.Location = new System.Drawing.Point(366, 11);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(19, 20);
             this.label53.TabIndex = 44;
@@ -1814,17 +1932,17 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(156, 56);
+            this.label31.Location = new System.Drawing.Point(456, 6);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(82, 20);
             this.label31.TabIndex = 43;
             this.label31.Text = "مقاس التويست";
             // 
-            // comboBoxTwistSize
+            // f2_combo_box
             // 
-            this.comboBoxTwistSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxTwistSize.FormattingEnabled = true;
-            this.comboBoxTwistSize.Items.AddRange(new object[] {
+            this.f2_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.f2_combo_box.FormattingEnabled = true;
+            this.f2_combo_box.Items.AddRange(new object[] {
             "30",
             "38",
             "43",
@@ -1835,29 +1953,29 @@
             "70",
             "82",
             "100"});
-            this.comboBoxTwistSize.Location = new System.Drawing.Point(31, 50);
-            this.comboBoxTwistSize.Name = "comboBoxTwistSize";
-            this.comboBoxTwistSize.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxTwistSize.TabIndex = 42;
+            this.f2_combo_box.Location = new System.Drawing.Point(394, 6);
+            this.f2_combo_box.Name = "f2_combo_box";
+            this.f2_combo_box.Size = new System.Drawing.Size(58, 28);
+            this.f2_combo_box.TabIndex = 42;
             // 
             // label52
             // 
             this.label52.AutoSize = true;
             this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(384, 59);
+            this.label52.Location = new System.Drawing.Point(641, 9);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(75, 20);
             this.label52.TabIndex = 1;
             this.label52.Text = "نوع التويست";
             // 
-            // comboBoxTwistTypes
+            // twist_type_combo_box
             // 
-            this.comboBoxTwistTypes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxTwistTypes.FormattingEnabled = true;
-            this.comboBoxTwistTypes.Location = new System.Drawing.Point(259, 53);
-            this.comboBoxTwistTypes.Name = "comboBoxTwistTypes";
-            this.comboBoxTwistTypes.Size = new System.Drawing.Size(121, 28);
-            this.comboBoxTwistTypes.TabIndex = 0;
+            this.twist_type_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.twist_type_combo_box.FormattingEnabled = true;
+            this.twist_type_combo_box.Location = new System.Drawing.Point(551, 3);
+            this.twist_type_combo_box.Name = "twist_type_combo_box";
+            this.twist_type_combo_box.Size = new System.Drawing.Size(86, 28);
+            this.twist_type_combo_box.TabIndex = 0;
             // 
             // panelPlasticTaba
             // 
@@ -1951,9 +2069,9 @@
             this.panelUPlipe.Controls.Add(this.radioButtonTafleeg);
             this.panelUPlipe.Controls.Add(this.radioButtonInsidePuls);
             this.panelUPlipe.Controls.Add(this.radioButtonOutPuls);
-            this.panelUPlipe.Location = new System.Drawing.Point(3, 657);
+            this.panelUPlipe.Location = new System.Drawing.Point(3, 665);
             this.panelUPlipe.Name = "panelUPlipe";
-            this.panelUPlipe.Size = new System.Drawing.Size(369, 31);
+            this.panelUPlipe.Size = new System.Drawing.Size(369, 26);
             this.panelUPlipe.TabIndex = 66;
             this.panelUPlipe.Visible = false;
             // 
@@ -1961,17 +2079,17 @@
             // 
             this.labelUPLipe.AutoSize = true;
             this.labelUPLipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUPLipe.Location = new System.Drawing.Point(336, 7);
+            this.labelUPLipe.Location = new System.Drawing.Point(346, 3);
             this.labelUPLipe.Name = "labelUPLipe";
             this.labelUPLipe.Size = new System.Drawing.Size(20, 24);
             this.labelUPLipe.TabIndex = 72;
-            this.labelUPLipe.Text = "7";
+            this.labelUPLipe.Text = "8";
             // 
             // radioButtonTafleeg
             // 
             this.radioButtonTafleeg.AutoSize = true;
             this.radioButtonTafleeg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonTafleeg.Location = new System.Drawing.Point(275, 8);
+            this.radioButtonTafleeg.Location = new System.Drawing.Point(285, 4);
             this.radioButtonTafleeg.Name = "radioButtonTafleeg";
             this.radioButtonTafleeg.Size = new System.Drawing.Size(52, 24);
             this.radioButtonTafleeg.TabIndex = 40;
@@ -1983,7 +2101,7 @@
             // 
             this.radioButtonInsidePuls.AutoSize = true;
             this.radioButtonInsidePuls.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonInsidePuls.Location = new System.Drawing.Point(135, 8);
+            this.radioButtonInsidePuls.Location = new System.Drawing.Point(154, 1);
             this.radioButtonInsidePuls.Name = "radioButtonInsidePuls";
             this.radioButtonInsidePuls.Size = new System.Drawing.Size(86, 24);
             this.radioButtonInsidePuls.TabIndex = 39;
@@ -1995,7 +2113,7 @@
             // 
             this.radioButtonOutPuls.AutoSize = true;
             this.radioButtonOutPuls.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonOutPuls.Location = new System.Drawing.Point(23, 7);
+            this.radioButtonOutPuls.Location = new System.Drawing.Point(23, 1);
             this.radioButtonOutPuls.Name = "radioButtonOutPuls";
             this.radioButtonOutPuls.Size = new System.Drawing.Size(89, 24);
             this.radioButtonOutPuls.TabIndex = 38;
@@ -2010,9 +2128,9 @@
             this.panelPeeding.Controls.Add(this.radioButtonInsidBead);
             this.panelPeeding.Controls.Add(this.radioButtonOutSideBead);
             this.panelPeeding.Controls.Add(this.radioButtonNoPeding);
-            this.panelPeeding.Location = new System.Drawing.Point(3, 628);
+            this.panelPeeding.Location = new System.Drawing.Point(3, 625);
             this.panelPeeding.Name = "panelPeeding";
-            this.panelPeeding.Size = new System.Drawing.Size(501, 30);
+            this.panelPeeding.Size = new System.Drawing.Size(501, 34);
             this.panelPeeding.TabIndex = 67;
             this.panelPeeding.Visible = false;
             // 
@@ -2020,17 +2138,17 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(468, 5);
+            this.label39.Location = new System.Drawing.Point(476, 5);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(20, 24);
             this.label39.TabIndex = 71;
-            this.label39.Text = "6";
+            this.label39.Text = "7";
             // 
             // radioButtonPeding
             // 
             this.radioButtonPeding.AutoSize = true;
             this.radioButtonPeding.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonPeding.Location = new System.Drawing.Point(406, 5);
+            this.radioButtonPeding.Location = new System.Drawing.Point(415, 6);
             this.radioButtonPeding.Name = "radioButtonPeding";
             this.radioButtonPeding.Size = new System.Drawing.Size(53, 24);
             this.radioButtonPeding.TabIndex = 44;
@@ -2066,7 +2184,7 @@
             // 
             this.radioButtonNoPeding.AutoSize = true;
             this.radioButtonNoPeding.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonNoPeding.Location = new System.Drawing.Point(263, 3);
+            this.radioButtonNoPeding.Location = new System.Drawing.Point(291, 3);
             this.radioButtonNoPeding.Name = "radioButtonNoPeding";
             this.radioButtonNoPeding.Size = new System.Drawing.Size(81, 24);
             this.radioButtonNoPeding.TabIndex = 41;
@@ -2074,84 +2192,66 @@
             this.radioButtonNoPeding.Text = "بدون بيدنج";
             this.radioButtonNoPeding.UseVisualStyleBackColor = true;
             // 
-            // panelRLT
-            // 
-            this.panelRLT.Controls.Add(this.label56);
-            this.panelRLT.Controls.Add(this.label40);
-            this.panelRLT.Controls.Add(this.comboBoxRLTDaimetr);
-            this.panelRLT.Location = new System.Drawing.Point(278, 572);
-            this.panelRLT.Name = "panelRLT";
-            this.panelRLT.Size = new System.Drawing.Size(226, 37);
-            this.panelRLT.TabIndex = 68;
-            this.panelRLT.Visible = false;
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label56.Location = new System.Drawing.Point(25, 6);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(19, 20);
-            this.label56.TabIndex = 75;
-            this.label56.Text = "مم";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(154, 3);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(64, 20);
-            this.label40.TabIndex = 74;
-            this.label40.Text = "قطر RLT";
-            // 
-            // comboBoxRLTDaimetr
-            // 
-            this.comboBoxRLTDaimetr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxRLTDaimetr.FormattingEnabled = true;
-            this.comboBoxRLTDaimetr.Items.AddRange(new object[] {
-            "99",
-            "127",
-            "153",
-            "189"});
-            this.comboBoxRLTDaimetr.Location = new System.Drawing.Point(45, 3);
-            this.comboBoxRLTDaimetr.Name = "comboBoxRLTDaimetr";
-            this.comboBoxRLTDaimetr.Size = new System.Drawing.Size(96, 28);
-            this.comboBoxRLTDaimetr.TabIndex = 73;
-            // 
             // panelHavePlasticCover
             // 
+            this.panelHavePlasticCover.Controls.Add(this.labelCanPlasticCoverColor);
+            this.panelHavePlasticCover.Controls.Add(this.radioButtonPlasticCoverOfCanHasLogo);
+            this.panelHavePlasticCover.Controls.Add(this.radioButtonPlasticCoverOfCanHasNoLogo);
             this.panelHavePlasticCover.Controls.Add(this.label27);
-            this.panelHavePlasticCover.Controls.Add(this.checkBoxPlasticCoverLogo);
             this.panelHavePlasticCover.Controls.Add(this.comboBoxPlasticCoverColor);
             this.panelHavePlasticCover.Controls.Add(this.checkBoxHavePlasticCover);
-            this.panelHavePlasticCover.Location = new System.Drawing.Point(3, 753);
+            this.panelHavePlasticCover.Location = new System.Drawing.Point(3, 769);
             this.panelHavePlasticCover.Name = "panelHavePlasticCover";
-            this.panelHavePlasticCover.Size = new System.Drawing.Size(389, 36);
+            this.panelHavePlasticCover.Size = new System.Drawing.Size(600, 39);
             this.panelHavePlasticCover.TabIndex = 69;
             this.panelHavePlasticCover.Visible = false;
+            // 
+            // labelCanPlasticCoverColor
+            // 
+            this.labelCanPlasticCoverColor.AutoSize = true;
+            this.labelCanPlasticCoverColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCanPlasticCoverColor.Location = new System.Drawing.Point(301, 10);
+            this.labelCanPlasticCoverColor.Name = "labelCanPlasticCoverColor";
+            this.labelCanPlasticCoverColor.Size = new System.Drawing.Size(68, 20);
+            this.labelCanPlasticCoverColor.TabIndex = 80;
+            this.labelCanPlasticCoverColor.Text = "لون الغطاء ";
+            this.labelCanPlasticCoverColor.Visible = false;
+            // 
+            // radioButtonPlasticCoverOfCanHasLogo
+            // 
+            this.radioButtonPlasticCoverOfCanHasLogo.AutoSize = true;
+            this.radioButtonPlasticCoverOfCanHasLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonPlasticCoverOfCanHasLogo.Location = new System.Drawing.Point(98, 9);
+            this.radioButtonPlasticCoverOfCanHasLogo.Name = "radioButtonPlasticCoverOfCanHasLogo";
+            this.radioButtonPlasticCoverOfCanHasLogo.Size = new System.Drawing.Size(52, 24);
+            this.radioButtonPlasticCoverOfCanHasLogo.TabIndex = 79;
+            this.radioButtonPlasticCoverOfCanHasLogo.TabStop = true;
+            this.radioButtonPlasticCoverOfCanHasLogo.Text = "لوجو";
+            this.radioButtonPlasticCoverOfCanHasLogo.UseVisualStyleBackColor = true;
+            this.radioButtonPlasticCoverOfCanHasLogo.Visible = false;
+            // 
+            // radioButtonPlasticCoverOfCanHasNoLogo
+            // 
+            this.radioButtonPlasticCoverOfCanHasNoLogo.AutoSize = true;
+            this.radioButtonPlasticCoverOfCanHasNoLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonPlasticCoverOfCanHasNoLogo.Location = new System.Drawing.Point(3, 9);
+            this.radioButtonPlasticCoverOfCanHasNoLogo.Name = "radioButtonPlasticCoverOfCanHasNoLogo";
+            this.radioButtonPlasticCoverOfCanHasNoLogo.Size = new System.Drawing.Size(89, 24);
+            this.radioButtonPlasticCoverOfCanHasNoLogo.TabIndex = 78;
+            this.radioButtonPlasticCoverOfCanHasNoLogo.TabStop = true;
+            this.radioButtonPlasticCoverOfCanHasNoLogo.Text = "لايوجد لوجو";
+            this.radioButtonPlasticCoverOfCanHasNoLogo.UseVisualStyleBackColor = true;
+            this.radioButtonPlasticCoverOfCanHasNoLogo.Visible = false;
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(371, 7);
+            this.label27.Location = new System.Drawing.Point(569, 9);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(20, 24);
+            this.label27.Size = new System.Drawing.Size(30, 24);
             this.label27.TabIndex = 77;
-            this.label27.Text = "9";
-            // 
-            // checkBoxPlasticCoverLogo
-            // 
-            this.checkBoxPlasticCoverLogo.AutoSize = true;
-            this.checkBoxPlasticCoverLogo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxPlasticCoverLogo.Location = new System.Drawing.Point(12, 7);
-            this.checkBoxPlasticCoverLogo.Name = "checkBoxPlasticCoverLogo";
-            this.checkBoxPlasticCoverLogo.Size = new System.Drawing.Size(81, 24);
-            this.checkBoxPlasticCoverLogo.TabIndex = 71;
-            this.checkBoxPlasticCoverLogo.Text = "يوجد لوجو";
-            this.checkBoxPlasticCoverLogo.UseVisualStyleBackColor = true;
-            this.checkBoxPlasticCoverLogo.Visible = false;
+            this.label27.Text = "10";
             // 
             // comboBoxPlasticCoverColor
             // 
@@ -2161,7 +2261,7 @@
             "احمر",
             "اخضر",
             "اصفر"});
-            this.comboBoxPlasticCoverColor.Location = new System.Drawing.Point(105, 4);
+            this.comboBoxPlasticCoverColor.Location = new System.Drawing.Point(173, 6);
             this.comboBoxPlasticCoverColor.Name = "comboBoxPlasticCoverColor";
             this.comboBoxPlasticCoverColor.Size = new System.Drawing.Size(121, 28);
             this.comboBoxPlasticCoverColor.TabIndex = 70;
@@ -2171,7 +2271,7 @@
             // 
             this.checkBoxHavePlasticCover.AutoSize = true;
             this.checkBoxHavePlasticCover.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxHavePlasticCover.Location = new System.Drawing.Point(236, 7);
+            this.checkBoxHavePlasticCover.Location = new System.Drawing.Point(438, 8);
             this.checkBoxHavePlasticCover.Name = "checkBoxHavePlasticCover";
             this.checkBoxHavePlasticCover.Size = new System.Drawing.Size(129, 24);
             this.checkBoxHavePlasticCover.TabIndex = 0;
@@ -2228,6 +2328,8 @@
             // 
             // panelPecies
             // 
+            this.panelPecies.Controls.Add(this.textBoxThichness);
+            this.panelPecies.Controls.Add(this.label14);
             this.panelPecies.Controls.Add(this.label61);
             this.panelPecies.Controls.Add(this.label60);
             this.panelPecies.Controls.Add(this.comboBoxNumberOfColors);
@@ -2238,9 +2340,27 @@
             this.panelPecies.Location = new System.Drawing.Point(3, 400);
             this.panelPecies.Name = "panelPecies";
             this.panelPecies.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.panelPecies.Size = new System.Drawing.Size(685, 35);
+            this.panelPecies.Size = new System.Drawing.Size(890, 35);
             this.panelPecies.TabIndex = 72;
             this.panelPecies.Visible = false;
+            // 
+            // textBoxThichness
+            // 
+            this.textBoxThichness.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxThichness.Location = new System.Drawing.Point(398, 7);
+            this.textBoxThichness.Name = "textBoxThichness";
+            this.textBoxThichness.Size = new System.Drawing.Size(117, 26);
+            this.textBoxThichness.TabIndex = 78;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(521, 8);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(61, 20);
+            this.label14.TabIndex = 77;
+            this.label14.Text = "سمك البدن";
             // 
             // label61
             // 
@@ -2256,7 +2376,7 @@
             // 
             this.label60.AutoSize = true;
             this.label60.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label60.Location = new System.Drawing.Point(650, 5);
+            this.label60.Location = new System.Drawing.Point(863, 7);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(20, 24);
             this.label60.TabIndex = 75;
@@ -2302,7 +2422,7 @@
             // 
             this.radioButton3Pecies.AutoSize = true;
             this.radioButton3Pecies.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3Pecies.Location = new System.Drawing.Point(445, 6);
+            this.radioButton3Pecies.Location = new System.Drawing.Point(650, 8);
             this.radioButton3Pecies.Name = "radioButton3Pecies";
             this.radioButton3Pecies.Size = new System.Drawing.Size(87, 24);
             this.radioButton3Pecies.TabIndex = 1;
@@ -2314,33 +2434,21 @@
             // 
             this.radioButton2Peices.AutoSize = true;
             this.radioButton2Peices.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2Peices.Location = new System.Drawing.Point(554, 3);
+            this.radioButton2Peices.Location = new System.Drawing.Point(770, 9);
             this.radioButton2Peices.Name = "radioButton2Peices";
-            this.radioButton2Peices.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radioButton2Peices.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.radioButton2Peices.Size = new System.Drawing.Size(87, 24);
             this.radioButton2Peices.TabIndex = 0;
             this.radioButton2Peices.TabStop = true;
-            this.radioButton2Peices.Text = "Pieces 2";
+            this.radioButton2Peices.Text = "2 Pieces";
             this.radioButton2Peices.UseVisualStyleBackColor = true;
             this.radioButton2Peices.CheckedChanged += new System.EventHandler(this.radioButton2Peices_CheckedChanged_1);
-            // 
-            // checkBoxOutMuran
-            // 
-            this.checkBoxOutMuran.AutoSize = true;
-            this.checkBoxOutMuran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxOutMuran.Location = new System.Drawing.Point(45, 585);
-            this.checkBoxOutMuran.Name = "checkBoxOutMuran";
-            this.checkBoxOutMuran.Size = new System.Drawing.Size(133, 24);
-            this.checkBoxOutMuran.TabIndex = 73;
-            this.checkBoxOutMuran.Text = "يوجد ورنيش خارجي";
-            this.checkBoxOutMuran.UseVisualStyleBackColor = true;
-            this.checkBoxOutMuran.Visible = false;
             // 
             // checkBoxHasMold
             // 
             this.checkBoxHasMold.AutoSize = true;
             this.checkBoxHasMold.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxHasMold.Location = new System.Drawing.Point(394, 759);
+            this.checkBoxHasMold.Location = new System.Drawing.Point(36, 824);
             this.checkBoxHasMold.Name = "checkBoxHasMold";
             this.checkBoxHasMold.Size = new System.Drawing.Size(76, 24);
             this.checkBoxHasMold.TabIndex = 79;
@@ -2361,9 +2469,9 @@
             this.panelEasyopen.Controls.Add(this.comboBoxOutSideMuran);
             this.panelEasyopen.Controls.Add(this.labelinsideMuran);
             this.panelEasyopen.Controls.Add(this.comboBoxInsideMuran);
-            this.panelEasyopen.Location = new System.Drawing.Point(476, 750);
+            this.panelEasyopen.Location = new System.Drawing.Point(479, 704);
             this.panelEasyopen.Name = "panelEasyopen";
-            this.panelEasyopen.Size = new System.Drawing.Size(753, 44);
+            this.panelEasyopen.Size = new System.Drawing.Size(750, 39);
             this.panelEasyopen.TabIndex = 80;
             this.panelEasyopen.Visible = false;
             // 
@@ -2399,7 +2507,7 @@
             // 
             this.labelOpenType.AutoSize = true;
             this.labelOpenType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOpenType.Location = new System.Drawing.Point(203, 14);
+            this.labelOpenType.Location = new System.Drawing.Point(203, 15);
             this.labelOpenType.Name = "labelOpenType";
             this.labelOpenType.Size = new System.Drawing.Size(34, 20);
             this.labelOpenType.TabIndex = 73;
@@ -2444,7 +2552,7 @@
             // 
             this.labelOutsideMuran.AutoSize = true;
             this.labelOutsideMuran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOutsideMuran.Location = new System.Drawing.Point(664, 15);
+            this.labelOutsideMuran.Location = new System.Drawing.Point(661, 11);
             this.labelOutsideMuran.Name = "labelOutsideMuran";
             this.labelOutsideMuran.Size = new System.Drawing.Size(86, 20);
             this.labelOutsideMuran.TabIndex = 69;
@@ -2454,7 +2562,7 @@
             // 
             this.comboBoxOutSideMuran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxOutSideMuran.FormattingEnabled = true;
-            this.comboBoxOutSideMuran.Location = new System.Drawing.Point(563, 12);
+            this.comboBoxOutSideMuran.Location = new System.Drawing.Point(565, 6);
             this.comboBoxOutSideMuran.Name = "comboBoxOutSideMuran";
             this.comboBoxOutSideMuran.Size = new System.Drawing.Size(96, 28);
             this.comboBoxOutSideMuran.TabIndex = 68;
@@ -2478,20 +2586,385 @@
             this.comboBoxInsideMuran.Size = new System.Drawing.Size(96, 28);
             this.comboBoxInsideMuran.TabIndex = 66;
             // 
+            // textBoxDateNow
+            // 
+            this.textBoxDateNow.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.textBoxDateNow.Enabled = false;
+            this.textBoxDateNow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDateNow.Location = new System.Drawing.Point(80, 12);
+            this.textBoxDateNow.Name = "textBoxDateNow";
+            this.textBoxDateNow.Size = new System.Drawing.Size(195, 26);
+            this.textBoxDateNow.TabIndex = 82;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 20);
+            this.label3.TabIndex = 81;
+            this.label3.Text = "تاريخ اليوم";
+            // 
+            // panelCansOutMuran
+            // 
+            this.panelCansOutMuran.Controls.Add(this.radioButtonCanHasNoOutMuran);
+            this.panelCansOutMuran.Controls.Add(this.radioButtonCanHasOutMuran);
+            this.panelCansOutMuran.Controls.Add(this.labelnum5);
+            this.panelCansOutMuran.Location = new System.Drawing.Point(5, 572);
+            this.panelCansOutMuran.Name = "panelCansOutMuran";
+            this.panelCansOutMuran.Size = new System.Drawing.Size(476, 47);
+            this.panelCansOutMuran.TabIndex = 83;
+            this.panelCansOutMuran.Visible = false;
+            // 
+            // radioButtonCanHasNoOutMuran
+            // 
+            this.radioButtonCanHasNoOutMuran.AutoSize = true;
+            this.radioButtonCanHasNoOutMuran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonCanHasNoOutMuran.Location = new System.Drawing.Point(121, 13);
+            this.radioButtonCanHasNoOutMuran.Name = "radioButtonCanHasNoOutMuran";
+            this.radioButtonCanHasNoOutMuran.Size = new System.Drawing.Size(145, 24);
+            this.radioButtonCanHasNoOutMuran.TabIndex = 69;
+            this.radioButtonCanHasNoOutMuran.TabStop = true;
+            this.radioButtonCanHasNoOutMuran.Text = "لا يوجد ورنيش خارجي";
+            this.radioButtonCanHasNoOutMuran.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonCanHasOutMuran
+            // 
+            this.radioButtonCanHasOutMuran.AutoSize = true;
+            this.radioButtonCanHasOutMuran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonCanHasOutMuran.Location = new System.Drawing.Point(313, 12);
+            this.radioButtonCanHasOutMuran.Name = "radioButtonCanHasOutMuran";
+            this.radioButtonCanHasOutMuran.Size = new System.Drawing.Size(132, 24);
+            this.radioButtonCanHasOutMuran.TabIndex = 68;
+            this.radioButtonCanHasOutMuran.TabStop = true;
+            this.radioButtonCanHasOutMuran.Text = "يوجد ورنيش خارجي";
+            this.radioButtonCanHasOutMuran.UseVisualStyleBackColor = true;
+            // 
+            // labelCanMold10
+            // 
+            this.labelCanMold10.AutoSize = true;
+            this.labelCanMold10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCanMold10.Location = new System.Drawing.Point(-1, 827);
+            this.labelCanMold10.Name = "labelCanMold10";
+            this.labelCanMold10.Size = new System.Drawing.Size(30, 24);
+            this.labelCanMold10.TabIndex = 84;
+            this.labelCanMold10.Text = "11";
+            this.labelCanMold10.Visible = false;
+            // 
+            // panelRLT
+            // 
+            this.panelRLT.Controls.Add(this.label56);
+            this.panelRLT.Controls.Add(this.label40);
+            this.panelRLT.Controls.Add(this.comboBoxRLTDaimetr);
+            this.panelRLT.Location = new System.Drawing.Point(860, 565);
+            this.panelRLT.Name = "panelRLT";
+            this.panelRLT.Size = new System.Drawing.Size(245, 33);
+            this.panelRLT.TabIndex = 85;
+            this.panelRLT.Visible = false;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(25, 6);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(19, 20);
+            this.label56.TabIndex = 75;
+            this.label56.Text = "مم";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(154, 3);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(64, 20);
+            this.label40.TabIndex = 74;
+            this.label40.Text = "قطر RLT";
+            // 
+            // comboBoxRLTDaimetr
+            // 
+            this.comboBoxRLTDaimetr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxRLTDaimetr.FormattingEnabled = true;
+            this.comboBoxRLTDaimetr.Items.AddRange(new object[] {
+            "99",
+            "127",
+            "153",
+            "189"});
+            this.comboBoxRLTDaimetr.Location = new System.Drawing.Point(45, 3);
+            this.comboBoxRLTDaimetr.Name = "comboBoxRLTDaimetr";
+            this.comboBoxRLTDaimetr.Size = new System.Drawing.Size(96, 28);
+            this.comboBoxRLTDaimetr.TabIndex = 73;
+            // 
+            // panelCanButtom
+            // 
+            this.panelCanButtom.Controls.Add(this.label26);
+            this.panelCanButtom.Controls.Add(this.radioButtonCanHasButtom);
+            this.panelCanButtom.Controls.Add(this.radioButtonCanHasNoButtom);
+            this.panelCanButtom.Location = new System.Drawing.Point(5, 439);
+            this.panelCanButtom.Name = "panelCanButtom";
+            this.panelCanButtom.Size = new System.Drawing.Size(475, 32);
+            this.panelCanButtom.TabIndex = 87;
+            this.panelCanButtom.Visible = false;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(452, 7);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(20, 24);
+            this.label26.TabIndex = 85;
+            this.label26.Text = "2";
+            // 
+            // radioButtonCanHasButtom
+            // 
+            this.radioButtonCanHasButtom.AutoSize = true;
+            this.radioButtonCanHasButtom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonCanHasButtom.Location = new System.Drawing.Point(342, 7);
+            this.radioButtonCanHasButtom.Name = "radioButtonCanHasButtom";
+            this.radioButtonCanHasButtom.Size = new System.Drawing.Size(102, 24);
+            this.radioButtonCanHasButtom.TabIndex = 46;
+            this.radioButtonCanHasButtom.TabStop = true;
+            this.radioButtonCanHasButtom.Text = "يوجد قاع للعلبة";
+            this.radioButtonCanHasButtom.UseVisualStyleBackColor = true;
+            this.radioButtonCanHasButtom.CheckedChanged += new System.EventHandler(this.radioButtonCanHasButtom_CheckedChanged);
+            // 
+            // radioButtonCanHasNoButtom
+            // 
+            this.radioButtonCanHasNoButtom.AutoSize = true;
+            this.radioButtonCanHasNoButtom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonCanHasNoButtom.Location = new System.Drawing.Point(88, 5);
+            this.radioButtonCanHasNoButtom.Name = "radioButtonCanHasNoButtom";
+            this.radioButtonCanHasNoButtom.Size = new System.Drawing.Size(111, 24);
+            this.radioButtonCanHasNoButtom.TabIndex = 45;
+            this.radioButtonCanHasNoButtom.TabStop = true;
+            this.radioButtonCanHasNoButtom.Text = "لايوجد قاع للعلبة";
+            this.radioButtonCanHasNoButtom.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCanDaimetr
+            // 
+            this.textBoxCanDaimetr.Enabled = false;
+            this.textBoxCanDaimetr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCanDaimetr.Location = new System.Drawing.Point(824, 73);
+            this.textBoxCanDaimetr.Name = "textBoxCanDaimetr";
+            this.textBoxCanDaimetr.Size = new System.Drawing.Size(81, 26);
+            this.textBoxCanDaimetr.TabIndex = 89;
+            this.textBoxCanDaimetr.Visible = false;
+            // 
+            // labelCanDaimetr
+            // 
+            this.labelCanDaimetr.AutoSize = true;
+            this.labelCanDaimetr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCanDaimetr.Location = new System.Drawing.Point(764, 77);
+            this.labelCanDaimetr.Name = "labelCanDaimetr";
+            this.labelCanDaimetr.Size = new System.Drawing.Size(61, 20);
+            this.labelCanDaimetr.TabIndex = 88;
+            this.labelCanDaimetr.Text = "قطر العلبة";
+            this.labelCanDaimetr.Visible = false;
+            // 
+            // textBoxHightOFButtle
+            // 
+            this.textBoxHightOFButtle.Enabled = false;
+            this.textBoxHightOFButtle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxHightOFButtle.Location = new System.Drawing.Point(1065, 79);
+            this.textBoxHightOFButtle.Name = "textBoxHightOFButtle";
+            this.textBoxHightOFButtle.Size = new System.Drawing.Size(81, 26);
+            this.textBoxHightOFButtle.TabIndex = 91;
+            this.textBoxHightOFButtle.Visible = false;
+            // 
+            // labelHightOfButtle
+            // 
+            this.labelHightOfButtle.AutoSize = true;
+            this.labelHightOfButtle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHightOfButtle.Location = new System.Drawing.Point(973, 79);
+            this.labelHightOfButtle.Name = "labelHightOfButtle";
+            this.labelHightOfButtle.Size = new System.Drawing.Size(86, 20);
+            this.labelHightOfButtle.TabIndex = 90;
+            this.labelHightOfButtle.Text = "ارتفاع الشرحة";
+            this.labelHightOfButtle.Visible = false;
+            // 
+            // pillow_check_box
+            // 
+            this.pillow_check_box.AutoSize = true;
+            this.pillow_check_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pillow_check_box.Location = new System.Drawing.Point(916, 76);
+            this.pillow_check_box.Name = "pillow_check_box";
+            this.pillow_check_box.Size = new System.Drawing.Size(51, 24);
+            this.pillow_check_box.TabIndex = 92;
+            this.pillow_check_box.Text = "ساده";
+            this.pillow_check_box.UseVisualStyleBackColor = true;
+            this.pillow_check_box.Visible = false;
+            this.pillow_check_box.CheckedChanged += new System.EventHandler(this.pillow_check_box_CheckedChanged);
+            // 
+            // panelTinCover
+            // 
+            this.panelTinCover.Controls.Add(this.labelInFaceTin);
+            this.panelTinCover.Controls.Add(this.comboBoxInTinFace);
+            this.panelTinCover.Controls.Add(this.labelOutFaceTin);
+            this.panelTinCover.Controls.Add(this.comboBoxOutTinFace);
+            this.panelTinCover.Controls.Add(this.radioButtonHasTinCover);
+            this.panelTinCover.Controls.Add(this.radioButtonHasNoTinCover);
+            this.panelTinCover.Location = new System.Drawing.Point(568, 814);
+            this.panelTinCover.Name = "panelTinCover";
+            this.panelTinCover.Size = new System.Drawing.Size(654, 37);
+            this.panelTinCover.TabIndex = 93;
+            this.panelTinCover.Visible = false;
+            // 
+            // labelInFaceTin
+            // 
+            this.labelInFaceTin.AutoSize = true;
+            this.labelInFaceTin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInFaceTin.Location = new System.Drawing.Point(102, 11);
+            this.labelInFaceTin.Name = "labelInFaceTin";
+            this.labelInFaceTin.Size = new System.Drawing.Size(78, 20);
+            this.labelInFaceTin.TabIndex = 85;
+            this.labelInFaceTin.Text = "الوجه الداخلي";
+            this.labelInFaceTin.Visible = false;
+            // 
+            // comboBoxInTinFace
+            // 
+            this.comboBoxInTinFace.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxInTinFace.FormattingEnabled = true;
+            this.comboBoxInTinFace.Items.AddRange(new object[] {
+            "خام"});
+            this.comboBoxInTinFace.Location = new System.Drawing.Point(15, 6);
+            this.comboBoxInTinFace.Name = "comboBoxInTinFace";
+            this.comboBoxInTinFace.Size = new System.Drawing.Size(85, 28);
+            this.comboBoxInTinFace.TabIndex = 84;
+            this.comboBoxInTinFace.Visible = false;
+            // 
+            // labelOutFaceTin
+            // 
+            this.labelOutFaceTin.AutoSize = true;
+            this.labelOutFaceTin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOutFaceTin.Location = new System.Drawing.Point(283, 10);
+            this.labelOutFaceTin.Name = "labelOutFaceTin";
+            this.labelOutFaceTin.Size = new System.Drawing.Size(86, 20);
+            this.labelOutFaceTin.TabIndex = 83;
+            this.labelOutFaceTin.Text = "الوجه الخارجي";
+            this.labelOutFaceTin.Visible = false;
+            // 
+            // comboBoxOutTinFace
+            // 
+            this.comboBoxOutTinFace.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxOutTinFace.FormattingEnabled = true;
+            this.comboBoxOutTinFace.Items.AddRange(new object[] {
+            "مطبوع",
+            "اينامل",
+            "خام"});
+            this.comboBoxOutTinFace.Location = new System.Drawing.Point(186, 6);
+            this.comboBoxOutTinFace.Name = "comboBoxOutTinFace";
+            this.comboBoxOutTinFace.Size = new System.Drawing.Size(96, 28);
+            this.comboBoxOutTinFace.TabIndex = 82;
+            this.comboBoxOutTinFace.Visible = false;
+            // 
+            // radioButtonHasTinCover
+            // 
+            this.radioButtonHasTinCover.AutoSize = true;
+            this.radioButtonHasTinCover.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonHasTinCover.Location = new System.Drawing.Point(512, 8);
+            this.radioButtonHasTinCover.Name = "radioButtonHasTinCover";
+            this.radioButtonHasTinCover.Size = new System.Drawing.Size(119, 24);
+            this.radioButtonHasTinCover.TabIndex = 81;
+            this.radioButtonHasTinCover.TabStop = true;
+            this.radioButtonHasTinCover.Text = "يوجد غطاء صفيح";
+            this.radioButtonHasTinCover.UseVisualStyleBackColor = true;
+            this.radioButtonHasTinCover.CheckedChanged += new System.EventHandler(this.radioButtonHasTinCover_CheckedChanged);
+            // 
+            // radioButtonHasNoTinCover
+            // 
+            this.radioButtonHasNoTinCover.AutoSize = true;
+            this.radioButtonHasNoTinCover.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonHasNoTinCover.Location = new System.Drawing.Point(374, 8);
+            this.radioButtonHasNoTinCover.Name = "radioButtonHasNoTinCover";
+            this.radioButtonHasNoTinCover.Size = new System.Drawing.Size(132, 24);
+            this.radioButtonHasNoTinCover.TabIndex = 80;
+            this.radioButtonHasNoTinCover.TabStop = true;
+            this.radioButtonHasNoTinCover.Text = "لا يوجد غطاء صفيح";
+            this.radioButtonHasNoTinCover.UseVisualStyleBackColor = true;
+            // 
+            // panelCanButtomDetail
+            // 
+            this.panelCanButtomDetail.Controls.Add(this.label28);
+            this.panelCanButtomDetail.Controls.Add(this.comboBoxCan_Buttom_in_muran);
+            this.panelCanButtomDetail.Controls.Add(this.label38);
+            this.panelCanButtomDetail.Controls.Add(this.comboBoxCan_Buttom_out_muran);
+            this.panelCanButtomDetail.Location = new System.Drawing.Point(493, 435);
+            this.panelCanButtomDetail.Name = "panelCanButtomDetail";
+            this.panelCanButtomDetail.Size = new System.Drawing.Size(566, 35);
+            this.panelCanButtomDetail.TabIndex = 95;
+            this.panelCanButtomDetail.Visible = false;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(108, 6);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(148, 20);
+            this.label28.TabIndex = 89;
+            this.label28.Text = "الورنيش الداخلى لقاع العلبة";
+            // 
+            // comboBoxCan_Buttom_in_muran
+            // 
+            this.comboBoxCan_Buttom_in_muran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCan_Buttom_in_muran.FormattingEnabled = true;
+            this.comboBoxCan_Buttom_in_muran.Items.AddRange(new object[] {
+            "خام"});
+            this.comboBoxCan_Buttom_in_muran.Location = new System.Drawing.Point(4, 3);
+            this.comboBoxCan_Buttom_in_muran.Name = "comboBoxCan_Buttom_in_muran";
+            this.comboBoxCan_Buttom_in_muran.Size = new System.Drawing.Size(96, 28);
+            this.comboBoxCan_Buttom_in_muran.TabIndex = 88;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(399, 9);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(156, 20);
+            this.label38.TabIndex = 87;
+            this.label38.Text = "الورنيش الخارجي لقاع العلبة";
+            // 
+            // comboBoxCan_Buttom_out_muran
+            // 
+            this.comboBoxCan_Buttom_out_muran.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxCan_Buttom_out_muran.FormattingEnabled = true;
+            this.comboBoxCan_Buttom_out_muran.Items.AddRange(new object[] {
+            "مطبوع",
+            "اينامل",
+            "خام"});
+            this.comboBoxCan_Buttom_out_muran.Location = new System.Drawing.Point(297, 4);
+            this.comboBoxCan_Buttom_out_muran.Name = "comboBoxCan_Buttom_out_muran";
+            this.comboBoxCan_Buttom_out_muran.Size = new System.Drawing.Size(96, 28);
+            this.comboBoxCan_Buttom_out_muran.TabIndex = 86;
+            // 
             // ClientSupplyRunOrderFrmNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1241, 938);
+            this.ClientSize = new System.Drawing.Size(1241, 948);
+            this.Controls.Add(this.panelCanButtomDetail);
+            this.Controls.Add(this.panelTinCover);
+            this.Controls.Add(this.pillow_check_box);
+            this.Controls.Add(this.textBoxHightOFButtle);
+            this.Controls.Add(this.labelHightOfButtle);
+            this.Controls.Add(this.textBoxCanDaimetr);
+            this.Controls.Add(this.labelCanDaimetr);
+            this.Controls.Add(this.panelCanButtom);
+            this.Controls.Add(this.panelRLT);
+            this.Controls.Add(this.labelCanMold10);
+            this.Controls.Add(this.panelCansOutMuran);
+            this.Controls.Add(this.textBoxDateNow);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.panelEasyopen);
             this.Controls.Add(this.checkBoxHasMold);
-            this.Controls.Add(this.checkBoxOutMuran);
             this.Controls.Add(this.panelPecies);
-            this.Controls.Add(this.labelnum5);
             this.Controls.Add(this.panelPeelOFF);
             this.Controls.Add(this.panelHavePlasticCover);
-            this.Controls.Add(this.panelRLT);
             this.Controls.Add(this.panelPeeding);
             this.Controls.Add(this.panelUPlipe);
             this.Controls.Add(this.panelPlasticTaba);
@@ -2504,18 +2977,16 @@
             this.Controls.Add(this.panelFace);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.comboBoxItemType);
-            this.Controls.Add(this.comboBoxProducts);
-            this.Controls.Add(this.label28);
+            this.Controls.Add(this.client_product_combo_box);
+            this.Controls.Add(this.client_products_label);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.comboBoxClients);
+            this.Controls.Add(this.clients_combo_box);
             this.Controls.Add(this.textBoxClientSuppNum);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBoxDateNow);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxOrderWorkClient);
             this.Controls.Add(this.label1);
@@ -2529,10 +3000,16 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.panelMoneyAfterReciving.ResumeLayout(false);
+            this.panelMoneyAfterReciving.PerformLayout();
+            this.panelMoneyInReciving.ResumeLayout(false);
+            this.panelMoneyInReciving.PerformLayout();
             this.panelFace.ResumeLayout(false);
             this.panelFace.PerformLayout();
             this.panelCansDesc.ResumeLayout(false);
             this.panelCansDesc.PerformLayout();
+            this.panelNeck.ResumeLayout(false);
+            this.panelNeck.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panelWeldType.ResumeLayout(false);
@@ -2555,8 +3032,6 @@
             this.panelUPlipe.PerformLayout();
             this.panelPeeding.ResumeLayout(false);
             this.panelPeeding.PerformLayout();
-            this.panelRLT.ResumeLayout(false);
-            this.panelRLT.PerformLayout();
             this.panelHavePlasticCover.ResumeLayout(false);
             this.panelHavePlasticCover.PerformLayout();
             this.panelPeelOFF.ResumeLayout(false);
@@ -2565,6 +3040,16 @@
             this.panelPecies.PerformLayout();
             this.panelEasyopen.ResumeLayout(false);
             this.panelEasyopen.PerformLayout();
+            this.panelCansOutMuran.ResumeLayout(false);
+            this.panelCansOutMuran.PerformLayout();
+            this.panelRLT.ResumeLayout(false);
+            this.panelRLT.PerformLayout();
+            this.panelCanButtom.ResumeLayout(false);
+            this.panelCanButtom.PerformLayout();
+            this.panelTinCover.ResumeLayout(false);
+            this.panelTinCover.PerformLayout();
+            this.panelCanButtomDetail.ResumeLayout(false);
+            this.panelCanButtomDetail.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2575,11 +3060,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxOrderWorkClient;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxDateNow;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxClientSuppNum;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBoxClients;
+        private System.Windows.Forms.ComboBox clients_combo_box;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboBoxClientsBranches;
         private System.Windows.Forms.Label label19;
@@ -2590,13 +3073,12 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerStart;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox comboBoxProducts;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox client_product_combo_box;
+        private System.Windows.Forms.Label client_products_label;
         private System.Windows.Forms.ComboBox comboBoxPaymentWay1;
         private System.Windows.Forms.TextBox textBoxTotalPrice;
         private System.Windows.Forms.Label label8;
@@ -2604,11 +3086,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxItemPrice;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxRemaining;
-        private System.Windows.Forms.ComboBox comboBoxAfterReciving;
         private System.Windows.Forms.Label labelAfterReciving;
-        private System.Windows.Forms.TextBox textBoxWhenDelivered;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBoxSubmitted;
         private System.Windows.Forms.TextBox textBoxTotatalWithTax;
         private System.Windows.Forms.Label label9;
@@ -2616,14 +3094,8 @@
         private System.Windows.Forms.TextBox textBoxTax1;
         private System.Windows.Forms.CheckBox checkBox14;
         private System.Windows.Forms.CheckBox checkBoxTax1;
-        private System.Windows.Forms.Label labelDateOFSheck2;
         private System.Windows.Forms.Label labelDateOFSheck1;
-        private System.Windows.Forms.DateTimePicker dateTimePickerChek2;
         private System.Windows.Forms.DateTimePicker dateTimePickerChek1;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ComboBox comboBoxPaymentWay3;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox comboBoxPaymentWay2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radioButtonToTheClient;
         private System.Windows.Forms.RadioButton radioButtonFromShaheen;
@@ -2645,8 +3117,6 @@
         private System.Windows.Forms.RadioButton radioButtonManualWeld;
         private System.Windows.Forms.RadioButton radioButtonweld;
         private System.Windows.Forms.RadioButton radioButtonDakWasl;
-        private System.Windows.Forms.CheckBox checkBoxHasNeck;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label labelnum5;
         private System.Windows.Forms.ComboBox comboBoxourFactory;
@@ -2672,7 +3142,6 @@
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.ComboBox comboBox16;
         private System.Windows.Forms.Panel panelTaba;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.ComboBox comboBoxCanTabaColor;
         private System.Windows.Forms.Label label25;
@@ -2685,17 +3154,16 @@
         private System.Windows.Forms.RadioButton radioButtonRLTCover;
         private System.Windows.Forms.RadioButton radioButtonEasyOpen;
         private System.Windows.Forms.Panel panelCover;
-        private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Panel panelPlasticCover;
         private System.Windows.Forms.CheckBox checkBoxHasAklasheh;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Panel panelTwistProp;
         private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.ComboBox comboBoxTwistTypes;
+        private System.Windows.Forms.ComboBox twist_type_combo_box;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.ComboBox comboBoxTwistSize;
+        private System.Windows.Forms.ComboBox f2_combo_box;
         private System.Windows.Forms.Panel panelPlasticTaba;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.ComboBox comboBoxPlasticTabaType;
@@ -2714,29 +3182,17 @@
         private System.Windows.Forms.RadioButton radioButtonInsidBead;
         private System.Windows.Forms.RadioButton radioButtonOutSideBead;
         private System.Windows.Forms.RadioButton radioButtonNoPeding;
-        private System.Windows.Forms.Panel panelRLT;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.ComboBox comboBoxRLTDaimetr;
         private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.Label label56;
         private System.Windows.Forms.RadioButton radioButtonHaveNoCover;
         private System.Windows.Forms.RadioButton radioButtonHaveCover;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.RadioButton radioButtonNormalEOE;
         private System.Windows.Forms.Panel panelHavePlasticCover;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.CheckBox checkBoxPlasticCoverLogo;
         private System.Windows.Forms.ComboBox comboBoxPlasticCoverColor;
         private System.Windows.Forms.CheckBox checkBoxHavePlasticCover;
-        private System.Windows.Forms.Label labelDateOFSheck3;
-        private System.Windows.Forms.DateTimePicker dateTimePickerChek3;
         private System.Windows.Forms.ComboBox comboBoxDaimetrCover;
         private System.Windows.Forms.ComboBox comboBoxCoverColor;
-        private System.Windows.Forms.RadioButton radioButtonMediumTwist;
-        private System.Windows.Forms.RadioButton radioButtonDeepTwist;
-        private System.Windows.Forms.RadioButton radioButtonNormalTwist;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.ComboBox comboBoxTwistColor;
         private System.Windows.Forms.Panel panelPeelOFF;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label58;
@@ -2749,12 +3205,8 @@
         private System.Windows.Forms.CheckBox checkBoxThick;
         private System.Windows.Forms.RadioButton radioButton3Pecies;
         private System.Windows.Forms.RadioButton radioButton2Peices;
-        private System.Windows.Forms.CheckBox checkBoxOutMuran;
-        private System.Windows.Forms.RadioButton radioButtonTinCover;
         private System.Windows.Forms.CheckBox checkBoxHasMold;
         private System.Windows.Forms.Panel panelEasyopen;
-        private System.Windows.Forms.ComboBox comboBoxDiametrEoE;
-        private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label labelOpenType;
         private System.Windows.Forms.ComboBox comboBoxOpenType;
         private System.Windows.Forms.Label label32;
@@ -2763,5 +3215,74 @@
         private System.Windows.Forms.ComboBox comboBoxOutSideMuran;
         private System.Windows.Forms.Label labelinsideMuran;
         private System.Windows.Forms.ComboBox comboBoxInsideMuran;
+        private System.Windows.Forms.TextBox textBoxThichness;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBoxDateNow;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panelCansOutMuran;
+        private System.Windows.Forms.RadioButton radioButtonCanHasNoOutMuran;
+        private System.Windows.Forms.RadioButton radioButtonCanHasOutMuran;
+        private System.Windows.Forms.RadioButton radioButtonPlasticCoverOfCanHasLogo;
+        private System.Windows.Forms.RadioButton radioButtonPlasticCoverOfCanHasNoLogo;
+        private System.Windows.Forms.Label labelCanMold10;
+        private System.Windows.Forms.Panel panelNeck;
+        private System.Windows.Forms.RadioButton radioButtonHasNeck;
+        private System.Windows.Forms.RadioButton radioButtonHasNONeck;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Panel panelRLT;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.ComboBox comboBoxRLTDaimetr;
+        private System.Windows.Forms.Panel panelCanButtom;
+        private System.Windows.Forms.RadioButton radioButtonCanHasButtom;
+        private System.Windows.Forms.RadioButton radioButtonCanHasNoButtom;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBoxCanDaimetr;
+        private System.Windows.Forms.Label labelCanDaimetr;
+        private System.Windows.Forms.ComboBox comboBoxDiametrEoE;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.ComboBox comboBoxBankName1;
+        private System.Windows.Forms.Label labelBankName1;
+        private System.Windows.Forms.Label labelCanPlasticCoverColor;
+        private System.Windows.Forms.TextBox textBoxHightOFButtle;
+        private System.Windows.Forms.Label labelHightOfButtle;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.ComboBox twist_item_type_combo_box;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox f1_combo_box;
+        private System.Windows.Forms.CheckBox pillow_check_box;
+        private System.Windows.Forms.Label labelMoldFaceShape;
+        private System.Windows.Forms.ComboBox comboBoxMoldFaceShape;
+        private System.Windows.Forms.Panel panelTinCover;
+        private System.Windows.Forms.Label labelInFaceTin;
+        private System.Windows.Forms.ComboBox comboBoxInTinFace;
+        private System.Windows.Forms.Label labelOutFaceTin;
+        private System.Windows.Forms.ComboBox comboBoxOutTinFace;
+        private System.Windows.Forms.RadioButton radioButtonHasTinCover;
+        private System.Windows.Forms.RadioButton radioButtonHasNoTinCover;
+        private System.Windows.Forms.Panel panelMoneyInReciving;
+        private System.Windows.Forms.ComboBox comboBoxBankName2;
+        private System.Windows.Forms.Label labelBankName2;
+        private System.Windows.Forms.Label labelDateOFSheck2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerChek2;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox comboBoxPaymentWay2;
+        private System.Windows.Forms.TextBox textBoxWhenDelivered;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panelMoneyAfterReciving;
+        private System.Windows.Forms.Label labelBankName3;
+        private System.Windows.Forms.ComboBox comboBoxBankName3;
+        private System.Windows.Forms.Label labelDateOFSheck3;
+        private System.Windows.Forms.DateTimePicker dateTimePickerChek3;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox comboBoxPaymentWay3;
+        private System.Windows.Forms.TextBox textBoxRemaining;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBoxAfterReciving;
+        private System.Windows.Forms.Panel panelCanButtomDetail;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox comboBoxCan_Buttom_in_muran;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ComboBox comboBoxCan_Buttom_out_muran;
     }
 }

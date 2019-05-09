@@ -13,6 +13,11 @@ namespace Al_Shaheen_System
 {
     public partial class ClientSupplyRunOrderFrmNew : Form
     {
+        List<SH_TWIST_OF_SIZE> sizes = new List<SH_TWIST_OF_SIZE>();
+        List<SH_CONTAINER_OF_TWIST_OF> mcontainers = new List<SH_CONTAINER_OF_TWIST_OF>();
+        List<SH_FACE_COLOR> faces = new List<SH_FACE_COLOR>();
+        List<SH_TWIST_OF_TYPE> twist_of_types = new List<SH_TWIST_OF_TYPE>();
+        List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
         List<SH_CLIENTS_PRODUCTS> mproduct = new List<SH_CLIENTS_PRODUCTS>();
         List<SH_ITEMS> ItemList = new List<SH_ITEMS>();
         List<SH_CLIENTS_BRANCHES> branchList = new List<SH_CLIENTS_BRANCHES>();
@@ -22,12 +27,277 @@ namespace Al_Shaheen_System
         List<CLIENT_ORDER_WORK> cwList = new List<CLIENT_ORDER_WORK>();
         List<SH_FACE_COLOR> faceList = new List<SH_FACE_COLOR>();
         List<SH_CLIENTS_BRANCHES> mclientBranches = new List<SH_CLIENTS_BRANCHES>();
+        DatabaseConnection myconnection = new DatabaseConnection();
+        List<string> item_types = new List<string>();
+        List<SH_CLIENTS_PRODUCTS> client_products = new List<SH_CLIENTS_PRODUCTS>();
+        List<SH_COLOR_PILLOW> color_pillows = new List<SH_COLOR_PILLOW>();
         public ClientSupplyRunOrderFrmNew()
         {
             InitializeComponent();
         }
+        void getallitemtypes()
+        {
+            try
+            {
+                item_types.Clear();
 
-        void loadNewId()
+                string query = "SELECT DISTINCT SH_KIND FROM SH_TWIST_OF_TYPE";
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    item_types.Add(reader["SH_KIND"].ToString());
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING TWIST OF TYPES KINDS " + ex.ToString());
+            }
+        }
+        void fillitemtypescombobox()
+        {
+            twist_item_type_combo_box.Items.Clear();
+            getallitemtypes();
+            if (item_types.Count > 0)
+            {
+                for (int i = 0; i < item_types.Count; i++)
+                {
+                    twist_item_type_combo_box.Items.Add(item_types[i]);
+                }
+            }
+        }
+
+
+        async Task getalltwistoftypes()
+        {
+            twist_of_types.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_TWIST_OF_TYPES", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_KIND", item_types[twist_item_type_combo_box.SelectedIndex]);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    twist_of_types.Add(new SH_TWIST_OF_TYPE() { SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(), SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()), SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_LONG_TITLE = reader["SH_LONG_TITLE"].ToString(), SH_SHORT_TITLE = reader["SH_SHORT_TITLE"].ToString() });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING TWIST OF TYPES DATA " + ex.ToString());
+            }
+        }
+        async Task filltwisttypescombobox()
+        {
+            await getalltwistoftypes();
+            twist_type_combo_box.Items.Clear();
+            // MessageBox.Show(twist_of_types.Count.ToString());
+            if (twist_of_types.Count > 0)
+            {
+                for (int i = 0; i < twist_of_types.Count; i++)
+                {
+                    //this.Invoke((MethodInvoker)delegate()
+                    //{
+                    twist_type_combo_box.Items.Add(twist_of_types[i].SH_SHORT_TITLE);
+                    //});
+                }
+            }
+        }
+        async Task gettwistofcolorspillow()
+        {
+            color_pillows.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_COLORS_PILLOW", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    color_pillows.Add(new SH_COLOR_PILLOW() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_COLOR_CODE = reader["SH_COLOR_CODE"].ToString(), SH_COLOR_NAME = reader["SH_COLOR_NAME"].ToString() });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING COLOR PILLOW FROM DB " + ex.ToString());
+            }
+
+        }
+        async Task fillwistofcolorpillowcombobox()
+        {
+            await gettwistofcolorspillow();
+            client_product_combo_box.Items.Clear();
+
+            if (color_pillows.Count > 0)
+            {
+                for (int i = 0; i < color_pillows.Count; i++)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        client_product_combo_box.Items.Add(color_pillows[i].SH_COLOR_NAME);
+                    });
+                }
+
+            }
+        }
+        async Task getallclientsdata()
+        {
+            clients.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_CLIENTS_DATA", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    clients.Add(new SH_CLIENT_COMPANY() { SH_CLIENT_COMPANY_FAX_NUMBER = reader["SH_CLIENT_COMPANY_FAX_NUMBER"].ToString(), SH_CLIENT_COMPANY_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString(), SH_CLIENT_COMPANY_TELEPHONE = reader["SH_CLIENT_COMPANY_TELEPHONE"].ToString(), SH_CLIENT_COMPANY_TYPE = reader["SH_CLIENT_COMPANY_TYPE"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()) });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING ClIENTS DATA " + ex.ToString());
+            }
+
+
+        }
+        async Task fillclientscombobox()
+        {
+            clients_combo_box.Items.Clear();
+            if (clients.Count > 0)
+            {
+                for (int i = 0; i < clients.Count; i++)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        clients_combo_box.Items.Add(clients[i].SH_CLIENT_COMPANY_NAME);
+                    });
+                }
+            }
+        }
+        async Task getallclientproducts(long client_id)
+        {
+            client_products.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_CLIENT_PRODUCTS_BY_CLIENT_ID", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", client_id);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    client_products.Add(new SH_CLIENTS_PRODUCTS() { SH_BOTTLE_CAPACITY = double.Parse(reader["SH_BOTTLE_CAPACITY"].ToString()), SH_BOTTLE_HEIGHT = double.Parse(reader["SH_BOTTLE_HEIGHT"].ToString()), SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CLIENT_NAME = reader["SH_CLIENT_NAME"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_PRINTING_TYPE = reader["SH_PRINTING_TYPE"].ToString(), SH_PRODUCT_NAME = reader["SH_PRODUCT_NAME"].ToString(), SH_SECOND_FACE_ID = long.Parse(reader["SH_SECOND_FACE_ID"].ToString()), SH_SECOND_FACE_NAME = reader["SH_SECOND_FACE_NAME"].ToString(), SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()), SH_SIZE_NAME = reader["SH_SIZE_NAME"].ToString() });
+                }
+                reader.Read();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHIlE GetTING CLIENT PRODUCTS DATA " + ex.ToString());
+            }
+        }
+        async Task fillclientproductscombobox()
+        {
+            client_product_combo_box.Items.Clear();
+            if (client_products.Count > 0)
+            {
+                for (int i = 0; i < client_products.Count; i++)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        client_product_combo_box.Items.Add(client_products[i].SH_PRODUCT_NAME);
+                    });
+                }
+            }
+        }
+        async Task getallfacecolors()
+        {
+            faces.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_FACE_COLORS ", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    faces.Add(new SH_FACE_COLOR() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_FACE_COLOR_NAME = reader["SH_FACE_COLOR_NAME"].ToString() });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING FACE COLORS " + ex.ToString());
+            }
+        }
+        async Task getalltwistofsizes()
+        {
+            try
+            {
+                sizes.Clear();
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_TWIST_OF_SIZES_DATA", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    sizes.Add(new SH_TWIST_OF_SIZE() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_TWIST_OF_SIZE_VALUE = long.Parse(reader["SH_TWIST_OF_SIZE_VALUE"].ToString()) });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING ALL TWIST OF SIZES DATA " + ex.ToString());
+            }
+        }
+
+        async Task fillsizescombobox()
+        {
+            f2_combo_box.Items.Clear();
+            await getalltwistofsizes();
+            if (sizes.Count > 0)
+            {
+                for (int i = 0; i < sizes.Count; i++)
+                {
+                    f2_combo_box.Items.Add(sizes[i].SH_TWIST_OF_SIZE_VALUE.ToString());
+                }
+            }
+        }
+
+
+        async Task fillfacescombobox()
+        {
+            faces.Clear();
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                f1_combo_box.Items.Clear();
+            });
+            await getallfacecolors();
+            if (faces.Count > 0)
+            {
+                for (int i = 0; i < faces.Count; i++)
+                {
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        f1_combo_box.Items.Add(faces[i].SH_FACE_COLOR_NAME);
+                    });
+                }
+            }
+        }
+        async Task loadNewId()
         {
             try  //complete it after dataBase Creation
             {
@@ -76,11 +346,11 @@ namespace Al_Shaheen_System
             }
         }
 
-        void fillClientscombobox()
+        async Task fillClientscombobox()
         {
             clients.Clear();
             loadallClients();
-            comboBoxClients.Items.Clear();
+            clients_combo_box.Items.Clear();
             if (clients.Count <= 0)
             {
 
@@ -89,7 +359,7 @@ namespace Al_Shaheen_System
             {
                 for (int i = 0; i < clients.Count; i++)
                 {
-                    comboBoxClients.Items.Add(clients[i].SH_CLIENT_COMPANY_NAME);
+                    clients_combo_box.Items.Add(clients[i].SH_CLIENT_COMPANY_NAME);
                 }
             }
         }
@@ -99,7 +369,7 @@ namespace Al_Shaheen_System
             try
             {
                 string query = "SELECT * FROM SH_FACE_COLORS";
-                DatabaseConnection myconnection = new DatabaseConnection();
+               
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -136,7 +406,45 @@ namespace Al_Shaheen_System
             }
         }
 
+        void loadallstocks()
+        {
+            try
+            {
+                string query = "SELECT * FROM SH_SHAHEEN_STOCKS";
 
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    stocks.Add(new SH_SHAHEEN_STOCK { SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString(), SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString() });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO WHILE GETTING STOCKS DATA FROM DB " + ex.ToString());
+            }
+        }
+
+      void fillstockscombobox()
+        {
+            stocks.Clear();
+          loadallstocks();
+            comboBoxourFactory.Items.Clear();
+            if (stocks.Count <= 0)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < stocks.Count; i++)
+                {
+                    comboBoxourFactory.Items.Add(stocks[i].SH_STOCK_NAME);
+                }
+            }
+        }
         void loadComboBranches()
         {
 
@@ -145,7 +453,7 @@ namespace Al_Shaheen_System
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("select * from SH_CLIENTS_BRANCHES where SH_CLIENT_ID=@id", DatabaseConnection.mConnection);
-                cmd.Parameters.AddWithValue("@id", clients[comboBoxClients.SelectedIndex].SH_ID);
+                cmd.Parameters.AddWithValue("@id", clients[clients_combo_box.SelectedIndex].SH_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -186,7 +494,7 @@ namespace Al_Shaheen_System
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
-                cmd.Parameters.AddWithValue("@client_id", clients[comboBoxClients.SelectedIndex].SH_ID);
+                cmd.Parameters.AddWithValue("@client_id", clients[clients_combo_box.SelectedIndex].SH_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -205,17 +513,44 @@ namespace Al_Shaheen_System
         void fillClientProducts()
         {
             mproduct.Clear();
-            comboBoxProducts.Items.Clear();
+            client_product_combo_box.Items.Clear();
             getallclientproducts();
             for (int i = 0; i < mproduct.Count; i++)
             {
-                comboBoxProducts.Items.Add(mproduct[i].SH_PRODUCT_NAME);
+                client_product_combo_box.Items.Add(mproduct[i].SH_PRODUCT_NAME);
             }
 
         }
 
 
+        void getCanDaimetrOFSelectedproducts()
+        {
 
+            try
+            {
+                
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("getCanDaimetrOfSelectedProduct", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", mproduct[client_product_combo_box.SelectedIndex].SH_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    textBoxCanDaimetr.Text = reader["SH_SIZE_NAME"].ToString();
+                    textBoxHightOFButtle.Text = reader["SH_BOTTLE_HEIGHT"].ToString();
+                }
+
+
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING Daimetr PRODUCTS " + ex.ToString());
+            }
+        }
+
+    
 
         void loadclientbranchesCombo()
         {
@@ -225,7 +560,7 @@ namespace Al_Shaheen_System
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM SH_CLIENTS_BRANCHES WHERE SH_CLIENT_ID = @SH_CLIENT_ID", DatabaseConnection.mConnection);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[comboBoxClients.SelectedIndex].SH_ID);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[clients_combo_box.SelectedIndex].SH_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -258,13 +593,19 @@ namespace Al_Shaheen_System
 
 
         }
-        private void ClientSupplyRunOrderFrmNew_Load(object sender, EventArgs e)
+        private async void ClientSupplyRunOrderFrmNew_Load(object sender, EventArgs e)
         {
-            fillClientscombobox();
+           await loadNewId();
+           await  fillClientscombobox();
             textBoxDateNow.Text = DateTime.Now.ToString();
-            fillFaces();
-            loadNewId();
+          
+          
+
+            await fillfacescombobox();
+            await fillsizescombobox();
+            fillitemtypescombobox();
         
+
 
         }
 
@@ -285,12 +626,25 @@ namespace Al_Shaheen_System
             if (checkBoxHasMold.Checked&& comboBoxItemType.SelectedIndex == 0 && radioButton3Pecies.Checked)
             {//علبه
                 cw.SH_DIAMETR_TAPPA = long.Parse(comboBoxCanTabaDaimetr.Text);
+                
                 cw.SH_TABA_COLOR = comboBoxCanTabaColor.Text;
                 cw.SH_TABA_TYPE = comboBoxCanTabaType.Text;
                 cw.SH_NUMBER_OF_PEICES = 3;
             }
+
+            if (checkBoxHasMold.Checked==false && comboBoxItemType.SelectedIndex == 0 )
+            {//علبه
+                cw.SH_DIAMETR_TAPPA = 0;
+
+                cw.SH_TABA_COLOR = "";
+                cw.SH_TABA_TYPE = "";
+            
+            }
             if (comboBoxItemType.SelectedIndex == 0)
             {
+                cw.SH_CAN_BUTTLE_HIGHT = double.Parse(textBoxHightOFButtle.Text);
+                cw.SH_CAN_DAIMETR = long.Parse(textBoxCanDaimetr.Text);
+                cw.SH_CANS_THICKNESS = double.Parse(textBoxThichness.Text);
                 cw.SH_NUMBER_OF_COLORS_OF_CAN =long.Parse( comboBoxNumberOfColors.Text);
                 if (checkBoxThick.Checked)
                 {
@@ -300,7 +654,7 @@ namespace Al_Shaheen_System
                     cw.SH_THICKNESS_INCREASE_DECREASE_01 = 0;
                 }
 
-                
+               
 
             }
 
@@ -331,12 +685,12 @@ namespace Al_Shaheen_System
 
             }
             if (comboBoxItemType.SelectedIndex ==5)
-            {//غطاء ايزي اوبن لوحده بدون علبة
+            {//Normal end  لوحده بدون علبة
                 cw.SH_EASY_OPEN_MATERIAL = comboBoxEOEMaterial.Text;
                 cw.SH_EASY_OPEN_DAIAMETR = long.Parse(comboBoxDiametrEoE.Text);
                 cw.SH_INSIDE_MURAN = comboBoxInsideMuran.Text;
                 cw.SH_OUTSIDE_MURAN = comboBoxOutSideMuran.Text;
-                cw.SH_OPEN_WAY = comboBoxOpenType.Text;
+    
 
 
             }
@@ -345,7 +699,7 @@ namespace Al_Shaheen_System
             if (comboBoxItemType.SelectedIndex ==0&&(radioButtonEasyOpen.Checked|| radioButtonNormalEOE.Checked))
             { //غطاء ايزي اوبن للعلبة
                 cw.SH_EASY_OPEN_MATERIAL = comboBoxEOEMaterial.Text;
-                cw.SH_EASY_OPEN_DAIAMETR = long.Parse(comboBoxDiametrEoE.Text);
+                cw.SH_EASY_OPEN_DAIAMETR = long.Parse(textBoxCanDaimetr.Text);
                 cw.SH_INSIDE_MURAN = comboBoxInsideMuran.Text;
                 cw.SH_OUTSIDE_MURAN = comboBoxOutSideMuran.Text;
                 cw.SH_OPEN_WAY = comboBoxOpenType.Text;
@@ -380,9 +734,10 @@ namespace Al_Shaheen_System
             {
                
                 //تويست
-                cw.SH_TWIST_SIZE =long.Parse( comboBoxTwistSize.Text);
-                cw.SH_TWIST_TYPE = comboBoxTwistTypes.Text;
-               cw.SH_TWIST_COLOR = comboBoxTwistColor.Text;
+                cw.SH_TWIST_SIZE =long.Parse( f2_combo_box.Text);
+                cw.SH_TWIST_TYPE = twist_type_combo_box.Text;
+               cw.SH_TWIST_COLOR = f1_combo_box.Text;
+                cw.SH_TWIST_DEEP_NORMAL_MEDIUM = twist_item_type_combo_box.Text;
             }
             if (comboBoxPaymentWay1.SelectedIndex == 1)
             {
@@ -409,7 +764,7 @@ namespace Al_Shaheen_System
             {
                 cw.SH_LEHAM_MANUAL= 1;
             }
-            if (checkBoxOutMuran.Checked)
+            if (radioButtonCanHasOutMuran.Checked)
             {
                 cw.SH_HAS_MURAN = 1;
             }
@@ -418,12 +773,12 @@ namespace Al_Shaheen_System
                 cw.SH_HAS_POWDER = 1;
                 cw.SH_POWER_COLOR = comboBoxPowderColor.Text;
             }
-            if (checkBoxHasNeck.Checked)
+            if (radioButtonHasNeck.Checked)
             {
                 cw.SH_HAS_NECK = 1;
 
             }
-            if (checkBoxHasNeck.Checked==false)
+            if (radioButtonHasNeck.Checked==false)
             {
                 cw.SH_HAS_NECK = 0;
 
@@ -470,10 +825,6 @@ namespace Al_Shaheen_System
                 cw.SH_CAN_COVER_TYPE = "EOE";
             }
 
-            if (radioButtonTinCover.Checked)
-            {
-                cw.SH_CAN_COVER_TYPE = "غطاء صفيح";
-            }
             if (radioButtonNormalEOE.Checked)
             {
                 cw.SH_CAN_COVER_TYPE = "قاع";
@@ -498,12 +849,12 @@ namespace Al_Shaheen_System
                 cw.SH_HAS_PLASTIC_COVER_CAN = 1;
                 cw.SH_PLASTIC_COVER_COLOR_CAN = comboBoxPlasticCoverColor.Text;
             }
-            if (checkBoxPlasticCoverLogo.Checked)
+            if (radioButtonPlasticCoverOfCanHasLogo.Checked)
             {
                 cw.SH_HAS_PLASTIC_COVER_LOGO_CAN = 1;
 
             }
-            if (checkBoxPlasticCoverLogo.Checked==false)
+            if (radioButtonPlasticCoverOfCanHasLogo.Checked==false)
             {
                 cw.SH_HAS_PLASTIC_COVER_LOGO_CAN = 0;
 
@@ -544,7 +895,44 @@ namespace Al_Shaheen_System
             {
                 cw.SH_DURATION_AFTER_RECIVING = comboBoxAfterReciving.Text;
             }
-         
+            if (radioButtonHasTinCover.Checked == true)
+            {
+                cw.SH_CAN_HAS_TIN_COVER_OR_NOT = 1;
+            }
+            if (radioButtonHasTinCover.Checked == false)
+            {
+                cw.SH_CAN_HAS_TIN_COVER_OR_NOT = 0;
+            }
+            if (radioButtonCanHasButtom.Checked)
+            {
+                cw.SH_CAN_HAS_BUTTOM_OR_NOT = 1;
+            }
+            if (radioButtonCanHasButtom.Checked==false)
+            {
+                cw.SH_CAN_HAS_BUTTOM_OR_NOT = 0;
+            }
+            if (comboBoxPaymentWay1.SelectedIndex == 2)
+            {
+                cw.SH_BANK_NAME_SUBMITTED = comboBoxBankName1.Text;
+            }
+            if (comboBoxPaymentWay2.SelectedIndex == 2)
+            {
+                cw.SH_BANK_NAME_WHEN_RECIVING = comboBoxBankName2.Text;
+            }
+            if (comboBoxPaymentWay3.SelectedIndex == 2)
+            {
+                cw.SH_BANK_NAME_AFTER_RECIVING = comboBoxBankName3.Text;
+            }
+            if (radioButtonCanHasButtom.Checked)
+            {
+                cw.SH_CAN_BUTTUM_INSIDE_MURAN = comboBoxCan_Buttom_out_muran.Text;
+                    cw.SH_CAN_BUTTUM_OUTSIDE_MURAN = comboBoxCan_Buttom_in_muran.Text;
+            }
+            if (radioButtonCanHasButtom.Checked==false)
+            {
+                cw.SH_CAN_BUTTUM_INSIDE_MURAN ="";
+                cw.SH_CAN_BUTTUM_OUTSIDE_MURAN = "";
+            }
             try
                 {
                 
@@ -555,12 +943,12 @@ namespace Al_Shaheen_System
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SH_ID_STRING", textBoxOrderWorkClient.Text);
 
-                cmd.Parameters.AddWithValue("@SH_CLIENT_NAME",clients[comboBoxClients.SelectedIndex].SH_CLIENT_COMPANY_NAME);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[comboBoxClients.SelectedIndex].SH_ID);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_NAME",clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[clients_combo_box.SelectedIndex].SH_ID);
                 cmd.Parameters.AddWithValue("@SH_TODAY_DATE",DateTime.Now);
                 cmd.Parameters.AddWithValue("@SH_CLIENT_SUPPLY_ORDER_NUM", textBoxClientSuppNum.Text);
-                cmd.Parameters.AddWithValue("@SH_ITEM_NAME",mproduct[comboBoxProducts.SelectedIndex].SH_PRODUCT_NAME);
-              
+                cmd.Parameters.AddWithValue("@SH_ITEM_NAME", mproduct[client_product_combo_box.SelectedIndex].SH_PRODUCT_NAME);
+             
                      cmd.Parameters.AddWithValue("@SH_ITEM_TYPE", comboBoxItemType.Text);
                 cmd.Parameters.AddWithValue("@SH_QUANTITY",double.Parse(textBoxItemQnty.Text));
                 cmd.Parameters.AddWithValue("@SH_UNIT_PRICE", double.Parse(textBoxItemPrice.Text));
@@ -587,6 +975,8 @@ namespace Al_Shaheen_System
                 
                 cmd.Parameters.AddWithValue("@SH_DATE_OF_THE_CKECK_AFTER_RECIVING", cw.SH_DATE_OF_THE_CKECK_AFTER_RECIVING);
                 cmd.Parameters.AddWithValue("@SH_DURATION_AFTER_RECIVING",cw.SH_DURATION_AFTER_RECIVING);
+                cmd.Parameters.AddWithValue("@SH_CAN_DAIMETR", cw.SH_CAN_DAIMETR);
+                cmd.Parameters.AddWithValue("@SH_CAN_BUTTLE_HIGHT", cw.SH_CAN_BUTTLE_HIGHT);
                 cmd.Parameters.AddWithValue("@SH_LEHAM", cw.SH_LEHAM);
                 cmd.Parameters.AddWithValue("@SH_LEHAM_AUTOMATIC", cw.SH_LEHAM_AUTOMATIC);
                 cmd.Parameters.AddWithValue("@SH_LEHAM_MANUAL", cw.SH_LEHAM_MANUAL);
@@ -594,6 +984,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_HAS_POWDER", cw.SH_HAS_POWDER);
                 cmd.Parameters.AddWithValue("@SH_POWER_COLOR", cw.SH_POWER_COLOR);
                 cmd.Parameters.AddWithValue("@SH_NUMBER_OF_PEICES",cw.SH_NUMBER_OF_PEICES);
+                cmd.Parameters.AddWithValue("@SH_CANS_THICKNESS", cw.SH_CANS_THICKNESS);
                 cmd.Parameters.AddWithValue("@SH_THICKNESS_INCREASE_DECREASE_01",cw.SH_THICKNESS_INCREASE_DECREASE_01);
                 cmd.Parameters.AddWithValue("@SH_NUMBER_OF_COLORS_OF_CAN",cw.SH_NUMBER_OF_COLORS_OF_CAN);
 
@@ -638,6 +1029,15 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_BOYATE_FACE_TYPE", cw.SH_BOYATE_FACE_TYPE);
                 cmd.Parameters.AddWithValue("@SH_FACE_DAIMETR",cw.SH_FACE_DAIMETR);
                 cmd.Parameters.AddWithValue("@SH_PEELOFF_DAIMETR", cw.SH_PEELOFF_DAIMETR);
+                cmd.Parameters.AddWithValue("@SH_CAN_HAS_TIN_COVER_OR_NOT", cw.SH_CAN_HAS_TIN_COVER_OR_NOT);
+                cmd.Parameters.AddWithValue("@SH_CAN_HAS_BUTTOM_OR_NOT", cw.SH_CAN_HAS_BUTTOM_OR_NOT);
+
+
+                cmd.Parameters.AddWithValue("@SH_BANK_NAME_SUBMITTED",cw.SH_BANK_NAME_SUBMITTED);
+                cmd.Parameters.AddWithValue("@SH_BANK_NAME_WHEN_RECIVING",cw.SH_BANK_NAME_WHEN_RECIVING);
+                cmd.Parameters.AddWithValue("@SH_BANK_NAME_AFTER_RECIVING",cw.SH_BANK_NAME_AFTER_RECIVING);
+                cmd.Parameters.AddWithValue("@SH_CAN_BUTTUM_OUTSIDE_MURAN",cw.SH_CAN_BUTTUM_OUTSIDE_MURAN);
+                cmd.Parameters.AddWithValue("@SH_CAN_BUTTUM_INSIDE_MURAN", cw.SH_CAN_BUTTUM_INSIDE_MURAN);
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("  تم اضافة امر تشغيل التوريد بنجاح"+ " "+comboBoxItemType.Text);
@@ -654,7 +1054,7 @@ namespace Al_Shaheen_System
         private void buttonSave_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(comboBoxClients.Text))
+            if (string.IsNullOrEmpty(clients_combo_box.Text))
             {
                 MessageBox.Show("ادخل اسم العميل");
             }
@@ -684,7 +1084,19 @@ namespace Al_Shaheen_System
                 MessageBox.Show(" اختر المده المتاحه للسداد بعد الاستلام");
             }
             
-                    else if (string.IsNullOrEmpty(comboBoxProducts.Text))
+            else if (comboBoxPaymentWay1.SelectedIndex==2 && string.IsNullOrEmpty(comboBoxBankName1.Text))
+            {
+                MessageBox.Show("ادخل اسم البنك الذي يتم فيه الايداع");
+            }
+            else if (comboBoxPaymentWay2.SelectedIndex == 2 && string.IsNullOrEmpty(comboBoxBankName2.Text))
+            {
+                MessageBox.Show("ادخل اسم البنك الذي يتم فيه الايداع");
+            }
+            else if (comboBoxPaymentWay3.SelectedIndex == 2 && string.IsNullOrEmpty(comboBoxBankName3.Text))
+            {
+                MessageBox.Show("ادخل اسم البنك الذي يتم فيه الايداع");
+            }
+            else if (string.IsNullOrEmpty(client_product_combo_box.Text))
             {
                 MessageBox.Show(" اختر اسم الصنف للعميل");
             }
@@ -692,7 +1104,11 @@ namespace Al_Shaheen_System
             {
                 MessageBox.Show("اختر اسم  العملة");
             }
-
+        else if(comboBoxItemType.SelectedIndex==0&& radioButtonCanHasOutMuran.Checked==false && radioButtonCanHasNoOutMuran.Checked == false)
+            {
+                MessageBox.Show("حدد هل يوجد ورنيش خارجي ام لا يوجد");
+            }
+           
             else if (string.IsNullOrEmpty(comboBoxNolon.Text))
             {
                 MessageBox.Show("اختر النولون");
@@ -711,10 +1127,19 @@ namespace Al_Shaheen_System
             {
                 MessageBox.Show("اختر هل العلبة لحام ام دق وصل");
             }
+            else if(comboBoxItemType.SelectedIndex == 0 && radioButton3Pecies.Checked && radioButtonHasNeck.Checked==false && radioButtonHasNONeck.Checked == false)
+            {
+                MessageBox.Show("حدد هل يوجد رقبه للعلبه ام لا");
+            }
             else if (radioButton3Pecies.Checked&& comboBoxItemType.SelectedIndex == 0 && radioButtonweld.Checked && radioButtonAutomaticWeld.Checked == false && radioButtonManualWeld.Checked == false)
             {
 
                 MessageBox.Show("اختر نوع اللحام مانول ام اوتوماتيك");
+            }
+
+            else if (comboBoxItemType.SelectedIndex == 0&&string.IsNullOrEmpty(textBoxThichness.Text))
+            {
+                MessageBox.Show("ادخل سمك العلبة");
             }
             else if (radioButton3Pecies.Checked && comboBoxItemType.SelectedIndex == 0 && radioButtonPowder.Checked == false && radioButtonNoPowder.Checked == false)
             {
@@ -743,7 +1168,7 @@ namespace Al_Shaheen_System
             }
 
 
-            else if (comboBoxItemType.SelectedIndex == 0 &&  radioButtonHaveCover.Checked &&  radioButtonEasyOpen.Checked == false && radioButtonFaceCover.Checked == false && radioButtonNormalEOE.Checked == false && radioButtonRLTCover.Checked == false && radioButtonPeelOffCover.Checked == false&& radioButtonTinCover.Checked==false)
+            else if (comboBoxItemType.SelectedIndex == 0 &&  radioButtonHaveCover.Checked &&  radioButtonEasyOpen.Checked == false && radioButtonFaceCover.Checked == false && radioButtonNormalEOE.Checked == false && radioButtonRLTCover.Checked == false && radioButtonPeelOffCover.Checked == false)
             {
                 MessageBox.Show("حدد نوع الغطاء ايزي ازبن ام قاع ام بييل اوف ام ار ال تي ام غطاء صفيح ");
             }
@@ -762,12 +1187,15 @@ namespace Al_Shaheen_System
 
 
 
-            else if (comboBoxItemType.SelectedIndex == 2 && (string.IsNullOrEmpty(comboBoxTwistTypes.Text) || string.IsNullOrEmpty(comboBoxTwistSize.Text)))
+            else if (comboBoxItemType.SelectedIndex == 2 && (string.IsNullOrEmpty(twist_type_combo_box.Text) || string.IsNullOrEmpty(f2_combo_box.Text)||string.IsNullOrEmpty(twist_item_type_combo_box.Text)||string.IsNullOrEmpty(f1_combo_box.Text)))
             {
                 MessageBox.Show("ادخل بيانات التوست بشكل صحيح النوع و المقاس");
             }
 
-
+            else if (comboBoxItemType.SelectedIndex ==0&& checkBoxHavePlasticCover.Checked && radioButtonPlasticCoverOfCanHasLogo.Checked==false&& radioButtonPlasticCoverOfCanHasNoLogo.Checked==false)
+            {
+                MessageBox.Show("حدد هل يوجد لوجو للغطاء البلاستيك ام لا ");
+            }
 
             else if (checkBoxHavePlasticCover.Checked && string.IsNullOrEmpty(comboBoxPlasticCoverColor.Text))
             {
@@ -775,13 +1203,13 @@ namespace Al_Shaheen_System
             }
 
 
-            else if (comboBoxItemType.SelectedIndex == 1 && (string.IsNullOrEmpty(comboBoxOutSideMuran.Text) || string.IsNullOrEmpty(comboBoxInsideMuran.Text) || string.IsNullOrEmpty(comboBoxDiametrEoE.Text) || string.IsNullOrEmpty(comboBoxOpenType.Text) || string.IsNullOrEmpty(comboBoxEOEMaterial.Text)))
+            else if (comboBoxItemType.SelectedIndex == 1 && (string.IsNullOrEmpty(comboBoxOutSideMuran.Text) || string.IsNullOrEmpty(comboBoxInsideMuran.Text)  || string.IsNullOrEmpty(comboBoxOpenType.Text) || string.IsNullOrEmpty(comboBoxEOEMaterial.Text) || string.IsNullOrEmpty(comboBoxDiametrEoE.Text)))
             {
-                MessageBox.Show("اكمل بيانات الايزي اوبن بشكل صحيح الورنيش الداخلي و الخارجي و القطر و طريقة الفتح و الخامة");
+                MessageBox.Show("اكمل بيانات الايزي اوبن بشكل صحيح الورنيش الداخلي و الخارجي و طريقة الفتح و الخامة");
             }
-            else if (comboBoxItemType.SelectedIndex == 5 && (string.IsNullOrEmpty(comboBoxOutSideMuran.Text) || string.IsNullOrEmpty(comboBoxInsideMuran.Text) || string.IsNullOrEmpty(comboBoxDiametrEoE.Text) || string.IsNullOrEmpty(comboBoxOpenType.Text) || string.IsNullOrEmpty(comboBoxEOEMaterial.Text)))
+            else if (comboBoxItemType.SelectedIndex == 5 && (string.IsNullOrEmpty(comboBoxOutSideMuran.Text) || string.IsNullOrEmpty(comboBoxInsideMuran.Text) || string.IsNullOrEmpty(comboBoxDiametrEoE.Text) ||  string.IsNullOrEmpty(comboBoxEOEMaterial.Text)))
             {
-                MessageBox.Show("اكمل بيانات Normal End بشكل صحيح الورنيش الداخلي و الخارجي و القطر و طريقة الفتح و الخامة");
+                MessageBox.Show("اكمل بيانات Normal End بشكل صحيح الورنيش الداخلي و الخارجي و القطر  و الخامة");
             }
             else if(comboBoxItemType.SelectedIndex ==7&&(string.IsNullOrEmpty(comboBoxPlasticTabaDaimetr.Text) || string.IsNullOrEmpty(comboBoxPlasticTabaType.Text)))
             {
@@ -822,16 +1250,30 @@ namespace Al_Shaheen_System
             {
                 MessageBox.Show("ادخل قطر الغطاء للعلبة");
             }
+         
+            else if (comboBoxFaceType.SelectedIndex==0&& comboBoxItemType.SelectedIndex == 0 && radioButtonHasTinCover.Checked==false&& radioButtonHasNoTinCover.Checked==false)
+            {
+                MessageBox.Show("حدد هل يوجد غطاء صفيح للعلبة ام لا");
+            }
+            else if (radioButtonCanHasButtom.Checked &&(string.IsNullOrEmpty(comboBoxCan_Buttom_out_muran.Text) ||string.IsNullOrEmpty(comboBoxCan_Buttom_in_muran.Text)))
+            {
+                MessageBox.Show("ادخل الورنيش الداخلى والخارجي لقاع العلبة");
+                   
+            }
             else
             {
+                try
+                {
+                    addOrderWorkClient();
 
-                addOrderWorkClient();
-
-
+                }catch (Exception ex)
+                {
+                    MessageBox.Show("error" + ex.ToString());
+                }
 
             }
         }
-
+        
 
         private void comboBoxItemType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -839,6 +1281,7 @@ namespace Al_Shaheen_System
             {
                 case 1:
                     //easy open
+                  
                     panelUPlipe.Visible = false;
                     panelCansDesc.Visible = false;
                     panelEasyopen.Visible = true;
@@ -854,8 +1297,17 @@ namespace Al_Shaheen_System
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = false;
                     panelPecies.Visible = false;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     labelnum5.Visible = false;
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+                    labelHightOfButtle.Visible = false;
+                    textBoxHightOFButtle.Visible = false;
+                    pillow_check_box.Visible = false;
                     break;
 
 
@@ -867,7 +1319,14 @@ namespace Al_Shaheen_System
                     panelEasyopen.Visible = false;
                     panelFace.Visible = false;
                     checkBoxHasMold.Visible = false;
-             
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+                    labelHightOfButtle.Visible = false;
+                    textBoxHightOFButtle.Visible = false;
                     panelTypeOFFace.Visible = false;
                     panelCover.Visible = false;
                     panelPlasticCover.Visible = false;
@@ -878,8 +1337,10 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = true;
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = false;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     panelPecies.Visible = false;
+                    pillow_check_box.Visible = false;
+
                     break;
                 case 3:
                     //peel off
@@ -889,7 +1350,14 @@ namespace Al_Shaheen_System
                     panelEasyopen.Visible = false;
                     panelFace.Visible = false;
                     checkBoxHasMold.Visible = false;
-
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+                    labelHightOfButtle.Visible = false;
+                    textBoxHightOFButtle.Visible = false;
                     panelTypeOFFace.Visible = false;
                     panelCover.Visible = false;
                     panelPlasticCover.Visible = false;
@@ -900,18 +1368,35 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = false;
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = true;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     panelPecies.Visible = false;
+                    pillow_check_box.Visible = false;
+
                     break;
                 case 2:
                     //twist
+
+
+
+
+
+
+                    pillow_check_box.Visible = true;
+
                     labelnum5.Visible = false;
                     groupBoxTaghleef.Visible = false;
                     panelCansDesc.Visible = false;
                     panelFace.Visible = false;
                     panelEasyopen.Visible = false;
                     checkBoxHasMold.Visible = false;
-
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+                    labelHightOfButtle.Visible = false;
+                    textBoxHightOFButtle.Visible = false;
                     panelTypeOFFace.Visible = false;
                     panelCover.Visible = false;
                     panelPlasticCover.Visible = false;
@@ -922,7 +1407,7 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = false;
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = false;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     panelPecies.Visible = false;
                     break;
                 case 6:
@@ -933,7 +1418,14 @@ namespace Al_Shaheen_System
                     panelFace.Visible = false;
                     panelEasyopen.Visible = false;
                     checkBoxHasMold.Visible = false;
-
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+                    labelHightOfButtle.Visible = false;
+                    textBoxHightOFButtle.Visible = false;
                     panelTypeOFFace.Visible = false;
                     panelCover.Visible = false;
                     panelPlasticCover.Visible = true;
@@ -944,8 +1436,10 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = false;
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = false;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     panelPecies.Visible = false;
+                    pillow_check_box.Visible = false;
+
                     break;
                 case 0:
                     //علبه
@@ -954,7 +1448,14 @@ namespace Al_Shaheen_System
                     panelCansDesc.Visible = true;
                     groupBoxTaghleef.Visible = true;
                     checkBoxHasMold.Visible = true;
-
+                    labelCanMold10.Visible = true;
+                    panelNeck.Visible = true;
+                 
+                    panelCanButtom.Visible = true;
+                    labelCanDaimetr.Visible = true;
+                    textBoxCanDaimetr.Visible = true;
+                    labelHightOfButtle.Visible = true;
+                    textBoxHightOFButtle.Visible = true;
                     panelHavePlasticCover.Visible = true;
                     panelCover.Visible = true;
                     panelTwistProp.Visible = false;
@@ -966,7 +1467,8 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = false;
                     panelPeelOFF.Visible = false;
                     panelPecies.Visible = true;
-                    checkBoxOutMuran.Visible = true;
+                    panelCansOutMuran.Visible = true;
+                    pillow_check_box.Visible = false;
 
                     break;
 
@@ -978,6 +1480,13 @@ namespace Al_Shaheen_System
                     panelFace.Visible = false;
                     panelPeeding.Visible = false;
                     checkBoxHasMold.Visible = false;
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+                    pillow_check_box.Visible = false;
 
                     panelTypeOFFace.Visible = false;
                     panelCover.Visible = false;
@@ -987,7 +1496,7 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = false;
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = false;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     panelPecies.Visible = false;
                     break;
                 case 5:
@@ -997,7 +1506,15 @@ namespace Al_Shaheen_System
                     panelFace.Visible = false;
                     panelUPlipe.Visible = false;
                     checkBoxHasMold.Visible = false;
-
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+                    pillow_check_box.Visible = false;
+                    comboBoxOpenType.Visible = false;
+                    labelOpenType.Visible = false;
                     panelTypeOFFace.Visible = false;
                     panelCover.Visible = false;
                     panelPlasticCover.Visible = false;
@@ -1007,12 +1524,18 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = false;
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = false;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     panelPecies.Visible = false;
                     break;
                 default:
                     panelPlasticCover.Visible = false;
-                 
+                    labelCanMold10.Visible = false;
+                    panelNeck.Visible = false;
+                    panelTinCover.Visible = false;
+                    panelCanButtom.Visible = false;
+                    labelCanDaimetr.Visible = false;
+                    textBoxCanDaimetr.Visible = false;
+
                     checkBoxHasMold.Visible = false;
 
                     panelTypeOFFace.Visible = false;
@@ -1024,7 +1547,7 @@ namespace Al_Shaheen_System
                     panelRLT.Visible = false;
                     panelHavePlasticCover.Visible = false;
                     panelPeelOFF.Visible = false;
-                    checkBoxOutMuran.Visible = false;
+                    panelCansOutMuran.Visible = false;
                     panelPecies.Visible = false;
                     break;
             }
@@ -1185,7 +1708,7 @@ namespace Al_Shaheen_System
                     textBoxTotatalWithTax.Text = (double.Parse(textBoxTotalPrice.Text) - double.Parse(textBoxTax1.Text) + double.Parse(textBoxTax14.Text)).ToString();
                     double paid = double.Parse(textBoxSubmitted.Text) + double.Parse(textBoxWhenDelivered.Text);
                     textBoxRemaining.Text = (double.Parse(textBoxTotatalWithTax.Text) - paid).ToString();
-
+                 
                 }
             }
         }
@@ -1238,7 +1761,7 @@ namespace Al_Shaheen_System
 
         private void comboBoxClients_SelectedIndexChanged(object sender, EventArgs e)
         {
-            comboBoxProducts.Text = "";
+            client_product_combo_box.Text = "";
             comboBoxClientsBranches.Text = "";
             fillClientProducts();
             fillBranchesCombo();
@@ -1246,7 +1769,7 @@ namespace Al_Shaheen_System
         }
         private void radioButtonFromShaheen_CheckedChanged(object sender, EventArgs e)
         {
-
+            fillstockscombobox();
             if (radioButtonFromShaheen.Checked)
             {
 
@@ -1286,6 +1809,18 @@ namespace Al_Shaheen_System
         {
             // calcualteRemaining();
             calcualtettotalPriceNew();
+            if (string.Compare(textBoxTotatalWithTax.Text, textBoxSubmitted.Text) == 0)
+            {
+                panelMoneyInReciving.Visible = false;
+                panelMoneyAfterReciving.Visible = false;
+
+            }
+            else
+            {
+                panelMoneyInReciving.Visible = true;
+                panelMoneyAfterReciving.Visible = true;
+
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -1355,6 +1890,10 @@ namespace Al_Shaheen_System
                     comboBoxBoyatFace.Visible = true;
                     labelBoyatType.Visible = true;
                     comboBoxTabaDaiametr.Visible = false;
+                    comboBoxMoldFaceShape.Visible = false;
+                    labelMoldFaceShape.Visible = false;
+                    panelTinCover.Visible = true;
+                  
                     break;
                 case 1:
                     //طبة
@@ -1363,6 +1902,10 @@ namespace Al_Shaheen_System
                     comboBoxBoyatFace.Visible = false;
                     comboBoxBoyatFace.Text = "";
                     comboBoxTabaDaiametr.Visible = true;
+                    comboBoxMoldFaceShape.Visible = true;
+                    labelMoldFaceShape.Visible = true;
+                    panelTinCover.Visible = false;
+
                     break;
                 case 2:
                     //قلاوظ
@@ -1370,6 +1913,10 @@ namespace Al_Shaheen_System
                     comboBoxTabaDaiametr.Visible = true;
                     labelBoyatType.Text = "قطر القلاوظ";
                     comboBoxBoyatFace.Visible = false;
+                    comboBoxMoldFaceShape.Visible = false;
+                    labelMoldFaceShape.Visible = false;
+                    panelTinCover.Visible = false;
+
                     break;
                 default:
                     comboBoxBoyatFace.Visible = false;
@@ -1388,12 +1935,25 @@ namespace Al_Shaheen_System
 
                     labelDateOFSheck1.Visible = false;
                     dateTimePickerChek1.Visible = false;
+                    comboBoxBankName1.Visible = false;
+                    labelBankName1.Visible = false;
                     break;
                 case 1:
                     labelDateOFSheck1.Visible = true;
                     dateTimePickerChek1.Visible = true;
+                    comboBoxBankName1.Visible = false;
+                    labelBankName1.Visible = false;
+                    labelDateOFSheck1.Text = "تاريخ الاستحقاق";
                     break;
 
+
+                case 2:
+                    labelDateOFSheck1.Visible = true;
+                    dateTimePickerChek1.Visible = true;
+                    comboBoxBankName1.Visible = true;
+                    labelBankName1.Visible = true;
+                    labelDateOFSheck1.Text = "تاريخ الايداع";
+                    break;
                 default:
                     labelDateOFSheck1.Visible = false;
                     dateTimePickerChek1.Visible = false;
@@ -1410,12 +1970,23 @@ namespace Al_Shaheen_System
 
                     labelDateOFSheck2.Visible = false;
                     dateTimePickerChek2.Visible = false;
+                    labelBankName2.Visible = false;
+
                     break;
                 case 1:
                     labelDateOFSheck2.Visible = true;
                     dateTimePickerChek2.Visible = true;
+                    labelBankName2.Visible = false;
+                    labelDateOFSheck2.Text = "تاريخ الاستحقاق";
                     break;
+                case 2:
+                    labelDateOFSheck2.Visible = true;
+                    dateTimePickerChek2.Visible = true;
+                    comboBoxBankName2.Visible = true;
+                    labelBankName2.Visible = true;
+                    labelDateOFSheck2.Text = "تاريخ الايداع";
 
+                    break;
                 default:
                     labelDateOFSheck2.Visible = false;
                     dateTimePickerChek2.Visible = false;
@@ -1480,11 +2051,16 @@ namespace Al_Shaheen_System
             if (radioButtonNormalEOE.Checked)
             {
                 panelEasyopen.Visible = true;
+                comboBoxOpenType.Visible = false;
+                labelOpenType.Visible = false;
 
             }
             else
             {
                 panelEasyopen.Visible = false;
+                comboBoxOpenType.Visible = true;
+                labelOpenType.Visible = true;
+
             }
         }
 
@@ -1500,13 +2076,17 @@ namespace Al_Shaheen_System
                 if (checkBoxHavePlasticCover.Checked)
             {
                 comboBoxPlasticCoverColor.Visible = true;
-                checkBoxPlasticCoverLogo.Visible = true;
-
+                radioButtonPlasticCoverOfCanHasLogo.Visible = true;
+                radioButtonPlasticCoverOfCanHasNoLogo.Visible = true;
+                labelCanPlasticCoverColor.Visible = true;
             }
             else
             {
-                checkBoxPlasticCoverLogo.Visible = false;
+                radioButtonPlasticCoverOfCanHasLogo.Visible = false;
+                radioButtonPlasticCoverOfCanHasNoLogo.Visible = false;
                 comboBoxPlasticCoverColor.Visible = false;
+                labelCanPlasticCoverColor.Visible = false;
+
             }
         }
 
@@ -1521,6 +2101,8 @@ namespace Al_Shaheen_System
                     dateTimePickerChek3.Visible = false;
                     labelAfterReciving.Visible = true;
                     comboBoxAfterReciving.Visible = true;
+                    labelBankName3.Visible = false;
+
 
                     break;
                 case 1:
@@ -1528,8 +2110,17 @@ namespace Al_Shaheen_System
                     dateTimePickerChek3.Visible = true;
                     labelAfterReciving.Visible = false;
                     comboBoxAfterReciving.Visible = false;
+                    labelBankName3.Visible = false;
+                    labelDateOFSheck3.Text = "تاريخ الاستحقاق";
                     break;
+                case 2:
+                    labelDateOFSheck3.Visible = true;
+                    dateTimePickerChek3.Visible = true;
+                    labelBankName3.Visible = true;
+                    comboBoxBankName3.Visible = true;
+                    labelDateOFSheck3.Text = "تاريخ الايداع";
 
+                    break;
                 default:
                     labelDateOFSheck3.Visible = false;
                     dateTimePickerChek3.Visible = false;
@@ -1575,57 +2166,17 @@ namespace Al_Shaheen_System
 
         private void radioButtonNormalTwist_CheckedChanged_1(object sender, EventArgs e)
         {
-
-            if (radioButtonNormalTwist.Checked)
-            {
-                comboBoxTwistTypes.Items.Clear();
-                comboBoxTwistTypes.Items.Add("RTS");
-                comboBoxTwistTypes.Items.Add("RSB");
-                comboBoxTwistTypes.Items.Add("RTO");
-                comboBoxTwistTypes.Items.Add("RTB");
-                //comboBoxTwistTypes.Items.Add("");
-                //comboBoxTwistTypes.Items.Add("");
-                //comboBoxTwistTypes.Items.Add("");
-
-            }
-            else
-            {
-
-            }
+            
         }
 
         private void radioButtonDeepTwist_CheckedChanged_1(object sender, EventArgs e)
         {
-            if (radioButtonDeepTwist.Checked)
-            {
-                comboBoxTwistTypes.Items.Clear();
-
-                comboBoxTwistTypes.Items.Add("DTB");
-                comboBoxTwistTypes.Items.Add("DTO");
-
-
-            }
-            else
-            {
-
-            }
+            
         }
 
         private void radioButtonMediumTwist_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonMediumTwist.Checked)
-            {
-                comboBoxTwistTypes.Items.Clear();
-
-                comboBoxTwistTypes.Items.Add("MTO");
-                comboBoxTwistTypes.Items.Add("MTB");
-
-
-            }
-            else
-            {
-
-            }
+          
         }
 
         private void radioButton2Peices_CheckedChanged(object sender, EventArgs e)
@@ -1663,18 +2214,20 @@ namespace Al_Shaheen_System
             if (radioButton2Peices.Checked)
             {
                 panelCansDesc.Visible = false;
-                checkBoxOutMuran.Visible = false;
+                panelCansOutMuran.Visible = false;
                 labelnum5.Visible = false;
                 radioButtonPeding.Visible = false;
                 radioButtonNoPeding.Visible = false;
+                panelTinCover.Visible = true;
             }
             else
             {
                 panelCansDesc.Visible = true;
-                checkBoxOutMuran.Visible = true;
+                panelCansOutMuran.Visible = true;
                 labelnum5.Visible = true;
                 radioButtonPeding.Visible = true;
                 radioButtonNoPeding.Visible = true;
+                panelTinCover.Visible = false;
 
             }
         }
@@ -1719,6 +2272,160 @@ namespace Al_Shaheen_System
                 panelTaba.Visible = false;
             }
         }
+
+        private void comboBoxProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getCanDaimetrOFSelectedproducts();
+        }
+ 
+        
+   
+
+        private async void  pillow_check_box_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pillow_check_box.Checked)
+            {
+                client_product_combo_box.Text = "";
+                client_product_combo_box.Items.Clear();
+                client_products_label.Text = "اللون";
+                await fillwistofcolorpillowcombobox();
+            }
+            else
+            {
+                if (!string.IsNullOrWhiteSpace(clients_combo_box.Text))
+                {
+                    client_product_combo_box.Text = "";
+                    client_product_combo_box.Items.Clear();
+                    client_products_label.Text = "إسم الصنف";
+                    await getallclientproducts(clients[clients_combo_box.SelectedIndex].SH_ID);
+                    await fillclientproductscombobox();
+                }
+                else
+                {
+                    MessageBox.Show(" لابد من تحديد العميل أولا ", "تحذير", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                }
+            }
+        }
+
+      
+
+        private void radioButtonHasTinCover_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonHasTinCover.Checked)
+            {
+                labelOutFaceTin.Visible = true;
+                labelInFaceTin.Visible = true;
+                comboBoxInTinFace.Visible = true;
+                comboBoxOutTinFace.Visible = true;
+            }
+            else
+            {
+                comboBoxInTinFace.Visible = false;
+                comboBoxOutTinFace.Visible = false;
+                labelOutFaceTin.Visible = false;
+                labelInFaceTin.Visible = false;
+            }
+        }
+
+        private void textBoxWhenDelivered_TextChanged_1(object sender, EventArgs e)
+        {
+            calcualtettotalPriceNew();
+            double paid = double.Parse(textBoxSubmitted.Text) + double.Parse(textBoxWhenDelivered.Text);
+            if(string.Compare(paid.ToString(), textBoxTotatalWithTax.Text) == 0)
+            {
+                panelMoneyAfterReciving.Visible = false;
+            }else
+            {
+                panelMoneyAfterReciving.Visible = true;
+
+            }
+        }
+
+        private void radioButtonCanHasButtom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonCanHasButtom.Checked)
+            {
+                panelCanButtomDetail.Visible = true;
+            }
+            else
+            {
+                panelCanButtomDetail.Visible = false;
+            }
+        }
+
+        private void comboBoxPaymentWay3_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+            switch (comboBoxPaymentWay3.SelectedIndex)
+            {
+
+                case 0:
+                    labelAfterReciving.Visible = true;
+                        comboBoxAfterReciving.Visible = true;
+                    labelDateOFSheck3.Visible = false;
+                    dateTimePickerChek3.Visible = false;
+                    labelBankName3.Visible = false;
+
+                    break;
+                case 1:
+                    labelAfterReciving.Visible = false;
+                    comboBoxAfterReciving.Visible =false;
+                    labelDateOFSheck3.Visible = true;
+                    dateTimePickerChek3.Visible = true;
+                    labelBankName3.Visible = false;
+                    labelDateOFSheck3.Text = "تاريخ الاستحقاق";
+                    break;
+                case 2:
+                    labelAfterReciving.Visible = false;
+                    comboBoxAfterReciving.Visible = false;
+                    labelDateOFSheck3.Visible = true;
+                    dateTimePickerChek3.Visible = true;
+                    comboBoxBankName3.Visible = true;
+                    labelBankName3.Visible = true;
+                    labelDateOFSheck3.Text = "تاريخ الايداع";
+
+                    break;
+                default:
+                    labelDateOFSheck3.Visible = false;
+                    dateTimePickerChek3.Visible = false;
+                    break;
+            }
+        }
+
+        private void comboBoxPaymentWay2_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+            switch (comboBoxPaymentWay2.SelectedIndex)
+            {
+
+                case 0:
+                   
+                    labelDateOFSheck2.Visible = false;
+                    dateTimePickerChek2.Visible = false;
+                    labelBankName2.Visible = false;
+
+                    break;
+                case 1:
+                    labelDateOFSheck2.Visible = true;
+                    dateTimePickerChek2.Visible = true;
+                    labelBankName2.Visible = false;
+                    labelDateOFSheck2.Text = "تاريخ الاستحقاق";
+                    break;
+                case 2:
+                    labelDateOFSheck2.Visible = true;
+                    dateTimePickerChek2.Visible = true;
+                    comboBoxBankName2.Visible = true;
+                    labelBankName2.Visible = true;
+                    labelDateOFSheck2.Text = "تاريخ الايداع";
+
+                    break;
+                default:
+                    labelDateOFSheck2.Visible = false;
+                    dateTimePickerChek2.Visible = false;
+                    break;
+            }
+        }
     }
     }
+    
 

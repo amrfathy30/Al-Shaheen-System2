@@ -35,6 +35,8 @@ namespace Al_Shaheen_System
         public string SH_PAYMENT_WAY_AFTER_RECIVING { get; set; }
         public string SH_DATE_OF_THE_CKECK_AFTER_RECIVING = "";
         public string SH_DURATION_AFTER_RECIVING = "";
+        public long SH_CAN_DAIMETR = 0;
+        public double SH_CAN_BUTTLE_HIGHT = 0;
         public long SH_LEHAM = 0;
         public long SH_LEHAM_AUTOMATIC = 0;
         public long SH_LEHAM_MANUAL = 0;
@@ -42,7 +44,8 @@ namespace Al_Shaheen_System
         public long SH_HAS_POWDER = 0;
         public string SH_POWER_COLOR = "";
 
-        public long SH_NUMBER_OF_PEICES = 2; //في حاله العلبة فقط    
+        public long SH_NUMBER_OF_PEICES = 2; //في حاله العلبة فقط  
+        public double SH_CANS_THICKNESS = 0;
         public long SH_THICKNESS_INCREASE_DECREASE_01 = 0;
         public long SH_NUMBER_OF_COLORS_OF_CAN = 0;
 
@@ -82,8 +85,14 @@ namespace Al_Shaheen_System
         public string SH_BOYATE_FACE_TYPE = "";
         public long SH_FACE_DAIMETR = 0;
         public long SH_PEELOFF_DAIMETR = 0;
+        public long SH_CAN_HAS_TIN_COVER_OR_NOT = 0;
+        public long SH_CAN_HAS_BUTTOM_OR_NOT = 0;
+        public string SH_BANK_NAME_SUBMITTED = "";
+        public string SH_BANK_NAME_WHEN_RECIVING = "";
+        public string SH_BANK_NAME_AFTER_RECIVING = "";
+        public string SH_CAN_BUTTUM_OUTSIDE_MURAN = "";
 
-
+        public string SH_CAN_BUTTUM_INSIDE_MURAN = "";
 
 
     }
