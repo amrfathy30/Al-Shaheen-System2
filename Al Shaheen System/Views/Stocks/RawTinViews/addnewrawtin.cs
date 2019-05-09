@@ -601,7 +601,10 @@ namespace Al_Shaheen_System
             fillstockscombobox();
             loadsuppliersdata();
             fillsupplierscombobox();
-            suppliers_combo_box.SelectedIndex = 0;
+            if (suppliers.Count > 0)
+            {
+                suppliers_combo_box.SelectedIndex = 0;
+            }          
             item_total_number_of_packages.Text = total_no_packges.ToString();
           //  item_type_combo_box.SelectedIndex = 0;
             stocks_combo_box.SelectedIndex = 0;

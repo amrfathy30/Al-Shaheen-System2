@@ -340,7 +340,7 @@ namespace Al_Shaheen_System
 
         private void صرفالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchinfinishedproducts myform = new searchinfinishedproducts())
+            using (clientreceivalpermissionnumberform myform = new clientreceivalpermissionnumberform())
             {
                 myform.ShowDialog();
             }
@@ -681,6 +681,15 @@ namespace Al_Shaheen_System
             using (NewWorkOrdersFRm myform = new NewWorkOrdersFRm())
             {
                 myform.ShowDialog();
+            }
+        }
+
+        private void حسابصنفالعميلToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (clientmaterialbalanceform myform = new clientmaterialbalanceform())
+            {
+                myform.ShowDialog();
+
             }
         }
     }

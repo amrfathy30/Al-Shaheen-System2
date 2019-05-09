@@ -56,6 +56,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clientmaterialbalanceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clientmaterialbalanceform.Designer.cs">
+      <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberform.Designer.cs">
+      <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberproducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberproducts.Designer.cs">
+      <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="client_material_balance_items.cs" />
+    <Compile Include="receival_permission_order_items.cs" />
+    <Compile Include="sh_plastic_mold_finished_product_data.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -814,6 +835,15 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="clientmaterialbalanceform.resx">
+      <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="clientreceivalpermissionnumberform.resx">
+      <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="clientreceivalpermissionnumberproducts.resx">
+      <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.resx">
       <DependentUpon>ClientSupplyRunOrderFrmNew.cs</DependentUpon>
     </EmbeddedResource>
