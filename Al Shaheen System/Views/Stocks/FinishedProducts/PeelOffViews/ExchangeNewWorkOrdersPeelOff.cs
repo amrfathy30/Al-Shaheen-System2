@@ -57,8 +57,8 @@ namespace Al_Shaheen_System
 
             try
             {
-                
-                string query = "SELECT * FROM SH_SPECIFICATION_OF_BILL_OFF WHERE  SH_SIZE_NAME=@size";
+
+                string query = "SELECT * FROM SH_SPECIFICATION_OF_PEEL_OFF WHERE  SH_SIZE_NAME=@size";
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
 

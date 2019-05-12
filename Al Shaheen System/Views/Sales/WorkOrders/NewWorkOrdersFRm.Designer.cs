@@ -79,7 +79,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewAllNewWorkOrders.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewAllNewWorkOrders.Location = new System.Drawing.Point(12, 69);
+            this.dataGridViewAllNewWorkOrders.Location = new System.Drawing.Point(-8, 67);
             this.dataGridViewAllNewWorkOrders.MultiSelect = false;
             this.dataGridViewAllNewWorkOrders.Name = "dataGridViewAllNewWorkOrders";
             this.dataGridViewAllNewWorkOrders.ReadOnly = true;
@@ -159,7 +159,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(234, 11);
+            this.label1.Location = new System.Drawing.Point(208, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(442, 39);
             this.label1.TabIndex = 4;
@@ -169,10 +169,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(477, 26);
+            this.label2.Location = new System.Drawing.Point(669, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 20);
+            this.label2.Size = new System.Drawing.Size(42, 20);
             this.label2.TabIndex = 5;
+            this.label2.Text = "label";
             // 
             // NewWorkOrdersFRm
             // 

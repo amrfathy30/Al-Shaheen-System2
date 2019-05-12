@@ -13,7 +13,7 @@ namespace Al_Shaheen_System
         public long SH_CLIENT_ID { get; set; }
         public DateTime SH_TODAY_DATE { get; set; }
         public string SH_CLIENT_SUPPLY_ORDER_NUM { get; set; }
-        public string SH_ITEM_NAME { get; set; }
+        public string SH_ITEM_NAME = "";
         public double SH_QUANTITY { get; set; }
         public double SH_UNIT_PRICE { get; set; }
         public double SH_TOTAL_PRICE { get; set; }
@@ -93,7 +93,10 @@ namespace Al_Shaheen_System
         public string SH_CAN_BUTTUM_OUTSIDE_MURAN = "";
 
         public string SH_CAN_BUTTUM_INSIDE_MURAN = "";
-
+        public string SH_CAN_TIN_COVER_INSIDE_MURAN = "";
+        public string SH_CAN_TIN_COVER_OUTSIDE_MURAN = "";
+        public string SH_CAN_MOLD_FACE_SHAPE = "";
+        public string SH_PRINTING_STATE = "";
 
     }
 }

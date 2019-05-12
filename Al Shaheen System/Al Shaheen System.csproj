@@ -56,6 +56,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllRequestOfPerfectProductFromSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllRequestOfPerfectProductFromSales.designer.cs">
+      <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CutterFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CutterFrm2.Designer.cs">
+      <DependentUpon>CutterFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Holl1Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Holl1Frm.Designer.cs">
+      <DependentUpon>Holl1Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetailsForExchangeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDetailsForExchangeFrm.designer.cs">
+      <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductionFrm.Designer.cs">
+      <DependentUpon>ProductionFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_EXCHANGE_REQUEST_FROM_SALES.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -814,6 +845,21 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AllRequestOfPerfectProductFromSales.resx">
+      <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CutterFrm.resx">
+      <DependentUpon>CutterFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Holl1Frm.resx">
+      <DependentUpon>Holl1Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDetailsForExchangeFrm.resx">
+      <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductionFrm.resx">
+      <DependentUpon>ProductionFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.resx">
       <DependentUpon>ClientSupplyRunOrderFrmNew.cs</DependentUpon>
     </EmbeddedResource>

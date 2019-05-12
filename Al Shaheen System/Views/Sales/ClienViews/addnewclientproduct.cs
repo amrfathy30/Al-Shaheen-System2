@@ -347,6 +347,11 @@ namespace Al_Shaheen_System
         {
             this.Close();
         }
+
+        private void body_radio_btn_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
         
 

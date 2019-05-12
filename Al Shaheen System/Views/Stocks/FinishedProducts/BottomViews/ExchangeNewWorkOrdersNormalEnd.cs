@@ -27,7 +27,7 @@ namespace Al_Shaheen_System
             try
             {
 
-                string query = "SELECT* FROM SH_SPECIFICATION_OF_BOTTOM WHERE SH_RAW_MATERIAL_TYPE = @type AND SH_SIZE_NAME =@size AND SH_FIRST_FACE_NAME =@firstFace AND SH_SECOND_FACE_NAME = @secondFace AND SH_OPEN_WAY = @open";
+                string query = "SELECT* FROM SH_SPECIFICATION_OF_BOTTOM WHERE SH_RAW_MATERIAL_TYPE = @type AND SH_SIZE_NAME =@size AND SH_FIRST_FACE_NAME =@firstFace AND SH_SECOND_FACE_NAME = @secondFace ";
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
 
@@ -36,7 +36,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@size", textBoxDaimetr.Text);
                 cmd.Parameters.AddWithValue("@firstFace", textBoxInsideMuran.Text);
                 cmd.Parameters.AddWithValue("@secondFace", textBoxOutSideMuran.Text);
-                cmd.Parameters.AddWithValue("@open", textBoxOpenType.Text);
+                
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -116,7 +116,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_NORMAL_END_MATERIAL", textBoxMaterial.Text);
                 cmd.Parameters.AddWithValue("@SH_NORMAL_END_INSIDE_MURAN", textBoxInsideMuran.Text);
                 cmd.Parameters.AddWithValue("@SH_NORMAL_END_OUTSIDE_MURAN", textBoxOutSideMuran.Text);
-                cmd.Parameters.AddWithValue("@SH_NORMAL_END_OPENWAY", textBoxOpenType.Text);
+                cmd.Parameters.AddWithValue("@SH_NORMAL_END_OPENWAY", "");
 
 
                 cmd.Parameters.AddWithValue("@SH_QUANTITIY_REQUIRED", clientOrder.SH_QUANTITY);
@@ -168,7 +168,7 @@ namespace Al_Shaheen_System
             textBoxDaimetr.Text = clientOrder.SH_EASY_OPEN_DAIAMETR.ToString();
             textBoxInsideMuran.Text = clientOrder.SH_INSIDE_MURAN;
             textBoxOutSideMuran.Text = clientOrder.SH_OUTSIDE_MURAN;
-            textBoxOpenType.Text = clientOrder.SH_OPEN_WAY;
+          
             textBoxMaterial.Text = clientOrder.SH_EASY_OPEN_MATERIAL;
             fillPeelOffSpecifgridview();
         }

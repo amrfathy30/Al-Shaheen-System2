@@ -135,7 +135,13 @@
             this.جميعToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logged_user_name_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelNumOFReq = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -886,6 +892,7 @@
             this.أللإنتاجToolStripMenuItem.Name = "أللإنتاجToolStripMenuItem";
             this.أللإنتاجToolStripMenuItem.Size = new System.Drawing.Size(72, 32);
             this.أللإنتاجToolStripMenuItem.Text = "الإنتاج";
+            this.أللإنتاجToolStripMenuItem.Click += new System.EventHandler(this.أللإنتاجToolStripMenuItem_Click);
             // 
             // المقصاتToolStripMenuItem
             // 
@@ -919,7 +926,6 @@
             this.الموظفينToolStripMenuItem.Name = "الموظفينToolStripMenuItem";
             this.الموظفينToolStripMenuItem.Size = new System.Drawing.Size(170, 32);
             this.الموظفينToolStripMenuItem.Text = "الموظفين ";
-            this.الموظفينToolStripMenuItem.Click += new System.EventHandler(this.الموظفينToolStripMenuItem_Click);
             // 
             // إضافةموظفجديدToolStripMenuItem
             // 
@@ -995,11 +1001,53 @@
             this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panel1.BackgroundImage = global::Al_Shaheen_System.Properties.Resources.shaheenlogo;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 36);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1252, 646);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.labelNumOFReq);
+            this.panel2.Location = new System.Drawing.Point(900, 402);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(341, 100);
+            this.panel2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(67, 45);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(163, 41);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "عرض";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(135, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "عدد اوامر التحميل";
+            // 
+            // labelNumOFReq
+            // 
+            this.labelNumOFReq.AutoSize = true;
+            this.labelNumOFReq.ForeColor = System.Drawing.Color.Red;
+            this.labelNumOFReq.Location = new System.Drawing.Point(67, 10);
+            this.labelNumOFReq.Name = "labelNumOFReq";
+            this.labelNumOFReq.Size = new System.Drawing.Size(18, 20);
+            this.labelNumOFReq.TabIndex = 0;
+            this.labelNumOFReq.Text = "0";
             // 
             // Mainform
             // 
@@ -1020,9 +1068,13 @@
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "الصفحة الرئيسية ";
+            this.Activated += new System.EventHandler(this.Mainform_Activated);
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1137,5 +1189,9 @@
         private System.Windows.Forms.ToolStripMenuItem مقاساتالتويستأوفToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةمقاسجديدToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem إضافةنوعأيروسولجديدToolStripMenuItem;
+        private System.Windows.Forms.Label labelNumOFReq;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }
