@@ -280,7 +280,26 @@
             this.item_temper_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.item_temper_combo_box.FormattingEnabled = true;
             this.item_temper_combo_box.Items.AddRange(new object[] {
-            "T4"});
+            "TS230-T1",
+            "TS245-T2",
+            "TS260-T2.5",
+            "TS275-T3",
+            "TS290-T3.5",
+            "TS340-T4",
+            "TS480-T5",
+            "TS500-DR7",
+            "TS520-DR7.5",
+            "TS550-DR8",
+            "TH330-T3",
+            "TH360-T3.5",
+            "TH415-T4",
+            "TH435-T5",
+            "TH460-T6",
+            "TH480-T7",
+            "TH520-DR7.5",
+            "TH550-DR8",
+            "TH580-DR8.5",
+            "TH620-DR9"});
             this.item_temper_combo_box.Location = new System.Drawing.Point(648, 88);
             this.item_temper_combo_box.Name = "item_temper_combo_box";
             this.item_temper_combo_box.Size = new System.Drawing.Size(177, 28);

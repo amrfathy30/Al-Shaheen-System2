@@ -38,14 +38,14 @@ namespace Al_Shaheen_System
         {
             try
             {
-                string query = "SELECT * FROM SH_SHAHEEN_STOCKS";
+                string query = "SELECT DISTINCT SH_STOCK_NAME FROM SH_RAW_MATERIAL_PARCEL WHERE SH_ID NOT IN (SELECT SH_RAW_MATERIAL_PARCEL_ID FROM SH_PACKAGES_DISBURSED_RAW_MATERIAL ";
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    stocks.Add(new SH_SHAHEEN_STOCK { SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString(), SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString() });
+                    stocks.Add(new SH_SHAHEEN_STOCK { SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString()});
                 }
 
                 myconnection.closeConnection();
@@ -219,7 +219,7 @@ namespace Al_Shaheen_System
             {
                 for (int i = 0; i < parcels.Count; i++)
                 {
-                    raw_parcels_grid_view.Rows.Add(new string[] { (i+1).ToString() , parcels[i].SH_ID.ToString() , parcels[i].SH_ITEM_LENGTH.ToString() , parcels[i].SH_ITEM_WIDTH.ToString() , parcels[i].SH_ITEM_THICKNESS.ToString() , parcels[i].SH_ITEM_CODE , parcels[i].SH_ITEM_TEMPER , parcels[i].SH_ITEM_COATING , parcels[i].SH_ITEM_TYPE , parcels[i].SH_ITEM_SHEET_WEIGHT.ToString(), parcels[i].SH_ITEM_NUMBER_OF_SHEETS.ToString() ,  parcels[i].SH_ITEM_PARCEL_NET_WEIGHT.ToString() , parcels[i].SH_ITEM_PARCEL_GROSS_WEIGHT.ToString()   });
+                    raw_parcels_grid_view.Rows.Add(new string[] { (i+1).ToString() , parcels[i].SH_ID.ToString() , parcels[i].SH_ITEM_LENGTH.ToString() , parcels[i].SH_ITEM_WIDTH.ToString() , parcels[i].SH_ITEM_THICKNESS.ToString() , parcels[i].SH_ITEM_CODE , parcels[i].SH_ITEM_TEMPER , parcels[i].SH_ITEM_COATING , parcels[i].SH_ITEM_TYPE , parcels[i].SH_STOCK_NAME, parcels[i].SH_ITEM_SHEET_WEIGHT.ToString(), parcels[i].SH_ITEM_NUMBER_OF_SHEETS.ToString() ,  parcels[i].SH_ITEM_PARCEL_NET_WEIGHT.ToString() , parcels[i].SH_ITEM_PARCEL_GROSS_WEIGHT.ToString()   });
                 }
             }else
             {
