@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -56,911 +56,1074 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addclientbranches.cs">
+    <Compile Include="AllRequestOfPerfectProductFromSales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addclientbranches.Designer.cs">
+    <Compile Include="AllRequestOfPerfectProductFromSales.designer.cs">
+      <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CutterFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CutterFrm.Designer.cs">
+      <DependentUpon>CutterFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Holl1Frm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Holl1Frm.Designer.cs">
+      <DependentUpon>Holl1Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetailsForExchangeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDetailsForExchangeFrm.designer.cs">
+      <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductionFrm.Designer.cs">
+      <DependentUpon>ProductionFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_EXCHANGE_REQUEST_FROM_SALES.cs" />
+    <Compile Include="SH_QUANTITY_OF_EXCHANGED_PRINTED_MATERIAL.cs" />
+    <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.Designer.cs">
+      <DependentUpon>ClientSupplyRunOrderFrmNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sales\WorkOrderModels\CLIENT_ORDER_WORK.cs" />
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticCoverViews\ExchangeNewWorkOrderPlasticCover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticCoverViews\ExchangeNewWorkOrderPlasticCover.Designer.cs">
+      <DependentUpon>ExchangeNewWorkOrderPlasticCover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticMoldViews\ExchangeNewWorkOrderPlasticTappa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticMoldViews\ExchangeNewWorkOrderPlasticTappa.Designer.cs">
+      <DependentUpon>ExchangeNewWorkOrderPlasticTappa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\RltViews\ExchangeNewWorkOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\RltViews\ExchangeNewWorkOrders.Designer.cs">
+      <DependentUpon>ExchangeNewWorkOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\EasyOpenViews\ExchangeNewWorkOrdersEOE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\EasyOpenViews\ExchangeNewWorkOrdersEOE.Designer.cs">
+      <DependentUpon>ExchangeNewWorkOrdersEOE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\BottomViews\ExchangeNewWorkOrdersNormalEnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\BottomViews\ExchangeNewWorkOrdersNormalEnd.Designer.cs">
+      <DependentUpon>ExchangeNewWorkOrdersNormalEnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\PeelOffViews\ExchangeNewWorkOrdersPeelOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\PeelOffViews\ExchangeNewWorkOrdersPeelOff.Designer.cs">
+      <DependentUpon>ExchangeNewWorkOrdersPeelOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\ExchangeNewWorkOrderTwist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\ExchangeNewWorkOrderTwist.Designer.cs">
+      <DependentUpon>ExchangeNewWorkOrderTwist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\WorkOrders\NewWorkOrdersFRm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\WorkOrders\NewWorkOrdersFRm.Designer.cs">
+      <DependentUpon>NewWorkOrdersFRm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sales\WorkOrderModels\SH_PEELOFF_EXCHANGE_BYCLIENT_ORDER_WORK.cs" />
+    <Compile Include="Models\Sales\WorkOrderModels\SH_RLT_EXCHANGE_BY_CLIENT_ORDER_WORK.cs" />
+    <Compile Include="Views\Purchasing\SupplierViews\allitemsform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Purchasing\SupplierViews\allitemsform.Designer.cs">
+      <DependentUpon>allitemsform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sales\ClienViews\addclientbranches.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Sales\ClienViews\addclientbranches.Designer.cs">
       <DependentUpon>addclientbranches.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewaerosolsize.cs">
+    <Compile Include="Views\Accounting\addnewacccounttreeitem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewaerosolsize.Designer.cs">
+    <Compile Include="Views\Accounting\addnewacccounttreeitem.Designer.cs">
+      <DependentUpon>addnewacccounttreeitem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewaerosolsize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewaerosolsize.Designer.cs">
       <DependentUpon>addnewaerosolsize.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewaerosoltype.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewaerosoltype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewaerosoltype.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewaerosoltype.Designer.cs">
       <DependentUpon>addnewaerosoltype.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewbottelfacepaintingcolortype.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewbottelfacepaintingcolortype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewbottelfacepaintingcolortype.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewbottelfacepaintingcolortype.Designer.cs">
       <DependentUpon>addnewbottelfacepaintingcolortype.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewbottlefacetype.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewbottlefacetype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewbottlefacetype.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewbottlefacetype.Designer.cs">
       <DependentUpon>addnewbottlefacetype.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewcoverplatesize.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewcoverplatesize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewcoverplatesize.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewcoverplatesize.Designer.cs">
       <DependentUpon>addnewcoverplatesize.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewfaceproduct.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewfaceproduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewfaceproduct.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewfaceproduct.Designer.cs">
       <DependentUpon>addnewfaceproduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewhandsize.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewhandsize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewhandsize.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewhandsize.Designer.cs">
       <DependentUpon>addnewhandsize.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewhandtype.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewhandtype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewhandtype.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewhandtype.Designer.cs">
       <DependentUpon>addnewhandtype.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewrlt.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\RltViews\addnewrlt.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewrlt.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\RltViews\addnewrlt.Designer.cs">
       <DependentUpon>addnewrlt.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewpeeloff.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\PeelOffViews\addnewpeeloff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewpeeloff.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\PeelOffViews\addnewpeeloff.Designer.cs">
       <DependentUpon>addnewpeeloff.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewclientcompanycontacts.cs">
+    <Compile Include="Views\Sales\ClienViews\addnewclientcompanycontacts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewclientcompanycontacts.Designer.cs">
+    <Compile Include="Views\Sales\ClienViews\addnewclientcompanycontacts.Designer.cs">
       <DependentUpon>addnewclientcompanycontacts.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewclientproduct.cs">
+    <Compile Include="Views\Sales\ClienViews\addnewclientproduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewclientproduct.Designer.cs">
+    <Compile Include="Views\Sales\ClienViews\addnewclientproduct.Designer.cs">
       <DependentUpon>addnewclientproduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewcolorpillow.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\addnewcolorpillow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewcolorpillow.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\addnewcolorpillow.Designer.cs">
       <DependentUpon>addnewcolorpillow.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewcutmuranmaterial.cs">
+    <Compile Include="Views\Stocks\CutTinViews\addnewcutmuranmaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewcutmuranmaterial.Designer.cs">
+    <Compile Include="Views\Stocks\CutTinViews\addnewcutmuranmaterial.Designer.cs">
       <DependentUpon>addnewcutmuranmaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewcutprintedmaterial.cs">
+    <Compile Include="Views\Stocks\CutTinViews\addnewcutprintedmaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewcutprintedmaterial.Designer.cs">
+    <Compile Include="Views\Stocks\CutTinViews\addnewcutprintedmaterial.Designer.cs">
       <DependentUpon>addnewcutprintedmaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewcutterform.cs">
+    <Compile Include="Views\Stocks\addnewcutterform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewcutterform.Designer.cs">
+    <Compile Include="Views\Stocks\addnewcutterform.Designer.cs">
       <DependentUpon>addnewcutterform.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddNewDepartment.cs">
+    <Compile Include="Views\Hr\EmployeeView\AddNewDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddNewDepartment.Designer.cs">
+    <Compile Include="Views\Hr\EmployeeView\AddNewDepartment.Designer.cs">
       <DependentUpon>AddNewDepartment.cs</DependentUpon>
     </Compile>
-    <Compile Include="addneweasyopenusage.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\EasyOpenViews\addneweasyopenusage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addneweasyopenusage.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\EasyOpenViews\addneweasyopenusage.Designer.cs">
       <DependentUpon>addneweasyopenusage.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewfacecolorform.cs">
+    <Compile Include="Views\Stocks\addnewfacecolorform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewfacecolorform.Designer.cs">
+    <Compile Include="Views\Stocks\addnewfacecolorform.Designer.cs">
       <DependentUpon>addnewfacecolorform.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewfinishedcan.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\FinishedCanViews\addnewfinishedcan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewfinishedcan.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\FinishedCanViews\addnewfinishedcan.Designer.cs">
       <DependentUpon>addnewfinishedcan.cs</DependentUpon>
     </Compile>
-    <Compile Include="addNewFunctionFrm.cs">
+    <Compile Include="Views\Hr\EmployeeView\addNewFunctionFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addNewFunctionFrm.Designer.cs">
+    <Compile Include="Views\Hr\EmployeeView\addNewFunctionFrm.Designer.cs">
       <DependentUpon>addNewFunctionFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddNewItemForSupplierFrm.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\AddNewItemForSupplierFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddNewItemForSupplierFrm.Designer.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\AddNewItemForSupplierFrm.Designer.cs">
       <DependentUpon>AddNewItemForSupplierFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewmaterialtype.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewmaterialtype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewmaterialtype.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewmaterialtype.Designer.cs">
       <DependentUpon>addnewmaterialtype.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewmoldsize.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewmoldsize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewmoldsize.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewmoldsize.Designer.cs">
       <DependentUpon>addnewmoldsize.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewmuranmaterialfd.cs">
+    <Compile Include="Views\Stocks\MuranTinViews\addnewmuranmaterialfd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewmuranmaterialfd.Designer.cs">
+    <Compile Include="Views\Stocks\MuranTinViews\addnewmuranmaterialfd.Designer.cs">
       <DependentUpon>addnewmuranmaterialfd.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewprinterform.cs">
+    <Compile Include="Views\Stocks\addnewprinterform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewprinterform.Designer.cs">
+    <Compile Include="Views\Stocks\addnewprinterform.Designer.cs">
       <DependentUpon>addnewprinterform.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewprintingmaterialfd.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\addnewprintingmaterialfd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewprintingmaterialfd.Designer.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\addnewprintingmaterialfd.Designer.cs">
       <DependentUpon>addnewprintingmaterialfd.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewrawtin.cs">
+    <Compile Include="Views\Stocks\RawTinViews\addnewrawtin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewrawtin.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\addnewrawtin.Designer.cs">
       <DependentUpon>addnewrawtin.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewrowtinfd.cs">
+    <Compile Include="Views\Stocks\RawTinViews\addnewrowtinfd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewrowtinfd.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\addnewrowtinfd.Designer.cs">
       <DependentUpon>addnewrowtinfd.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewscrewsize.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewscrewsize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewscrewsize.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewscrewsize.Designer.cs">
       <DependentUpon>addnewscrewsize.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewscrewusage.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewscrewusage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewscrewusage.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewscrewusage.Designer.cs">
       <DependentUpon>addnewscrewusage.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewsizesform.cs">
+    <Compile Include="Views\Stocks\addnewsizesform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewsizesform.Designer.cs">
+    <Compile Include="Views\Stocks\addnewsizesform.Designer.cs">
       <DependentUpon>addnewsizesform.cs</DependentUpon>
     </Compile>
-    <Compile Include="Addnewstockform.cs">
+    <Compile Include="Views\Stocks\Addnewstockform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Addnewstockform.Designer.cs">
+    <Compile Include="Views\Stocks\Addnewstockform.Designer.cs">
       <DependentUpon>Addnewstockform.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewplasticcoverform.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticCoverViews\addnewplasticcoverform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewplasticcoverform.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticCoverViews\addnewplasticcoverform.Designer.cs">
       <DependentUpon>addnewplasticcoverform.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewplasticmoldform.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticMoldViews\addnewplasticmoldform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewplasticmoldform.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\PlasticMoldViews\addnewplasticmoldform.Designer.cs">
       <DependentUpon>addnewplasticmoldform.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewtwistofform.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistofform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewtwistofform.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistofform.Designer.cs">
       <DependentUpon>addnewtwistofform.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewtwistofsize.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistofsize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewtwistofsize.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistofsize.Designer.cs">
       <DependentUpon>addnewtwistofsize.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewtwistoftype.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistoftype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewtwistoftype.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistoftype.Designer.cs">
       <DependentUpon>addnewtwistoftype.cs</DependentUpon>
     </Compile>
-    <Compile Include="addplasticmoldtype.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addplasticmoldtype.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addplasticmoldtype.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottelFaceViews\addplasticmoldtype.Designer.cs">
       <DependentUpon>addplasticmoldtype.cs</DependentUpon>
     </Compile>
-    <Compile Include="addSupplierCompanyContacts.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\addSupplierCompanyContacts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addSupplierCompanyContacts.Designer.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\addSupplierCompanyContacts.Designer.cs">
       <DependentUpon>addSupplierCompanyContacts.cs</DependentUpon>
     </Compile>
-    <Compile Include="add_new_client_company_btn.cs">
+    <Compile Include="Views\Sales\ClienViews\add_new_client_company_btn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="add_new_client_company_btn.Designer.cs">
+    <Compile Include="Views\Sales\ClienViews\add_new_client_company_btn.Designer.cs">
       <DependentUpon>add_new_client_company_btn.cs</DependentUpon>
     </Compile>
-    <Compile Include="add_new_supply_company_brach.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\add_new_supply_company_branch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="add_new_supply_company_brach.Designer.cs">
-      <DependentUpon>add_new_supply_company_brach.cs</DependentUpon>
+    <Compile Include="Views\Purchasing\SupplierViews\add_new_supply_company_branch.Designer.cs">
+      <DependentUpon>add_new_supply_company_branch.cs</DependentUpon>
     </Compile>
-    <Compile Include="add_new_supply_company_form.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\add_new_supply_company_form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="add_new_supply_company_form.Designer.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\add_new_supply_company_form.Designer.cs">
       <DependentUpon>add_new_supply_company_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="allfacecolors.cs">
+    <Compile Include="Views\Stocks\allfacecolors.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="allfacecolors.Designer.cs">
+    <Compile Include="Views\Stocks\allfacecolors.Designer.cs">
       <DependentUpon>allfacecolors.cs</DependentUpon>
     </Compile>
-    <Compile Include="allprintersform.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\allfinishedproductsdata.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="allprintersform.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\allfinishedproductsdata.Designer.cs">
+      <DependentUpon>allfinishedproductsdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stocks\allprintersform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Stocks\allprintersform.Designer.cs">
       <DependentUpon>allprintersform.cs</DependentUpon>
     </Compile>
-    <Compile Include="AllSelectedSupplierDataFrm.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\AllSelectedSupplierDataFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AllSelectedSupplierDataFrm.Designer.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\AllSelectedSupplierDataFrm.Designer.cs">
       <DependentUpon>AllSelectedSupplierDataFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="allstocksform.cs">
+    <Compile Include="Views\Stocks\allstocksform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="allstocksform.Designer.cs">
+    <Compile Include="Views\Stocks\allstocksform.Designer.cs">
       <DependentUpon>allstocksform.cs</DependentUpon>
     </Compile>
-    <Compile Include="all_clients_data.cs">
+    <Compile Include="Views\Sales\ClienViews\all_clients_data.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="all_clients_data.Designer.cs">
+    <Compile Include="Views\Sales\ClienViews\all_clients_data.Designer.cs">
       <DependentUpon>all_clients_data.cs</DependentUpon>
     </Compile>
-    <Compile Include="all_suppliers_data.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\all_suppliers_data.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="all_suppliers_data.Designer.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\all_suppliers_data.Designer.cs">
       <DependentUpon>all_suppliers_data.cs</DependentUpon>
     </Compile>
-    <Compile Include="client_portal.cs">
+    <Compile Include="Views\Sales\ClienViews\client_portal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="client_portal.Designer.cs">
+    <Compile Include="Views\Sales\ClienViews\client_portal.Designer.cs">
       <DependentUpon>client_portal.cs</DependentUpon>
     </Compile>
     <Compile Include="DGVPrinter.cs" />
-    <Compile Include="DisplaySelectedSupplierItems.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\DisplaySelectedSupplierItems.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DisplaySelectedSupplierItems.Designer.cs">
+    <Compile Include="Views\Purchasing\SupplierViews\DisplaySelectedSupplierItems.Designer.cs">
       <DependentUpon>DisplaySelectedSupplierItems.cs</DependentUpon>
     </Compile>
-    <Compile Include="addnewBottom.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottomViews\addnewBottom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="addnewBottom.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\BottomViews\addnewBottom.Designer.cs">
       <DependentUpon>addnewBottom.cs</DependentUpon>
     </Compile>
-    <Compile Include="employee_portal.cs">
+    <Compile Include="Views\Hr\EmployeeView\employee_portal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="employee_portal.Designer.cs">
+    <Compile Include="Views\Hr\EmployeeView\employee_portal.Designer.cs">
       <DependentUpon>employee_portal.cs</DependentUpon>
     </Compile>
-    <Compile Include="getalldepartments.cs">
+    <Compile Include="Views\Hr\EmployeeView\getalldepartments.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="getalldepartments.Designer.cs">
+    <Compile Include="Views\Hr\EmployeeView\getalldepartments.Designer.cs">
       <DependentUpon>getalldepartments.cs</DependentUpon>
     </Compile>
-    <Compile Include="maintenanceworkorders.cs">
+    <Compile Include="Views\Production\maintenanceworkorders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="maintenanceworkorders.Designer.cs">
+    <Compile Include="Views\Production\maintenanceworkorders.Designer.cs">
       <DependentUpon>maintenanceworkorders.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistEmp.cs">
+    <Compile Include="Views\Hr\EmployeeView\RegistEmp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistEmp.designer.cs">
+    <Compile Include="Views\Hr\EmployeeView\RegistEmp.designer.cs">
       <DependentUpon>RegistEmp.cs</DependentUpon>
     </Compile>
-    <Compile Include="changePassword.cs">
+    <Compile Include="Views\UsersViews\changePassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="changePassword.Designer.cs">
+    <Compile Include="Views\UsersViews\changePassword.Designer.cs">
       <DependentUpon>changePassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatabaseConnection.cs" />
-    <Compile Include="DatabaseConnectionSettingForm.cs">
+    <Compile Include="Database\DatabaseConnection.cs" />
+    <Compile Include="Views\DatabaseSettingView\DatabaseConnectionSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DatabaseConnectionSettingForm.Designer.cs">
+    <Compile Include="Views\DatabaseSettingView\DatabaseConnectionSettingForm.Designer.cs">
       <DependentUpon>DatabaseConnectionSettingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Display_allUsers.cs">
+    <Compile Include="Views\UsersViews\Display_allUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Display_allUsers.Designer.cs">
+    <Compile Include="Views\UsersViews\Display_allUsers.Designer.cs">
       <DependentUpon>Display_allUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Easyopenaddingform.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\EasyOpenViews\Easyopenaddingform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Easyopenaddingform.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\EasyOpenViews\Easyopenaddingform.Designer.cs">
       <DependentUpon>Easyopenaddingform.cs</DependentUpon>
     </Compile>
-    <Compile Include="exchanged_items_db.cs" />
-    <Compile Include="exchangeofprintedmaterial.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\exchangeofprintedmaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exchangeofprintedmaterial.Designer.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\exchangeofprintedmaterial.Designer.cs">
       <DependentUpon>exchangeofprintedmaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="exchangerawtin.cs">
+    <Compile Include="Views\Stocks\RawTinViews\exchangerawtin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exchangerawtin.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\exchangerawtin.Designer.cs">
       <DependentUpon>exchangerawtin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Exchangeofmurantinbasicinfo.cs">
+    <Compile Include="Views\Stocks\MuranTinViews\Exchangeofmurantinbasicinfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Exchangeofmurantinbasicinfo.Designer.cs">
+    <Compile Include="Views\Stocks\MuranTinViews\Exchangeofmurantinbasicinfo.Designer.cs">
       <DependentUpon>Exchangeofmurantinbasicinfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Exchangerawtinbasicinfo.cs">
+    <Compile Include="Views\Stocks\RawTinViews\Exchangerawtinbasicinfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Exchangerawtinbasicinfo.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\Exchangerawtinbasicinfo.Designer.cs">
       <DependentUpon>Exchangerawtinbasicinfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="exchange_of_cut_printed_material.cs">
+    <Compile Include="Views\Stocks\CutTinViews\exchange_of_cut_printed_material.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exchange_of_cut_printed_material.Designer.cs">
+    <Compile Include="Views\Stocks\CutTinViews\exchange_of_cut_printed_material.Designer.cs">
       <DependentUpon>exchange_of_cut_printed_material.cs</DependentUpon>
     </Compile>
-    <Compile Include="exhangeofrawmaterilbyproperties.cs">
+    <Compile Include="Views\Stocks\RawTinViews\exhangeofrawmaterilbyproperties.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="exhangeofrawmaterilbyproperties.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\exhangeofrawmaterilbyproperties.Designer.cs">
       <DependentUpon>exhangeofrawmaterilbyproperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="getAllEmployeesFrm.cs">
+    <Compile Include="Views\Hr\EmployeeView\getAllEmployeesFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="getAllEmployeesFrm.Designer.cs">
+    <Compile Include="Views\Hr\EmployeeView\getAllEmployeesFrm.Designer.cs">
       <DependentUpon>getAllEmployeesFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="getAllUsers.cs">
+    <Compile Include="Views\UsersViews\getAllUsers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="getAllUsers.Designer.cs">
+    <Compile Include="Views\UsersViews\getAllUsers.Designer.cs">
       <DependentUpon>getAllUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginFrm.cs">
+    <Compile Include="Views\UsersViews\LoginFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginFrm.Designer.cs">
+    <Compile Include="Views\UsersViews\LoginFrm.Designer.cs">
       <DependentUpon>LoginFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mainform.cs">
+    <Compile Include="Views\Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mainform.Designer.cs">
+    <Compile Include="Views\Mainform.Designer.cs">
       <DependentUpon>Mainform.cs</DependentUpon>
     </Compile>
-    <Compile Include="makenewuser.cs">
+    <Compile Include="Views\UsersViews\makenewuser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="makenewuser.Designer.cs">
+    <Compile Include="Views\UsersViews\makenewuser.Designer.cs">
       <DependentUpon>makenewuser.cs</DependentUpon>
     </Compile>
-    <Compile Include="printedcaredsforrawmaterial.cs">
+    <Compile Include="Views\Stocks\RawTinViews\printedcaredsforrawmaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="printedcaredsforrawmaterial.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\printedcaredsforrawmaterial.Designer.cs">
       <DependentUpon>printedcaredsforrawmaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="printrawmaterialaddingrequest.cs">
+    <Compile Include="Views\Stocks\RawTinViews\printrawmaterialaddingrequest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="printrawmaterialaddingrequest.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\printrawmaterialaddingrequest.Designer.cs">
       <DependentUpon>printrawmaterialaddingrequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="print_exchange_request.cs">
+    <Compile Include="Views\Stocks\print_exchange_request.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="print_exchange_request.Designer.cs">
+    <Compile Include="Views\Stocks\print_exchange_request.Designer.cs">
       <DependentUpon>print_exchange_request.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="quantities_of_selected_sp_raw_tin.cs">
+    <Compile Include="Views\Stocks\RawTinViews\quantities_of_selected_sp_raw_tin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="quantities_of_selected_sp_raw_tin.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\quantities_of_selected_sp_raw_tin.Designer.cs">
       <DependentUpon>quantities_of_selected_sp_raw_tin.cs</DependentUpon>
     </Compile>
-    <Compile Include="rawmaterialexchangedquantities.cs">
+    <Compile Include="Views\Stocks\RawTinViews\rawmaterialexchangedquantities.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="rawmaterialexchangedquantities.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\rawmaterialexchangedquantities.Designer.cs">
       <DependentUpon>rawmaterialexchangedquantities.cs</DependentUpon>
     </Compile>
-    <Compile Include="raw_material_card_info.cs" />
-    <Compile Include="raw_material_second_form_coils.cs">
+    <Compile Include="Models\Stocks\RawTinModels\raw_material_card_info.cs" />
+    <Compile Include="Views\Stocks\RawTinViews\raw_material_second_form_coils.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="raw_material_second_form_coils.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\raw_material_second_form_coils.Designer.cs">
       <DependentUpon>raw_material_second_form_coils.cs</DependentUpon>
     </Compile>
-    <Compile Include="raw_tin_all_spcifications.cs">
+    <Compile Include="Views\Stocks\RawTinViews\raw_tin_all_spcifications.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="raw_tin_all_spcifications.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\raw_tin_all_spcifications.Designer.cs">
       <DependentUpon>raw_tin_all_spcifications.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchincutprintedmaterial.cs">
+    <Compile Include="Views\Stocks\CutTinViews\searchincutprintedmaterial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchincutprintedmaterial.Designer.cs">
+    <Compile Include="Views\Stocks\CutTinViews\searchincutprintedmaterial.Designer.cs">
       <DependentUpon>searchincutprintedmaterial.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchinfinishedproducts.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\searchinfinishedproducts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchinfinishedproducts.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\searchinfinishedproducts.Designer.cs">
       <DependentUpon>searchinfinishedproducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchinmuranparcels.cs">
+    <Compile Include="Views\Stocks\MuranTinViews\searchinmuranparcels.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchinmuranparcels.Designer.cs">
+    <Compile Include="Views\Stocks\MuranTinViews\searchinmuranparcels.Designer.cs">
       <DependentUpon>searchinmuranparcels.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchinprintedparcels.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\searchinprintedparcels.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchinprintedparcels.Designer.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\searchinprintedparcels.Designer.cs">
       <DependentUpon>searchinprintedparcels.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchinrawmaterialform.cs">
+    <Compile Include="Views\Stocks\RawTinViews\searchinrawmaterialform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchinrawmaterialform.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\searchinrawmaterialform.Designer.cs">
       <DependentUpon>searchinrawmaterialform.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchreceivedrawtinbytwodates.cs">
+    <Compile Include="Views\Stocks\RawTinViews\searchreceivedrawtinbytwodates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchreceivedrawtinbytwodates.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\searchreceivedrawtinbytwodates.Designer.cs">
       <DependentUpon>searchreceivedrawtinbytwodates.cs</DependentUpon>
     </Compile>
-    <Compile Include="searchwexchangedrawtinbetweentwodates.cs">
+    <Compile Include="Views\Stocks\RawTinViews\searchwexchangedrawtinbetweentwodates.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="searchwexchangedrawtinbetweentwodates.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\searchwexchangedrawtinbetweentwodates.Designer.cs">
       <DependentUpon>searchwexchangedrawtinbetweentwodates.cs</DependentUpon>
     </Compile>
-    <Compile Include="showprintedparcelclientsandproducts.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\showprintedparcelclientsandproducts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="showprintedparcelclientsandproducts.Designer.cs">
+    <Compile Include="Views\Stocks\PrintedTinViews\showprintedparcelclientsandproducts.Designer.cs">
       <DependentUpon>showprintedparcelclientsandproducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="show_tin_general_infos.cs">
+    <Compile Include="Views\Stocks\RawTinViews\show_tin_general_infos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="show_tin_general_infos.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\show_tin_general_infos.Designer.cs">
       <DependentUpon>show_tin_general_infos.cs</DependentUpon>
     </Compile>
-    <Compile Include="SH_ADDED_PARCELS_OF_FINISHED_PRODUCT.cs" />
-    <Compile Include="SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS.cs" />
-    <Compile Include="sh_Add_ChangeBits.cs">
+    <Compile Include="Models\Accounting\SH_ACCOUNTING_ACCOUNTS_TREE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\FinishedCanModels\SH_ADDED_PARCELS_OF_FINISHED_PRODUCT.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\FinishedCanModels\SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS.cs" />
+    <Compile Include="Views\Stocks\sh_Add_ChangeBits.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="sh_Add_ChangeBits.Designer.cs">
+    <Compile Include="Views\Stocks\sh_Add_ChangeBits.Designer.cs">
       <DependentUpon>sh_Add_ChangeBits.cs</DependentUpon>
     </Compile>
-    <Compile Include="SH_AEROSOL_SIZE.cs" />
-    <Compile Include="SH_AEROSOL_TYPE.cs" />
-    <Compile Include="SH_BOTTLE_FACE_PAINTINGS_TYPES.cs" />
-    <Compile Include="SH_BOTTLE_FACE_TYPES.cs" />
-    <Compile Include="SH_BOTTOM_DATA.cs" />
-    <Compile Include="SH_CALCULATE_TOTAL_FINISHED_PRODUCT.cs" />
-    <Compile Include="SH_CLIENTS_BRANCHES.cs" />
-    <Compile Include="SH_CLIENTS_PRODUCTS.cs" />
-    <Compile Include="SH_CLIENT_COMPANY.cs" />
-    <Compile Include="SH_CLIENT_COMPANY_CONTACTS.cs" />
-    <Compile Include="SH_COILS_RAW_MATERIAL.cs" />
-    <Compile Include="SH_COLOR_PILLOW.cs" />
-    <Compile Include="SH_CONTAINERS_OF_PLASTIC_COVER.cs" />
-    <Compile Include="SH_CONTAINERS_OF_PLASTIC_MOLD.cs" />
-    <Compile Include="SH_CONTAINER_OF_BILL_OFF.cs" />
-    <Compile Include="SH_CONTAINER_OF_BOTTOM.cs" />
-    <Compile Include="SH_CONTAINER_OF_EASY_OPEN.cs" />
-    <Compile Include="SH_CONTAINER_OF_RLT.cs" />
-    <Compile Include="SH_CONTAINER_OF_TWIST_OF.cs" />
-    <Compile Include="SH_COVER_PLATE_SIZE.cs" />
-    <Compile Include="SH_DEPARTEMENTS.cs" />
-    <Compile Include="SH_EASY_OPEN_DATA.cs" />
-    <Compile Include="SH_EASY_OPEN_USAGE.cs" />
-    <Compile Include="SH_EMPLOYEES.cs" />
-    <Compile Include="SH_EXCHANGED_PRINTED_MATERIAL_PARCELS.cs" />
-    <Compile Include="sh_exchangel_ChangeBits.cs">
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_AEROSOL_SIZE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_AEROSOL_TYPE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_BOTTEL_FACE_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_BOTTLE_FACE_PAINTINGS_TYPES.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_BOTTLE_FACE_TYPES.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottomModels\SH_BOTTOM_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\FinishedCanModels\SH_CALCULATE_TOTAL_FINISHED_PRODUCT.cs" />
+    <Compile Include="Models\Sales\ClientModels\SH_CLIENTS_BRANCHES.cs" />
+    <Compile Include="Models\Sales\ClientModels\SH_CLIENTS_PRODUCTS.cs" />
+    <Compile Include="Models\Sales\ClientModels\SH_CLIENT_COMPANY.cs" />
+    <Compile Include="Models\Sales\ClientModels\SH_CLIENT_COMPANY_CONTACTS.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_COILS_RAW_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\SH_COLOR_PILLOW.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticCoverModels\SH_CONTAINERS_OF_PLASTIC_COVER.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticMoldModels\SH_CONTAINERS_OF_PLASTIC_MOLD.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PeelOffModels\SH_CONTAINER_OF_BILL_OFF.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottomModels\SH_CONTAINER_OF_BOTTOM.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\EasyOpenModels\SH_CONTAINER_OF_EASY_OPEN.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\RLTModels\SH_CONTAINER_OF_RLT.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\TwistOffModels\SH_CONTAINER_OF_TWIST_OF.cs" />
+    <Compile Include="Models\Stocks\SH_COVER_PLATE_SIZE.cs" />
+    <Compile Include="Models\Hr\EmployeeModels\SH_DEPARTEMENTS.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\EasyOpenModels\SH_EASY_OPEN_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\EasyOpenModels\SH_EASY_OPEN_USAGE.cs" />
+    <Compile Include="Models\Hr\EmployeeModels\SH_EMPLOYEES.cs" />
+    <Compile Include="Models\Stocks\PrintedTinModels\SH_EXCHANGED_PRINTED_MATERIAL_PARCELS.cs" />
+    <Compile Include="Views\Stocks\sh_exchangel_ChangeBits.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="sh_exchangel_ChangeBits.Designer.cs">
+    <Compile Include="Views\Stocks\sh_exchangel_ChangeBits.Designer.cs">
       <DependentUpon>sh_exchangel_ChangeBits.cs</DependentUpon>
     </Compile>
-    <Compile Include="SH_EXCHANGE_OF_MURAN_MATERIAL.cs" />
-    <Compile Include="SH_EXCHANGE_OF_RAW_MATERIAL.cs" />
-    <Compile Include="SH_FACE_COLOR.cs" />
-    <Compile Include="SH_FUNCTION.cs" />
-    <Compile Include="SH_HAND_SIZE.cs" />
-    <Compile Include="SH_HAND_TYPES.cs" />
-    <Compile Include="SH_ITEMS.cs" />
-    <Compile Include="SH_ITEM_SIZE.cs" />
-    <Compile Include="SH_MATERIAL_TYPES.cs" />
-    <Compile Include="SH_MOLD_SIZE.cs" />
-    <Compile Include="SH_MOLD_TYPES.cs" />
-    <Compile Include="SH_PALLETS_OF_CUT_MURAN_MATERIAL.cs" />
-    <Compile Include="SH_PALLETS_OF_CUT_PRINTED_MATERIAL.cs" />
-    <Compile Include="SH_PEEL_OFF_DATA.cs" />
-    <Compile Include="SH_PLASTIC_COVER_DATA.cs" />
-    <Compile Include="SH_PLASTIC_MOLD_DATA.cs" />
-    <Compile Include="SH_PRINTED_MATERIAL_PARCEL.cs" />
-    <Compile Include="SH_Production_exchange.cs">
+    <Compile Include="Models\Stocks\MuranTinModels\SH_EXCHANGE_OF_MURAN_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_EXCHANGE_OF_RAW_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\SH_FACE_COLOR.cs" />
+    <Compile Include="Models\Hr\EmployeeModels\SH_FUNCTION.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_GENERAL_SPECIFICATION_BOTTEL_FACE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_HAND_SIZE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_HAND_TYPES.cs" />
+    <Compile Include="Models\Purchasing\SupplierModels\SH_ITEMS.cs" />
+    <Compile Include="Models\Stocks\SH_ITEM_SIZE.cs" />
+    <Compile Include="Models\Stocks\SH_MATERIAL_TYPES.cs" />
+    <Compile Include="Models\Stocks\SH_MOLD_SIZE.cs" />
+    <Compile Include="Models\Stocks\SH_MOLD_TYPES.cs" />
+    <Compile Include="Models\Stocks\CutTinModels\SH_PALLETS_OF_CUT_MURAN_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\CutTinModels\SH_PALLETS_OF_CUT_PRINTED_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PeelOffModels\SH_PEEL_OFF_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticCoverModels\SH_PLASTIC_COVER_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticMoldModels\SH_PLASTIC_MOLD_DATA.cs" />
+    <Compile Include="Models\Stocks\PrintedTinModels\SH_PRINTED_MATERIAL_PARCEL.cs" />
+    <Compile Include="Views\SH_Production_exchange.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SH_Production_exchange.Designer.cs">
+    <Compile Include="Views\SH_Production_exchange.Designer.cs">
       <DependentUpon>SH_Production_exchange.cs</DependentUpon>
     </Compile>
-    <Compile Include="SH_PRODUCTION_REQUIRMENTS.cs">
+    <Compile Include="Views\SH_PRODUCTION_REQUIRMENTS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SH_PRODUCTION_REQUIRMENTS.Designer.cs">
+    <Compile Include="Views\SH_PRODUCTION_REQUIRMENTS.Designer.cs">
       <DependentUpon>SH_PRODUCTION_REQUIRMENTS.cs</DependentUpon>
     </Compile>
-    <Compile Include="SH_PRODUCTS_OF_CLIENTS_QUANTITIES.cs" />
-    <Compile Include="SH_PRODUCT_OF_CLIENTS_PARCELS.cs" />
-    <Compile Include="SH_QUANTITIES_COMPUTER_PARTS.cs" />
-    <Compile Include="SH_QUANTITIES_ELECTRICAL_PARTS.cs" />
-    <Compile Include="SH_QUANTITIES_OF_CUT_MURAN_MATERIAL.cs" />
-    <Compile Include="SH_QUANTITIES_OF_CUT_PRINTED_MATERIAL.cs" />
-    <Compile Include="SH_QUANTITIES_OF_PRINTED_MATERIAL.cs" />
-    <Compile Include="SH_QUANTITIES_PRODUCTION_REQUIREMENTS.cs" />
-    <Compile Include="SH_QUANTITIES_RAW_MATERIAL_SPECIFICATION_COILS.cs" />
-    <Compile Include="SH_QUANTITY_OF_BILL_OFF.cs" />
-    <Compile Include="SH_QUANTITY_OF_BOTTOM.cs" />
-    <Compile Include="SH_QUANTITY_OF_EASY_OPEN.cs" />
-    <Compile Include="SH_QUANTITY_OF_MURAN_MATERIAL.cs" />
-    <Compile Include="SH_QUANTITY_OF_PLASTIC_COVER.cs" />
-    <Compile Include="SH_QUANTITY_OF_PLASTIC_MOLD.cs" />
-    <Compile Include="SH_QUANTITY_OF_RAW_MATERIAL.cs" />
-    <Compile Include="SH_MURAN_MATERIAL_PARCEL.cs" />
-    <Compile Include="SH_QUANTITY_OF_RLT.cs" />
-    <Compile Include="SH_QUANTITY_OF_TWIST_OF.cs" />
-    <Compile Include="SH_QUNTITIES_MECHNICAL_PARTS.cs" />
-    <Compile Include="SH_RAW_MATERIAL_PARCEL.cs" />
-    <Compile Include="SH_RAW_TIN_GENERAL_INFO.cs" />
-    <Compile Include="SH_RLT_DATA.cs" />
-    <Compile Include="SH_SCREW_SIZE.cs" />
-    <Compile Include="SH_SCREW_USAGE.cs" />
-    <Compile Include="sh_Sell_Change_Bits.cs">
+    <Compile Include="Models\Stocks\CutTinModels\SH_PRODUCTS_OF_CLIENTS_QUANTITIES.cs" />
+    <Compile Include="Models\Stocks\CutTinModels\SH_PRODUCT_OF_CLIENTS_PARCELS.cs" />
+    <Compile Include="Models\Stocks\SH_QUANTITIES_COMPUTER_PARTS.cs" />
+    <Compile Include="Models\Stocks\SH_QUANTITIES_ELECTRICAL_PARTS.cs" />
+    <Compile Include="Models\Stocks\CutTinModels\SH_QUANTITIES_OF_CUT_MURAN_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\CutTinModels\SH_QUANTITIES_OF_CUT_PRINTED_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\PrintedTinModels\SH_QUANTITIES_OF_PRINTED_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\SH_QUANTITIES_PRODUCTION_REQUIREMENTS.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_QUANTITIES_RAW_MATERIAL_SPECIFICATION_COILS.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PeelOffModels\SH_QUANTITY_OF_BILL_OFF.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottomModels\SH_QUANTITY_OF_BOTTOM.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\EasyOpenModels\SH_QUANTITY_OF_EASY_OPEN.cs" />
+    <Compile Include="Models\Stocks\MuranTinModels\SH_QUANTITY_OF_MURAN_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticCoverModels\SH_QUANTITY_OF_PLASTIC_COVER.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticMoldModels\SH_QUANTITY_OF_PLASTIC_MOLD.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_QUANTITY_OF_RAW_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\MuranTinModels\SH_MURAN_MATERIAL_PARCEL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\RLTModels\SH_QUANTITY_OF_RLT.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\TwistOffModels\SH_QUANTITY_OF_TWIST_OF.cs" />
+    <Compile Include="Models\Stocks\SH_QUNTITIES_MECHNICAL_PARTS.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_RAW_MATERIAL_PARCEL.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_RAW_TIN_GENERAL_INFO.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\RLTModels\SH_RLT_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_SCREW_SIZE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_SCREW_USAGE.cs" />
+    <Compile Include="Views\sh_Sell_Change_Bits.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="sh_Sell_Change_Bits.Designer.cs">
+    <Compile Include="Views\sh_Sell_Change_Bits.Designer.cs">
       <DependentUpon>sh_Sell_Change_Bits.cs</DependentUpon>
     </Compile>
-    <Compile Include="SH_SHAHEEN_CUTTERS.cs" />
-    <Compile Include="SH_SHAHEEN_STOCK.cs" />
-    <Compile Include="SH_SPECIFICATION_AEROSOL_BOTTEL_FACE.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_PEEL_OFF.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_BOTTOM.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_CUT_MURAN_MATERIAL.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_CUT_PRINTED_MATERIAL.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_EASY_OPEN.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_MURAN_MATERIAL .cs" />
-    <Compile Include="SH_SPECIFICATION_OF_PLASTIC_COVER.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_PLASTIC_MOLD.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_PRINTED_MATERIAL.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_RAW_MATERIAL_COILS.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_RLT.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_TWIST_OF.cs" />
-    <Compile Include="SH_SUPPLIER_COMPANY_CONTACTS.cs" />
-    <Compile Include="SH_SUPPLIER_ITEMS.cs" />
-    <Compile Include="SH_SUPPLY_COMPANY.cs" />
-    <Compile Include="SH_SUPPLY_COMPANY_BRANCHES.cs" />
-    <Compile Include="SH_TIN_PRINTER.cs" />
-    <Compile Include="SH_TWIST_OF_DATA.cs" />
-    <Compile Include="SH_TWIST_OF_SIZE.cs" />
-    <Compile Include="SH_TWIST_OF_TYPE.cs" />
-    <Compile Include="SH_USER_ACCOUNTS.cs" />
-    <Compile Include="SH_USER_PERMISIONS.cs" />
-    <Compile Include="SH_WORK_SHOP_WORK_ORDERS.cs" />
-    <Compile Include="updateUserPermissionsFrm.cs">
+    <Compile Include="Models\Stocks\SH_SHAHEEN_CUTTERS.cs" />
+    <Compile Include="Models\Stocks\SH_SHAHEEN_STOCK.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_SPECIFICATION_AEROSOL_BOTTEL_FACE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_SPECIFICATION_MOLD_BOTTEL_FACE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PeelOffModels\SH_SPECIFICATION_OF_PEEL_OFF.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottomModels\SH_SPECIFICATION_OF_BOTTOM.cs" />
+    <Compile Include="Models\Stocks\CutTinModels\SH_SPECIFICATION_OF_CUT_MURAN_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\CutTinModels\SH_SPECIFICATION_OF_CUT_PRINTED_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\EasyOpenModels\SH_SPECIFICATION_OF_EASY_OPEN.cs" />
+    <Compile Include="Models\Stocks\MuranTinModels\SH_SPECIFICATION_OF_MURAN_MATERIAL .cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticCoverModels\SH_SPECIFICATION_OF_PLASTIC_COVER.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\PlasticMoldModels\SH_SPECIFICATION_OF_PLASTIC_MOLD.cs" />
+    <Compile Include="Models\Stocks\PrintedTinModels\SH_SPECIFICATION_OF_PRINTED_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_SPECIFICATION_OF_PRINTING_BOTTEL_FACE.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_SPECIFICATION_OF_RAW_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\RawTinModels\SH_SPECIFICATION_OF_RAW_MATERIAL_COILS.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\RLTModels\SH_SPECIFICATION_OF_RLT.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\BottelFaceModels\SH_SPECIFICATION_OF_SCREW_BOTTEL_FACE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\TwistOffModels\SH_SPECIFICATION_OF_TWIST_OF.cs" />
+    <Compile Include="Models\Purchasing\SupplierModels\SH_SUPPLIER_COMPANY_CONTACTS.cs" />
+    <Compile Include="Models\Purchasing\SupplierModels\SH_SUPPLIER_ITEMS.cs" />
+    <Compile Include="Models\Purchasing\SupplierModels\SH_SUPPLY_COMPANY.cs" />
+    <Compile Include="Models\Purchasing\SupplierModels\SH_SUPPLY_COMPANY_BRANCHES.cs" />
+    <Compile Include="Models\Stocks\SH_TIN_PRINTER.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\TwistOffModels\SH_TWIST_OF_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\TwistOffModels\SH_TWIST_OF_SIZE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\TwistOffModels\SH_TWIST_OF_TYPE.cs" />
+    <Compile Include="Models\UsersModels\SH_USER_ACCOUNTS.cs" />
+    <Compile Include="Models\UsersModels\SH_USER_PERMISIONS.cs" />
+    <Compile Include="Models\Production\SH_WORK_SHOP_WORK_ORDERS.cs" />
+    <Compile Include="Views\UsersViews\updateUserPermissionsFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="updateUserPermissionsFrm.Designer.cs">
+    <Compile Include="Views\UsersViews\updateUserPermissionsFrm.Designer.cs">
       <DependentUpon>updateUserPermissionsFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewUserPermisions.cs">
+    <Compile Include="Views\UsersViews\ViewUserPermisions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewUserPermisions.Designer.cs">
+    <Compile Include="Views\UsersViews\ViewUserPermisions.Designer.cs">
       <DependentUpon>ViewUserPermisions.cs</DependentUpon>
     </Compile>
-    <Compile Include="waitingform.cs">
+    <Compile Include="Views\waitingform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="waitingform.Designer.cs">
+    <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="addclientbranches.resx">
+    <EmbeddedResource Include="AllRequestOfPerfectProductFromSales.resx">
+      <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CutterFrm.resx">
+      <DependentUpon>CutterFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Holl1Frm.resx">
+      <DependentUpon>Holl1Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductDetailsForExchangeFrm.resx">
+      <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductionFrm.resx">
+      <DependentUpon>ProductionFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.resx">
+      <DependentUpon>ClientSupplyRunOrderFrmNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\PlasticCoverViews\ExchangeNewWorkOrderPlasticCover.resx">
+      <DependentUpon>ExchangeNewWorkOrderPlasticCover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\PlasticMoldViews\ExchangeNewWorkOrderPlasticTappa.resx">
+      <DependentUpon>ExchangeNewWorkOrderPlasticTappa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\RltViews\ExchangeNewWorkOrders.resx">
+      <DependentUpon>ExchangeNewWorkOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\EasyOpenViews\ExchangeNewWorkOrdersEOE.resx">
+      <DependentUpon>ExchangeNewWorkOrdersEOE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottomViews\ExchangeNewWorkOrdersNormalEnd.resx">
+      <DependentUpon>ExchangeNewWorkOrdersNormalEnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\PeelOffViews\ExchangeNewWorkOrdersPeelOff.resx">
+      <DependentUpon>ExchangeNewWorkOrdersPeelOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\TwistOffViews\ExchangeNewWorkOrderTwist.resx">
+      <DependentUpon>ExchangeNewWorkOrderTwist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\WorkOrders\NewWorkOrdersFRm.resx">
+      <DependentUpon>NewWorkOrdersFRm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\allitemsform.resx">
+      <DependentUpon>allitemsform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sales\ClienViews\addclientbranches.resx">
       <DependentUpon>addclientbranches.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewaerosolsize.resx">
+    <EmbeddedResource Include="Views\Accounting\addnewacccounttreeitem.resx">
+      <DependentUpon>addnewacccounttreeitem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewaerosolsize.resx">
       <DependentUpon>addnewaerosolsize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewaerosoltype.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewaerosoltype.resx">
       <DependentUpon>addnewaerosoltype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewbottelfacepaintingcolortype.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewbottelfacepaintingcolortype.resx">
       <DependentUpon>addnewbottelfacepaintingcolortype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewbottlefacetype.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewbottlefacetype.resx">
       <DependentUpon>addnewbottlefacetype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewcoverplatesize.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewcoverplatesize.resx">
       <DependentUpon>addnewcoverplatesize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewfaceproduct.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewfaceproduct.resx">
       <DependentUpon>addnewfaceproduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewhandsize.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewhandsize.resx">
       <DependentUpon>addnewhandsize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewhandtype.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewhandtype.resx">
       <DependentUpon>addnewhandtype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewrlt.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\RltViews\addnewrlt.resx">
       <DependentUpon>addnewrlt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewpeeloff.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\PeelOffViews\addnewpeeloff.resx">
       <DependentUpon>addnewpeeloff.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewclientcompanycontacts.resx">
+    <EmbeddedResource Include="Views\Sales\ClienViews\addnewclientcompanycontacts.resx">
       <DependentUpon>addnewclientcompanycontacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewclientproduct.resx">
+    <EmbeddedResource Include="Views\Sales\ClienViews\addnewclientproduct.resx">
       <DependentUpon>addnewclientproduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewcolorpillow.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\addnewcolorpillow.resx">
       <DependentUpon>addnewcolorpillow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewcutmuranmaterial.resx">
+    <EmbeddedResource Include="Views\Stocks\CutTinViews\addnewcutmuranmaterial.resx">
       <DependentUpon>addnewcutmuranmaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewcutprintedmaterial.resx">
+    <EmbeddedResource Include="Views\Stocks\CutTinViews\addnewcutprintedmaterial.resx">
       <DependentUpon>addnewcutprintedmaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewcutterform.resx">
+    <EmbeddedResource Include="Views\Stocks\addnewcutterform.resx">
       <DependentUpon>addnewcutterform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddNewDepartment.resx">
+    <EmbeddedResource Include="Views\Hr\EmployeeView\AddNewDepartment.resx">
       <DependentUpon>AddNewDepartment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addneweasyopenusage.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\EasyOpenViews\addneweasyopenusage.resx">
       <DependentUpon>addneweasyopenusage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewfacecolorform.resx">
+    <EmbeddedResource Include="Views\Stocks\addnewfacecolorform.resx">
       <DependentUpon>addnewfacecolorform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewfinishedcan.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\FinishedCanViews\addnewfinishedcan.resx">
       <DependentUpon>addnewfinishedcan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addNewFunctionFrm.resx">
+    <EmbeddedResource Include="Views\Hr\EmployeeView\addNewFunctionFrm.resx">
       <DependentUpon>addNewFunctionFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddNewItemForSupplierFrm.resx">
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\AddNewItemForSupplierFrm.resx">
       <DependentUpon>AddNewItemForSupplierFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewmaterialtype.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewmaterialtype.resx">
       <DependentUpon>addnewmaterialtype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewmoldsize.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewmoldsize.resx">
       <DependentUpon>addnewmoldsize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewmuranmaterialfd.resx">
+    <EmbeddedResource Include="Views\Stocks\MuranTinViews\addnewmuranmaterialfd.resx">
       <DependentUpon>addnewmuranmaterialfd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewprinterform.resx">
+    <EmbeddedResource Include="Views\Stocks\addnewprinterform.resx">
       <DependentUpon>addnewprinterform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewprintingmaterialfd.resx">
+    <EmbeddedResource Include="Views\Stocks\PrintedTinViews\addnewprintingmaterialfd.resx">
       <DependentUpon>addnewprintingmaterialfd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewrawtin.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\addnewrawtin.resx">
       <DependentUpon>addnewrawtin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewrowtinfd.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\addnewrowtinfd.resx">
       <DependentUpon>addnewrowtinfd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewscrewsize.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewscrewsize.resx">
       <DependentUpon>addnewscrewsize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewscrewusage.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addnewscrewusage.resx">
       <DependentUpon>addnewscrewusage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewsizesform.resx">
+    <EmbeddedResource Include="Views\Stocks\addnewsizesform.resx">
       <DependentUpon>addnewsizesform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Addnewstockform.resx">
+    <EmbeddedResource Include="Views\Stocks\Addnewstockform.resx">
       <DependentUpon>Addnewstockform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewplasticcoverform.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\PlasticCoverViews\addnewplasticcoverform.resx">
       <DependentUpon>addnewplasticcoverform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewplasticmoldform.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\PlasticMoldViews\addnewplasticmoldform.resx">
       <DependentUpon>addnewplasticmoldform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewtwistofform.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistofform.resx">
       <DependentUpon>addnewtwistofform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewtwistofsize.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistofsize.resx">
       <DependentUpon>addnewtwistofsize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewtwistoftype.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\TwistOffViews\addnewtwistoftype.resx">
       <DependentUpon>addnewtwistoftype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addplasticmoldtype.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottelFaceViews\addplasticmoldtype.resx">
       <DependentUpon>addplasticmoldtype.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addSupplierCompanyContacts.resx">
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\addSupplierCompanyContacts.resx">
       <DependentUpon>addSupplierCompanyContacts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="add_new_client_company_btn.resx">
+    <EmbeddedResource Include="Views\Sales\ClienViews\add_new_client_company_btn.resx">
       <DependentUpon>add_new_client_company_btn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="add_new_supply_company_brach.resx">
-      <DependentUpon>add_new_supply_company_brach.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\add_new_supply_company_branch.resx">
+      <DependentUpon>add_new_supply_company_branch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="add_new_supply_company_form.resx">
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\add_new_supply_company_form.resx">
       <DependentUpon>add_new_supply_company_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="allfacecolors.resx">
+    <EmbeddedResource Include="Views\Stocks\allfacecolors.resx">
       <DependentUpon>allfacecolors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="allprintersform.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\allfinishedproductsdata.resx">
+      <DependentUpon>allfinishedproductsdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Stocks\allprintersform.resx">
       <DependentUpon>allprintersform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AllSelectedSupplierDataFrm.resx">
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\AllSelectedSupplierDataFrm.resx">
       <DependentUpon>AllSelectedSupplierDataFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="allstocksform.resx">
+    <EmbeddedResource Include="Views\Stocks\allstocksform.resx">
       <DependentUpon>allstocksform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="all_clients_data.resx">
+    <EmbeddedResource Include="Views\Sales\ClienViews\all_clients_data.resx">
       <DependentUpon>all_clients_data.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="all_suppliers_data.resx">
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\all_suppliers_data.resx">
       <DependentUpon>all_suppliers_data.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="client_portal.resx">
+    <EmbeddedResource Include="Views\Sales\ClienViews\client_portal.resx">
       <DependentUpon>client_portal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DisplaySelectedSupplierItems.resx">
+    <EmbeddedResource Include="Views\Purchasing\SupplierViews\DisplaySelectedSupplierItems.resx">
       <DependentUpon>DisplaySelectedSupplierItems.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="addnewBottom.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\BottomViews\addnewBottom.resx">
       <DependentUpon>addnewBottom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="employee_portal.resx">
+    <EmbeddedResource Include="Views\Hr\EmployeeView\employee_portal.resx">
       <DependentUpon>employee_portal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="getalldepartments.resx">
+    <EmbeddedResource Include="Views\Hr\EmployeeView\getalldepartments.resx">
       <DependentUpon>getalldepartments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="maintenanceworkorders.resx">
+    <EmbeddedResource Include="Views\Production\maintenanceworkorders.resx">
       <DependentUpon>maintenanceworkorders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegistEmp.resx">
+    <EmbeddedResource Include="Views\Hr\EmployeeView\RegistEmp.resx">
       <DependentUpon>RegistEmp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="changePassword.resx">
+    <EmbeddedResource Include="Views\UsersViews\changePassword.resx">
       <DependentUpon>changePassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DatabaseConnectionSettingForm.resx">
+    <EmbeddedResource Include="Views\DatabaseSettingView\DatabaseConnectionSettingForm.resx">
       <DependentUpon>DatabaseConnectionSettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Display_allUsers.resx">
+    <EmbeddedResource Include="Views\UsersViews\Display_allUsers.resx">
       <DependentUpon>Display_allUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Easyopenaddingform.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\EasyOpenViews\Easyopenaddingform.resx">
       <DependentUpon>Easyopenaddingform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Exchanged_raw_materail_db.rdlc" />
-    <EmbeddedResource Include="exchangeofprintedmaterial.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\Exchanged_raw_materail_db.rdlc" />
+    <EmbeddedResource Include="Views\Stocks\PrintedTinViews\exchangeofprintedmaterial.resx">
       <DependentUpon>exchangeofprintedmaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="exchangerawtin.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\exchangerawtin.resx">
       <DependentUpon>exchangerawtin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Exchangeofmurantinbasicinfo.resx">
+    <EmbeddedResource Include="Views\Stocks\MuranTinViews\Exchangeofmurantinbasicinfo.resx">
       <DependentUpon>Exchangeofmurantinbasicinfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Exchangerawtinbasicinfo.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\Exchangerawtinbasicinfo.resx">
       <DependentUpon>Exchangerawtinbasicinfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="exchange_of_cut_printed_material.resx">
+    <EmbeddedResource Include="Views\Stocks\CutTinViews\exchange_of_cut_printed_material.resx">
       <DependentUpon>exchange_of_cut_printed_material.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="exhangeofrawmaterilbyproperties.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\exhangeofrawmaterilbyproperties.resx">
       <DependentUpon>exhangeofrawmaterilbyproperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="getAllEmployeesFrm.resx">
+    <EmbeddedResource Include="Views\Hr\EmployeeView\getAllEmployeesFrm.resx">
       <DependentUpon>getAllEmployeesFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="getAllUsers.resx">
+    <EmbeddedResource Include="Views\UsersViews\getAllUsers.resx">
       <DependentUpon>getAllUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoginFrm.resx">
+    <EmbeddedResource Include="Views\UsersViews\LoginFrm.resx">
       <DependentUpon>LoginFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mainform.resx">
+    <EmbeddedResource Include="Views\Mainform.resx">
       <DependentUpon>Mainform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="makenewuser.resx">
+    <EmbeddedResource Include="Views\UsersViews\makenewuser.resx">
       <DependentUpon>makenewuser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="new_raw_material_parcels_cards.rdlc">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\new_raw_material_parcels_cards.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="printedcaredsforrawmaterial.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\printedcaredsforrawmaterial.resx">
       <DependentUpon>printedcaredsforrawmaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="printrawmaterialaddingrequest.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\printrawmaterialaddingrequest.resx">
       <DependentUpon>printrawmaterialaddingrequest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="print_exchange_request.resx">
+    <EmbeddedResource Include="Views\Stocks\print_exchange_request.resx">
       <DependentUpon>print_exchange_request.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -973,68 +1136,68 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="quantities_of_selected_sp_raw_tin.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\quantities_of_selected_sp_raw_tin.resx">
       <DependentUpon>quantities_of_selected_sp_raw_tin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="rawmaterialaddingrequestreport.rdlc" />
-    <EmbeddedResource Include="rawmaterialexchangedquantities.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\rawmaterialaddingrequestreport.rdlc" />
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\rawmaterialexchangedquantities.resx">
       <DependentUpon>rawmaterialexchangedquantities.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="raw_material_second_form_coils.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\raw_material_second_form_coils.resx">
       <DependentUpon>raw_material_second_form_coils.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="raw_tin_all_spcifications.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\raw_tin_all_spcifications.resx">
       <DependentUpon>raw_tin_all_spcifications.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchincutprintedmaterial.resx">
+    <EmbeddedResource Include="Views\Stocks\CutTinViews\searchincutprintedmaterial.resx">
       <DependentUpon>searchincutprintedmaterial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchinfinishedproducts.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\searchinfinishedproducts.resx">
       <DependentUpon>searchinfinishedproducts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchinmuranparcels.resx">
+    <EmbeddedResource Include="Views\Stocks\MuranTinViews\searchinmuranparcels.resx">
       <DependentUpon>searchinmuranparcels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchinprintedparcels.resx">
+    <EmbeddedResource Include="Views\Stocks\PrintedTinViews\searchinprintedparcels.resx">
       <DependentUpon>searchinprintedparcels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchinrawmaterialform.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\searchinrawmaterialform.resx">
       <DependentUpon>searchinrawmaterialform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchreceivedrawtinbytwodates.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\searchreceivedrawtinbytwodates.resx">
       <DependentUpon>searchreceivedrawtinbytwodates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="searchwexchangedrawtinbetweentwodates.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\searchwexchangedrawtinbetweentwodates.resx">
       <DependentUpon>searchwexchangedrawtinbetweentwodates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="showprintedparcelclientsandproducts.resx">
+    <EmbeddedResource Include="Views\Stocks\PrintedTinViews\showprintedparcelclientsandproducts.resx">
       <DependentUpon>showprintedparcelclientsandproducts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="show_tin_general_infos.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\show_tin_general_infos.resx">
       <DependentUpon>show_tin_general_infos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="sh_Add_ChangeBits.resx">
+    <EmbeddedResource Include="Views\Stocks\sh_Add_ChangeBits.resx">
       <DependentUpon>sh_Add_ChangeBits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="sh_exchangel_ChangeBits.resx">
+    <EmbeddedResource Include="Views\Stocks\sh_exchangel_ChangeBits.resx">
       <DependentUpon>sh_exchangel_ChangeBits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SH_Production_exchange.resx">
+    <EmbeddedResource Include="Views\SH_Production_exchange.resx">
       <DependentUpon>SH_Production_exchange.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SH_PRODUCTION_REQUIRMENTS.resx">
+    <EmbeddedResource Include="Views\SH_PRODUCTION_REQUIRMENTS.resx">
       <DependentUpon>SH_PRODUCTION_REQUIRMENTS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="sh_Sell_Change_Bits.resx">
+    <EmbeddedResource Include="Views\sh_Sell_Change_Bits.resx">
       <DependentUpon>sh_Sell_Change_Bits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="updateUserPermissionsFrm.resx">
+    <EmbeddedResource Include="Views\UsersViews\updateUserPermissionsFrm.resx">
       <DependentUpon>updateUserPermissionsFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewUserPermisions.resx">
+    <EmbeddedResource Include="Views\UsersViews\ViewUserPermisions.resx">
       <DependentUpon>ViewUserPermisions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="waitingform.resx">
+    <EmbeddedResource Include="Views\waitingform.resx">
       <DependentUpon>waitingform.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -1069,6 +1232,7 @@
   <ItemGroup>
     <None Include="Resources\it-department-logo.jpeg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -1077,4 +1241,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-</Project>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+</Project>
