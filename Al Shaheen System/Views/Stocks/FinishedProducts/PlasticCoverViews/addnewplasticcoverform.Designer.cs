@@ -96,6 +96,7 @@
             this.unsimilar_no_items_per_container_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.twist_type_combo_box_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.item_type_combo_box_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.new_btn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.twist_of_quantities_grid_view)).BeginInit();
@@ -705,12 +706,27 @@
             this.item_type_combo_box_error_provider.ContainerControl = this;
             this.item_type_combo_box_error_provider.RightToLeft = true;
             // 
+            // new_btn
+            // 
+            this.new_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.new_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.new_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.new_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.new_btn.Location = new System.Drawing.Point(505, 896);
+            this.new_btn.Name = "new_btn";
+            this.new_btn.Size = new System.Drawing.Size(147, 37);
+            this.new_btn.TabIndex = 10;
+            this.new_btn.Text = "جديد";
+            this.new_btn.UseVisualStyleBackColor = false;
+            this.new_btn.Click += new System.EventHandler(this.new_btn_Click);
+            // 
             // addnewplasticcoverform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1091, 939);
+            this.Controls.Add(this.new_btn);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.groupBox3);
@@ -821,5 +837,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button new_btn;
     }
 }

@@ -27,147 +27,145 @@ namespace Al_Shaheen_System
 
         private void إضافةرصيدأولالمدةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewrowtinfd myform = new addnewrowtinfd(mEmployee , mAccount , mPermission))
-            {
-                myform.ShowDialog();
-            }
+            addnewrowtinfd myform = new addnewrowtinfd(mEmployee, mAccount, mPermission);
+
+            myform.Show();
+
         }
 
         private void إضافةصفيحخامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewrawtin myform = new addnewrawtin())
-            {
-                myform.ShowDialog();
-            }
+            addnewrawtin myform = new addnewrawtin();
+            myform.Show();
+
         }
 
         private void صرفالصفيحالخامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //using (exchangerawtin myform = new exchangerawtin())
+            // exchangerawtin myform = new exchangerawtin())
             //{
-            //    myform.ShowDialog();
+            //    myform.Show();
             //}
-            using (searchinrawmaterialform myform = new searchinrawmaterialform())
-            {
-                myform.ShowDialog();
-            }
+            searchinrawmaterialform myform = new searchinrawmaterialform();
+            myform.Show();
+
         }
 
         private void إضافةرصيدأولالمدةToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void إعداداتقواعدالبياناتToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (DatabaseConnectionSettingForm myform = new DatabaseConnectionSettingForm())
-            {
-                myform.ShowDialog();
-            }
+            DatabaseConnectionSettingForm myform = new DatabaseConnectionSettingForm();
+
+            myform.Show();
+
         }
 
         private void الأرصدةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (raw_tin_all_spcifications myform = new raw_tin_all_spcifications())
-            {
-                myform.ShowDialog();
-            }
+            raw_tin_all_spcifications myform = new raw_tin_all_spcifications();
+
+            myform.Show();
+
         }
 
         private void إضافةCoilsالصفيحToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (raw_material_second_form_coils myform = new raw_material_second_form_coils())
-            {
-                myform.ShowDialog();
-            }
+            raw_material_second_form_coils myform = new raw_material_second_form_coils();
+
+            myform.Show();
+
         }
 
         private void إضافةعميلجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (add_new_client_company_btn myform = new add_new_client_company_btn(null))
-            {
-                myform.ShowDialog();
-            }
+            add_new_client_company_btn myform = new add_new_client_company_btn(null);
+
+            myform.Show();
+
         }
 
         private void إضافةموردجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (add_new_supply_company_form myform = new add_new_supply_company_form())
-            {
-                myform.ShowDialog();
-            }
+            add_new_supply_company_form myform = new add_new_supply_company_form();
+
+            myform.Show();
+
         }
 
         private void easyOpenايزيأوبنToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (Easyopenaddingform myform = new Easyopenaddingform())
-            {
-                myform.ShowDialog();
-            }
+            Easyopenaddingform myform = new Easyopenaddingform();
+
+            myform.Show();
+
         }
 
         private void بياناتالعملاءToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mPermission.SH_SHOW_ALL_CLIENTS==1)
+            if (mPermission.SH_SHOW_ALL_CLIENTS == 1)
             {
-                using (all_clients_data myform = new all_clients_data())
-                {
-                    myform.ShowDialog();
-                }
+                all_clients_data myform = new all_clients_data();
+
+                myform.Show();
+
             }
-          
+
         }
 
         private void إضافةمخزنجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (Addnewstockform myform = new Addnewstockform())
-            {
-                myform.ShowDialog();
-            }
+            Addnewstockform myform = new Addnewstockform();
+
+            myform.Show();
+
         }
 
         private void جميعالمخازنToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (allstocksform myfom = new allstocksform())
-            {
-                myfom.ShowDialog();
-            }
+            allstocksform myfom = new allstocksform();
+
+            myfom.Show();
+
         }
 
         private void إضافةلونجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mPermission.SH_ADD_NEW_COLOR == 1)
             {
-                using (addnewfacecolorform myform = new addnewfacecolorform())
-                {
-                    myform.ShowDialog();
-                }
+                addnewfacecolorform myform = new addnewfacecolorform();
+
+                myform.Show();
+
             }
         }
 
         private void جميعالألوانToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (allfacecolors myform = new allfacecolors())
-            {
-                myform.ShowDialog();
-            }
+            allfacecolors myform = new allfacecolors();
+
+            myform.Show();
+
 
         }
 
         private void إToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewprinterform myform = new addnewprinterform())
-            {
-                myform.ShowDialog();
-            }
+            addnewprinterform myform = new addnewprinterform();
+
+            myform.Show();
+
         }
 
         private void جميعالمطابعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (allprintersform myform = new allprintersform())
-            {
-                myform.ShowDialog();
-            }
+            allprintersform myform = new allprintersform();
+
+            myform.Show();
+
         }
 
         private void إضافةطولجديدToolStripMenuItem_Click(object sender, EventArgs e)
@@ -177,173 +175,173 @@ namespace Al_Shaheen_System
 
         private void إضافةرصيدأولالمدةToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void إضافةصفيحمورنشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewmuranmaterialfd myform = new addnewmuranmaterialfd())
-            {
-                myform.ShowDialog();
-            }
+            addnewmuranmaterialfd myform = new addnewmuranmaterialfd();
+
+            myform.Show();
+
         }
 
         private void إضافةالصفيحالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewprintingmaterialfd myform = new addnewprintingmaterialfd())
-            {
-                myform.ShowDialog();
-            }
+            addnewprintingmaterialfd myform = new addnewprintingmaterialfd();
+
+            myform.Show();
+
         }
 
         private void علبالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewfinishedcan myform= new addnewfinishedcan())
-            {
-                myform.ShowDialog();
-            }
+            addnewfinishedcan myform = new addnewfinishedcan();
+
+            myform.Show();
+
         }
 
         private void جميعالموريدينToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (all_suppliers_data myform = new all_suppliers_data())
-            {
-                myform.ShowDialog();
-            }
+            all_suppliers_data myform = new all_suppliers_data();
+
+            myform.Show();
+
         }
 
         private void إضافةالصفيحالمقصوصالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewcutprintedmaterial myform = new addnewcutprintedmaterial())
-            {
-                myform.ShowDialog();
-            }
+            addnewcutprintedmaterial myform = new addnewcutprintedmaterial();
+
+            myform.Show();
+
         }
 
         private void إضافةمقصجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewcutterform myform = new addnewcutterform())
-            {
-                myform.ShowDialog();
-            }
+            addnewcutterform myform = new addnewcutterform();
+
+            myform.Show();
+
         }
 
         private void إضافةالصفيحالمقصوصالمورنشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewcutmuranmaterial myform = new addnewcutmuranmaterial())
-            {
-                myform.ShowDialog();
-            }
+            addnewcutmuranmaterial myform = new addnewcutmuranmaterial();
+
+            myform.Show();
+
         }
 
-       
+
         private void إضافةمقاسجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewsizesform myform = new addnewsizesform())
-            {
-                myform.ShowDialog();
-            }
+            addnewsizesform myform = new addnewsizesform();
+
+            myform.Show();
+
         }
 
         private void صرفالصفيحالمورنشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchinmuranparcels myform = new searchinmuranparcels())
-            {
-                myform.ShowDialog();
-            }
+            searchinmuranparcels myform = new searchinmuranparcels();
+
+            myform.Show();
+
         }
 
         private void إضافةموظفجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mPermission.SH_OPEN_REGIST_EMP==1)
+            if (mPermission.SH_OPEN_REGIST_EMP == 1)
             {
-                using (RegistEmp myform = new RegistEmp(mEmployee , mAccount , mPermission))
-                {
-                    myform.ShowDialog();
-                }
+                RegistEmp myform = new RegistEmp(mEmployee, mAccount, mPermission);
+
+                myform.Show();
+
             }
-          
+
 
         }
 
         private void جميعالموظفينToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (getAllEmployeesFrm myform = new getAllEmployeesFrm(mEmployee , mAccount , mPermission))
-            {
-                myform.ShowDialog();
-            }
+            getAllEmployeesFrm myform = new getAllEmployeesFrm(mEmployee, mAccount, mPermission);
+
+            myform.Show();
+
         }
 
         private void جميعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (Display_allUsers myform = new Display_allUsers(mEmployee, mAccount, mPermission))
-            {
-                myform.ShowDialog();
-            }
+            Display_allUsers myform = new Display_allUsers(mEmployee, mAccount, mPermission);
+
+            myform.Show();
+
         }
 
         private void البحثفىالاستلاماتToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchreceivedrawtinbytwodates myform = new searchreceivedrawtinbytwodates())
-            {
-                myform.ShowDialog();
-            }
+            searchreceivedrawtinbytwodates myform = new searchreceivedrawtinbytwodates();
+
+            myform.Show();
+
         }
 
         private void البحثفىالمصروفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchwexchangedrawtinbetweentwodates myform = new searchwexchangedrawtinbetweentwodates())
-            {
-                myform.ShowDialog();
-            }
+            searchwexchangedrawtinbetweentwodates myform = new searchwexchangedrawtinbetweentwodates();
+
+            myform.Show();
+
         }
 
         private void صرفالصفيحالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchinprintedparcels myform = new searchinprintedparcels())
-            {
-                myform.ShowDialog();
-            }
+            searchinprintedparcels myform = new searchinprintedparcels();
+
+            myform.Show();
+
         }
 
         private void صرفالصفيحالمقصوصالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchincutprintedmaterial myform = new searchincutprintedmaterial())
-            {
-                myform.ShowDialog();
-            }
+            searchincutprintedmaterial myform = new searchincutprintedmaterial();
+
+            myform.Show();
+
         }
 
         private void قاعاووشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewBottom myform = new addnewBottom())
-            {
-                myform.ShowDialog();
-            }
+            addnewBottom myform = new addnewBottom();
+
+            myform.Show();
+
         }
 
         private void pennyLeverRLTبيلأوفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //using (RLTaddingform myform = new RLTaddingform())
-            //{
-            //    myform.ShowDialog();
-            //}
+            addnewrlt myform = new addnewrlt();
+
+            myform.Show();
+
         }
 
         private void بيلأوفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewpeeloff myform = new addnewpeeloff())
-            {
-                myform.ShowDialog();
-            }
+            addnewpeeloff myform = new addnewpeeloff();
+
+            myform.Show();
+
         }
 
         private void صرفالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (clientreceivalpermissionnumberform myform = new clientreceivalpermissionnumberform(mEmployee, mAccount, mPermission))
-            {
-                myform.ShowDialog();
-            }
+            clientreceivalpermissionnumberform myform = new clientreceivalpermissionnumberform(mEmployee, mAccount, mPermission);
+
+            myform.Show();
+
         }
 
         private void Mainform_Load(object sender, EventArgs e)
@@ -353,7 +351,7 @@ namespace Al_Shaheen_System
             if (mPermission.SH_IT_SERVER_SETTINGS == 1)
             {
                 إعداداتقواعدالبياناتToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 إعداداتقواعدالبياناتToolStripMenuItem.Visible = false;
             }
@@ -361,7 +359,7 @@ namespace Al_Shaheen_System
             if (mPermission.SH_DEPARTMENT_STOCKS == 1)
             {
                 المخازنToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
 
                 المخازنToolStripMenuItem.Visible = false;
@@ -370,69 +368,69 @@ namespace Al_Shaheen_System
             if (mPermission.SH_DEPARTMENT_SALES == 1)
             {
                 المبيعاتToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 المبيعاتToolStripMenuItem.Visible = false;
             }
 
-            if (mPermission.SH_DEPARTMENT_PURCHASING==1)
+            if (mPermission.SH_DEPARTMENT_PURCHASING == 1)
             {
                 المشترياتToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 المشترياتToolStripMenuItem.Visible = false;
             }
-            if (mPermission.SH_DEPARTMENT_ACCOUNTING==1)
+            if (mPermission.SH_DEPARTMENT_ACCOUNTING == 1)
             {
                 الحساباتToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 الحساباتToolStripMenuItem.Visible = false;
             }
-            if (mPermission.SH_DEPARTMENT_MAINTENANCE ==1)
+            if (mPermission.SH_DEPARTMENT_MAINTENANCE == 1)
             {
                 الصيانةToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 الصيانةToolStripMenuItem.Visible = false;
             }
-            if (mPermission.SH_DEPARTMENT_PRODUCTION==1)
+            if (mPermission.SH_DEPARTMENT_PRODUCTION == 1)
             {
                 أللإنتاجToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 أللإنتاجToolStripMenuItem.Visible = false;
             }
 
-            if (mPermission.SH_DEPARTMENT_HR==1)
+            if (mPermission.SH_DEPARTMENT_HR == 1)
             {
                 المواردالبشريةToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 المواردالبشريةToolStripMenuItem.Visible = false;
             }
 
-            if (mPermission.SH_OPEN_DASH_BOARD==1)
+            if (mPermission.SH_OPEN_DASH_BOARD == 1)
             {
                 dashboardToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
                 dashboardToolStripMenuItem.Visible = false;
             }
 
-            if (mPermission.SH_DEPARTMENT_MAINTENANCE==1)
+            if (mPermission.SH_DEPARTMENT_MAINTENANCE == 1)
             {
                 الورشةToolStripMenuItem.Visible = true;
-            }else
+            } else
             {
-                الورشةToolStripMenuItem.Visible = false ;
+                الورشةToolStripMenuItem.Visible = false;
             }
 
         }
 
         private void الصفيحالخامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mPermission.SH_RAW_TIN_MATERIAL ==1)
+            if (mPermission.SH_RAW_TIN_MATERIAL == 1)
             {
                 // الصفيحالخامToolStripMenuItem.ShowShortcutKeys = true;
                 الصفيحالخامToolStripMenuItem.ShowDropDown();
@@ -446,66 +444,66 @@ namespace Al_Shaheen_System
 
         private void مخزنالصفيحToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void إضافةقسمجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mPermission.SH_ADD_NEW_DEPARTMENT==1)
+            if (mPermission.SH_ADD_NEW_DEPARTMENT == 1)
             {
-                using (AddNewDepartment myform = new AddNewDepartment(mEmployee, mAccount, mPermission))
-                {
-                    myform.ShowDialog();
-                }
+                AddNewDepartment myform = new AddNewDepartment(mEmployee, mAccount, mPermission);
+
+                myform.Show();
+
             }
         }
 
         private void إضافةأوامرشغلToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (maintenanceworkorders myform  = new maintenanceworkorders(mEmployee, mAccount, mPermission))
-            {
-                myform.ShowDialog();
-            }
+            maintenanceworkorders myform = new maintenanceworkorders(mEmployee, mAccount, mPermission);
+
+            myform.Show();
+
         }
 
         private void إضافةلونجديدToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            using (addnewcolorpillow myform = new addnewcolorpillow(mEmployee, mAccount, mPermission))
-            {
-                myform.ShowDialog();
-            }
+            addnewcolorpillow myform = new addnewcolorpillow(mEmployee, mAccount, mPermission);
+
+            myform.Show();
+
         }
 
         private void إضافةنوعجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewtwistoftype myform = new addnewtwistoftype(mEmployee, mAccount, mPermission))
-            {
-                myform.ShowDialog();
-            }
+            addnewtwistoftype myform = new addnewtwistoftype(mEmployee, mAccount, mPermission);
+
+            myform.Show();
+
         }
 
         private void تويستأوفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewtwistofform myform = new addnewtwistofform())
-            {
-                myform.ShowDialog();
-            }
+            addnewtwistofform myform = new addnewtwistofform();
+
+            myform.Show();
+
         }
 
         private void إضافةمقاسجديدToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            using (addnewtwistofsize myform = new addnewtwistofsize())
-            {
-                myform.ShowDialog();
-            }
+            addnewtwistofsize myform = new addnewtwistofsize();
+
+            myform.Show();
+
         }
 
         private void غطاءبلاستيكللعبواتToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewplasticcoverform myform = new addnewplasticcoverform())
-            {
-                myform.ShowDialog();
-            }
+            addnewplasticcoverform myform = new addnewplasticcoverform();
+
+            myform.Show();
+
         }
 
         private void الموظفينToolStripMenuItem_Click(object sender, EventArgs e)
@@ -515,123 +513,117 @@ namespace Al_Shaheen_System
 
         private void إضافةنوعطبةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addplasticmoldtype myform = new addplasticmoldtype())
-            {
-                myform.ShowDialog();
-            }
+            addplasticmoldtype myform = new addplasticmoldtype();
+
+            myform.Show();
+
         }
 
         private void طبةبلاستيكToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewplasticmoldform myform = new addnewplasticmoldform())
-            {
-                myform.ShowDialog();
-            }
+            addnewplasticmoldform myform = new addnewplasticmoldform();
+
+            myform.Show();
+
         }
 
         private void إضافةمقاسجديدToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            using (addnewmoldsize myform = new addnewmoldsize())
-            {
-                myform.ShowDialog();
-            }
+            addnewmoldsize myform = new addnewmoldsize();
+
+            myform.Show();
+
 
         }
 
         private void إضافةإستخدامجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addneweasyopenusage myform = new addneweasyopenusage())
-            {
-                myform.ShowDialog();
-            }
+            addneweasyopenusage myform = new addneweasyopenusage();
+
+            myform.Show();
+
         }
 
         private void إضافةنوعخامةجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewmaterialtype myform = new addnewmaterialtype())
-            {
-                myform.ShowDialog();
-            }
+            addnewmaterialtype myform = new addnewmaterialtype();
+
+            myform.Show();
+
         }
 
         private void إضافةنوعبوياتالوشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewbottelfacepaintingcolortype myform = new addnewbottelfacepaintingcolortype())
-            {
-                myform.ShowDialog();
-            }
+            addnewbottelfacepaintingcolortype myform = new addnewbottelfacepaintingcolortype();
+
+            myform.Show();
+
         }
 
         private void إضافةنوعالوشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewbottlefacetype myform = new addnewbottlefacetype())
-            {
-                myform.ShowDialog();
-            }
-        }
+            addnewbottlefacetype myform = new addnewbottlefacetype();
+            
+                myform.Show();
+        
+    }
 
         private void إضافةمقاسلليدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewhandsize myform = new addnewhandsize())
-            {
-                myform.ShowDialog();
-            }
+            addnewhandsize myform = new addnewhandsize();
+            
+                myform.Show();
+            
         }
 
         private void إضافةنوعيدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewhandtype myform = new addnewhandtype())
+            addnewhandtype myform = new addnewhandtype();
             {
-                myform.ShowDialog();
+                myform.Show();
             }
         }
 
         private void إضافةمقاسغطاءصفيحةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewcoverplatesize myform = new addnewcoverplatesize())
-            {
-                myform.ShowDialog();
-            }
+            addnewcoverplatesize myform = new addnewcoverplatesize();
+            
+                myform.Show();
+            
         }
 
         private void إضافةقطرقلاووظToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewscrewsize myform  = new addnewscrewsize())
-            {
-                myform.ShowDialog();
-            }
+            addnewscrewsize myform = new addnewscrewsize();
+            
+                myform.Show();
+            
         }
 
         private void إضافةإستخدامالقلاووظToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewscrewusage myform = new addnewscrewusage())
-            {
-                myform.ShowDialog();
-            }
+            addnewscrewusage myform = new addnewscrewusage();
+            
+                myform.Show();
+            
         }
 
         private void وشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewfaceproduct myform = new addnewfaceproduct(mEmployee))
-            {
-                myform.ShowDialog();
-            }
+            addnewfaceproduct myform = new addnewfaceproduct(mEmployee); 
+            myform.Show();   
         }
 
         private void إضافةمقاسأيروسولجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewaerosolsize myform = new addnewaerosolsize())
-            {
-                myform.ShowDialog();
-            }
+            addnewaerosolsize myform = new addnewaerosolsize();
+            myform.Show();
         }
 
         private void إضافةنوعأيروسولجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewaerosoltype myform = new addnewaerosoltype())
-            {
-                myform.ShowDialog();
-            }
+            addnewaerosoltype myform = new addnewaerosoltype();
+            myform.Show(); 
         }
 
         private void إغلاقToolStripMenuItem_Click(object sender, EventArgs e)
@@ -641,10 +633,8 @@ namespace Al_Shaheen_System
 
         private void إضافةحسابجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewacccounttreeitem myform = new addnewacccounttreeitem())
-            {
-                myform.ShowDialog();
-            }
+            addnewacccounttreeitem myform = new addnewacccounttreeitem();  
+            myform.Show();  
         }
 
         private void عرضالحساباتToolStripMenuItem_Click(object sender, EventArgs e)
@@ -654,51 +644,39 @@ namespace Al_Shaheen_System
 
         private void أرصدةالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (allfinishedproductsdata myform = new allfinishedproductsdata())
-            {
-                myform.ShowDialog();
-            }
+            allfinishedproductsdata myform = new allfinishedproductsdata();       
+            myform.Show(); 
         }
 
         private void جميعالأصنافالمضافةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (allitemsform myform = new allitemsform())
-            {
-                myform.ShowDialog();
-            }
+            allitemsform myform = new allitemsform();      
+            myform.Show();     
         }
 
         private void إضافةأمرتوريدجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ClientSupplyRunOrderFrmNew myform = new ClientSupplyRunOrderFrmNew())
-            {
-                myform.ShowDialog();
-            }
+            ClientSupplyRunOrderFrmNew myform = new ClientSupplyRunOrderFrmNew();   
+            myform.Show();    
         }
 
         private void أوامرالتوريدلمتنفذToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (NewWorkOrdersFRm myform = new NewWorkOrdersFRm())
-            {
-                myform.ShowDialog();
-            }
+            NewWorkOrdersFRm myform = new NewWorkOrdersFRm();    
+            myform.Show();
+            
         }
 
         private void حسابصنفالعميلToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (clientmaterialbalanceform myform = new clientmaterialbalanceform())
-            {
-                myform.ShowDialog();
-
-            }
+            clientmaterialbalanceform myform = new clientmaterialbalanceform();           
+            myform.Show();            
         }
 
         private void إضافةسائقToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewdriverform myform = new addnewdriverform())
-            {
-                myform.ShowDialog();
-            }
+            addnewdriverform myform = new addnewdriverform();    
+            myform.Show();  
         }
     }
 }

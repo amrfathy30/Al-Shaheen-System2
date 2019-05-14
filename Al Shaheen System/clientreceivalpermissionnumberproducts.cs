@@ -15,7 +15,7 @@ namespace Al_Shaheen_System
     {
 
         List<receival_permission_order_items> items = new List<receival_permission_order_items>();
-       public List<SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA> dismissed_containers = new List<SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA>();
+        public List<SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA> dismissed_containers = new List<SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA>();
 
         long product_type_id = 0;
         string proct_type_name = "";
@@ -826,7 +826,7 @@ namespace Al_Shaheen_System
                 query += "CB.SH_SUBCONTAINER_NAME , CB.SH_TOTAL_NO_ITEMS as SH_CONTAINER_NUMBER_OF_ITEMS, CB.SH_TOTAL_NUMBER_OF_SUB_CONTAINERS , CB.SH_NO_ITEMS_PER_SUB_CONTAINER,CB.SH_NO_OF_SUB_CONTAINER_PER_CONTAINER, ";
                 query += "COUNT(CB.SH_ID) AS NO_OF_CONTAINERS, SUM(CB.SH_TOTAL_NO_ITEMS)AS TOTAL_NUMBER_OF_ITEMS  FROM  SH_CONTAINER_OF_BOTTOM CB JOIN ";
                 query += "SH_SPECIFICATION_OF_BOTTOM SPB ON SPB.SH_ID = CB.SH_SPECIFICATION_OF_BOTTOM_ID ";
-                query += " WHERE  (SPB.SH_CLIENT_ID = @SH_CLIENT_ID OR SPB.SH_CLIENT_ID IN (SELECT SH_ID  FROM SH_CLIENT_COMPANY WHERE SH_CLIENT_COMPANY_NAME LIKE N'عام')) " + size_string + usage_string + material_type_string + printing_type_string;
+                query += " WHERE  (SPB.SH_CLIENT_ID = @SH_CLIENT_ID OR SPB.SH_CLIENT_ID IN (SELECT SH_ID  FROM SH_CLIENT_COMPANY WHERE SH_CLIENT_COMPANY_NAME LIKE N'عام')) " + size_string + usage_string + material_type_string + printing_type_string + " AND CB.SH_ID NOT IN (SELECT DCB.SH_CONTAINER_OF_BOTTOM_ID FROM SH_DISMISSAL_CONTAINERS_OF_BOTTOM DCB WHERE DCB.SH_CONTAINER_OF_BOTTOM_ID = CB.SH_ID  )";
                 query += " GROUP BY SPB.SH_CLIENT_ID , (CB.SH_CONTAINER_NAME), CB.SH_SUBCONTAINER_NAME, CB.SH_TOTAL_NO_ITEMS, CB.SH_TOTAL_NUMBER_OF_SUB_CONTAINERS, CB.SH_NO_ITEMS_PER_SUB_CONTAINER, CB.SH_NO_OF_SUB_CONTAINER_PER_CONTAINER ";
 
 
@@ -967,6 +967,7 @@ namespace Al_Shaheen_System
                 query += "COUNT(CB.SH_ID) AS NO_OF_CONTAINERS, SUM(CB.SH_TOTAL_NO_ITEMS)AS TOTAL_NUMBER_OF_ITEMS  FROM  SH_CONTAINER_OF_RLT CB JOIN ";
                 query += "SH_SPECIFICATION_OF_RLT SPB ON SPB.SH_ID = CB.SH_SPECIFICATION_OF_RLT_ID ";
                 query += " WHERE  SPB.SH_CLIENT_ID = @SH_CLIENT_ID OR SH_CLIENT_ID IN (SELECT SH_ID  FROM SH_CLIENT_COMPANY WHERE SH_CLIENT_COMPANY_NAME LIKE N'عام') " + size_string + usage_string + material_type_string + printing_type_string;
+                query += "AND CB.SH_ID NOT IN (SELECT DCR.SH_CONTAINER_OF_RLT_ID FROM SH_DISMISSAL_CONTAINERS_OF_RLT DCR WHERE DCR.SH_CONTAINER_OF_RLT_ID= CB.SH_ID)";
                 query += " GROUP BY SPB.SH_CLIENT_ID , (CB.SH_CONTAINER_NAME), CB.SH_SUBCONTAINER_NAME, CB.SH_TOTAL_NO_ITEMS, CB.SH_TOTAL_NUMBER_OF_SUB_CONTAINERS, CB.SH_NO_ITEMS_PER_SUB_CONTAINER, CB.SH_NO_OF_SUB_CONTAINER_PER_CONTAINER ";
 
 
@@ -2158,8 +2159,8 @@ namespace Al_Shaheen_System
                         SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
                         SH_ID = long.Parse(reader["SH_ID"].ToString()),
                         SH_QUANTITY_OF_BOTTOM_ID = long.Parse(reader["SH_QUANTITY_OF_BOTTOM_ID"].ToString()),
-                         SH_SPECIFICATION_OF_BOTTOM_ID = long.Parse(reader["SH_SPECIFICATION_OF_BOTTOM_ID"].ToString()),
-                         SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())
+                        SH_SPECIFICATION_OF_BOTTOM_ID = long.Parse(reader["SH_SPECIFICATION_OF_BOTTOM_ID"].ToString()),
+                        SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())
                     });
 
                 }
@@ -2179,6 +2180,53 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GeTTING BOTTOM CONTAINERS DATA " + ex.ToString());
             }
         }
+
+        async Task getallselectedcontainersofrlt()
+        {
+            try { 
+            myconnection.openConnection();
+            SqlCommand cmd = new SqlCommand("SH_GET_RLT_CONTAINERS_SPECIFIED", DatabaseConnection.mConnection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
+            cmd.Parameters.AddWithValue("@SH_SIZE_ID", item_sizes[f1_combo_box.SelectedIndex].SH_ID);
+            cmd.Parameters.AddWithValue("@SH_RAW_MATERIAL_TYPE", f2_combo_box.Text);
+            cmd.Parameters.AddWithValue("@SH_USAGE", f3_combo_box.Text);
+            cmd.Parameters.AddWithValue("@SH_PRINTING_TYPE_NAME", f4_combo_box.Text);
+            cmd.Parameters.AddWithValue("@NO_CONTAINERS", long.Parse(no_of_selected_containers_text_box.Text));
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<SH_CONTAINER_OF_RLT> anyrlt_containers = new List<SH_CONTAINER_OF_RLT>();
+            while (reader.Read())
+            {
+                anyrlt_containers.Add(new SH_CONTAINER_OF_RLT()
+                {
+                    SH_ADDITION_DATE = DateTime.Parse(reader["SH_ADDITION_DATE"].ToString()),
+                    SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
+                    SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                    SH_QUANTITY_OF_RLT_ID = long.Parse(reader["SH_QUANTITY_OF_RLT_ID"].ToString()),
+                    SH_SPECIFICATION_OF_RLT_ID = long.Parse(reader["SH_SPECIFICATION_OF_BOTTOM_ID"].ToString()),
+                    SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())
+                });
+
+            }
+            reader.Close();
+            myconnection.closeConnection();
+            dismissed_containers.Add(new SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA()
+            {
+                total_no_of_items_of_selected_containers = long.Parse(total_number_of_items_of_selected_containers.Text),
+                rlt_containers = anyrlt_containers,
+                product_type = product_type_combo_box.SelectedIndex,
+                product_name = product_type_combo_box.Text,
+                no_of_selected_containers = anyrlt_containers.Count
+            });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GeTTING BOTTOM CONTAINERS DATA " + ex.ToString());
+            }
+}
+
+
         async Task filldismissedcontainersgridview()
         {
             dismissed_containers_grid_view.Rows.Clear();
@@ -2212,10 +2260,29 @@ namespace Al_Shaheen_System
                                     dismissed_containers[i].product_name,
                                     mclient.SH_CLIENT_COMPANY_NAME,
                                     //dismissed_containers[i].bottom_containers[0].,
-                                     "",
+                                     "قاع ",
                                      dismissed_containers[i].bottom_containers[0].SH_CONTAINER_NAME,
                                     dismissed_containers[i].bottom_containers.Count.ToString(),
                                     dismissed_containers[i].bottom_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+
+
+                                break;
+                            }
+                        case 2:
+                            {
+                                //rlt data
+
+                                dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    mclient.SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                     "RLT",
+                                     dismissed_containers[i].rlt_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].rlt_containers.Count.ToString(),
+                                    dismissed_containers[i].rlt_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
 
@@ -2264,6 +2331,10 @@ namespace Al_Shaheen_System
                         {
 
                             //rlt
+                            await getallselectedcontainersofrlt();
+                            await filldismissedcontainersgridview();
+
+
                             break;
                         }
                     case 3:
@@ -2344,12 +2415,32 @@ namespace Al_Shaheen_System
                     case 1:
                         {
                             //bottom
+
+                            long testnumber = 0;
+                            if (long.TryParse(no_of_selected_containers_text_box.Text, out testnumber))
+                            {
+                                if (bottom_containers[finished_product_properties_grid_view.SelectedRows[0].Index].number_of_containers < long.Parse(no_of_selected_containers_text_box.Text))
+                                {
+                                    MessageBox.Show("الكمية غير موجودة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                                    no_of_selected_containers_text_box.Text = "";
+                                }
+                            }
+
                             break;
                         }
                     case 2:
                         {
 
                             //rlt
+                            long testnumber = 0;
+                            if (long.TryParse(no_of_selected_containers_text_box.Text, out testnumber))
+                            {
+                                if (rlt_containetrs[finished_product_properties_grid_view.SelectedRows[0].Index].number_of_containers < long.Parse(no_of_selected_containers_text_box.Text))
+                                {
+                                    MessageBox.Show("الكمية غير موجودة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                                    no_of_selected_containers_text_box.Text = "";
+                                }
+                            }
                             break;
                         }
                     case 3:

@@ -118,7 +118,15 @@ namespace Al_Shaheen_System
                     myform.ShowDialog();
                     if (myform.back == 1)
                     {
-                        dismissed_containers = myform.dismissed_containers;
+                      
+                        if (myform.dismissed_containers.Count>0)
+                        {
+                            for (int i = 0; i < myform.dismissed_containers.Count; i++)
+                            {
+                                dismissed_containers.Add(myform.dismissed_containers[i]);
+                            }
+                            
+                        }
                         await filldismissedcontainersgridview();
                     }
                 }
@@ -160,6 +168,23 @@ namespace Al_Shaheen_System
                                     "بالتة",
                                     dismissed_containers[i].cans_parcels.Count.ToString(),
                                     dismissed_containers[i].cans_parcels[0].SH_TOTAL_NUMBER_OF_CANS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+                                break;
+                            }
+                        case 1:
+                            {
+                                //bottom
+                                dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    (no_receiving_permission_number_text_box.Text+cur_string),
+                                    dismissed_containers[i].product_name,
+                                   clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                     "قاع ",
+                                     dismissed_containers[i].bottom_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].bottom_containers.Count.ToString(),
+                                    dismissed_containers[i].bottom_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
                                 break;
@@ -306,6 +331,10 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_DRIVER_LICENSE_NUMBER", lisence_number_text_box.Text);
                 cmd.Parameters.AddWithValue("@SH_ORDER_NUMBER", no_of_order_text_box.Text);
                 cmd.Parameters.AddWithValue("@SH_DRIVER_CAR_NUMBER", car_number_text_box.Text);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_BRANCH_ID",client_branches[client_branches_combo_box.SelectedIndex].SH_ID);
+                cmd.Parameters.AddWithValue("@SH_NO_PALLETS",long.Parse(no_pallets_text_box.Text));
+                cmd.Parameters.AddWithValue("@SH_NO_WOOD_WINCHES",long.Parse(no_carton_corners_text_box.Text));
+                cmd.Parameters.AddWithValue("@SH_CARDBOARD_DIVIDERS", long.Parse(no_carton_dividers_text_box.Text));
                 SqlDataReader reader = cmd.ExecuteReader();
                 long myid = 0;
                 if (reader.Read())
@@ -366,7 +395,30 @@ namespace Al_Shaheen_System
                         }
                     case 1:
                         {
-                            break;
+                        //bottom
+                        myconnection.openConnection();
+                        SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION", DatabaseConnection.mConnection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
+                        cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
+                        cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "قاع");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.bottom_containers[0].SH_CONTAINER_NAME);
+                        cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.bottom_containers[0].SH_TOTAL_NO_ITEMS);
+                        cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.bottom_containers.Count);
+                        cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", anydata.total_no_of_items_of_selected_containers);
+                        cmd.Parameters.AddWithValue("@SH_ITEM_TYPE_NAME", anydata.product_name);
+                        cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        long myid = 0;
+                        if (reader.Read())
+                        {
+                            myid = long.Parse(reader["myidentity"].ToString());
+                        }
+                        reader.Close();
+                        myconnection.closeConnection();
+                        return myid;
+                        break;
                         }
                     case 2:
                         {
@@ -402,26 +454,61 @@ namespace Al_Shaheen_System
         //save receival permission quantitiy items information of finihed cans
         async Task<long> savenewreceitinformationitemsfinishedcans(long qu_id, SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA anydata)
         {
-            try
+            switch (anydata.product_type)
             {
-                myconnection.openConnection();
-                for (int i = 0; i < anydata.cans_parcels.Count; i++)
-                {
-                    SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_RECEIVING_PERMISSION_ITEMS_INFORMATION", DatabaseConnection.mConnection);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SH_CONTAINER_OF_ITEM_ID", anydata.cans_parcels[i].SH_ID);
-                    cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION_ID", qu_id);
-                    cmd.Parameters.AddWithValue("@SH_ITEM_TYPE_NAME", anydata.product_name);
-                    cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
-                    cmd.ExecuteNonQuery();
-                }
-                myconnection.closeConnection();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR WHILE SAVING RECEIT INFORMATION ITEMS " + ex.ToString());
+                case 0:
+                    {
+                        try
+                        {
+                            myconnection.openConnection();
+                            for (int i = 0; i < anydata.cans_parcels.Count; i++)
+                            {
+                                SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_RECEIVING_PERMISSION_ITEMS_INFORMATION", DatabaseConnection.mConnection);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@SH_CONTAINER_OF_ITEM_ID", anydata.cans_parcels[i].SH_ID);
+                                cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION_ID", qu_id);
+                                cmd.Parameters.AddWithValue("@SH_ITEM_TYPE_NAME", anydata.product_name);
+                                cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
+                                cmd.ExecuteNonQuery();
+                            }
+                            myconnection.closeConnection();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("ERROR WHILE SAVING RECEIT INFORMATION ITEMS " + ex.ToString());
+                        }
+                        
+                        break;
+                    }
+                case 1:
+                    {
+                        //bottom
+                        try
+                        {
+                            myconnection.openConnection();
+                            for (int i = 0; i < anydata.bottom_containers.Count; i++)
+                            {
+                                SqlCommand cmd = new SqlCommand("SH_SAVE_NEW_RECEIVING_PERMISSION_ITEMS_INFORMATION", DatabaseConnection.mConnection);
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@SH_CONTAINER_OF_ITEM_ID", anydata.bottom_containers[i].SH_ID);
+                                cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION_ID", qu_id);
+                                cmd.Parameters.AddWithValue("@SH_ITEM_TYPE_NAME", anydata.product_name);
+                                cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
+                                cmd.ExecuteNonQuery();
+                            }
+                            myconnection.closeConnection();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("ERROR WHILE SAVING RECEIT INFORMATION ITEMS " + ex.ToString());
+                        }
+                        break;
+                    }
+                default:
+                    break;
             }
             return 0;
+
         }
 
 
@@ -459,6 +546,88 @@ namespace Al_Shaheen_System
         }
 
 
+
+        //save new dissmissed quantities of bottom
+        async Task <long> savenewdismissedbottomquantity(SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA anydata)
+        {
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_INSERT_NEW_SH_DISMISSAL_QUANTITY_OF_BOTTOM_DATA", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_SPECIFICATION_OF_BOTTOM_ID", anydata.bottom_containers[0].SH_SPECIFICATION_OF_BOTTOM_ID);
+                cmd.Parameters.AddWithValue("@SH_DISMISSAL_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
+                cmd.Parameters.AddWithValue("@SH_DISMISSAL_DATE", DateTime.Now);
+                cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", maccount.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", memployee.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_CONTAINERS", anydata.bottom_containers.Count);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_DIMISSAL_ITEMS", anydata.total_no_of_items_of_selected_containers);
+                cmd.Parameters.AddWithValue("@SH_STOCK_MAN_ID", memployee.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_STOCK_ID", stocks[stocks_combo_box.SelectedIndex].SH_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                long myid = 0;
+                if (reader.Read())
+                {
+                    myid = long.Parse(reader["myidentity"].ToString());
+                }
+                reader.Close();
+                myconnection.closeConnection();
+                return myid;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE SAVING NEW DISMISSED BOTTOM QUANTITIES "+ex.ToString());
+            }
+            return 0;
+        }
+        //save new dismissed containers of bottom
+        async Task savenewdismissedbottomcontainers(long qu_id ,SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA anydata)
+        {
+            try
+            {
+                myconnection.openConnection();
+                for (int i = 0; i < anydata.bottom_containers.Count; i++)
+                {
+                    SqlCommand cmd = new SqlCommand("SH_INSERT_NEW_SH_DISMISSAL_CONTAINERS_OF_BOTTOM_DATA", DatabaseConnection.mConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SH_CONTAINER_OF_BOTTOM_ID", anydata.bottom_containers[i].SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_DISMISSAL_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
+                    cmd.Parameters.AddWithValue("@SH_DISMISSAL_DATE",DateTime.Now);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID",maccount.SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", memployee.SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_DISMISSAL_QUANTITY_OF_BOTTOM_ID", qu_id);
+                    cmd.ExecuteNonQuery();
+                }      
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE SAVING BOTTOM CONTAINERS "+ex.ToString());
+            }
+        }
+        //update bottom specifications 
+        async Task updatebottomspecifications(SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA anydata)
+        {
+            try
+            {
+                myconnection.openConnection();
+                for (int i = 0; i < anydata.bottom_containers.Count; i++)
+                {
+                    SqlCommand cmd = new SqlCommand("SH_UPDATE_SPECIFICATION_OF_BOTTOM_PROCEDURE_MINUS", DatabaseConnection.mConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", anydata.bottom_containers[0].SH_TOTAL_NO_ITEMS);
+                    cmd.Parameters.AddWithValue("@SH_ID", anydata.bottom_containers[0].SH_ID);
+                    cmd.ExecuteNonQuery();
+                }           
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE UPDATING BOTTOM SPEciFIcaTIONS "+ex.ToString());
+            }
+        }
+
+  
 
         //save new dismissed quantities of finished cans 
         async Task <long> savenewdismissedfinishedcansquantity(SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA anydata)
@@ -546,10 +715,10 @@ namespace Al_Shaheen_System
             //save_receival_order_information_
 
             long info_id = await savenewreceitinformation();
-            
+          
+
             for (int i = 0; i < dismissed_containers.Count; i++)
             {
-
                 string cur_string = "";
                 long cur_size = (i + 1).ToString().Length;
                 for (int k = 0; k < 3 - cur_size; k++)
@@ -563,17 +732,25 @@ namespace Al_Shaheen_System
                 {
                     case 0:
                         {
-                            //finished cans 
+                            //finished cans
                             //save receive information
-                            long qu_id = await savenewreceitinformationitems(info_id , dismissed_containers[i], cur_string);
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
                             await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
                             long myid = await savenewdismissedfinishedcansquantity(dismissed_containers[i]);
                             await savenewdismissedpalletsoffinishedcans(myid, dismissed_containers[i]);
                             await updatefinishedcansspecifications(dismissed_containers[i]);
+                          //  MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                            
                             break;
                         }
                     case 1:
                         {
+                            //bottom
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedbottomquantity(dismissed_containers[i]);
+                            await savenewdismissedbottomcontainers(myid , dismissed_containers[i]);
+                            await updatebottomspecifications(dismissed_containers[i]);
                             break;
                         }
                     case 2:
@@ -605,8 +782,10 @@ namespace Al_Shaheen_System
                 }
             }
 
+            MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
-
+            printreceivalpermission myform = new printreceivalpermission(no_receiving_permission_number_text_box.Text);
+            myform.ShowDialog();
             Cursor.Current = Cursors.Default;
         }
 
