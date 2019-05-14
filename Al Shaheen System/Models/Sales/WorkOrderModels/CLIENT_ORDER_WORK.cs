@@ -26,13 +26,13 @@ namespace Al_Shaheen_System
         public string SH_NOWLON { get; set; }
         public string SH_DELIVERING_ADDRESS = "";
         public double SH_SUBMITTED_MONEY { get; set; }
-        public string SH_PAYMENT_WAY_SUBMITTED { get; set; }
+        public string SH_PAYMENT_WAY_SUBMITTED = "";
         public string SH_DATE_OF_THE_CKECK_SUBMITTED = "";
         public double SH_MONEY_PAID_WHEN_DELIVERING { get; set; }
         public string SH_DATE_OF_THE_CKECK_WHEN_DELIVERD = "";
-        public string SH_PAYMENT_WAY_WHEN_DELIVERING { get; set; }
+        public string SH_PAYMENT_WAY_WHEN_DELIVERING = "";
         public double SH_MONEY_AFTER_RECIVING { get; set; }
-        public string SH_PAYMENT_WAY_AFTER_RECIVING { get; set; }
+        public string SH_PAYMENT_WAY_AFTER_RECIVING = "";
         public string SH_DATE_OF_THE_CKECK_AFTER_RECIVING = "";
         public string SH_DURATION_AFTER_RECIVING = "";
         public long SH_CAN_DAIMETR = 0;

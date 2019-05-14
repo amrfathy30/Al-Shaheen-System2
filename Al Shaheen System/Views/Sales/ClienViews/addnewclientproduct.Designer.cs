@@ -142,7 +142,7 @@
             this.height_text_box.Name = "height_text_box";
             this.height_text_box.Size = new System.Drawing.Size(254, 30);
             this.height_text_box.TabIndex = 38;
-            this.height_text_box.TextChanged += new System.EventHandler(this.height_text_box_TextChanged);
+
             // 
             // label34
             // 
@@ -171,7 +171,7 @@
             this.capacity_tect_box.Name = "capacity_tect_box";
             this.capacity_tect_box.Size = new System.Drawing.Size(254, 30);
             this.capacity_tect_box.TabIndex = 26;
-            this.capacity_tect_box.TextChanged += new System.EventHandler(this.capacity_tect_box_TextChanged);
+      
             // 
             // save_new_client_product_btn
             // 

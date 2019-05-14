@@ -147,8 +147,7 @@ namespace Al_Shaheen_System
 
         void productsgridview()
         {
-            //string d1text = "";
-            //string d2text = "";
+      
             products_grid_view.Rows.Clear();
             SH_ITEM_SIZE anysize = new SH_ITEM_SIZE();
             loadaallsizes();
@@ -208,15 +207,7 @@ namespace Al_Shaheen_System
                 }
             }
         }
-        private void height_text_box_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void capacity_tect_box_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+   
 
         private void addnewclientproduct_Load(object sender, EventArgs e)
         {

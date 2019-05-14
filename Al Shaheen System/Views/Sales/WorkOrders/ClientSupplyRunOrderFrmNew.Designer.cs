@@ -42,9 +42,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.comboBoxNolon = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
             this.label17 = new System.Windows.Forms.Label();
-            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label64 = new System.Windows.Forms.Label();
@@ -260,6 +258,8 @@
             this.label41 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
             this.buttonNewProduct = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panelMoneyAfterReciving.SuspendLayout();
@@ -352,6 +352,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.dateTimePicker2);
+            this.groupBox3.Controls.Add(this.dateTimePicker1);
             this.groupBox3.Controls.Add(this.comboBoxourFactory);
             this.groupBox3.Controls.Add(this.radioButtonToTheClient);
             this.groupBox3.Controls.Add(this.radioButtonFromShaheen);
@@ -359,9 +361,7 @@
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.comboBoxNolon);
             this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.dateTimePickerEnd);
             this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.dateTimePickerStart);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(3, 297);
@@ -445,17 +445,6 @@
             this.label18.TabIndex = 22;
             this.label18.Text = "النولـــــــــون";
             // 
-            // dateTimePickerEnd
-            // 
-            this.dateTimePickerEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(862, 26);
-            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
-            this.dateTimePickerEnd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePickerEnd.ShowCheckBox = true;
-            this.dateTimePickerEnd.Size = new System.Drawing.Size(102, 22);
-            this.dateTimePickerEnd.TabIndex = 21;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -465,16 +454,6 @@
             this.label17.Size = new System.Drawing.Size(73, 20);
             this.label17.TabIndex = 20;
             this.label17.Text = "نهايه التوريد";
-            // 
-            // dateTimePickerStart
-            // 
-            this.dateTimePickerStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerStart.Location = new System.Drawing.Point(1048, 26);
-            this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.ShowCheckBox = true;
-            this.dateTimePickerStart.Size = new System.Drawing.Size(104, 22);
-            this.dateTimePickerStart.TabIndex = 19;
             // 
             // label16
             // 
@@ -569,7 +548,7 @@
             "CIB",
             "ابوظبي الاسلامي",
             "الاهلى"});
-            this.comboBoxBankName3.Location = new System.Drawing.Point(371, 3);
+            this.comboBoxBankName3.Location = new System.Drawing.Point(371, 4);
             this.comboBoxBankName3.Name = "comboBoxBankName3";
             this.comboBoxBankName3.Size = new System.Drawing.Size(134, 26);
             this.comboBoxBankName3.TabIndex = 73;
@@ -590,7 +569,7 @@
             // dateTimePickerChek3
             // 
             this.dateTimePickerChek3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerChek3.Location = new System.Drawing.Point(592, 3);
+            this.dateTimePickerChek3.Location = new System.Drawing.Point(590, 3);
             this.dateTimePickerChek3.Name = "dateTimePickerChek3";
             this.dateTimePickerChek3.Size = new System.Drawing.Size(102, 26);
             this.dateTimePickerChek3.TabIndex = 71;
@@ -3037,6 +3016,20 @@
             this.buttonNewProduct.UseVisualStyleBackColor = true;
             this.buttonNewProduct.Click += new System.EventHandler(this.buttonNewProduct_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(1048, 25);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(117, 26);
+            this.dateTimePicker1.TabIndex = 101;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(862, 24);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(105, 26);
+            this.dateTimePicker2.TabIndex = 102;
+            // 
             // ClientSupplyRunOrderFrmNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3167,9 +3160,7 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox comboBoxNolon;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.DateTimePicker dateTimePickerStart;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label12;
@@ -3389,5 +3380,7 @@
         private System.Windows.Forms.Button buttonNewProduct;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.ComboBox comboBoxPrintingState;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
