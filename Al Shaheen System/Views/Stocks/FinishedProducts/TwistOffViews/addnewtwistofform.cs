@@ -41,7 +41,7 @@ namespace Al_Shaheen_System
         long total_no_container_pallets = 0;
         long total_no_items_cartons = 0;
         long total_no_items_pallets = 0;
-
+        long total_no_items = 0;
 
         void getallitemtypes()
         {
@@ -744,6 +744,7 @@ namespace Al_Shaheen_System
             {
                 if (form_data.Count > 0)
                 {
+                    Cursor.Current = Cursors.WaitCursor;
                     for (int i = 0; i < form_data.Count; i++)
                     {
                         
@@ -762,6 +763,7 @@ namespace Al_Shaheen_System
                                 await savetwistofcontainers(sp_id, qu_id, form_data[i]);
                             }                                                                 
                     }
+                    Cursor.Current = Cursors.Default;
                 }
                 MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
             }
@@ -914,10 +916,12 @@ namespace Al_Shaheen_System
                         if (unsimilarquantities_check_box.Checked)
                         {
                             form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 1, item_type = item_type_combo_box.Text, product = null, size = sizes[f2_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(unsimilar_no_of_containers.Text), no_of_item_per_container = long.Parse(unsimilar_no_items_per_container.Text) });
+                            total_no_items += long.Parse(unsimilar_no_items_per_quantity.Text);
                         }
                         else
                         {
                             form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 1, item_type = item_type_combo_box.Text, product = null, size = sizes[f2_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(no_of_containers_text_box.Text), no_of_item_per_container = long.Parse(no_items_per_container.Text) });
+                            total_no_items += long.Parse(no_items_per_quantity.Text);
                         }
                     }
                     else
@@ -925,10 +929,12 @@ namespace Al_Shaheen_System
                         if (unsimilarquantities_check_box.Checked)
                         {
                             form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 0, item_type = item_type_combo_box.Text, product = client_products[client_product_combo_box.SelectedIndex], size = sizes[f2_combo_box.SelectedIndex], pillow_color = null, supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(unsimilar_no_of_containers.Text), no_of_item_per_container = long.Parse(unsimilar_no_items_per_container.Text) });
+                            total_no_items += long.Parse(unsimilar_no_items_per_quantity.Text);
                         }
                         else
                         {
                             form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 0, item_type = item_type_combo_box.Text, product = client_products[client_product_combo_box.SelectedIndex], size = sizes[f2_combo_box.SelectedIndex], pillow_color = null, supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(no_of_containers_text_box.Text), no_of_item_per_container = long.Parse(no_items_per_container.Text) });
+                            total_no_items += long.Parse(no_items_per_quantity.Text);
                         }
                     }
                     
@@ -937,6 +943,7 @@ namespace Al_Shaheen_System
                     MessageBox.Show("ERROR WHILE ADDING NEW QUAntITY"+ex.ToString());
                 }
                 filltwistofgridview();
+                total_number_of_items_text_box.Text = String.Format("{0:0,0.0}", total_no_items);
                 // mcontainers.Clear();
             }
         }
@@ -1195,12 +1202,12 @@ namespace Al_Shaheen_System
 
         private void no_items_per_quantity_TextChanged(object sender, EventArgs e)
         {
-            calculatetotalnoofitems();
+           // calculatetotalnoofitems();
         }
 
         private void unsimilar_no_items_per_quantity_TextChanged(object sender, EventArgs e)
         {
-            calculatetotalnoofitems();
+          //   calculatetotalnoofitems();
         }
 
         private void unsimilarquantities_check_box_CheckedChanged(object sender, EventArgs e)
@@ -1271,10 +1278,15 @@ namespace Al_Shaheen_System
             if (twist_of_quantities_grid_view.SelectedRows.Count > 0)
             {
 
-                form_data.RemoveAt(twist_of_quantities_grid_view.SelectedRows[0].Index);
-                filltwistofgridview();
+                total_no_items -= form_data[twist_of_quantities_grid_view.SelectedRows[0].Index].total_no_items();
 
-            }else
+                form_data.RemoveAt(twist_of_quantities_grid_view.SelectedRows[0].Index);
+                
+                filltwistofgridview();
+                total_number_of_items_text_box.Text = String.Format("{0:0,0.0}", total_no_items);
+
+            }
+            else
             {
                 MessageBox.Show("لم يتم تحديد الكمية المراد حزفها");
             }

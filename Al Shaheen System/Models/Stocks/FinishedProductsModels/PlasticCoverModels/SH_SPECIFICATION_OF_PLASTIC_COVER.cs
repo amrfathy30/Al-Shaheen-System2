@@ -10,12 +10,15 @@ namespace Al_Shaheen_System
     {
         public long SH_ID { get; set; }
         public long SH_CLIENT_ID { get; set; }
+        public string clientname { get; set; }
         public long SH_SIZE_ID { get; set; }
+        public string sizename { get; set; }
         public long SH_LOGO_OR_NOT { get; set; }
         public long SH_NO_OF_CONTAINERS { get; set; }
         public string SH_CONTAINER_NAME { get; set; }
         public long SH_TOTAL_NO_ITEMS { get; set; }
         public long SH_PILLOW_COLOR_ID { get; set; }
+        public string pillowcolorname { get; set; }
 
     }
 }

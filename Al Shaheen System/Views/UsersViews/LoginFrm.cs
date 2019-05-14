@@ -13,6 +13,7 @@ namespace Al_Shaheen_System
 {
     public partial class LoginFrm : Form
     {
+        DatabaseConnection myconnection = new DatabaseConnection();
         SH_EMPLOYEES shemp = new SH_EMPLOYEES();
         SH_USER_PERMISIONS shuserPerm = new SH_USER_PERMISIONS();
         SH_USER_ACCOUNTS account = new SH_USER_ACCOUNTS();
@@ -26,7 +27,7 @@ namespace Al_Shaheen_System
 
         public void getEmployeeData()
         {
-            DatabaseConnection myconnection = new DatabaseConnection();
+           
             myconnection.openConnection();
              SqlCommand com = new SqlCommand("getoneEmp", DatabaseConnection.mConnection);
            com.CommandType = CommandType.StoredProcedure;
@@ -40,7 +41,8 @@ namespace Al_Shaheen_System
                 shemp.SH_EMPLOYEE_GENDER = rd1["SH_EMPLOYEE_GENDER"].ToString();
                 shemp.SH_ID = long.Parse(rd1["SH_ID"].ToString());
                 shemp.SH_EMPLOYEE_NAME = rd1["SH_EMPLOYEE_NAME"].ToString();
-                shemp.SH_EMPLOYEE_NATIONAL_ID = rd1["SH_EMPLOYEE_NATIONAL_ID"].ToString();     
+                shemp.SH_EMPLOYEE_NATIONAL_ID = rd1["SH_EMPLOYEE_NATIONAL_ID"].ToString();
+                //MessageBox.Show(shemp.SH_EMPLOYEE_NAME); 
             }
             rd1.Close();
             myconnection.closeConnection();

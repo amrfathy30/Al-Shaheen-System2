@@ -89,17 +89,6 @@
             this.إضافةالصفيحالمقصوصالمورنشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.صرفالصفيحالمقصوصالمطبوعToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.مخزنالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.علبالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.easyOpenايزيأوبنToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.قاعاووشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pennyLeverRLTبيلأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.بيلأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تويستأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.طبةبلاستيكToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.غطاءبلاستيكللعبواتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.صرفالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.وشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.أرصدةالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.المبيعاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.العملاءToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.إضافةعميلجديدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,7 +123,23 @@
             this.المستخدمينToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.جميعToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logged_user_name_label = new System.Windows.Forms.Label();
+            this.السائقينToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.إضافةسائقToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.إضافةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.صرفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.إستعلامرصيدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.علبالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.easyOpenايزيأوبنToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.قاعاووشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pennyLeverRLTبيلأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.بيلأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.تويستأوفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.طبةبلاستيكToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.وشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.غطاءبلاستيكللعبواتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.صرفالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.أرصدةالمنتجالتامToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.حسابالعملاءToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.حسابصنفالعميلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -463,6 +468,7 @@
             this.إضافةمقاسجديدToolStripMenuItem1.Name = "إضافةمقاسجديدToolStripMenuItem1";
             this.إضافةمقاسجديدToolStripMenuItem1.Size = new System.Drawing.Size(233, 32);
             this.إضافةمقاسجديدToolStripMenuItem1.Text = "إضافة مقاس جديد";
+            this.إضافةمقاسجديدToolStripMenuItem1.Click += new System.EventHandler(this.إضافةمقاسجديدToolStripMenuItem1_Click);
             // 
             // إضافةنوعأيروسولجديدToolStripMenuItem
             // 
@@ -635,104 +641,19 @@
             // مخزنالمنتجالتامToolStripMenuItem
             // 
             this.مخزنالمنتجالتامToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.علبالمنتجالتامToolStripMenuItem,
-            this.easyOpenايزيأوبنToolStripMenuItem,
-            this.قاعاووشToolStripMenuItem,
-            this.pennyLeverRLTبيلأوفToolStripMenuItem,
-            this.بيلأوفToolStripMenuItem,
-            this.تويستأوفToolStripMenuItem,
-            this.طبةبلاستيكToolStripMenuItem,
-            this.غطاءبلاستيكللعبواتToolStripMenuItem,
-            this.صرفالمنتجالتامToolStripMenuItem,
-            this.وشToolStripMenuItem,
-            this.أرصدةالمنتجالتامToolStripMenuItem});
+            this.إضافةToolStripMenuItem,
+            this.صرفToolStripMenuItem,
+            this.إستعلامرصيدToolStripMenuItem,
+            this.حسابالعملاءToolStripMenuItem});
             this.مخزنالمنتجالتامToolStripMenuItem.Name = "مخزنالمنتجالتامToolStripMenuItem";
             this.مخزنالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(230, 32);
             this.مخزنالمنتجالتامToolStripMenuItem.Text = "مخزن المنتج التام ";
-            // 
-            // علبالمنتجالتامToolStripMenuItem
-            // 
-            this.علبالمنتجالتامToolStripMenuItem.Name = "علبالمنتجالتامToolStripMenuItem";
-            this.علبالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.علبالمنتجالتامToolStripMenuItem.Text = "علب المنتج التام ";
-            this.علبالمنتجالتامToolStripMenuItem.Click += new System.EventHandler(this.علبالمنتجالتامToolStripMenuItem_Click);
-            // 
-            // easyOpenايزيأوبنToolStripMenuItem
-            // 
-            this.easyOpenايزيأوبنToolStripMenuItem.Name = "easyOpenايزيأوبنToolStripMenuItem";
-            this.easyOpenايزيأوبنToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.easyOpenايزيأوبنToolStripMenuItem.Text = "Easy open  ايزي أوبن";
-            this.easyOpenايزيأوبنToolStripMenuItem.Click += new System.EventHandler(this.easyOpenايزيأوبنToolStripMenuItem_Click);
-            // 
-            // قاعاووشToolStripMenuItem
-            // 
-            this.قاعاووشToolStripMenuItem.Name = "قاعاووشToolStripMenuItem";
-            this.قاعاووشToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.قاعاووشToolStripMenuItem.Text = "قاع  ";
-            this.قاعاووشToolStripMenuItem.Click += new System.EventHandler(this.قاعاووشToolStripMenuItem_Click);
-            // 
-            // pennyLeverRLTبيلأوفToolStripMenuItem
-            // 
-            this.pennyLeverRLTبيلأوفToolStripMenuItem.Name = "pennyLeverRLTبيلأوفToolStripMenuItem";
-            this.pennyLeverRLTبيلأوفToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.pennyLeverRLTبيلأوفToolStripMenuItem.Text = "Penny Lever RLT  ";
-            this.pennyLeverRLTبيلأوفToolStripMenuItem.Click += new System.EventHandler(this.pennyLeverRLTبيلأوفToolStripMenuItem_Click);
-            // 
-            // بيلأوفToolStripMenuItem
-            // 
-            this.بيلأوفToolStripMenuItem.Name = "بيلأوفToolStripMenuItem";
-            this.بيلأوفToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.بيلأوفToolStripMenuItem.Text = "بيل أوف";
-            this.بيلأوفToolStripMenuItem.Click += new System.EventHandler(this.بيلأوفToolStripMenuItem_Click);
-            // 
-            // تويستأوفToolStripMenuItem
-            // 
-            this.تويستأوفToolStripMenuItem.Name = "تويستأوفToolStripMenuItem";
-            this.تويستأوفToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.تويستأوفToolStripMenuItem.Text = "تويست أوف";
-            this.تويستأوفToolStripMenuItem.Click += new System.EventHandler(this.تويستأوفToolStripMenuItem_Click);
-            // 
-            // طبةبلاستيكToolStripMenuItem
-            // 
-            this.طبةبلاستيكToolStripMenuItem.Name = "طبةبلاستيكToolStripMenuItem";
-            this.طبةبلاستيكToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.طبةبلاستيكToolStripMenuItem.Text = "طبة بلاستيك ";
-            this.طبةبلاستيكToolStripMenuItem.Click += new System.EventHandler(this.طبةبلاستيكToolStripMenuItem_Click);
-            // 
-            // غطاءبلاستيكللعبواتToolStripMenuItem
-            // 
-            this.غطاءبلاستيكللعبواتToolStripMenuItem.Name = "غطاءبلاستيكللعبواتToolStripMenuItem";
-            this.غطاءبلاستيكللعبواتToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.غطاءبلاستيكللعبواتToolStripMenuItem.Text = "غطاء بلاستيك للعبوات ";
-            this.غطاءبلاستيكللعبواتToolStripMenuItem.Click += new System.EventHandler(this.غطاءبلاستيكللعبواتToolStripMenuItem_Click);
-            // 
-            // صرفالمنتجالتامToolStripMenuItem
-            // 
-            this.صرفالمنتجالتامToolStripMenuItem.Name = "صرفالمنتجالتامToolStripMenuItem";
-            this.صرفالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.صرفالمنتجالتامToolStripMenuItem.Text = "صرف المنتج التام";
-            this.صرفالمنتجالتامToolStripMenuItem.Click += new System.EventHandler(this.صرفالمنتجالتامToolStripMenuItem_Click);
-            // 
-            // وشToolStripMenuItem
-            // 
-            this.وشToolStripMenuItem.Name = "وشToolStripMenuItem";
-            this.وشToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.وشToolStripMenuItem.Text = "وش ";
-            this.وشToolStripMenuItem.Click += new System.EventHandler(this.وشToolStripMenuItem_Click);
-            // 
-            // أرصدةالمنتجالتامToolStripMenuItem
-            // 
-            this.أرصدةالمنتجالتامToolStripMenuItem.Name = "أرصدةالمنتجالتامToolStripMenuItem";
-            this.أرصدةالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(274, 32);
-            this.أرصدةالمنتجالتامToolStripMenuItem.Text = "أرصدة المنتج التام";
-            this.أرصدةالمنتجالتامToolStripMenuItem.Click += new System.EventHandler(this.أرصدةالمنتجالتامToolStripMenuItem_Click);
             // 
             // المبيعاتToolStripMenuItem
             // 
             this.المبيعاتToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.العملاءToolStripMenuItem,
-            this.إضافةأمرتوريدToolStripMenuItem,
-            this.حسابالعملاءToolStripMenuItem});
+            this.إضافةأمرتوريدToolStripMenuItem});
             this.المبيعاتToolStripMenuItem.Name = "المبيعاتToolStripMenuItem";
             this.المبيعاتToolStripMenuItem.Size = new System.Drawing.Size(102, 32);
             this.المبيعاتToolStripMenuItem.Text = "المبيعات ";
@@ -909,7 +830,8 @@
             // 
             this.المواردالبشريةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.الموظفينToolStripMenuItem,
-            this.الإقسامToolStripMenuItem});
+            this.الإقسامToolStripMenuItem,
+            this.السائقينToolStripMenuItem});
             this.المواردالبشريةToolStripMenuItem.Name = "المواردالبشريةToolStripMenuItem";
             this.المواردالبشريةToolStripMenuItem.Size = new System.Drawing.Size(150, 32);
             this.المواردالبشريةToolStripMenuItem.Text = "الموارد البشرية ";
@@ -993,6 +915,21 @@
             this.logged_user_name_label.Size = new System.Drawing.Size(0, 20);
             this.logged_user_name_label.TabIndex = 1;
             // 
+            // السائقينToolStripMenuItem
+            // 
+            this.السائقينToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.إضافةسائقToolStripMenuItem});
+            this.السائقينToolStripMenuItem.Name = "السائقينToolStripMenuItem";
+            this.السائقينToolStripMenuItem.Size = new System.Drawing.Size(170, 32);
+            this.السائقينToolStripMenuItem.Text = "السائقين";
+            // 
+            // إضافةسائقToolStripMenuItem
+            // 
+            this.إضافةسائقToolStripMenuItem.Name = "إضافةسائقToolStripMenuItem";
+            this.إضافةسائقToolStripMenuItem.Size = new System.Drawing.Size(183, 32);
+            this.إضافةسائقToolStripMenuItem.Text = "إضافة سائق";
+            this.إضافةسائقToolStripMenuItem.Click += new System.EventHandler(this.إضافةسائقToolStripMenuItem_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
@@ -1004,13 +941,122 @@
             this.panel1.Size = new System.Drawing.Size(1252, 646);
             this.panel1.TabIndex = 2;
             // 
+            // إضافةToolStripMenuItem
+            // 
+            this.إضافةToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.علبالمنتجالتامToolStripMenuItem,
+            this.easyOpenايزيأوبنToolStripMenuItem,
+            this.قاعاووشToolStripMenuItem,
+            this.وشToolStripMenuItem,
+            this.pennyLeverRLTبيلأوفToolStripMenuItem,
+            this.بيلأوفToolStripMenuItem,
+            this.تويستأوفToolStripMenuItem,
+            this.طبةبلاستيكToolStripMenuItem,
+            this.غطاءبلاستيكللعبواتToolStripMenuItem});
+            this.إضافةToolStripMenuItem.Name = "إضافةToolStripMenuItem";
+            this.إضافةToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
+            this.إضافةToolStripMenuItem.Text = "إضافة";
+            // 
+            // صرفToolStripMenuItem
+            // 
+            this.صرفToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.صرفالمنتجالتامToolStripMenuItem});
+            this.صرفToolStripMenuItem.Name = "صرفToolStripMenuItem";
+            this.صرفToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
+            this.صرفToolStripMenuItem.Text = "صرف و إذن إستلام";
+            // 
+            // إستعلامرصيدToolStripMenuItem
+            // 
+            this.إستعلامرصيدToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.أرصدةالمنتجالتامToolStripMenuItem});
+            this.إستعلامرصيدToolStripMenuItem.Name = "إستعلامرصيدToolStripMenuItem";
+            this.إستعلامرصيدToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
+            this.إستعلامرصيدToolStripMenuItem.Text = "إستعلام إرصدة ";
+            // 
+            // علبالمنتجالتامToolStripMenuItem
+            // 
+            this.علبالمنتجالتامToolStripMenuItem.Name = "علبالمنتجالتامToolStripMenuItem";
+            this.علبالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.علبالمنتجالتامToolStripMenuItem.Text = "علب المنتج التام ";
+            this.علبالمنتجالتامToolStripMenuItem.Click += new System.EventHandler(this.علبالمنتجالتامToolStripMenuItem_Click);
+            // 
+            // easyOpenايزيأوبنToolStripMenuItem
+            // 
+            this.easyOpenايزيأوبنToolStripMenuItem.Name = "easyOpenايزيأوبنToolStripMenuItem";
+            this.easyOpenايزيأوبنToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.easyOpenايزيأوبنToolStripMenuItem.Text = "إيزى أوبن";
+            this.easyOpenايزيأوبنToolStripMenuItem.Click += new System.EventHandler(this.easyOpenايزيأوبنToolStripMenuItem_Click);
+            // 
+            // قاعاووشToolStripMenuItem
+            // 
+            this.قاعاووشToolStripMenuItem.Name = "قاعاووشToolStripMenuItem";
+            this.قاعاووشToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.قاعاووشToolStripMenuItem.Text = "قـــــاع  ";
+            this.قاعاووشToolStripMenuItem.Click += new System.EventHandler(this.قاعاووشToolStripMenuItem_Click);
+            // 
+            // pennyLeverRLTبيلأوفToolStripMenuItem
+            // 
+            this.pennyLeverRLTبيلأوفToolStripMenuItem.Name = "pennyLeverRLTبيلأوفToolStripMenuItem";
+            this.pennyLeverRLTبيلأوفToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.pennyLeverRLTبيلأوفToolStripMenuItem.Text = "RLT";
+            this.pennyLeverRLTبيلأوفToolStripMenuItem.Click += new System.EventHandler(this.pennyLeverRLTبيلأوفToolStripMenuItem_Click);
+            // 
+            // بيلأوفToolStripMenuItem
+            // 
+            this.بيلأوفToolStripMenuItem.Name = "بيلأوفToolStripMenuItem";
+            this.بيلأوفToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.بيلأوفToolStripMenuItem.Text = "بيل أوف";
+            this.بيلأوفToolStripMenuItem.Click += new System.EventHandler(this.بيلأوفToolStripMenuItem_Click);
+            // 
+            // تويستأوفToolStripMenuItem
+            // 
+            this.تويستأوفToolStripMenuItem.Name = "تويستأوفToolStripMenuItem";
+            this.تويستأوفToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.تويستأوفToolStripMenuItem.Text = "تويست أوف";
+            this.تويستأوفToolStripMenuItem.Click += new System.EventHandler(this.تويستأوفToolStripMenuItem_Click);
+            // 
+            // طبةبلاستيكToolStripMenuItem
+            // 
+            this.طبةبلاستيكToolStripMenuItem.Name = "طبةبلاستيكToolStripMenuItem";
+            this.طبةبلاستيكToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.طبةبلاستيكToolStripMenuItem.Text = "طبة بلاستيك ";
+            this.طبةبلاستيكToolStripMenuItem.Click += new System.EventHandler(this.طبةبلاستيكToolStripMenuItem_Click);
+            // 
+            // وشToolStripMenuItem
+            // 
+            this.وشToolStripMenuItem.Name = "وشToolStripMenuItem";
+            this.وشToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.وشToolStripMenuItem.Text = "وش ";
+            this.وشToolStripMenuItem.Click += new System.EventHandler(this.وشToolStripMenuItem_Click);
+            // 
+            // غطاءبلاستيكللعبواتToolStripMenuItem
+            // 
+            this.غطاءبلاستيكللعبواتToolStripMenuItem.Name = "غطاءبلاستيكللعبواتToolStripMenuItem";
+            this.غطاءبلاستيكللعبواتToolStripMenuItem.Size = new System.Drawing.Size(222, 32);
+            this.غطاءبلاستيكللعبواتToolStripMenuItem.Text = "غطاء بلاستيك ";
+            this.غطاءبلاستيكللعبواتToolStripMenuItem.Click += new System.EventHandler(this.غطاءبلاستيكللعبواتToolStripMenuItem_Click);
+            // 
+            // صرفالمنتجالتامToolStripMenuItem
+            // 
+            this.صرفالمنتجالتامToolStripMenuItem.Name = "صرفالمنتجالتامToolStripMenuItem";
+            this.صرفالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(224, 32);
+            this.صرفالمنتجالتامToolStripMenuItem.Text = "صرف المنتج التام";
+            this.صرفالمنتجالتامToolStripMenuItem.Click += new System.EventHandler(this.صرفالمنتجالتامToolStripMenuItem_Click);
+            // 
+            // أرصدةالمنتجالتامToolStripMenuItem
+            // 
+            this.أرصدةالمنتجالتامToolStripMenuItem.Name = "أرصدةالمنتجالتامToolStripMenuItem";
+            this.أرصدةالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(231, 32);
+            this.أرصدةالمنتجالتامToolStripMenuItem.Text = "أرصدة المنتج التام";
+            this.أرصدةالمنتجالتامToolStripMenuItem.Click += new System.EventHandler(this.أرصدةالمنتجالتامToolStripMenuItem_Click);
+            // 
             // حسابالعملاءToolStripMenuItem
             // 
             this.حسابالعملاءToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.حسابصنفالعميلToolStripMenuItem});
             this.حسابالعملاءToolStripMenuItem.Name = "حسابالعملاءToolStripMenuItem";
-            this.حسابالعملاءToolStripMenuItem.Size = new System.Drawing.Size(197, 32);
-            this.حسابالعملاءToolStripMenuItem.Text = "حساب العملاء";
+            this.حسابالعملاءToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
+            this.حسابالعملاءToolStripMenuItem.Text = "إستعلام رصيد عميل";
             // 
             // حسابصنفالعميلToolStripMenuItem
             // 
@@ -1076,13 +1122,7 @@
         private System.Windows.Forms.ToolStripMenuItem إضافةعميلجديدToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem الموردينToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةموردجديدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem easyOpenايزيأوبنToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pennyLeverRLTبيلأوفToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تويستأوفToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem طبةبلاستيكToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem غطاءبلاستيكللعبواتToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem بياناتالعملاءToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem علبالمنتجالتامToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem جميعالموريدينToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةالصفيحالمقصوصالمطبوعToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem أللإنتاجToolStripMenuItem;
@@ -1101,19 +1141,14 @@
         private System.Windows.Forms.ToolStripMenuItem البحثفىالاستلاماتToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem البحثفىالمصروفToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem صرفالصفيحالمقصوصالمطبوعToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem قاعاووشToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem بيلأوفToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem صرفالمنتجالتامToolStripMenuItem;
         private System.Windows.Forms.Label logged_user_name_label;
         private System.Windows.Forms.ToolStripMenuItem المواردالبشريةToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem الورشةToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةأوامرشغلToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem وشToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem الشجرةالمحاسبيةToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem عرضالحساباتToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةحسابجديدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem أرصدةالمنتجالتامToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem الأصنافToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem جميعالأصنافالمضافةToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةأمرتوريدToolStripMenuItem;
@@ -1155,6 +1190,22 @@
         private System.Windows.Forms.ToolStripMenuItem مقاساتالتويستأوفToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem إضافةمقاسجديدToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem إضافةنوعأيروسولجديدToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem السائقينToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem إضافةسائقToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem إضافةToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem صرفToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem إستعلامرصيدToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem easyOpenايزيأوبنToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem قاعاووشToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pennyLeverRLTبيلأوفToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem بيلأوفToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem تويستأوفToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem طبةبلاستيكToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem وشToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem غطاءبلاستيكللعبواتToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem علبالمنتجالتامToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem صرفالمنتجالتامToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem أرصدةالمنتجالتامToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem حسابالعملاءToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem حسابصنفالعميلToolStripMenuItem;
     }

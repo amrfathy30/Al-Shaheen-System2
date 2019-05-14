@@ -340,7 +340,7 @@ namespace Al_Shaheen_System
 
         private void صرفالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (clientreceivalpermissionnumberform myform = new clientreceivalpermissionnumberform())
+            using (clientreceivalpermissionnumberform myform = new clientreceivalpermissionnumberform(mEmployee, mAccount, mPermission))
             {
                 myform.ShowDialog();
             }
@@ -690,6 +690,14 @@ namespace Al_Shaheen_System
             {
                 myform.ShowDialog();
 
+            }
+        }
+
+        private void إضافةسائقToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (addnewdriverform myform = new addnewdriverform())
+            {
+                myform.ShowDialog();
             }
         }
     }

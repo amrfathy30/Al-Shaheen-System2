@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.addition_permission_number_text_box = new System.Windows.Forms.TextBox();
@@ -238,13 +238,11 @@
             this.groupBox2.Controls.Add(this.no_of_containers_text_box);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.total_number_of_items_text_box);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.unsimilar_no_items_per_quantity);
             this.groupBox2.Controls.Add(this.unsimilar_no_items_per_container_label);
-            this.groupBox2.Controls.Add(this.unsimilar_no_items_per_container);
             this.groupBox2.Controls.Add(this.unsimilar_no_of_containers_label);
+            this.groupBox2.Controls.Add(this.unsimilar_no_items_per_container);
             this.groupBox2.Controls.Add(this.unsimilar_no_of_containers);
             this.groupBox2.Controls.Add(this.unsimilarquantities_check_box);
             this.groupBox2.Controls.Add(this.no_items_per_container_text_box);
@@ -269,7 +267,7 @@
             // 
             // no_items_per_container
             // 
-            this.no_items_per_container.Location = new System.Drawing.Point(386, 93);
+            this.no_items_per_container.Location = new System.Drawing.Point(755, 96);
             this.no_items_per_container.Name = "no_items_per_container";
             this.no_items_per_container.Size = new System.Drawing.Size(131, 30);
             this.no_items_per_container.TabIndex = 21;
@@ -277,7 +275,7 @@
             // 
             // no_of_containers_text_box
             // 
-            this.no_of_containers_text_box.Location = new System.Drawing.Point(755, 95);
+            this.no_of_containers_text_box.Location = new System.Drawing.Point(386, 91);
             this.no_of_containers_text_box.Name = "no_of_containers_text_box";
             this.no_of_containers_text_box.Size = new System.Drawing.Size(131, 30);
             this.no_of_containers_text_box.TabIndex = 20;
@@ -304,20 +302,22 @@
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label14.Location = new System.Drawing.Point(143, 35);
+            this.label14.Location = new System.Drawing.Point(373, 595);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(103, 25);
+            this.label14.Size = new System.Drawing.Size(154, 25);
             this.label14.TabIndex = 16;
-            this.label14.Text = "إجمالى الكمية ";
+            this.label14.Text = "إجمالى الكمية المضافة";
             // 
             // total_number_of_items_text_box
             // 
             this.total_number_of_items_text_box.Enabled = false;
+            this.total_number_of_items_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.total_number_of_items_text_box.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.total_number_of_items_text_box.Location = new System.Drawing.Point(6, 32);
+            this.total_number_of_items_text_box.Location = new System.Drawing.Point(545, 592);
             this.total_number_of_items_text_box.Name = "total_number_of_items_text_box";
-            this.total_number_of_items_text_box.Size = new System.Drawing.Size(131, 30);
+            this.total_number_of_items_text_box.Size = new System.Drawing.Size(218, 30);
             this.total_number_of_items_text_box.TabIndex = 15;
             // 
             // label11
@@ -341,7 +341,7 @@
             // unsimilar_no_items_per_container_label
             // 
             this.unsimilar_no_items_per_container_label.AutoSize = true;
-            this.unsimilar_no_items_per_container_label.Location = new System.Drawing.Point(523, 162);
+            this.unsimilar_no_items_per_container_label.Location = new System.Drawing.Point(892, 168);
             this.unsimilar_no_items_per_container_label.Name = "unsimilar_no_items_per_container_label";
             this.unsimilar_no_items_per_container_label.Size = new System.Drawing.Size(104, 25);
             this.unsimilar_no_items_per_container_label.TabIndex = 12;
@@ -349,7 +349,7 @@
             // 
             // unsimilar_no_items_per_container
             // 
-            this.unsimilar_no_items_per_container.Location = new System.Drawing.Point(386, 159);
+            this.unsimilar_no_items_per_container.Location = new System.Drawing.Point(755, 165);
             this.unsimilar_no_items_per_container.Name = "unsimilar_no_items_per_container";
             this.unsimilar_no_items_per_container.Size = new System.Drawing.Size(131, 30);
             this.unsimilar_no_items_per_container.TabIndex = 11;
@@ -358,7 +358,7 @@
             // unsimilar_no_of_containers_label
             // 
             this.unsimilar_no_of_containers_label.AutoSize = true;
-            this.unsimilar_no_of_containers_label.Location = new System.Drawing.Point(903, 164);
+            this.unsimilar_no_of_containers_label.Location = new System.Drawing.Point(534, 165);
             this.unsimilar_no_of_containers_label.Name = "unsimilar_no_of_containers_label";
             this.unsimilar_no_of_containers_label.Size = new System.Drawing.Size(81, 25);
             this.unsimilar_no_of_containers_label.TabIndex = 10;
@@ -366,7 +366,7 @@
             // 
             // unsimilar_no_of_containers
             // 
-            this.unsimilar_no_of_containers.Location = new System.Drawing.Point(755, 161);
+            this.unsimilar_no_of_containers.Location = new System.Drawing.Point(386, 162);
             this.unsimilar_no_of_containers.Name = "unsimilar_no_of_containers";
             this.unsimilar_no_of_containers.Size = new System.Drawing.Size(131, 30);
             this.unsimilar_no_of_containers.TabIndex = 9;
@@ -386,7 +386,7 @@
             // no_items_per_container_text_box
             // 
             this.no_items_per_container_text_box.AutoSize = true;
-            this.no_items_per_container_text_box.Location = new System.Drawing.Point(524, 96);
+            this.no_items_per_container_text_box.Location = new System.Drawing.Point(893, 99);
             this.no_items_per_container_text_box.Name = "no_items_per_container_text_box";
             this.no_items_per_container_text_box.Size = new System.Drawing.Size(104, 25);
             this.no_items_per_container_text_box.TabIndex = 5;
@@ -395,7 +395,7 @@
             // no_of_containers_label
             // 
             this.no_of_containers_label.AutoSize = true;
-            this.no_of_containers_label.Location = new System.Drawing.Point(903, 98);
+            this.no_of_containers_label.Location = new System.Drawing.Point(534, 94);
             this.no_of_containers_label.Name = "no_of_containers_label";
             this.no_of_containers_label.Size = new System.Drawing.Size(81, 25);
             this.no_of_containers_label.TabIndex = 3;
@@ -429,14 +429,14 @@
             this.twist_of_quantities_grid_view.AllowUserToDeleteRows = false;
             this.twist_of_quantities_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.twist_of_quantities_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.twist_of_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.twist_of_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.twist_of_quantities_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.twist_of_quantities_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -450,14 +450,14 @@
             this.Column5,
             this.Column6,
             this.Column7});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.twist_of_quantities_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.twist_of_quantities_grid_view.DefaultCellStyle = dataGridViewCellStyle10;
             this.twist_of_quantities_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.twist_of_quantities_grid_view.Location = new System.Drawing.Point(15, 631);
             this.twist_of_quantities_grid_view.Name = "twist_of_quantities_grid_view";
@@ -857,7 +857,9 @@
             this.Controls.Add(this.save_btn);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.remove_quantity_button);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.add_new_quantity_button);
+            this.Controls.Add(this.total_number_of_items_text_box);
             this.Controls.Add(this.timer_label);
             this.Controls.Add(this.twist_of_quantities_grid_view);
             this.Controls.Add(this.groupBox2);

@@ -14,5 +14,9 @@ namespace Al_Shaheen_System
         public string SH_CONTAINER_NAME { get; set; }
         public long SH_TOTAL_NO_ITEMS { get; set; }
         public DateTime SH_ADDITION_DATE { get; set; }
+
+
+      
+
     }
 }

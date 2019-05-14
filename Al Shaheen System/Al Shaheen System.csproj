@@ -56,6 +56,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addnewdriverform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewdriverform.Designer.cs">
+      <DependentUpon>addnewdriverform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bottom_containers_data.cs" />
     <Compile Include="clientmaterialbalanceform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,8 +82,32 @@
       <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
     </Compile>
     <Compile Include="client_material_balance_items.cs" />
+    <Compile Include="easy_open_container_data.cs" />
+    <Compile Include="finished_cans_model_data.cs" />
+    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.Designer.cs">
+      <DependentUpon>flashbackPalletscartonseparatorsandwoodbush.cs</DependentUpon>
+    </Compile>
+    <Compile Include="order_receit_form_data.cs" />
+    <Compile Include="peel_off_container_data.cs" />
+    <Compile Include="printreceivalpermission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printreceivalpermission.Designer.cs">
+      <DependentUpon>printreceivalpermission.cs</DependentUpon>
+    </Compile>
     <Compile Include="receival_permission_order_items.cs" />
+    <Compile Include="rlt_container_data.cs" />
+    <Compile Include="SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA.cs" />
+    <Compile Include="SH_DRIVERS.cs" />
+    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS.cs" />
+    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_ADDING_FROM_SALES_JOURNAL.cs" />
+    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_FLASH_BACK_PERMISSIONS.cs" />
     <Compile Include="sh_plastic_mold_finished_product_data.cs" />
+    <Compile Include="SH_RECEIVING_PERMISSION_INFORMATION.cs" />
+    <Compile Include="twist_of_container_data.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -835,6 +866,9 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addnewdriverform.resx">
+      <DependentUpon>addnewdriverform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="clientmaterialbalanceform.resx">
       <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
     </EmbeddedResource>
@@ -843,6 +877,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="clientreceivalpermissionnumberproducts.resx">
       <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="flashbackPalletscartonseparatorsandwoodbush.resx">
+      <DependentUpon>flashbackPalletscartonseparatorsandwoodbush.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printreceivalpermission.resx">
+      <DependentUpon>printreceivalpermission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.resx">
       <DependentUpon>ClientSupplyRunOrderFrmNew.cs</DependentUpon>
