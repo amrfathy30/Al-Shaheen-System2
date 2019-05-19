@@ -65,8 +65,21 @@
             this.client_branches_combo_box = new System.Windows.Forms.ComboBox();
             this.current_date_timer = new System.Windows.Forms.Timer(this.components);
             this.dismissed_containers_grid_view = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.stocks_combo_box = new System.Windows.Forms.ComboBox();
+            this.client_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.stocks_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.stocks_branches_combo_box = new System.Windows.Forms.ErrorProvider(this.components);
+            this.driver_name_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.driver_car_number_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.driver_lisence_number_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.driver_telephone_number_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.no_of_pallets_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.no_wooden_face_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.carton_corners_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.carton_dividers_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.order_number_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,9 +87,19 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.stocks_combo_box = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dismissed_containers_grid_view)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.client_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stocks_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stocks_branches_combo_box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_name_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_car_number_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_lisence_number_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_telephone_number_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.no_of_pallets_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.no_wooden_face_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carton_corners_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carton_dividers_error_provider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.order_number_error_provider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -145,6 +168,7 @@
             this.lisence_number_text_box.Name = "lisence_number_text_box";
             this.lisence_number_text_box.Size = new System.Drawing.Size(204, 30);
             this.lisence_number_text_box.TabIndex = 13;
+            this.lisence_number_text_box.TextChanged += new System.EventHandler(this.lisence_number_text_box_TextChanged);
             // 
             // label8
             // 
@@ -163,6 +187,7 @@
             this.driver_telephone_text_box.Name = "driver_telephone_text_box";
             this.driver_telephone_text_box.Size = new System.Drawing.Size(204, 30);
             this.driver_telephone_text_box.TabIndex = 15;
+            this.driver_telephone_text_box.TextChanged += new System.EventHandler(this.driver_telephone_text_box_TextChanged);
             // 
             // label9
             // 
@@ -181,6 +206,7 @@
             this.no_pallets_text_box.Name = "no_pallets_text_box";
             this.no_pallets_text_box.Size = new System.Drawing.Size(204, 30);
             this.no_pallets_text_box.TabIndex = 17;
+            this.no_pallets_text_box.TextChanged += new System.EventHandler(this.no_pallets_text_box_TextChanged);
             // 
             // label10
             // 
@@ -199,6 +225,7 @@
             this.no_wooden_face_text_box.Name = "no_wooden_face_text_box";
             this.no_wooden_face_text_box.Size = new System.Drawing.Size(204, 30);
             this.no_wooden_face_text_box.TabIndex = 19;
+            this.no_wooden_face_text_box.TextChanged += new System.EventHandler(this.no_wooden_face_text_box_TextChanged);
             // 
             // add_products_to_client_recival_permission_order
             // 
@@ -212,11 +239,14 @@
             // 
             // no_carton_dividers_text_box
             // 
+            this.no_carton_dividers_text_box.Enabled = false;
             this.no_carton_dividers_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.no_carton_dividers_text_box.Location = new System.Drawing.Point(859, 593);
             this.no_carton_dividers_text_box.Name = "no_carton_dividers_text_box";
             this.no_carton_dividers_text_box.Size = new System.Drawing.Size(204, 30);
             this.no_carton_dividers_text_box.TabIndex = 21;
+            this.no_carton_dividers_text_box.Text = "0";
+            this.no_carton_dividers_text_box.TextChanged += new System.EventHandler(this.no_carton_dividers_text_box_TextChanged);
             // 
             // label12
             // 
@@ -235,6 +265,7 @@
             this.no_carton_corners_text_box.Name = "no_carton_corners_text_box";
             this.no_carton_corners_text_box.Size = new System.Drawing.Size(204, 30);
             this.no_carton_corners_text_box.TabIndex = 23;
+            this.no_carton_corners_text_box.TextChanged += new System.EventHandler(this.no_carton_corners_text_box_TextChanged);
             // 
             // label13
             // 
@@ -331,6 +362,7 @@
             this.car_number_text_box.Name = "car_number_text_box";
             this.car_number_text_box.Size = new System.Drawing.Size(204, 30);
             this.car_number_text_box.TabIndex = 44;
+            this.car_number_text_box.TextChanged += new System.EventHandler(this.car_number_text_box_TextChanged);
             // 
             // label20
             // 
@@ -349,6 +381,7 @@
             this.driver_name_text_box.Name = "driver_name_text_box";
             this.driver_name_text_box.Size = new System.Drawing.Size(204, 30);
             this.driver_name_text_box.TabIndex = 42;
+            this.driver_name_text_box.TextChanged += new System.EventHandler(this.driver_name_text_box_TextChanged);
             // 
             // label21
             // 
@@ -376,6 +409,8 @@
             // 
             // clients_combo_box
             // 
+            this.clients_combo_box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.clients_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.clients_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clients_combo_box.FormattingEnabled = true;
             this.clients_combo_box.Location = new System.Drawing.Point(160, 119);
@@ -386,6 +421,7 @@
             // 
             // client_branches_combo_box
             // 
+            this.client_branches_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.client_branches_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.client_branches_combo_box.FormattingEnabled = true;
             this.client_branches_combo_box.Location = new System.Drawing.Point(509, 119);
@@ -415,7 +451,6 @@
             this.dismissed_containers_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dismissed_containers_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column9,
             this.Column2,
             this.Column3,
             this.Column4,
@@ -439,17 +474,80 @@
             this.dismissed_containers_grid_view.Size = new System.Drawing.Size(1031, 261);
             this.dismissed_containers_grid_view.TabIndex = 48;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(748, 125);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 25);
+            this.label2.TabIndex = 49;
+            this.label2.Text = "المخزن";
+            // 
+            // stocks_combo_box
+            // 
+            this.stocks_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stocks_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stocks_combo_box.FormattingEnabled = true;
+            this.stocks_combo_box.Location = new System.Drawing.Point(859, 122);
+            this.stocks_combo_box.Name = "stocks_combo_box";
+            this.stocks_combo_box.Size = new System.Drawing.Size(204, 33);
+            this.stocks_combo_box.TabIndex = 50;
+            // 
+            // client_error_provider
+            // 
+            this.client_error_provider.ContainerControl = this;
+            this.client_error_provider.RightToLeft = true;
+            // 
+            // stocks_error_provider
+            // 
+            this.stocks_error_provider.ContainerControl = this;
+            // 
+            // stocks_branches_combo_box
+            // 
+            this.stocks_branches_combo_box.ContainerControl = this;
+            // 
+            // driver_name_error_provider
+            // 
+            this.driver_name_error_provider.ContainerControl = this;
+            // 
+            // driver_car_number_error_provider
+            // 
+            this.driver_car_number_error_provider.ContainerControl = this;
+            // 
+            // driver_lisence_number_error_provider
+            // 
+            this.driver_lisence_number_error_provider.ContainerControl = this;
+            // 
+            // driver_telephone_number_error_provider
+            // 
+            this.driver_telephone_number_error_provider.ContainerControl = this;
+            // 
+            // no_of_pallets_error_provider
+            // 
+            this.no_of_pallets_error_provider.ContainerControl = this;
+            // 
+            // no_wooden_face_error_provider
+            // 
+            this.no_wooden_face_error_provider.ContainerControl = this;
+            // 
+            // carton_corners_error_provider
+            // 
+            this.carton_corners_error_provider.ContainerControl = this;
+            // 
+            // carton_dividers_error_provider
+            // 
+            this.carton_dividers_error_provider.ContainerControl = this;
+            // 
+            // order_number_error_provider
+            // 
+            this.order_number_error_provider.ContainerControl = this;
+            // 
             // Column1
             // 
             this.Column1.HeaderText = "م";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "كود الصنف";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
             // 
             // Column2
             // 
@@ -492,25 +590,6 @@
             this.Column8.HeaderText = "إجمالى الكمية";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(748, 125);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 25);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "المخزن";
-            // 
-            // stocks_combo_box
-            // 
-            this.stocks_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stocks_combo_box.FormattingEnabled = true;
-            this.stocks_combo_box.Location = new System.Drawing.Point(859, 122);
-            this.stocks_combo_box.Name = "stocks_combo_box";
-            this.stocks_combo_box.Size = new System.Drawing.Size(204, 33);
-            this.stocks_combo_box.TabIndex = 50;
             // 
             // clientreceivalpermissionnumberform
             // 
@@ -559,6 +638,18 @@
             this.Text = "إضافة إذن الإستلام";
             this.Load += new System.EventHandler(this.clientreceivalpermissionnumberform_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dismissed_containers_grid_view)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.client_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stocks_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stocks_branches_combo_box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_name_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_car_number_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_lisence_number_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.driver_telephone_number_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.no_of_pallets_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.no_wooden_face_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carton_corners_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.carton_dividers_error_provider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.order_number_error_provider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -600,8 +691,21 @@
         private System.Windows.Forms.ComboBox client_branches_combo_box;
         private System.Windows.Forms.Timer current_date_timer;
         private System.Windows.Forms.DataGridView dismissed_containers_grid_view;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox stocks_combo_box;
+        private System.Windows.Forms.ErrorProvider client_error_provider;
+        private System.Windows.Forms.ErrorProvider stocks_error_provider;
+        private System.Windows.Forms.ErrorProvider stocks_branches_combo_box;
+        private System.Windows.Forms.ErrorProvider driver_name_error_provider;
+        private System.Windows.Forms.ErrorProvider driver_car_number_error_provider;
+        private System.Windows.Forms.ErrorProvider driver_lisence_number_error_provider;
+        private System.Windows.Forms.ErrorProvider driver_telephone_number_error_provider;
+        private System.Windows.Forms.ErrorProvider no_of_pallets_error_provider;
+        private System.Windows.Forms.ErrorProvider no_wooden_face_error_provider;
+        private System.Windows.Forms.ErrorProvider carton_corners_error_provider;
+        private System.Windows.Forms.ErrorProvider carton_dividers_error_provider;
+        private System.Windows.Forms.ErrorProvider order_number_error_provider;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
@@ -609,7 +713,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox stocks_combo_box;
     }
 }

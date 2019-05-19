@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="order_receit_form_data.cs" />
     <Compile Include="peel_off_container_data.cs" />
+    <Compile Include="plastic_cover_container_data.cs" />
     <Compile Include="printreceivalpermission.cs">
       <SubType>Form</SubType>
     </Compile>

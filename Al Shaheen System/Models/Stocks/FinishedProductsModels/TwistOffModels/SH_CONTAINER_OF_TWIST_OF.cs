@@ -14,5 +14,6 @@ namespace Al_Shaheen_System
         public string SH_ADDITION_PERMISSION_NUMBER { get; set; }
         public long SH_NO_ITEMS { get; set; }
         public string SH_CONTAINER_NAME { get; set; }
+        public long SPECIFICATIONS_ID { get; set; }
     }
 }

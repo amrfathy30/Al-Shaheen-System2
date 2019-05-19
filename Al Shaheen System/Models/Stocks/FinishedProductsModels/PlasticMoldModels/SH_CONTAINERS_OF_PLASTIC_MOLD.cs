@@ -14,5 +14,6 @@ namespace Al_Shaheen_System
         public long SH_NO_ITEMS { get; set; }
         public DateTime SH_ADDTION_DATE { get; set; }
         public string SH_ADDITION_PERMISSION_NUMBER { get; set; }
+        public long SH_SPCIFICATION_OF_PLASTIC_MOLD_ID { get; set; }
     }
 }

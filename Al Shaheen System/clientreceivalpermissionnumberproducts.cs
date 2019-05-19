@@ -32,7 +32,7 @@ namespace Al_Shaheen_System
         List<peel_off_container_data> peel_off_containers = new List<peel_off_container_data>();
         List<twist_of_container_data> twist_of_containers = new List<twist_of_container_data>();
         List<easy_open_container_data> easy_open_containers = new List<easy_open_container_data>();
-        List<SH_SPECIFICATION_OF_PLASTIC_COVER> plastic_cover_data = new List<SH_SPECIFICATION_OF_PLASTIC_COVER>();
+        List<plastic_cover_container_data> plastic_cover_data = new List<plastic_cover_container_data>();
         List<SH_CALCULATE_TOTAL_FINISHED_PRODUCT> finished_cans = new List<SH_CALCULATE_TOTAL_FINISHED_PRODUCT>();
 
         List<SH_COLOR_PILLOW> pillow_colors = new List<SH_COLOR_PILLOW>();
@@ -159,7 +159,7 @@ namespace Al_Shaheen_System
                 else
                 {
                     size = true;
-                    size_string = " AND SPC.SH_SIZE_ID = @SH_SIZE_ID ";
+                    size_string = " AND SPPC.SH_SIZE_ID = @SH_SIZE_ID ";
                 }
 
                 if (string.IsNullOrWhiteSpace(f2_combo_box.Text))
@@ -169,11 +169,48 @@ namespace Al_Shaheen_System
                 else
                 {
                     pillow_color = true;
-                    pillow_color_string = " AND SPC.SH_PILLOW_COLOR_ID = @SH_PILLOW_COLOR_ID ";
+                    pillow_color_string = " AND SPPC.SH_PILLOW_COLOR_ID = @SH_PILLOW_COLOR_ID ";
                 }
 
-                string query = " SELECT SPC.* , (SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC WHERE CC.SH_ID=SPC.SH_CLIENT_ID) AS SH_CLIENT_COMPANY_NAME , (SELECT ITS.SH_SIZE_NAME FROM SH_ITEM_SIZE ITS WHERE ITS.SH_ID = SPC.SH_SIZE_ID ) AS SH_SIZE_NAME , (SELECT PC.SH_COLOR_NAME FROM SH_COLOR_PILLOW PC WHERE PC.SH_ID= SPC.SH_PILLOW_COLOR_ID) AS SH_COLOR_NAME  FROM SH_SPECIFICATION_OF_PLASTIC_COVER SPC WHERE SPC.SH_CLIENT_ID= @SH_CLIENT_ID OR SPC.SH_CLIENT_ID IN (SELECT SH_ID  FROM SH_CLIENT_COMPANY WHERE SH_CLIENT_COMPANY_NAME LIKE N'عام')  AND SPC.SH_LOGO_OR_NOT = @SH_LOGO_OR_NOT " + size_string + pillow_color_string;
-                myconnection.openConnection();
+                string query = "SELECT SPPC.SH_CLIENT_ID ,";
+                query += "(SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC ";
+                query += "WHERE CC.SH_ID = SPPC.SH_CLIENT_ID) AS ";
+                query += " SH_CLIENT_NAME,";
+                query += "(SELECT ITS.SH_SIZE_NAME FROM SH_ITEM_SIZE ITS WHERE ";
+                query += " ITS.SH_ID = SPPC.SH_SIZE_ID ";
+                query += " ) AS SH_SIZE_NAME ";
+                query += " ,";
+                query += "  (SELECT CP.SH_COLOR_NAME FROM SH_COLOR_PILLOW CP ";
+                query += " WHERE CP.SH_ID = SPPC.SH_PILLOW_COLOR_ID ) AS SH_PILLOW_COLOR ";
+                query += ",";
+                query += " SPPC.SH_LOGO_OR_NOT ,";
+                query += "SPPC.SH_PILLOW_COLOR_ID,";
+                query += "SPPC.SH_SIZE_ID ,";
+                query += "SUM(CPC.SH_NO_ITEMS) AS TOTAL_NO_ITEMS,";
+                query += "CPC.SH_NO_ITEMS AS CONTAINER_NO_OF_ITEMS ,";
+                query += " CPC.SH_CONTAINER_NAME , ";
+                query += " count(CPC.SH_ID) AS NO_OF_CONTAINERS ";
+                query += " FROM SH_CONTAINERS_OF_PLASTIC_COVER CPC ";
+                query += " JOIN SH_QUANTITY_OF_PLASTIC_COVER QPC ON ";
+                query += " QPC.SH_ID = CPC.SH_QUANTITY_OF_PLASTIC_COVER_ID ";
+                query += " JOIN SH_SPECIFICATION_OF_PLASTIC_COVER SPPC ON ";
+                query += " SPPC.SH_ID = QPC.SH_SPECIFICATION_OF_PLASTIC_COVER_ID ";
+                query += " WHERE(SPPC.SH_CLIENT_ID = @SH_CLIENT_ID  OR ";
+                query += " SPPC.SH_CLIENT_ID IN(SELECT CC.SH_ID FROM ";
+                query += " SH_CLIENT_COMPANY CC WHERE CC.SH_CLIENT_COMPANY_NAME ";
+                query += " LIKE N'عام')) AND CPC.SH_ID NOT IN ";
+                query += "     (SELECT SDCPC.SH_ID FROM ";
+                query += " SH_DISMISSAL_CONTAINERS_OF_PLASTIC_COVER SDCPC ";
+                query += " WHERE SDCPC.SH_ID = CPC.SH_ID) AND SPPC.SH_LOGO_OR_NOT =  @SH_LOGO_OR_NOT ";
+                query += size_string + pillow_color_string;
+                query += " GROUP BY SPPC.SH_CLIENT_ID , SH_SIZE_ID, ";
+                query += "    CPC.SH_CONTAINER_NAME, CPC.SH_NO_ITEMS , ";
+                query += " SPPC.SH_PILLOW_COLOR_ID ,SPPC.SH_LOGO_OR_NOT ";
+                query += " ORDER BY SPPC.SH_CLIENT_ID , SH_SIZE_ID, CPC.SH_CONTAINER_NAME, CPC.SH_NO_ITEMS , ";
+                query += " SPPC.SH_PILLOW_COLOR_ID ,SPPC.SH_LOGO_OR_NOT";
+               
+                    
+                    myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                 cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
                 cmd.Parameters.AddWithValue("@SH_LOGO_OR_NOT", logo_or_not);
@@ -190,19 +227,20 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    plastic_cover_data.Add(new SH_SPECIFICATION_OF_PLASTIC_COVER()
+                    plastic_cover_data.Add(new plastic_cover_container_data()
                     {
-                        SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()),
-                        clientname = reader["SH_CLIENT_COMPANY_NAME"].ToString(),
-                        SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
-                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
-                        SH_LOGO_OR_NOT = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()),
-                        SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()),
-                        SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()),
-                        pillowcolorname = reader["SH_COLOR_NAME"].ToString(),
-                        sizename = reader["SH_SIZE_NAME"].ToString(),
-                        SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()),
-                        SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())
+                        client_id = long.Parse(reader["SH_CLIENT_ID"].ToString()),
+                        client_name = reader["SH_CLIENT_COMPANY_NAME"].ToString(),
+                        container_name = reader["SH_CONTAINER_NAME"].ToString(),
+                        logo_or_not = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()),
+                        no_of_containers = long.Parse(reader["NO_OF_CONTAINERS"].ToString()),
+                        pillow_color_id = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()),
+                        pillow_color_name = reader["SH_PILLOW_COLOR"].ToString(),
+                        size_name = reader["SH_SIZE_NAME"].ToString(),
+                        size_id = long.Parse(reader["SH_SIZE_ID"].ToString()),
+                        container_no_of_items = long.Parse(reader["CONTAINER_NO_OF_ITEMS"].ToString()),
+                        total_no_items = long.Parse(reader["TOTAL_NO_ITEMS"].ToString())
+                        
                     });
                 }
                 reader.Close();
@@ -214,7 +252,6 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GeTTING PLASTic COVER DATA " + ex.ToString());
             }
         }
-
         async Task fillplasticcovergridview()
         {
             await getallplasticcoverspecifications();
@@ -228,17 +265,18 @@ namespace Al_Shaheen_System
                 mydata.Columns.Add("يوجد لوجو أو لا ");
                 mydata.Columns.Add("التعبئة");
                 mydata.Columns.Add("عدد التعبئة");
+                mydata.Columns.Add("الكمية / التعبئة");
                 mydata.Columns.Add("إجمالى الكمية");
                 //MessageBox.Show(plastic_mold_sepecifications.Count.ToString());
 
                 for (int i = 0; i < plastic_cover_data.Count; i++)
                 {
-                    string[] mytabeldata = new string[8];
+                    string[] mytabeldata = new string[9];
                     mytabeldata[0] = (i + 1).ToString();
-                    mytabeldata[1] = plastic_cover_data[i].clientname;
-                    mytabeldata[2] = plastic_cover_data[i].sizename;
-                    mytabeldata[3] = plastic_cover_data[i].pillowcolorname;
-                    if (plastic_cover_data[i].SH_LOGO_OR_NOT == 0)
+                    mytabeldata[1] = plastic_cover_data[i].client_name;
+                    mytabeldata[2] = plastic_cover_data[i].size_name;
+                    mytabeldata[3] = plastic_cover_data[i].pillow_color_name;
+                    if (plastic_cover_data[i].logo_or_not == 0)
                     {
                         mytabeldata[4] = "لا يوجد";
                     }
@@ -246,21 +284,17 @@ namespace Al_Shaheen_System
                     {
                         mytabeldata[4] = " يوجد";
                     }
-
-                    mytabeldata[5] = plastic_cover_data[i].SH_CONTAINER_NAME;
-                    mytabeldata[6] = plastic_cover_data[i].SH_NO_OF_CONTAINERS.ToString();
-                    mytabeldata[7] = plastic_cover_data[i].SH_TOTAL_NO_ITEMS.ToString();
-
+                    mytabeldata[5] = plastic_cover_data[i].container_name;
+                    mytabeldata[6] = plastic_cover_data[i].no_of_containers.ToString();
+                    mytabeldata[7] = plastic_cover_data[i].container_no_of_items.ToString();
+                    mytabeldata[8] = plastic_cover_data[i].total_no_items.ToString();
                     mydata.Rows.Add(mytabeldata);
-
                 }
                 finished_product_properties_grid_view.DataSource = mydata;
             }
 
 
         }
-
-
         async Task getallpeeloffspecifications()
         {
             peel_off_containers.Clear();
@@ -361,7 +395,6 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GETTInG rlt Data " + ex.ToString());
             }
         }
-
         async Task getclientproductfinishedcansdata()
         {
             finished_cans.Clear();
@@ -399,7 +432,6 @@ namespace Al_Shaheen_System
 
 
         }
-
         async Task fillfinishedcansgridview()
         {
             await getclientproductfinishedcansdata();
@@ -429,7 +461,6 @@ namespace Al_Shaheen_System
                 finished_product_properties_grid_view.DataSource = mydatatabel;
             }
         }
-
         async Task getgallplasticmolddata()
         {
             plastic_mold_sepecifications.Clear();
@@ -454,7 +485,7 @@ namespace Al_Shaheen_System
                 else
                 {
                     MOLD_SIZE = true;
-                    MOLD_SIZE_STRING = " AND PMS.SH_SIZE_ID = @SH_SIZE_ID";
+                    MOLD_SIZE_STRING = " AND SPPM.SH_SIZE_ID = @SH_SIZE_ID";
                 }
 
             }
@@ -468,7 +499,7 @@ namespace Al_Shaheen_System
                 else
                 {
                     PILLOW_COLOR = true;
-                    PILLOW_COLOR_STRING = " AND PMS.SH_PILLOW_COLOR_ID = @SH_PILLOW_COLOR_ID";
+                    PILLOW_COLOR_STRING = " AND SPPM.SH_PILLOW_COLOR_ID = @SH_PILLOW_COLOR_ID";
                 }
 
             }
@@ -482,11 +513,40 @@ namespace Al_Shaheen_System
                 else
                 {
                     MOLD_TYPE = true;
-                    MOLD_TYPE_STRING = " AND PMS.SH_MOLD_TYPE_ID = @SH_MOLD_TYPE_ID";
+                    MOLD_TYPE_STRING = " AND SPPM.SH_MOLD_TYPE_ID = @SH_MOLD_TYPE_ID";
                 }
             }
-            string query = "SELECT PMS.*  , (SELECT MS.SH_MOLD_SIZE_VALUE FROM SH_MOLD_SIZE MS WHERE PMS.SH_SIZE_ID = MS.SH_ID ) AS SH_MOLD_SIZE_VALUE , (SELECT MT.SH_MOLD_TYPE_NAME FROM SH_MOLD_TYPES MT WHERE PMS.SH_MOLD_TYPE_ID = MT.SH_ID ) AS SH_MOLD_TYPE_NAME , (SELECT PC.SH_COLOR_NAME FROM SH_COLOR_PILLOW PC WHERE PC.SH_ID = PMS.SH_PILLOW_COLOR_ID  )AS SH_COLOR_NAME , (SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC WHERE CC.SH_ID = PMS.SH_CLIENT_ID) AS SH_CLIENT_COMPANY_NAME   FROM SH_SPECIFICATION_OF_PLASTIC_MOLD  PMS WHERE PMS.SH_CLIENT_ID = @SH_CLIENT_ID  " + MOLD_SIZE_STRING + MOLD_TYPE_STRING + PILLOW_COLOR_STRING;
-
+            string query = " SELECT ";
+            query += " CPM.SH_CONTAINER_NAME , ";
+            query += " COUNT(CPM.SH_ID) AS NO_OF_CONTAINERS, ";
+            query += " SUM(CPM.SH_NO_ITEMS)AS TOTAL_NO_ITEMS, ";
+            query += " SPPM.SH_CLIENT_ID, ";
+            query += " (SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC WHERE ";
+            query += " CC.SH_ID = SPPM.SH_CLIENT_ID ";
+            query += ") AS SH_CLIENT_COMPANY_NAME, ";
+            query += "CPM.SH_NO_ITEMS , ";
+            query += "SPPM.SH_PILLOW_COLOR_ID, ";
+            query += "(SELECT CP.SH_COLOR_NAME FROM SH_COLOR_PILLOW CP WHERE CP.SH_ID = ";
+            query += "    SPPM.SH_PILLOW_COLOR_ID ) AS SH_COLOR_NAME,";
+            query += "SPPM.SH_SIZE_ID, ";
+            query += " (SELECT ITS.SH_MOLD_SIZE_VALUE FROM SH_MOLD_SIZE ITS WHERE ITS.SH_ID =SPPM.SH_SIZE_ID ) AS SH_SIZE_NAME,";
+            query += "SPPM.SH_MOLD_TYPE_ID ,";
+            query += "(SELECT MT.SH_MOLD_TYPE_NAME FROM SH_MOLD_TYPES MT ";
+            query += " WHERE MT.SH_ID = SPPM.SH_MOLD_TYPE_ID )AS SH_MOLD_TYPE_NAME ";
+            query += " FROM SH_CONTAINERS_OF_PLASTIC_MOLD CPM ";
+            query += " JOIN SH_QUANTITY_OF_PLASTIC_MOLD QPM ON ";
+            query += " QPM.SH_ID = CPM.SH_QUANTITY_OF_PLASTIC_MOLD_ID ";
+            query += " JOIN SH_SPECIFICATION_OF_PLASTIC_MOLD SPPM ON ";
+            query += " SPPM.SH_ID = QPM.SH_SPECIFICATION_OF_PLASTIC_MOLD_ID ";
+            query += " WHERE(SPPM.SH_CLIENT_ID = @SH_CLIENT_ID OR ";
+            query += " SPPM.SH_CLIENT_ID IN(SELECT CC.SH_ID FROM SH_CLIENT_COMPANY CC  ";
+            query += " WHERE CC.SH_CLIENT_COMPANY_NAME LIKE N'عام')) ";
+            query += MOLD_SIZE_STRING + MOLD_TYPE_STRING + PILLOW_COLOR_STRING;
+            query += "  AND CPM.SH_ID NOT IN(SELECT DCPM.SH_ID FROM SH_DISMISSAL_CONTAINERS_OF_PLASTIC_MOLD DCPM WHERE DCPM.SH_CONTAINER_OF_PLASTIC_MOLD_ID = CPM.SH_ID)";
+            query += " GROUP BY CPM.SH_CONTAINER_NAME ,SPPM.SH_MOLD_TYPE_ID , ";
+            query += " SPPM.SH_PILLOW_COLOR_ID, ";
+            query += " SPPM.SH_SIZE_ID, ";
+            query += " CPM.SH_NO_ITEMS ,SPPM.SH_CLIENT_ID ";
 
             try
             {
@@ -508,25 +568,19 @@ namespace Al_Shaheen_System
                 {
                     cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", pillow_colors[f2_combo_box.SelectedIndex].SH_ID);
                 }
-
-
-
-
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     plastic_mold_sepecifications.Add(new sh_plastic_mold_finished_product_data()
                     {
                         client_id = long.Parse(reader["SH_CLIENT_ID"].ToString()),
-                        container_name = reader["SH_CONTAINER_NAME"].ToString(),
-                        sh_id = long.Parse(reader["SH_ID"].ToString()),
-                        SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()),
+                        container_name = reader["SH_CONTAINER_NAME"].ToString(),                       
+                        SH_NO_OF_CONTAINERS = long.Parse(reader["NO_OF_CONTAINERS"].ToString()),
                         SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()),
                         size_id = long.Parse(reader["SH_SIZE_ID"].ToString()),
                         SH_MOLD_TYPE_ID = long.Parse(reader["SH_MOLD_TYPE_ID"].ToString()),
-                        total_number_of_items = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()),
-                        size_name = reader["SH_MOLD_SIZE_VALUE"].ToString()
-                        ,
+                        total_number_of_items = long.Parse(reader["TOTAL_NO_ITEMS"].ToString()),
+                        size_name = reader["SH_SIZE_NAME"].ToString(),
                         client_name = reader["SH_CLIENT_COMPANY_NAME"].ToString(),
                         SH_PILLOW_COLOR_NAME = reader["SH_COLOR_NAME"].ToString(),
                         SH_MOLD_TYPE_NAME = reader["SH_MOLD_TYPE_NAME"].ToString()
@@ -541,7 +595,6 @@ namespace Al_Shaheen_System
             }
 
         }
-
         async Task getalltwistofspecifications()
         {
             twist_of_containers.Clear();
@@ -577,7 +630,6 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHIle GETTInG TWIST OF CONTAINERS DATa" + ex.ToString());
             }
         }
-
         async Task filltwistofgridview()
         {
             getalltwistofspecifications();
@@ -618,9 +670,6 @@ namespace Al_Shaheen_System
                 finished_product_properties_grid_view.DataSource = mydatatabel;
             }
         }
-
-
-
         async Task getalleasyopenspecifications()
         {
             easy_open_containers.Clear();
@@ -721,7 +770,6 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GETTInG rlt Data " + ex.ToString());
             }
         }
-
         async Task filleasyopengridview()
         {
             await getalleasyopenspecifications();
@@ -760,7 +808,6 @@ namespace Al_Shaheen_System
             }
 
         }
-
         async Task getallbottomspecifications()
         {
             bottom_containers.Clear();
@@ -862,7 +909,6 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GETTInG bottom Data " + ex.ToString());
             }
         }
-
         async Task fillbottomdatagridview()
         {
             await getallbottomspecifications();
@@ -900,8 +946,6 @@ namespace Al_Shaheen_System
                 finished_product_properties_grid_view.DataSource = mytabeldata;
             }
         }
-
-
         async Task getallrltspecifications()
         {
             rlt_containetrs.Clear();
@@ -1003,7 +1047,6 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE GETTInG rlt Data " + ex.ToString());
             }
         }
-
         async Task fillrltgridview()
         {
             await getallrltspecifications();
@@ -1023,7 +1066,7 @@ namespace Al_Shaheen_System
                 mytabeldata.Columns.Add("إجمالى الكمية");
 
 
-                for (int i = 0; i < bottom_containers.Count; i++)
+                for (int i = 0; i < rlt_containetrs.Count; i++)
                 {
                     string[] mydata = new string[9];
                     mydata[0] = (i + 1).ToString();
@@ -1041,9 +1084,6 @@ namespace Al_Shaheen_System
                 finished_product_properties_grid_view.DataSource = mytabeldata;
             }
         }
-
-
-
         async Task fillpelloffgridview()
         {
             await getallpeeloffspecifications();
@@ -1063,7 +1103,7 @@ namespace Al_Shaheen_System
                 mytabeldata.Columns.Add("إجمالى الكمية");
 
 
-                for (int i = 0; i < bottom_containers.Count; i++)
+                for (int i = 0; i < peel_off_containers.Count; i++)
                 {
                     string[] mydata = new string[9];
                     mydata[0] = (i + 1).ToString();
@@ -1081,9 +1121,6 @@ namespace Al_Shaheen_System
                 finished_product_properties_grid_view.DataSource = mytabeldata;
             }
         }
-
-
-
         async Task fillplasticmoldgridview()
         {
             await getgallplasticmolddata();
@@ -1097,12 +1134,13 @@ namespace Al_Shaheen_System
                 mydata.Columns.Add("نوع الطبة");
                 mydata.Columns.Add("التعبئة");
                 mydata.Columns.Add("عدد التعبئة");
+                mydata.Columns.Add("الكمية / التعبئة");
                 mydata.Columns.Add("إجمالى الكمية");
                 //MessageBox.Show(plastic_mold_sepecifications.Count.ToString());
 
                 for (int i = 0; i < plastic_mold_sepecifications.Count; i++)
                 {
-                    string[] mytabeldata = new string[8];
+                    string[] mytabeldata = new string[9];
                     mytabeldata[0] = (i + 1).ToString();
                     mytabeldata[1] = plastic_mold_sepecifications[i].client_name;
                     mytabeldata[2] = plastic_mold_sepecifications[i].size_name;
@@ -1110,7 +1148,8 @@ namespace Al_Shaheen_System
                     mytabeldata[4] = plastic_mold_sepecifications[i].SH_MOLD_TYPE_NAME;
                     mytabeldata[5] = plastic_mold_sepecifications[i].container_name;
                     mytabeldata[6] = plastic_mold_sepecifications[i].SH_NO_OF_CONTAINERS.ToString();
-                    mytabeldata[7] = plastic_mold_sepecifications[i].total_number_of_items.ToString();
+                    mytabeldata[7] = (plastic_mold_sepecifications[i].total_number_of_items / plastic_mold_sepecifications[i].SH_NO_OF_CONTAINERS).ToString();
+                    mytabeldata[8] = plastic_mold_sepecifications[i].total_number_of_items.ToString();
 
                     mydata.Rows.Add(mytabeldata);
 
@@ -1991,6 +2030,7 @@ namespace Al_Shaheen_System
                     }
                 case 7:
                     {
+                        //plastic MOLD
                         await fillplasticmoldgridview();
                         break;
                     }
@@ -2059,8 +2099,8 @@ namespace Al_Shaheen_System
                     case 6:
                         {
                             //plastic cover
-                            container_name_text_box.Text = plastic_cover_data[finished_product_properties_grid_view.SelectedRows[0].Index].SH_CONTAINER_NAME;
-                            no_items_per_container_text_box.Text = plastic_cover_data[finished_product_properties_grid_view.SelectedRows[0].Index].SH_TOTAL_NO_ITEMS.ToString();
+                            container_name_text_box.Text = plastic_cover_data[finished_product_properties_grid_view.SelectedRows[0].Index].container_name;
+                            no_items_per_container_text_box.Text = plastic_cover_data[finished_product_properties_grid_view.SelectedRows[0].Index].container_no_of_items.ToString();
 
                             break;
                         }
@@ -2198,19 +2238,21 @@ namespace Al_Shaheen_System
             List<SH_CONTAINER_OF_RLT> anyrlt_containers = new List<SH_CONTAINER_OF_RLT>();
             while (reader.Read())
             {
+                   // MessageBox.Show(" HERE ");
                 anyrlt_containers.Add(new SH_CONTAINER_OF_RLT()
                 {
                     SH_ADDITION_DATE = DateTime.Parse(reader["SH_ADDITION_DATE"].ToString()),
                     SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
                     SH_ID = long.Parse(reader["SH_ID"].ToString()),
                     SH_QUANTITY_OF_RLT_ID = long.Parse(reader["SH_QUANTITY_OF_RLT_ID"].ToString()),
-                    SH_SPECIFICATION_OF_RLT_ID = long.Parse(reader["SH_SPECIFICATION_OF_BOTTOM_ID"].ToString()),
+                    SH_SPECIFICATION_OF_RLT_ID = long.Parse(reader["SH_SPECIFICATION_OF_RLT_ID"].ToString()),
                     SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())
                 });
 
             }
             reader.Close();
             myconnection.closeConnection();
+              //  MessageBox.Show(anyrlt_containers.Count.ToString());
             dismissed_containers.Add(new SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA()
             {
                 total_no_of_items_of_selected_containers = long.Parse(total_number_of_items_of_selected_containers.Text),
@@ -2226,6 +2268,275 @@ namespace Al_Shaheen_System
             }
 }
 
+       async Task getallselectedcontainersofeasyopen()
+        {
+            try
+            {
+
+               
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_EASY_OPEN_CONTAINERS_SPECIFIED", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_SIZE_ID", item_sizes[f1_combo_box.SelectedIndex].SH_ID);
+                cmd.Parameters.AddWithValue("@NO_CONTAINERS", long.Parse(no_of_selected_containers_text_box.Text));
+              //  MessageBox.Show("HERE #1");
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<SH_CONTAINER_OF_EASY_OPEN> anyeasyopen_containers = new List<SH_CONTAINER_OF_EASY_OPEN>();
+                while (reader.Read())
+                {
+                   // MessageBox.Show("HERE #2");
+                    anyeasyopen_containers.Add(new SH_CONTAINER_OF_EASY_OPEN()
+                    {
+                        SH_ADDITION_DATE = DateTime.Parse(reader["SH_ADDITION_DATE"].ToString()),
+                        SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_QUANTITY_OF_EASY_OPEN_ID = long.Parse(reader["SH_QUANTITY_OF_EASY_OPEN_ID"].ToString()),
+                        SH_SPECIFICATION_OF_EASY_OPEN_ID = long.Parse(reader["SH_SPECIFICATION_OF_EASY_OPEN_ID"].ToString()),
+                        SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())
+                    });
+
+                }
+                reader.Close();
+                myconnection.closeConnection();
+                dismissed_containers.Add(new SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA()
+                {
+                    total_no_of_items_of_selected_containers = long.Parse(total_number_of_items_of_selected_containers.Text),
+                    easy_open_containers = anyeasyopen_containers,
+                    product_type = product_type_combo_box.SelectedIndex,
+                    product_name = product_type_combo_box.Text,
+                    no_of_selected_containers = anyeasyopen_containers.Count
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GeTTING BOTTOM CONTAINERS DATA " + ex.ToString());
+            }
+        }
+
+        async Task getallselectedcontainersofpeeloff()
+        {
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_PEEL_OFF_CONTAINERS_SPECIFIED", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_SIZE_ID", item_sizes[f1_combo_box.SelectedIndex].SH_ID);
+                cmd.Parameters.AddWithValue("@SH_RAW_MATERIAL_TYPE", f2_combo_box.Text);
+                cmd.Parameters.AddWithValue("@SH_USAGE", f3_combo_box.Text);
+                cmd.Parameters.AddWithValue("@SH_PRINTING_TYPE_NAME", f4_combo_box.Text);
+                cmd.Parameters.AddWithValue("@NO_CONTAINERS", long.Parse(no_of_selected_containers_text_box.Text));
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<SH_CONTAINER_OF_BILL_OFF> anypeeloff_containers = new List<SH_CONTAINER_OF_BILL_OFF>();
+                while (reader.Read())
+                {
+                    anypeeloff_containers.Add(new SH_CONTAINER_OF_BILL_OFF()
+                    {
+                        SH_ADDITION_DATE = DateTime.Parse(reader["SH_ADDITION_DATE"].ToString()),
+                        SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_QUANTITY_OF_BILL_OFF_ID = long.Parse(reader["SH_QUANTITY_OF_PEEL_OFF_ID"].ToString()),
+                        SH_SPECIFICATION_OF_BILL_OFF_ID = long.Parse(reader["SH_SPECIFICATION_OF_PEEL_OFF_ID"].ToString()),
+                        SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString())
+                    });
+
+                }
+                reader.Close();
+                myconnection.closeConnection();
+                dismissed_containers.Add(new SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA()
+                {
+                    total_no_of_items_of_selected_containers = long.Parse(total_number_of_items_of_selected_containers.Text),
+                    peel_off_containers = anypeeloff_containers,
+                    product_type = product_type_combo_box.SelectedIndex,
+                    product_name = product_type_combo_box.Text,
+                    no_of_selected_containers = anypeeloff_containers.Count
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GeTTING peel off CONTAINERS DATA " + ex.ToString());
+            }
+        }
+
+
+        async Task getallselectedcontainersoftwistof()
+        {
+            try
+            {
+                myconnection.openConnection();
+                string query = "SELECT TOP(@NO_OF_SELECTED_CONTAINERS) COTF.* ,";
+                query += "(SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC WHERE CC.SH_ID = SPTWOF.SH_CLIENT_ID) AS SH_CLIENT_COMPANY_NAME";
+                query += ",SPTWOF.SH_ID AS SPECIFICATIONS_ID , (SELECT CP.SH_COLOR_NAME FROM  SH_COLOR_PILLOW CP WHERE CP.SH_ID = SPTWOF.SH_PILLOW_COLOR_ID) AS SH_COLOR_NAME ";
+                query += ", (SELECT CPR.SH_PRODUCT_NAME FROM SH_CLIENTS_PRODUCTS CPR WHERE CPR.SH_ID = SPTWOF.SH_CLIENT_PRODUCT_ID) AS SH_PRODUCT_NAME,";
+                query += "(SELECT TWS.SH_TWIST_OF_SIZE_VALUE  FROM SH_TWIST_OF_SIZE TWS WHERE TWS.SH_ID = SPTWOF.SH_SIZE_ID ) AS SH_TWIST_OF_SIZE_VALUE,";
+                query += "    (SELECT TWT.SH_SHORT_TITLE FROM SH_TWIST_OF_TYPE TWT WHERE TWT.SH_ID = SPTWOF.SH_TWIST_OF_TYPE_ID) AS SH_TWIST_OF_TYPE_NAME ";
+                query += ", SPTWOF.SH_FIRST_FACE_PILLOW_OR_NOT";
+                query += "FROM  SH_CONTAINER_OF_TWIST_OF COTF  " ;
+                query += " JOIN SH_QUANTITY_OF_TWIST_OF QTWF ON COTF.SH_QUANTITY_OF_TWIST_OF_ID = QTWF.SH_ID";
+                query += " JOIN SH_SPECIFICATION_OF_TWIST_OF SPTWOF ON  QTWF.SH_SPECIFICATION_OF_TWIST_OF_ID = SPTWOF.SH_ID";
+                query += "WHERE (SPTWOF.SH_CLIENT_ID = @SH_CLIENT_ID OR SPTWOF.SH_CLIENT_ID IN (SELECT CC.SH_ID  FROM SH_CLIENT_COMPANY CC WHERE CC.SH_CLIENT_COMPANY_NAME LIKE N'عام')) "; 
+                query += "    AND COTF.SH_ID NOT IN ";
+                query += "(SELECT DCTWOF.SH_ID FROM SH_DISMISSAL_CONTAINERS_OF_TWIST_OF DCTWOF WHERE DCTWOF.SH_ID = COTF.SH_ID) ";
+                SqlCommand cmd = new SqlCommand(query,DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@NO_OF_SELECTED_CONTAINERS", long.Parse(no_of_selected_containers_text_box.Text));
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<SH_CONTAINER_OF_TWIST_OF> anytwist_of_containers = new List<SH_CONTAINER_OF_TWIST_OF>();
+                while (reader.Read())
+                {
+                    anytwist_of_containers.Add(new SH_CONTAINER_OF_TWIST_OF() {
+                        SH_ADDITION_PERMISSION_NUMBER = reader["SH_ADDITION_PERMISSION_NUMBER"].ToString(),
+                        SH_ADDTION_DATE = DateTime.Parse(reader["SH_ADDTION_DATE"].ToString()),
+                        SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_NO_ITEMS= long.Parse(reader["SH_NO_ITEMS"].ToString()),
+                        SH_QUANTITY_OF_TWIST_OF_ID = long.Parse(reader["SH_QUANTITY_OF_TWIST_OF_ID"].ToString()),
+                        SPECIFICATIONS_ID = long.Parse(reader["SPECIFICATIONS_ID"].ToString())
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("ERROR WHILE GETTING SPECIFIED CONTAINERS OF TWIST OF "+ex.ToString());
+            }
+        }
+
+        async Task getallselectedcontainersofplasticcover()
+        {
+            if (plastic_cover_data.Count > 0)
+            {
+               
+                    try
+                    {
+
+
+                        bool size = false;
+                        bool pillow_color = false;
+                        string size_string = "";
+                        string pillow_color_string = "";
+                        long logo_or_not = 0;
+                        if (c_box_1.Checked)
+                        {
+                            logo_or_not = 1;
+                        }
+                        else
+                        {
+                            logo_or_not = 0;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(f1_combo_box.Text))
+                        {
+                            size = false;
+                        }
+                        else
+                        {
+                            size = true;
+                            size_string = " AND SPC.SH_SIZE_ID = @SH_SIZE_ID ";
+                        }
+
+                        if (string.IsNullOrWhiteSpace(f2_combo_box.Text))
+                        {
+                            pillow_color = false;
+                        }
+                        else
+                        {
+                            pillow_color = true;
+                            pillow_color_string = " AND SPC.SH_PILLOW_COLOR_ID = @SH_PILLOW_COLOR_ID ";
+                        }
+
+                        string query = "SELECT TOP(@NO_OF_SELECTED_CONTAINERS) SPPC.SH_CLIENT_ID ,CPC.*";
+                        query += "(SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC ";
+                        query += "WHERE CC.SH_ID = SPPC.SH_CLIENT_ID) AS ";
+                        query += " SH_CLIENT_NAME,";
+                        query += "(SELECT ITS.SH_SIZE_NAME FROM SH_ITEM_SIZE ITS WHERE ";
+                        query += " ITS.SH_ID = SPPC.SH_SIZE_ID ";
+                        query += " ) AS SH_SIZE_NAME ";
+                        query += " ,";
+                        query += "  (SELECT CP.SH_COLOR_NAME FROM SH_COLOR_PILLOW CP ";
+                        query += " WHERE CP.SH_ID = SPPC.SH_PILLOW_COLOR_ID ) AS SH_PILLOW_COLOR ";
+                        query += ",";
+                        query += " SPPC.SH_LOGO_OR_NOT ,";
+                        query += "SPPC.SH_PILLOW_COLOR_ID,";
+                        query += "SPPC.SH_SIZE_ID ,";
+                        query += " SPPC.SH_ID AS SH_SPECIFICATION_OF_PLASTIC_COVER_ID ";
+                        query += " FROM SH_CONTAINERS_OF_PLASTIC_COVER CPC ";
+                        query += " JOIN SH_QUANTITY_OF_PLASTIC_COVER QPC ON ";
+                        query += " QPC.SH_ID = CPC.SH_QUANTITY_OF_PLASTIC_COVER_ID ";
+                        query += " JOIN SH_SPECIFICATION_OF_PLASTIC_COVER SPPC ON ";
+                        query += " SPPC.SH_ID = QPC.SH_SPECIFICATION_OF_PLASTIC_COVER_ID ";
+                        query += " WHERE(SPPC.SH_CLIENT_ID = @SH_CLIENT_ID  OR ";
+                        query += " SPPC.SH_CLIENT_ID IN(SELECT CC.SH_ID FROM ";
+                        query += " SH_CLIENT_COMPANY CC WHERE CC.SH_CLIENT_COMPANY_NAME ";
+                        query += " LIKE N'عام')) AND CPC.SH_ID NOT IN ";
+                        query += "     (SELECT SDCPC.SH_ID FROM ";
+                        query += " SH_DISMISSAL_CONTAINERS_OF_PLASTIC_COVER SDCPC ";
+                        query += " WHERE SDCPC.SH_ID = CPC.SH_ID) AND SPPC.SH_LOGO_OR_NOT =  @SH_LOGO_OR_NOT ";
+                        query += size_string + pillow_color_string;
+
+                        myconnection.openConnection();
+                        SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                        cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_LOGO_OR_NOT", logo_or_not);
+                        cmd.Parameters.AddWithValue("@NO_OF_SELECTED_CONTAINERS", long.Parse(no_of_selected_containers_text_box.Text));
+                        if (size)
+                        {
+                            cmd.Parameters.AddWithValue("@SH_SIZE_ID", item_sizes[f1_combo_box.SelectedIndex].SH_ID);
+                        }
+
+                        if (pillow_color)
+                        {
+                            cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", pillow_colors[f2_combo_box.SelectedIndex].SH_ID);
+                        }
+
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        List<SH_CONTAINERS_OF_PLASTIC_COVER> plastic_cover_container = new List<SH_CONTAINERS_OF_PLASTIC_COVER>();
+                        while (reader.Read())
+                        {
+                        plastic_cover_container.Add(new SH_CONTAINERS_OF_PLASTIC_COVER() {
+                            SH_ADDITION_PERMISSION_NUMBER = reader["SH_ADDITION_PERMISSION_NUMBER"].ToString()
+                            ,SH_ADDTION_DATE = DateTime.Parse(reader["SH_ADDTION_DATE"].ToString()),
+                            SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
+                            SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                            SH_NO_ITEMS = long.Parse(reader["SH_NO_ITEMS"].ToString()),
+                            SH_QUANTITY_OF_PLASTIC_COVER_ID = long.Parse(reader["SH_QUANTITY_OF_PLASTIC_COVER_ID"].ToString()),
+                            SH_SPECIFICATION_OF_PLASTIC_COVER_ID = long.Parse(reader["SH_SPECIFICATION_OF_PLASTIC_COVER_ID"].ToString())
+                        });
+                        if (plastic_cover_container.Count>0)
+                        {
+                            dismissed_containers.Add(new SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA() {
+                                no_of_selected_containers = plastic_cover_container.Count,
+                                product_type = product_type_combo_box.SelectedIndex,
+                                product_name = product_type_combo_box.Text,
+                                total_no_of_items_of_selected_containers = long.Parse(total_number_of_items_of_selected_containers.Text),
+                                plastic_cover_containers = plastic_cover_container
+
+                            });
+                        }
+                    }
+                    
+                        reader.Close();
+                        myconnection.openConnection();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("ERROR WHILE GeTTING PLASTic COVER CONTAINERS " + ex.ToString());
+                    }
+                }
+
+
+              
+        }
+
+
+
+
 
         async Task filldismissedcontainersgridview()
         {
@@ -2239,7 +2550,9 @@ namespace Al_Shaheen_System
                         case 0:
                             {
                                 //cans
-                                dismissed_containers_grid_view.Rows.Add(new string[] {
+                                if (dismissed_containers[i].cans_parcels.Count>0)
+                                {
+                                    dismissed_containers_grid_view.Rows.Add(new string[] {
                                     (i+1).ToString(),
                                     dismissed_containers[i].product_name,
                                     dismissed_containers[i].cans_parcels[0].SH_CLIENT_NAME,
@@ -2249,13 +2562,16 @@ namespace Al_Shaheen_System
                                     dismissed_containers[i].cans_parcels[0].SH_TOTAL_NUMBER_OF_CANS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
+                                }
+                               
                                 break;
                             }
                         case 1:
                             {
                                 //bottom data
-
-                                dismissed_containers_grid_view.Rows.Add(new string[] {
+                                if (dismissed_containers[i].bottom_containers.Count>0)
+                                {
+                                    dismissed_containers_grid_view.Rows.Add(new string[] {
                                     (i+1).ToString(),
                                     dismissed_containers[i].product_name,
                                     mclient.SH_CLIENT_COMPANY_NAME,
@@ -2266,6 +2582,8 @@ namespace Al_Shaheen_System
                                     dismissed_containers[i].bottom_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
+                                }
+                                
 
 
                                 break;
@@ -2273,22 +2591,134 @@ namespace Al_Shaheen_System
                         case 2:
                             {
                                 //rlt data
-
-                                dismissed_containers_grid_view.Rows.Add(new string[] {
+                                if (dismissed_containers[i].rlt_containers.Count>0)
+                                {
+                                    try
+                                    {
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
                                     (i+1).ToString(),
                                     dismissed_containers[i].product_name,
                                     mclient.SH_CLIENT_COMPANY_NAME,
                                     //dismissed_containers[i].bottom_containers[0].,
                                      "RLT",
-                                     dismissed_containers[i].rlt_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].rlt_containers[0].SH_CONTAINER_NAME,
                                     dismissed_containers[i].rlt_containers.Count.ToString(),
                                     dismissed_containers[i].rlt_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("ERRO WILE fill rlt DaTA TO diSmissEd GRiD vIEW " + ex.ToString());
+                                    }
+                                }
+                                
+
+                                break;
+                            }
+                        case 3:
+                            {
+                                //easy open data 
+                                if (dismissed_containers[i].easy_open_containers.Count>0)
+                                {
+                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    mclient.SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                     "إيزى أوبن ",
+                                     dismissed_containers[i].easy_open_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].easy_open_containers.Count.ToString(),
+                                    dismissed_containers[i].easy_open_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+                                }
+                                
+
+                                break;
+                            }
+                        case 4:
+                            {
+                                //peel off
+
+                                if (dismissed_containers[i].peel_off_containers.Count > 0)
+                                {
+                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    mclient.SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                     "إيزى أوبن",
+                                    dismissed_containers[i].peel_off_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].peel_off_containers.Count.ToString(),
+                                    dismissed_containers[i].peel_off_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+                                }
 
 
                                 break;
                             }
+                        case 5:
+                            {
+                                //twist of
+
+                                if (dismissed_containers[i].twist_of_containers.Count > 0)
+                                {
+                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    mclient.SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                     "تويست أوف",
+                                    dismissed_containers[i].twist_of_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].twist_of_containers.Count.ToString(),
+                                    dismissed_containers[i].twist_of_containers[0].SH_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+                                }
+
+                                break;
+                            }
+                        case 6:
+                            {
+                                //plastic cover 
+                                if (dismissed_containers[i].plastic_cover_containers.Count > 0)
+                                {
+                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    mclient.SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                     "غطاء بلاستيك",
+                                    dismissed_containers[i].plastic_cover_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].plastic_cover_containers.Count.ToString(),
+                                    dismissed_containers[i].plastic_cover_containers[0].SH_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+                                }
+                                break;
+                            }
+                        case 7:
+                            {
+                                //plastic mold 
+                                if (dismissed_containers[i].plastic_mold_containers.Count > 0)
+                                {
+                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    mclient.SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                     "طبة بلاستيك",
+                                    dismissed_containers[i].plastic_mold_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].plastic_mold_containers.Count.ToString(),
+                                    dismissed_containers[i].plastic_mold_containers[0].SH_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+                                }
+                                break;
+                            }
+
 
                         default:
                             break;
@@ -2340,32 +2770,177 @@ namespace Al_Shaheen_System
                     case 3:
                         {
                             //easy open
+                            await getallselectedcontainersofeasyopen();
+                            await filldismissedcontainersgridview();
                             break;
                         }
                     case 4:
                         {
                             //peel off
+                            await getallselectedcontainersofpeeloff();
+                            await filldismissedcontainersgridview();
                             break;
                         }
                     case 5:
                         {
                             //twist of
+                            await getallselectedcontainersoftwistof();
+                            await filldismissedcontainersgridview();
                             break;
                         }
                     case 6:
                         {
                             //plastic cover
+                            await getallselectedcontainersofplasticcover();
+                            await filldismissedcontainersgridview();
                             break;
                         }
                     case 7:
                         {
                             //plastic mold
+                            await getallselectedcontainersofplasticmold();
+                            await filldismissedcontainersgridview();
                             break;
                         }
                     default:
                         break;
                 }
             }
+        }
+
+        async Task getallselectedcontainersofplasticmold()
+        {
+            bool MOLD_SIZE = false;
+            bool MOLD_TYPE = false;
+            bool PILLOW_COLOR = false;
+            string MOLD_SIZE_STRING = "";
+            string MOLD_TYPE_STRING = "";
+            string PILLOW_COLOR_STRING = "";
+
+
+            if (f1_combo_box.Visible)
+            {
+                if (string.IsNullOrWhiteSpace(f1_combo_box.Text))
+                {
+                    MOLD_SIZE = false;
+                }
+                else
+                {
+                    MOLD_SIZE = true;
+                    MOLD_SIZE_STRING = " AND SPPM.SH_SIZE_ID = @SH_SIZE_ID";
+                }
+
+            }
+
+            if (f2_combo_box.Visible)
+            {
+                if (string.IsNullOrWhiteSpace(f2_combo_box.Text))
+                {
+                    PILLOW_COLOR = false;
+                }
+                else
+                {
+                    PILLOW_COLOR = true;
+                    PILLOW_COLOR_STRING = " AND SPPM.SH_PILLOW_COLOR_ID = @SH_PILLOW_COLOR_ID";
+                }
+
+            }
+
+            if (f3_combo_box.Visible)
+            {
+                if (string.IsNullOrWhiteSpace(f3_combo_box.Text))
+                {
+                    MOLD_TYPE = false;
+                }
+                else
+                {
+                    MOLD_TYPE = true;
+                    MOLD_TYPE_STRING = " AND SPPM.SH_MOLD_TYPE_ID = @SH_MOLD_TYPE_ID";
+                }
+            }
+            string query = " SELECT TOP(@NO_OF_SELECTED_CONTAINERS) CPM.*,";
+            query += " CPM.SH_CONTAINER_NAME , ";
+            query += "SPPM.SH_ID AS SH_SPCIFICATION_OF_PLASTIC_MOLD_ID ,";
+            query += " SPPM.SH_CLIENT_ID, ";
+            query += " (SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC WHERE ";
+            query += " CC.SH_ID = SPPM.SH_CLIENT_ID ";
+            query += ") AS SH_CLIENT_COMPANY_NAME, ";
+            query += "CPM.SH_NO_ITEMS , ";
+            query += "SPPM.SH_PILLOW_COLOR_ID, ";
+            query += "(SELECT CP.SH_COLOR_NAME FROM SH_COLOR_PILLOW CP WHERE CP.SH_ID = ";
+            query += "    SPPM.SH_PILLOW_COLOR_ID ) AS SH_COLOR_NAME,";
+            query += "SPPM.SH_SIZE_ID, ";
+            query += " (SELECT ITS.SH_MOLD_SIZE_VALUE FROM SH_MOLD_SIZE ITS WHERE ITS.SH_ID =SPPM.SH_SIZE_ID ) AS SH_SIZE_NAME,";
+            query += "SPPM.SH_MOLD_TYPE_ID ,";
+            query += "(SELECT MT.SH_MOLD_TYPE_NAME FROM SH_MOLD_TYPES MT ";
+            query += " WHERE MT.SH_ID = SPPM.SH_MOLD_TYPE_ID )AS SH_MOLD_TYPE_NAME ";
+            query += " FROM SH_CONTAINERS_OF_PLASTIC_MOLD CPM ";
+            query += " JOIN SH_QUANTITY_OF_PLASTIC_MOLD QPM ON ";
+            query += " QPM.SH_ID = CPM.SH_QUANTITY_OF_PLASTIC_MOLD_ID ";
+            query += " JOIN SH_SPECIFICATION_OF_PLASTIC_MOLD SPPM ON ";
+            query += " SPPM.SH_ID = QPM.SH_SPECIFICATION_OF_PLASTIC_MOLD_ID ";
+            query += " WHERE(SPPM.SH_CLIENT_ID = @SH_CLIENT_ID OR ";
+            query += " SPPM.SH_CLIENT_ID IN(SELECT CC.SH_ID FROM SH_CLIENT_COMPANY CC  ";
+            query += " WHERE CC.SH_CLIENT_COMPANY_NAME LIKE N'عام')) ";
+            query += MOLD_SIZE_STRING + MOLD_TYPE_STRING + PILLOW_COLOR_STRING;
+            query += " AND CPM.SH_ID NOT IN (SELECT DCPM.SH_ID FROM SH_DISMISSAL_CONTAINERS_OF_PLASTIC_MOLD DCPM WHERE DCPM.SH_CONTAINER_OF_PLASTIC_MOLD_ID = CPM.SH_ID )";
+
+
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
+                cmd.Parameters.AddWithValue("@NO_OF_SELECTED_CONTAINERS",long.Parse(no_of_selected_containers_text_box.Text));
+                if (MOLD_TYPE)
+                {
+                    cmd.Parameters.AddWithValue("@SH_MOLD_TYPE_ID", MOLD_TYPES[f3_combo_box.SelectedIndex].SH_ID);
+                }
+
+                if (MOLD_SIZE)
+                {
+                    cmd.Parameters.AddWithValue("@SH_SIZE_ID", mold_sizes[f1_combo_box.SelectedIndex].SH_ID);
+                }
+
+                if (PILLOW_COLOR)
+                {
+                    cmd.Parameters.AddWithValue("@SH_PILLOW_COLOR_ID", pillow_colors[f2_combo_box.SelectedIndex].SH_ID);
+                }
+                SqlDataReader reader = cmd.ExecuteReader();
+                List<SH_CONTAINERS_OF_PLASTIC_MOLD> platic_mold_containers = new List<SH_CONTAINERS_OF_PLASTIC_MOLD>();
+                while (reader.Read())
+                {
+                    platic_mold_containers.Add(new SH_CONTAINERS_OF_PLASTIC_MOLD()
+                    {
+                        SH_ADDITION_PERMISSION_NUMBER = reader["SH_ADDITION_PERMISSION_NUMBER"].ToString(),
+                        SH_ADDTION_DATE = DateTime.Parse(reader["SH_ADDTION_DATE"].ToString()),
+                        SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_NO_ITEMS = long.Parse(reader["SH_NO_ITEMS"].ToString()),
+                        SH_QUANTITY_OF_PLASTIC_MOLD_ID = long.Parse(reader["SH_QUANTITY_OF_PLASTIC_MOLD_ID"].ToString()),
+                        SH_SPCIFICATION_OF_PLASTIC_MOLD_ID = long.Parse(reader["SH_SPCIFICATION_OF_PLASTIC_MOLD_ID"].ToString())
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+                if (platic_mold_containers.Count>0)
+                {
+                    dismissed_containers.Add(new SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA() {
+                        plastic_mold_containers = platic_mold_containers,
+                        no_of_selected_containers = platic_mold_containers.Count,
+                        product_name = product_type_combo_box.Text,
+                        total_no_of_items_of_selected_containers = long.Parse(total_number_of_items_of_selected_containers.Text),
+                        product_type = product_type_combo_box.SelectedIndex
+
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING PLASTIC MOLD DATA " + ex.ToString());
+            }
+
         }
 
         private void client_text_box_TextChanged(object sender, EventArgs e)
@@ -2445,12 +3020,31 @@ namespace Al_Shaheen_System
                         }
                     case 3:
                         {
+
                             //easy open
+                            long testnumber = 0;
+                            if (long.TryParse(no_of_selected_containers_text_box.Text, out testnumber))
+                            {
+                                if (easy_open_containers[finished_product_properties_grid_view.SelectedRows[0].Index].number_of_containers < long.Parse(no_of_selected_containers_text_box.Text))
+                                {
+                                    MessageBox.Show("الكمية غير موجودة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                                    no_of_selected_containers_text_box.Text = "";
+                                }
+                            }
                             break;
                         }
                     case 4:
                         {
                             //peel off
+                            long testnumber = 0;
+                            if (long.TryParse(no_of_selected_containers_text_box.Text, out testnumber))
+                            {
+                                if (peel_off_containers[finished_product_properties_grid_view.SelectedRows[0].Index].number_of_containers < long.Parse(no_of_selected_containers_text_box.Text))
+                                {
+                                    MessageBox.Show("الكمية غير موجودة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                                    no_of_selected_containers_text_box.Text = "";
+                                }
+                            }
                             break;
                         }
                     case 5:
