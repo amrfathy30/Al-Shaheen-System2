@@ -436,6 +436,16 @@
             // 
             // المخازنToolStripMenuItem
             // 
+            this.المخازنToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                 مخزنالصفيحToolStripMenuItem,
+مخزنالمنتجالتامToolStripMenuItem,
+المخازنToolStripMenuItem1,
+المطابعToolStripMenuItem
+
+            });
+               
+
+
             this.المخازنToolStripMenuItem.Name = "المخازنToolStripMenuItem";
             this.المخازنToolStripMenuItem.Size = new System.Drawing.Size(91, 32);
             this.المخازنToolStripMenuItem.Text = "المخازن ";
@@ -912,6 +922,13 @@
             // 
             // مخزنالمنتجالتامToolStripMenuItem
             // 
+            this.مخزنالمنتجالتامToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                إضافةToolStripMenuItem,
+صرفToolStripMenuItem,
+حسابالعملاءToolStripMenuItem,
+إرصدةالمنتجالتامToolStripMenuItem
+
+            });
             this.مخزنالمنتجالتامToolStripMenuItem.Name = "مخزنالمنتجالتامToolStripMenuItem";
             this.مخزنالمنتجالتامToolStripMenuItem.Size = new System.Drawing.Size(230, 32);
             this.مخزنالمنتجالتامToolStripMenuItem.Text = "مخزن المنتج التام ";
