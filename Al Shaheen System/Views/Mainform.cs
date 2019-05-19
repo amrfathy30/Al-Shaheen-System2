@@ -751,5 +751,70 @@ namespace Al_Shaheen_System
             
         }
 
+        private void علبمنتجتامToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addnewfinishedcan myform = new addnewfinishedcan();
+            myform.Show();
+        }
+
+        private void قــــــاعToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addnewBottom myform = new addnewBottom();
+            myform.Show();
+        }
+
+        private void وشToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            addnewfaceproduct myform = new addnewfaceproduct(mEmployee);
+            myform.Show();
+        }
+
+        private void rLTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addnewrlt myform = new addnewrlt();
+            myform.Show();
+        }
+
+        private void إيزىأوبنToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Easyopenaddingform myform = new Easyopenaddingform();
+            myform.Show();
+        }
+
+        private void بيلأوفToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            addnewpeeloff myform = new addnewpeeloff();
+            myform.Show();
+        }
+
+        private void غطاءبلاستيكToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addnewplasticcoverform myform = new addnewplasticcoverform();
+            myform.Show();
+        }
+
+        private void طبةبلاستيكToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            addnewplasticmoldform myform = new addnewplasticmoldform();
+            myform.Show();
+        }
+
+        private void إذنالإستلامToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clientreceivalpermissionnumberform myform = new clientreceivalpermissionnumberform(mEmployee, mAccount,mPermission);
+            myform.Show();
+        }
+
+        private void إرصدةالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            allfinishedproductsdata myform = new allfinishedproductsdata();
+            myform.Show();
+        }
+
+        private void حسابصنفالعميلToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clientmaterialbalanceform myform = new clientmaterialbalanceform();
+            myform.Show();
+        }
     }
 }

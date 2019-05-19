@@ -102,6 +102,12 @@
     </Compile>
     <Compile Include="easy_open_container_data.cs" />
     <Compile Include="finished_cans_model_data.cs" />
+    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.Designer.cs">
+      <DependentUpon>flashbackPalletscartonseparatorsandwoodbush.cs</DependentUpon>
+    </Compile>
     <Compile Include="Holl1Frm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -935,9 +941,6 @@
     <EmbeddedResource Include="client_receit_order_report.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>client_receit_order_report.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="flashbackPalletscartonseparatorsandwoodbush.resx">
-      <DependentUpon>flashbackPalletscartonseparatorsandwoodbush.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="printreceivalpermission.resx">
       <DependentUpon>printreceivalpermission.cs</DependentUpon>
