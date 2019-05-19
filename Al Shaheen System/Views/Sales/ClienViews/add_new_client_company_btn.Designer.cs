@@ -45,6 +45,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.title_label = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.textBoxMobile = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -94,6 +96,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBoxMobile);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.client_company_fax_number_text_box);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -112,7 +116,7 @@
             // 
             // client_company_fax_number_text_box
             // 
-            this.client_company_fax_number_text_box.Location = new System.Drawing.Point(15, 169);
+            this.client_company_fax_number_text_box.Location = new System.Drawing.Point(15, 197);
             this.client_company_fax_number_text_box.Name = "client_company_fax_number_text_box";
             this.client_company_fax_number_text_box.Size = new System.Drawing.Size(292, 26);
             this.client_company_fax_number_text_box.TabIndex = 10;
@@ -120,7 +124,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(353, 175);
+            this.label7.Location = new System.Drawing.Point(353, 203);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 20);
             this.label7.TabIndex = 9;
@@ -216,6 +220,22 @@
             this.errorProvider1.ContainerControl = this;
             this.errorProvider1.RightToLeft = true;
             // 
+            // textBoxMobile
+            // 
+            this.textBoxMobile.Location = new System.Drawing.Point(15, 159);
+            this.textBoxMobile.Name = "textBoxMobile";
+            this.textBoxMobile.Size = new System.Drawing.Size(292, 26);
+            this.textBoxMobile.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(353, 165);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "رقم الموبايل";
+            // 
             // add_new_client_company_btn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,5 +281,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox client_company_fax_number_text_box;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxMobile;
+        private System.Windows.Forms.Label label1;
     }
 }

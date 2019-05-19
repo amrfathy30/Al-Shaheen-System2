@@ -13,6 +13,7 @@ namespace Al_Shaheen_System
 {
     public partial class searchinmuranparcels : Form
     {
+        SH_USER_ACCOUNTS Maccount = new SH_USER_ACCOUNTS();
 
         List<SH_ITEM_SIZE> sizes = new List<SH_ITEM_SIZE>();
         List<SH_FACE_COLOR> faces = new List<SH_FACE_COLOR>();
@@ -21,9 +22,10 @@ namespace Al_Shaheen_System
         List<SH_MURAN_MATERIAL_PARCEL> ex_parcels = new List<SH_MURAN_MATERIAL_PARCEL>();
 
 
-        public searchinmuranparcels()
+        public searchinmuranparcels( SH_USER_ACCOUNTS anyAccount)
         {
             InitializeComponent();
+            Maccount = anyAccount;
         }
         void loadallfacecolors()
         {
@@ -433,10 +435,10 @@ namespace Al_Shaheen_System
                     ex_parcels.Add(parcels[muran_parcels_grid_view.SelectedRows[i].Index]);
                 }
 
-                using (Exchangeofmurantinbasicinfo myform = new Exchangeofmurantinbasicinfo(ex_parcels))
-                {
-                    myform.ShowDialog();
-                }
+                Exchangeofmurantinbasicinfo myform = new Exchangeofmurantinbasicinfo(ex_parcels,Maccount);
+               
+                    myform.Show();
+                
             }
             else
             {

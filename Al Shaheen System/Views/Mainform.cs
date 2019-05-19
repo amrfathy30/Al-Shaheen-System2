@@ -18,10 +18,10 @@ namespace Al_Shaheen_System
         SH_EMPLOYEES mEmployee = new SH_EMPLOYEES();
         SH_USER_ACCOUNTS mAccount = new SH_USER_ACCOUNTS();
         SH_USER_PERMISIONS mPermission = new SH_USER_PERMISIONS();
-        public Mainform(SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyaccount, SH_USER_PERMISIONS anypermission)
+        public Mainform(SH_EMPLOYEES anyEmployee, SH_USER_ACCOUNTS anyaccount, SH_USER_PERMISIONS anypermission)
         {
             InitializeComponent();
-            mEmployee = anyemp;
+            mEmployee = anyEmployee;
             mAccount = anyaccount;
             mPermission = anypermission;
 
@@ -45,10 +45,7 @@ namespace Al_Shaheen_System
 
         private void صرفالصفيحالخامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //using (exchangerawtin myform = new exchangerawtin())
-            //{
-            //    myform.ShowDialog();
-            //}
+         
             searchinrawmaterialform myform = new searchinrawmaterialform();
         
                 myform.Show();
@@ -249,7 +246,7 @@ namespace Al_Shaheen_System
 
         private void صرفالصفيحالمورنشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            searchinmuranparcels myform = new searchinmuranparcels();
+            searchinmuranparcels myform = new searchinmuranparcels(mAccount);
            
                 myform.Show();
            
@@ -302,7 +299,7 @@ namespace Al_Shaheen_System
 
         private void صرفالصفيحالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            searchinprintedparcels myform = new searchinprintedparcels();
+            searchinprintedparcels myform = new searchinprintedparcels(mAccount);
          
                 myform.Show();
           
@@ -310,7 +307,7 @@ namespace Al_Shaheen_System
 
         private void صرفالصفيحالمقصوصالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            searchincutprintedmaterial myform = new searchincutprintedmaterial();
+            searchincutprintedmaterial myform = new searchincutprintedmaterial(mAccount);
          
                 myform.Show();
           
@@ -733,10 +730,10 @@ namespace Al_Shaheen_System
 
         private void أللإنتاجToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProductionFrm frm = new ProductionFrm();
+            ProductionFrm frm = new ProductionFrm(mAccount);
             frm.Show();
         }
 
-     
+       
     }
 }

@@ -13,13 +13,98 @@ namespace Al_Shaheen_System
 {
     public partial class exchange_of_cut_printed_material : Form
     {
+        SH_USER_ACCOUNTS Maccount = new SH_USER_ACCOUNTS();
+        List<SH_DEPARTEMENTS> deptList = new List<SH_DEPARTEMENTS>();
+        List<SH_EMPLOYEES> empList = new List<SH_EMPLOYEES>();
         List<SH_PALLETS_OF_CUT_PRINTED_MATERIAL> parcels = new List<SH_PALLETS_OF_CUT_PRINTED_MATERIAL>();
         List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
-        public exchange_of_cut_printed_material(List<SH_PALLETS_OF_CUT_PRINTED_MATERIAL> anyparcels)
+        public exchange_of_cut_printed_material(List<SH_PALLETS_OF_CUT_PRINTED_MATERIAL> anyparcels,SH_USER_ACCOUNTS anyaccount)
         {
             InitializeComponent();
             parcels = anyparcels;
+            Maccount = anyaccount;
+        }
+        void loadReciver()
+        {
+            try
+            {
+                string query = "select * from SH_EMPLOYEES where SH_DEPARTMENT_ID=@id";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@id", deptList[comboBoxDept.SelectedIndex].SH_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    empList.Add(new SH_EMPLOYEES() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString() });
+                }
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error in getting deptID" + ex.ToString());
+            }
+        }
+        void fillReciverCombobox()
+        {
+            empList.Clear();
+            comboBoxreceival_man.Items.Clear();
+            loadReciver();
+            if (empList.Count <= 0)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < empList.Count; i++)
+                {
+                    comboBoxreceival_man.Items.Add(empList[i].SH_EMPLOYEE_NAME);
+                }
+            }
+        }
+        void laodComboBxDept()
+        {
+
+            try
+            {
+                string query = "SELECT * FROM SH_DEPARTEMENTS where SH_ID=5 or SH_ID=6";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                //cmd.CommandType = CommandType.Text;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    deptList.Add(new SH_DEPARTEMENTS { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_DEPARTEMNT_NAME = reader["SH_DEPARTEMNT_NAME"].ToString() });
+                }
+
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO WHILE GETTING departements Parts DATA FROM DB " + ex.ToString());
+            }
+        }
+
+        void fillComboBxDept()
+        {
+
+            deptList.Clear();
+            laodComboBxDept();
+            comboBoxDept.Items.Clear();
+            if (deptList.Count <= 0)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < deptList.Count; i++)
+                {
+                    comboBoxDept.Items.Add(deptList[i].SH_DEPARTEMNT_NAME);
+                }
+            }
         }
 
         void loadallstocks()
@@ -124,6 +209,8 @@ namespace Al_Shaheen_System
         {
             fillstockscombobox();
             fillcutprintedparcelsgridview();
+            fillComboBxDept();
+            stock_man_text_box.Text = Maccount.SH_EMP_NAME;
          }
 
         private void cancel_btn_Click(object sender, EventArgs e)
@@ -158,7 +245,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_EXCHANGE_DATE" , DateTime.Now);
                 cmd.Parameters.AddWithValue("@SH_EXCHANGE_PLACE" , p_text_box.Text);
                 cmd.Parameters.AddWithValue("@SH_EXCHANGE_REASON" , "الانتاج");
-                cmd.Parameters.AddWithValue("@SH_RECEIVED_MAN_NAME", receival_man_text_box.Text);
+                cmd.Parameters.AddWithValue("@SH_RECEIVED_MAN_NAME", comboBoxreceival_man.Text);
                 cmd.Parameters.AddWithValue("@SH_STOCK_ID" , stocks[stock_combo_box.SelectedIndex].SH_ID);
                 cmd.Parameters.AddWithValue("@SH_STOCK_NAME" , stocks[stock_combo_box.SelectedIndex].SH_STOCK_NAME);
                 cmd.Parameters.AddWithValue("@SH_NO_OF_BOTTELS" , gettotalbottels());
@@ -195,13 +282,23 @@ namespace Al_Shaheen_System
 
         private void save_btn_Click(object sender, EventArgs e)
         {
-            if ( parcels.Count <= 0 ||    string.IsNullOrEmpty(work_number_text_box.Text) || string.IsNullOrEmpty(exchange_permission_number.Text) || string.IsNullOrEmpty(receival_man_text_box.Text) || string.IsNullOrEmpty(stock_man_text_box.Text) || string.IsNullOrEmpty(confidential_man_text_box.Text) || string.IsNullOrEmpty(p_text_box.Text))
+            if ( parcels.Count <= 0 ||    string.IsNullOrEmpty(work_number_text_box.Text) || string.IsNullOrEmpty(exchange_permission_number.Text) || string.IsNullOrEmpty(comboBoxreceival_man.Text) || string.IsNullOrEmpty(stock_man_text_box.Text) || string.IsNullOrEmpty(confidential_man_text_box.Text) || string.IsNullOrEmpty(p_text_box.Text))
             {
                 MessageBox.Show("يرجي التاكد من كتابة البيانات بشكل صحيح " , "خطأ" , MessageBoxButtons.OK , MessageBoxIcon.Error , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
             }else
             {
                 saveexchangedprintedmaterialpallets();
             }
+        }
+
+        private void comboBoxDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fillReciverCombobox();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

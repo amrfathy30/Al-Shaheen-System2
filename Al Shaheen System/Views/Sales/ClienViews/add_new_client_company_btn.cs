@@ -63,7 +63,7 @@ namespace Al_Shaheen_System
                         }
                         string query = "INSERT INTO SH_CLIENT_COMPANY";
                         query += " (SH_CLIENT_COMPANY_NAME, SH_CLIENT_COMPANY_TYPE, SH_CLIENT_COMPANY_TELEPHONE,";
-                        query += "  SH_CLIENT_COMPANY_FAX_NUMBER) VALUES(@SH_CLIENT_COMPANY_NAME,@SH_CLIENT_COMPANY_TYPE,@SH_CLIENT_COMPANY_TELEPHONE , @SH_CLIENT_COMPANY_FAX_NUMBER)";
+                        query += "  SH_CLIENT_COMPANY_FAX_NUMBER,SH_CLIENT_COMPANY_MOBILE) VALUES(@SH_CLIENT_COMPANY_NAME,@SH_CLIENT_COMPANY_TYPE,@SH_CLIENT_COMPANY_TELEPHONE , @SH_CLIENT_COMPANY_FAX_NUMBER,@SH_CLIENT_COMPANY_MOBILE)";
                         try
                         {
                             DatabaseConnection myconnection = new DatabaseConnection();
@@ -74,6 +74,7 @@ namespace Al_Shaheen_System
                             cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_TELEPHONE", company_telephone_text_box.Text);
                             
                             cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_FAX_NUMBER", client_company_fax_number_text_box.Text);
+                            cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_MOBILE", textBoxMobile.Text);
                             cmd.ExecuteNonQuery();
                             myconnection.closeConnection();
                             MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);

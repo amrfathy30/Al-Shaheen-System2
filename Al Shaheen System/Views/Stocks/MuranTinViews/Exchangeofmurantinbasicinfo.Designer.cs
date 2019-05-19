@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -41,7 +41,6 @@
             this.p_label = new System.Windows.Forms.Label();
             this.stock_combo_box = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.receival_man_text_box = new System.Windows.Forms.TextBox();
             this.stock_man_text_box = new System.Windows.Forms.TextBox();
             this.confidential_man_text_box = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -65,6 +64,9 @@
             this.save_btn = new System.Windows.Forms.Button();
             this.cancel_btn = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboBoxDept = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxreceival_man = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.muran_parcels_grid_view)).BeginInit();
@@ -83,12 +85,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxreceival_man);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.comboBoxDept);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.p_text_box);
             this.groupBox1.Controls.Add(this.p_label);
             this.groupBox1.Controls.Add(this.stock_combo_box);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.receival_man_text_box);
             this.groupBox1.Controls.Add(this.stock_man_text_box);
             this.groupBox1.Controls.Add(this.confidential_man_text_box);
             this.groupBox1.Controls.Add(this.label11);
@@ -101,7 +105,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(31, 88);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(959, 202);
+            this.groupBox1.Size = new System.Drawing.Size(959, 217);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "طلب الصرف";
@@ -111,9 +115,9 @@
             this.groupBox3.Controls.Add(this.production_radio_btn);
             this.groupBox3.Controls.Add(this.muraning_radio_btn);
             this.groupBox3.Controls.Add(this.printering_radio_btn);
-            this.groupBox3.Location = new System.Drawing.Point(483, 139);
+            this.groupBox3.Location = new System.Drawing.Point(483, 155);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(436, 50);
+            this.groupBox3.Size = new System.Drawing.Size(436, 45);
             this.groupBox3.TabIndex = 42;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "سبب الصرف";
@@ -188,15 +192,9 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "المخزن ";
             // 
-            // receival_man_text_box
-            // 
-            this.receival_man_text_box.Location = new System.Drawing.Point(604, 109);
-            this.receival_man_text_box.Name = "receival_man_text_box";
-            this.receival_man_text_box.Size = new System.Drawing.Size(177, 26);
-            this.receival_man_text_box.TabIndex = 36;
-            // 
             // stock_man_text_box
             // 
+            this.stock_man_text_box.Enabled = false;
             this.stock_man_text_box.Location = new System.Drawing.Point(117, 75);
             this.stock_man_text_box.Name = "stock_man_text_box";
             this.stock_man_text_box.Size = new System.Drawing.Size(237, 26);
@@ -221,7 +219,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(841, 114);
+            this.label12.Location = new System.Drawing.Point(841, 129);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(42, 20);
             this.label12.TabIndex = 28;
@@ -238,7 +236,7 @@
             // 
             // exchange_permission_number
             // 
-            this.exchange_permission_number.Location = new System.Drawing.Point(604, 75);
+            this.exchange_permission_number.Location = new System.Drawing.Point(604, 51);
             this.exchange_permission_number.Name = "exchange_permission_number";
             this.exchange_permission_number.Size = new System.Drawing.Size(177, 26);
             this.exchange_permission_number.TabIndex = 20;
@@ -246,7 +244,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(790, 78);
+            this.label14.Location = new System.Drawing.Point(790, 54);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(93, 20);
             this.label14.TabIndex = 19;
@@ -254,7 +252,7 @@
             // 
             // work_number_text_box
             // 
-            this.work_number_text_box.Location = new System.Drawing.Point(604, 38);
+            this.work_number_text_box.Location = new System.Drawing.Point(604, 19);
             this.work_number_text_box.Name = "work_number_text_box";
             this.work_number_text_box.Size = new System.Drawing.Size(177, 26);
             this.work_number_text_box.TabIndex = 18;
@@ -262,7 +260,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(794, 39);
+            this.label15.Location = new System.Drawing.Point(794, 22);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(89, 20);
             this.label15.TabIndex = 17;
@@ -274,14 +272,14 @@
             this.muran_parcels_grid_view.AllowUserToDeleteRows = false;
             this.muran_parcels_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.muran_parcels_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.muran_parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.muran_parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.muran_parcels_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.muran_parcels_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -294,18 +292,18 @@
             this.Column8,
             this.Column9,
             this.Column10});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.muran_parcels_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
-            this.muran_parcels_grid_view.Location = new System.Drawing.Point(31, 296);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.muran_parcels_grid_view.DefaultCellStyle = dataGridViewCellStyle4;
+            this.muran_parcels_grid_view.Location = new System.Drawing.Point(31, 311);
             this.muran_parcels_grid_view.Name = "muran_parcels_grid_view";
             this.muran_parcels_grid_view.ReadOnly = true;
-            this.muran_parcels_grid_view.Size = new System.Drawing.Size(959, 445);
+            this.muran_parcels_grid_view.Size = new System.Drawing.Size(959, 430);
             this.muran_parcels_grid_view.TabIndex = 43;
             // 
             // Column1
@@ -400,6 +398,32 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // comboBoxDept
+            // 
+            this.comboBoxDept.FormattingEnabled = true;
+            this.comboBoxDept.Location = new System.Drawing.Point(604, 81);
+            this.comboBoxDept.Name = "comboBoxDept";
+            this.comboBoxDept.Size = new System.Drawing.Size(177, 28);
+            this.comboBoxDept.TabIndex = 43;
+            this.comboBoxDept.SelectedIndexChanged += new System.EventHandler(this.comboBoxDept_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(824, 89);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 20);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "القسم المستلم";
+            // 
+            // comboBoxreceival_man
+            // 
+            this.comboBoxreceival_man.FormattingEnabled = true;
+            this.comboBoxreceival_man.Location = new System.Drawing.Point(604, 121);
+            this.comboBoxreceival_man.Name = "comboBoxreceival_man";
+            this.comboBoxreceival_man.Size = new System.Drawing.Size(177, 28);
+            this.comboBoxreceival_man.TabIndex = 45;
+            // 
             // Exchangeofmurantinbasicinfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -440,7 +464,6 @@
         private System.Windows.Forms.Label p_label;
         private System.Windows.Forms.ComboBox stock_combo_box;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox receival_man_text_box;
         private System.Windows.Forms.TextBox stock_man_text_box;
         private System.Windows.Forms.TextBox confidential_man_text_box;
         private System.Windows.Forms.Label label11;
@@ -464,5 +487,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.ComboBox comboBoxreceival_man;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxDept;
     }
 }

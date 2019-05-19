@@ -361,7 +361,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID" , client_products[i].SH_CLIENT_PRODUCT_ID);
                         cmd.Parameters.AddWithValue("@SH_NO_BOTTELS_PER_SHEET", client_products[i].SH_NO_BOTTLES_PER_SHEET);
                         cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_NAME" , client_products[i].SH_CLIENT_PRODUCT_NAME);
-                        cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_BOTTELS" , parcel_no_bottels);
+                        cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_BOTTELS" , client_products[i].SH_NO_BOTTLES_PER_SHEET*parcel_no_bottels);
                         cmd.ExecuteNonQuery();
                         myconnection.closeConnection();
                     }
@@ -701,7 +701,7 @@ namespace Al_Shaheen_System
                     {
 
                         //getting products data
-                        products.Add(new SH_CLIENTS_PRODUCTS() { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()) , SH_CLIENT_NAME = reader["SH_CLIENT_NAME"].ToString() , SH_BOTTLE_HEIGHT = double.Parse(reader["SH_BOTTLE_HEIGHT"].ToString()) ,  SH_PRINTING_TYPE  = reader["SH_PRINTING_TYPE"].ToString() , SH_PRODUCT_NAME = reader["SH_PRODUCT_NAME"].ToString() , SH_BOTTLE_CAPACITY = double.Parse(reader["SH_BOTTLE_CAPACITY"].ToString()) });
+                        products.Add(new SH_CLIENTS_PRODUCTS() { SH_ID = long.Parse(reader["SH_ID"].ToString()) , SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()) , SH_CLIENT_NAME = reader["SH_CLIENT_NAME"].ToString() , SH_BOTTLE_HEIGHT = double.Parse(reader["SH_BOTTLE_HEIGHT"].ToString()) ,  SH_PRINTING_TYPE  = reader["SH_PRINTING_TYPE"].ToString() , SH_PRODUCT_NAME = reader["SH_PRODUCT_NAME"].ToString()   });
 
 
                     }

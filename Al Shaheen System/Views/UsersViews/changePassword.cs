@@ -38,16 +38,16 @@ namespace Al_Shaheen_System
         {
             try
             {
-                SqlConnection conn = new SqlConnection(@"server=SH_PC202\SH_SYSTEM_DB;Initial Catalog=sh_test_db;Integrated Security=true");
 
-                conn.Open();
-                SqlCommand com2 = new SqlCommand("changePassWord", conn);
-                com2.CommandType = CommandType.StoredProcedure;
+                DatabaseConnection conn = new DatabaseConnection();
+                conn.openConnection();
+                SqlCommand cmd = new SqlCommand("changePassWord", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
                 //problem
-                com2.Parameters.AddWithValue("@user", txtUserName.Text);
-                com2.Parameters.AddWithValue("@pass ", txtConfirmPass.Text);
-                com2.Parameters.AddWithValue("@SH_ID", accnt.SH_ID);
-                com2.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@user", txtUserName.Text);
+                cmd.Parameters.AddWithValue("@pass ", txtConfirmPass.Text);
+                cmd.Parameters.AddWithValue("@SH_ID", accnt.SH_ID);
+                cmd.ExecuteNonQuery();
                 MessageBox.Show("تم تغير كلمه السر بنجاح");
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace Al_Shaheen_System
 
         private void bttnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+           Close();
         }
     }
 }

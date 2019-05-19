@@ -35,6 +35,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.clients_combo_box = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBoxourFactory = new System.Windows.Forms.ComboBox();
             this.radioButtonToTheClient = new System.Windows.Forms.RadioButton();
             this.radioButtonFromShaheen = new System.Windows.Forms.RadioButton();
@@ -258,8 +260,6 @@
             this.label41 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
             this.buttonNewProduct = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panelMoneyAfterReciving.SuspendLayout();
@@ -370,6 +370,20 @@
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "التوريد";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(862, 24);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(105, 26);
+            this.dateTimePicker2.TabIndex = 102;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(1048, 25);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(117, 26);
+            this.dateTimePicker1.TabIndex = 101;
             // 
             // comboBoxourFactory
             // 
@@ -3015,20 +3029,6 @@
             this.buttonNewProduct.Text = "اضافة صنف او فرع للعميل";
             this.buttonNewProduct.UseVisualStyleBackColor = true;
             this.buttonNewProduct.Click += new System.EventHandler(this.buttonNewProduct_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(1048, 25);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(117, 26);
-            this.dateTimePicker1.TabIndex = 101;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(862, 24);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(105, 26);
-            this.dateTimePicker2.TabIndex = 102;
             // 
             // ClientSupplyRunOrderFrmNew
             // 

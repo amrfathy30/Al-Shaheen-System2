@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Al_Shaheen_System
 {
     public partial class exchangeofprintedmaterial : Form
     {
+        SH_USER_ACCOUNTS Maccount = new SH_USER_ACCOUNTS();
         List<SH_EMPLOYEES> empList = new List<SH_EMPLOYEES>();
         List<SH_DEPARTEMENTS> deptList = new List<SH_DEPARTEMENTS>();
         List<SH_PRINTED_MATERIAL_PARCEL> parcels = new List<SH_PRINTED_MATERIAL_PARCEL>();
         List<SH_SHAHEEN_CUTTERS> cutters = new List<SH_SHAHEEN_CUTTERS>();
         List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
-        public exchangeofprintedmaterial(List<SH_PRINTED_MATERIAL_PARCEL> anyparcels)
+        List<SH_SPECIFICATION_OF_PRINTED_MATERIAL> specifMuranMaterialLst = new List<SH_SPECIFICATION_OF_PRINTED_MATERIAL>();
+        List<SH_SPECIFICATION_OF_PRINTED_MATERIAL> specifPrntMaterialLst = new List<SH_SPECIFICATION_OF_PRINTED_MATERIAL>();
+        public exchangeofprintedmaterial(List<SH_PRINTED_MATERIAL_PARCEL> anyparcels,SH_USER_ACCOUNTS anyacount)
         {
             InitializeComponent();
             parcels = anyparcels;
+            Maccount = anyacount;
         }
         void laodComboBxDept()
         {
@@ -95,24 +93,24 @@ namespace Al_Shaheen_System
             }
         }
 
-        void fillComboStockMen()
-        {
+        //void fillComboStockMen()
+        //{
 
-            empList.Clear();
-            laodComboStockMen();
-            comboBoxStockMan.Items.Clear();
-            if (empList.Count <= 0)
-            {
+        //    empList.Clear();
+        //    laodComboStockMen();
+        //    comboBoxStockMan.Items.Clear();
+        //    if (empList.Count <= 0)
+        //    {
 
-            }
-            else
-            {
-                for (int i = 0; i < empList.Count; i++)
-                {
-                    comboBoxStockMan.Items.Add(empList[i].SH_EMPLOYEE_NAME);
-                }
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        for (int i = 0; i < empList.Count; i++)
+        //        {
+        //            comboBoxStockMan.Items.Add(empList[i].SH_EMPLOYEE_NAME);
+        //        }
+        //    }
+        //}
 
 
         void loadReciver()
@@ -197,7 +195,7 @@ namespace Al_Shaheen_System
 
         void updatespecificationvalues(SH_PRINTED_MATERIAL_PARCEL myparcel)
         {
-
+          
             try
             {
                 string query = "UPDATE  SH_SPECIFICATION_OF_PRINTED_MATERIAL ";
@@ -242,14 +240,15 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_NUMBER_OF_SHEETS" , calcualtetotalsheets());
                 cmd.Parameters.AddWithValue("@SH_EXCHANGE_DATE", DateTime.Now);
                 cmd.Parameters.AddWithValue("@SH_EXCHANGE_PERMISSION_NUMBER" , exchange_permission_number.Text);
-                cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME" ,comboBoxStockMan.Text);
+                cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME" ,Maccount.SH_EMP_NAME);
                 cmd.Parameters.AddWithValue("@SH_STOCK_ID" , stocks[stock_combo_box.SelectedIndex].SH_ID);
-                cmd.Parameters.AddWithValue("@SH_CUTTER_ID"  , cutters[cutters_combo_box.SelectedIndex].SH_ID);
-                cmd.Parameters.AddWithValue("@SH_CUTTER_NAME"  , cutters[cutters_combo_box.SelectedIndex].SH_CUTTER_NAME);
-                cmd.Parameters.AddWithValue("@SH_CUTTER_MAN_NAME", cutter_technical_man.Text );
+                cmd.Parameters.AddWithValue("@SH_CUTTER_ID"  , 0);//removed
+                cmd.Parameters.AddWithValue("@SH_CUTTER_NAME"  , "");//removed
+                cmd.Parameters.AddWithValue("@SH_CUTTER_MAN_NAME", "");//removed
                 cmd.Parameters.AddWithValue("@SH_RECEIVED_MAN_NAME" , comboBoxreceival_man.Text);
                 cmd.Parameters.AddWithValue("@SH_CONFIDENTIAL_MAN_NAME"  , confidential_man_text_box.Text);
                 cmd.Parameters.AddWithValue("@SH_STOCK_NAME" , stocks[stock_combo_box.SelectedIndex].SH_STOCK_NAME);
+                cmd.Parameters.AddWithValue("@SH_STOCK_MAN_ID",Maccount.SH_EMP_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
@@ -291,9 +290,6 @@ namespace Al_Shaheen_System
                 MessageBox.Show("تم الحفظ ", "معلومات", MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
             }
         }
-
-
-
         void loadallstocks()
         {
             try
@@ -313,6 +309,80 @@ namespace Al_Shaheen_System
             catch (Exception ex)
             {
                 MessageBox.Show("ERRO WHILE GETTING STOCKS DATA FROM DB " + ex.ToString());
+            }
+        }
+
+        //may be error 
+        void loadPrintedMuran(SH_PRINTED_MATERIAL_PARCEL myparcel)
+        {
+            try
+            {
+                string query = "SELECT * FROM SH_SPECIFICATION_OF_PRINTED_MATERIAL WHERE SH_ID  = @SH_ID ";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_ID", myparcel.SH_SPECIFICATION_OF_PRINTED_MATERIAL_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                   specifPrntMaterialLst.Add(new SH_SPECIFICATION_OF_PRINTED_MATERIAL { SH_ID=long.Parse(reader["SH_ID"].ToString()),SH_ITEM_COATING=reader["SH_ITEM_COATING"].ToString(),SH_ITEM_CODE=reader["SH_ITEM_CODE"].ToString(),SH_ITEM_FINISH=reader["SH_ITEM_FINISH"].ToString(),SH_ITEM_LENGTH=long.Parse(reader["SH_ITEM_LENGTH"].ToString()),SH_ITEM_SHEET_WEIGHT=long.Parse(reader["SH_ITEM_SHEET_WEIGHT"].ToString()),SH_ITEM_TEMPER=reader["SH_ITEM_TEMPER"].ToString(),SH_ITEM_THICKNESS=double.Parse( reader["SH_ITEM_THICKNESS"].ToString()),SH_ITEM_TOTAL_GROSS_WEIGHT=double.Parse( reader["SH_ITEM_TOTAL_GROSS_WEIGHT"].ToString()),SH_ITEM_TOTAL_NET_WEIGHT=double.Parse(reader["SH_ITEM_TOTAL_NET_WEIGHT"].ToString()),SH_ITEM_TOTAL_NO_PARCELS=long.Parse(reader["SH_ITEM_TOTAL_NO_PARCELS"].ToString()),SH_ITEM_TOTAL_NO_SHEETS=long.Parse(reader["SH_ITEM_TOTAL_NO_SHEETS"].ToString()),SH_ITEM_TYPE=reader["SH_ITEM_TYPE"].ToString(),SH_ITEM_WIDTH=double.Parse(reader["SH_ITEM_WIDTH"].ToString()) });
+                }
+
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO WHILE GETTING printed material DATA FROM DB " + ex.ToString());
+            }
+        }
+
+
+
+        void loadPrintedMaterial(SH_PRINTED_MATERIAL_PARCEL myparcel)
+        {
+            try
+            {
+                string query = "SELECT * FROM SH_SPECIFICATION_OF_PRINTED_MATERIAL WHERE SH_ID  = @SH_ID ";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_ID", myparcel.SH_SPECIFICATION_OF_PRINTED_MATERIAL_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    specifPrntMaterialLst.Add(new SH_SPECIFICATION_OF_PRINTED_MATERIAL { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_ITEM_COATING = reader["SH_ITEM_COATING"].ToString(), SH_ITEM_CODE = reader["SH_ITEM_CODE"].ToString(), SH_ITEM_FINISH = reader["SH_ITEM_FINISH"].ToString(), SH_ITEM_LENGTH = long.Parse(reader["SH_ITEM_LENGTH"].ToString()), SH_ITEM_SHEET_WEIGHT = long.Parse(reader["SH_ITEM_SHEET_WEIGHT"].ToString()), SH_ITEM_TEMPER = reader["SH_ITEM_TEMPER"].ToString(), SH_ITEM_THICKNESS = double.Parse(reader["SH_ITEM_THICKNESS"].ToString()), SH_ITEM_TOTAL_GROSS_WEIGHT = double.Parse(reader["SH_ITEM_TOTAL_GROSS_WEIGHT"].ToString()), SH_ITEM_TOTAL_NET_WEIGHT = double.Parse(reader["SH_ITEM_TOTAL_NET_WEIGHT"].ToString()), SH_ITEM_TOTAL_NO_PARCELS = long.Parse(reader["SH_ITEM_TOTAL_NO_PARCELS"].ToString()), SH_ITEM_TOTAL_NO_SHEETS = long.Parse(reader["SH_ITEM_TOTAL_NO_SHEETS"].ToString()), SH_ITEM_TYPE = reader["SH_ITEM_TYPE"].ToString(), SH_ITEM_WIDTH = double.Parse(reader["SH_ITEM_WIDTH"].ToString()) });
+                }
+
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO WHILE GETTING printed material DATA FROM DB " + ex.ToString());
+            }
+        }
+
+
+
+        void loadMuranMaterial(SH_PRINTED_MATERIAL_PARCEL myparcel)
+        {
+            try
+            {
+                string query = "SELECT * FROM SH_SPECIFICATION_OF_MURAN_MATERIAL WHERE SH_ID  = @SH_ID ";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_ID", myparcel.SH_SPECIFICATION_OF_PRINTED_MATERIAL_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+              //error      specifMuranMaterialLst.Add(new SH_SPECIFICATION_OF_MURAN_MATERIAL { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_ITEM_COATING = reader["SH_ITEM_COATING"].ToString(), SH_ITEM_CODE = reader["SH_ITEM_CODE"].ToString(), SH_ITEM_FINISH = reader["SH_ITEM_FINISH"].ToString(), SH_ITEM_LENGTH = long.Parse(reader["SH_ITEM_LENGTH"].ToString()), SH_ITEM_SHEET_WEIGHT = long.Parse(reader["SH_ITEM_SHEET_WEIGHT"].ToString()), SH_ITEM_TEMPER = reader["SH_ITEM_TEMPER"].ToString(), SH_ITEM_THICKNESS = double.Parse(reader["SH_ITEM_THICKNESS"].ToString()), , SH_ITEM_TYPE = reader["SH_ITEM_TYPE"].ToString(), SH_ITEM_WIDTH = double.Parse(reader["SH_ITEM_WIDTH"].ToString()) });
+                }
+
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO WHILE GETTING printed material DATA FROM DB " + ex.ToString());
             }
         }
         void fillstockscombobox()
@@ -356,18 +426,18 @@ namespace Al_Shaheen_System
                 MessageBox.Show("ERROR WHILE SAVING NEW CUTTER" + ex.ToString());
             }
         }
-        void fillcutterscombobox()
-        {
-            cutters_combo_box.Items.Clear();
-            loadcuuttersdata();
-            if (cutters.Count > 0)
-            {
-                for (int i = 0; i < cutters.Count; i++)
-                {
-                    cutters_combo_box.Items.Add(cutters[i].SH_CUTTER_NAME);
-                }
-            }
-        }
+        //void fillcutterscombobox()
+        //{
+        //    cutters_combo_box.Items.Clear();
+        //    loadcuuttersdata();
+        //    if (cutters.Count > 0)
+        //    {
+        //        for (int i = 0; i < cutters.Count; i++)
+        //        {
+        //            cutters_combo_box.Items.Add(cutters[i].SH_CUTTER_NAME);
+        //        }
+        //    }
+        //}
         void fillparcelsgridview()
         {
             exchanged_parcels_grid_view.Rows.Clear();
@@ -385,7 +455,10 @@ namespace Al_Shaheen_System
         {
             this.Close();
         }
+        void insertInCutterDaily()
+        {
 
+        }
         private void save_btn_Click(object sender, EventArgs e)
         {
             if (parcels.Count >0)
@@ -398,15 +471,21 @@ namespace Al_Shaheen_System
                 long qu = saveexchangedquantities();
                 saveexchangedprintedparcels(qu);
             }
+
+            if(comboBoxDept.Text== "المقصات")
+            {
+          
+            }
         }
 
         private void exchangeofprintedmaterial_Load(object sender, EventArgs e)
         {
             fillstockscombobox();
-            fillcutterscombobox();
+          //  fillcutterscombobox();
             fillparcelsgridview();
             fillComboBxDept();
-            fillComboStockMen();
+            textBoxStockManName.Text = Maccount.SH_EMP_NAME;
+           // fillComboStockMen();
         }
 
         private void exchanged_parcels_grid_view_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -423,6 +502,11 @@ namespace Al_Shaheen_System
         private void comboBoxDept_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBoxreceival_man.Text = "";
+            fillReciverCombobox();
+        }
+
+        private void comboBoxDept_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
             fillReciverCombobox();
         }
     }

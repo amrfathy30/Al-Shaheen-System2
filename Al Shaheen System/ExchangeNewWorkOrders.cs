@@ -16,7 +16,7 @@ namespace Al_Shaheen_System
         SH_SPECIFICATION_OF_RLT specf = new SH_SPECIFICATION_OF_RLT();
         List<SH_SPECIFICATION_OF_RLT> RLTSpecList = new List<SH_SPECIFICATION_OF_RLT>();
         CLIENT_ORDER_WORK clientOrder = new CLIENT_ORDER_WORK();
-        SH_USER_ACCOUNTS Maccount = new SH_USER_ACCOUNTS();
+        SH_USER_ACCOUNTS acc = new SH_USER_ACCOUNTS();
         public ExchangeNewWorkOrders(CLIENT_ORDER_WORK anyclientOrder)
         {
             InitializeComponent();
@@ -77,7 +77,7 @@ namespace Al_Shaheen_System
   
         private void button2_Click(object sender, EventArgs e)
         {
-            searchinmuranparcels myform = new searchinmuranparcels(Maccount);
+            searchinmuranparcels myform = new searchinmuranparcels();
            
                 myform.Show();
            
@@ -189,6 +189,10 @@ namespace Al_Shaheen_System
             MessageBox.Show("id" + id);
         }
 
-     
+        private void buttonBuyRequest_Click(object sender, EventArgs e)
+        {
+            Buying_Request_RLT frm = new Buying_Request_RLT();
+            frm.Show();
+        }
     }
 }

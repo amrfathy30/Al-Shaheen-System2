@@ -12,14 +12,16 @@ namespace Al_Shaheen_System
 {
     public partial class Holl1Frm : Form
     {
-        public Holl1Frm()
+        SH_USER_ACCOUNTS Maccount = new SH_USER_ACCOUNTS();
+        public Holl1Frm(SH_USER_ACCOUNTS anyaccount)
         {
             InitializeComponent();
+            Maccount = anyaccount;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CutterFrm frm = new CutterFrm();
+            newCutterFrm frm = new newCutterFrm(Maccount);
             frm.Show();
            
 

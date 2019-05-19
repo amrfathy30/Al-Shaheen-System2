@@ -17,10 +17,11 @@ namespace Al_Shaheen_System
         List<SH_PALLETS_OF_CUT_PRINTED_MATERIAL> ex_parcels = new List<SH_PALLETS_OF_CUT_PRINTED_MATERIAL>();
         List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
         List<SH_CLIENTS_PRODUCTS> client_products = new List<SH_CLIENTS_PRODUCTS>();
-
-        public searchincutprintedmaterial()
+        SH_USER_ACCOUNTS Maccount = new SH_USER_ACCOUNTS();
+        public searchincutprintedmaterial(SH_USER_ACCOUNTS anyAccount)
         {
             InitializeComponent();
+            Maccount = anyAccount;
         }
         void loadclientsdata()
         {
@@ -56,6 +57,7 @@ namespace Al_Shaheen_System
         }
         void fillprintedmaterialparcelsgridview()
         {
+            parcels.Clear();
             try
             {
                 string query = "SELECT SH_PALLETS_OF_CUT_PRINTED_MATERIAL.* ";
@@ -81,6 +83,7 @@ namespace Al_Shaheen_System
 
             if (parcels.Count > 0)
             {
+          
                 for (int i = 0; i < parcels.Count; i++)
                 {
                     parcels_cut_printed_parcels_grid_view.Rows.Add(new string[] { (i+1).ToString() , parcels[i].SH_CLIENT_NAME , parcels[i].SH_PRODUCT_NAME , parcels[i].SH_TOTAL_NUMBER_OF_BOTTELS.ToString() , parcels[i].SH_NUMBER_OF_SEQUENCES.ToString()  });
@@ -92,6 +95,7 @@ namespace Al_Shaheen_System
 
         private void search_btn_Click(object sender, EventArgs e)
         {
+            parcels_cut_printed_parcels_grid_view.Rows.Clear();
             fillprintedmaterialparcelsgridview();
         }
 
@@ -159,10 +163,10 @@ namespace Al_Shaheen_System
                 {
                     ex_parcels.Add(parcels[parcels_cut_printed_parcels_grid_view.SelectedRows[i].Index]);
                 }
-                using (exchange_of_cut_printed_material myform = new exchange_of_cut_printed_material(ex_parcels))
-                {
-                    myform.ShowDialog();
-                }
+                exchange_of_cut_printed_material myform = new exchange_of_cut_printed_material(ex_parcels,Maccount);
+               
+                    myform.Show();
+               
             }
 
         }

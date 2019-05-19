@@ -22,12 +22,12 @@ namespace Al_Shaheen_System
         List<SH_USER_ACCOUNTS> usersList_detail = new List<SH_USER_ACCOUNTS>();
 
         Byte[] ImageByteArray;
-        public getAllEmployeesFrm(SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyacc, SH_USER_PERMISIONS anyper)
+        public getAllEmployeesFrm(SH_EMPLOYEES anyEmployee, SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyPermission)
         {
             InitializeComponent();
-            memployee = anyemp;
-            maccount = anyacc;
-            mpermission = anyper;
+            memployee = anyEmployee;
+            maccount = anyAccount;
+            mpermission = anyPermission;
         }
 
      public void getallemployeesdata()
@@ -37,24 +37,24 @@ namespace Al_Shaheen_System
             {
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
-                SqlCommand comm = new SqlCommand("SELECT SH_EMPLOYEES.* FROM SH_EMPLOYEES ", DatabaseConnection.mConnection);            
-                SqlDataReader rd=comm.ExecuteReader();
-                while (rd.Read())
+                SqlCommand cmd = new SqlCommand("SELECT SH_EMPLOYEES.* FROM SH_EMPLOYEES ", DatabaseConnection.mConnection);            
+                SqlDataReader reader=cmd.ExecuteReader();
+                while (reader.Read())
                 {
                     byte[] ImageArray;
-                    if ( rd["SH_EMPLOYEE_IMAGE"].ToString().Trim() =="" || rd["SH_EMPLOYEE_IMAGE"].ToString().Trim() ==null)
+                    if ( reader["SH_EMPLOYEE_IMAGE"].ToString().Trim() =="" || reader["SH_EMPLOYEE_IMAGE"].ToString().Trim() ==null)
                     {
                         ImageArray = null;
-                        employeeslist.Add(new SH_EMPLOYEES() { SH_ID = long.Parse(rd["SH_ID"].ToString()), SH_EMPLOYEE_NAME = rd["SH_EMPLOYEE_NAME"].ToString(), SH_EMPLOYEE_NATIONAL_ID = rd["SH_EMPLOYEE_NATIONAL_ID"].ToString(), SH_EMPLOYEE_ADDRESS = rd["SH_EMPLOYEE_ADDRESS"].ToString(), SH_EMPLOYEMENT_DATE = DateTime.Parse(rd["SH_EMPLOYEMENT_DATE"].ToString()), SH_EMPLOYEE_EMAIL = rd["SH_EMPLOYEE_EMAIL"].ToString(), SH_EMPLOYEE_FUNCTION_ID = long.Parse(rd["SH_EMPLOYEE_FUNCTION_ID"].ToString()), SH_EMPLOYEE_FUNCTION_NAME = rd["SH_EMPLOYEE_FUNCTION_NAME"].ToString(), SH_EMPLOYEE_GENDER = rd["SH_EMPLOYEE_GENDER"].ToString(), SH_EMPLOYEE_MOBILE = rd["SH_EMPLOYEE_MOBILE"].ToString(), SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(rd["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_NAME = rd["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(), SH_DATA_ENTRY_USER_ID = long.Parse(rd["SH_DATA_ENTRY_USER_ID"].ToString()), SH_DATA_ENTRY_USER_NAME = rd["SH_DATA_ENTRY_USER_NAME"].ToString(), SH_DEPARTMENT_ID = long.Parse(rd["SH_DEPARTMENT_ID"].ToString()), SH_DEPARTMENT_NAME = rd["SH_DEPARTMENT_NAME"].ToString(), SH_EMPLOYEE_IMAGE = null });
+                        employeeslist.Add(new SH_EMPLOYEES() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString(), SH_EMPLOYEE_NATIONAL_ID = reader["SH_EMPLOYEE_NATIONAL_ID"].ToString(), SH_EMPLOYEE_ADDRESS = reader["SH_EMPLOYEE_ADDRESS"].ToString(), SH_EMPLOYEMENT_DATE = DateTime.Parse(reader["SH_EMPLOYEMENT_DATE"].ToString()), SH_EMPLOYEE_EMAIL = reader["SH_EMPLOYEE_EMAIL"].ToString(), SH_EMPLOYEE_FUNCTION_ID = long.Parse(reader["SH_EMPLOYEE_FUNCTION_ID"].ToString()), SH_EMPLOYEE_FUNCTION_NAME = reader["SH_EMPLOYEE_FUNCTION_NAME"].ToString(), SH_EMPLOYEE_GENDER = reader["SH_EMPLOYEE_GENDER"].ToString(), SH_EMPLOYEE_MOBILE = reader["SH_EMPLOYEE_MOBILE"].ToString(), SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(), SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()), SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString(), SH_DEPARTMENT_ID = long.Parse(reader["SH_DEPARTMENT_ID"].ToString()), SH_DEPARTMENT_NAME = reader["SH_DEPARTMENT_NAME"].ToString(), SH_EMPLOYEE_IMAGE = null });
 
                     }
                     else
                     {
-                        ImageArray = (byte[])rd["SH_EMPLOYEE_IMAGE"];
+                        ImageArray = (byte[])reader["SH_EMPLOYEE_IMAGE"];
                         if (ImageArray.Length != 0)
                         {
                             ImageByteArray = ImageArray;
-                            employeeslist.Add(new SH_EMPLOYEES() { SH_ID = long.Parse(rd["SH_ID"].ToString()), SH_EMPLOYEE_NAME = rd["SH_EMPLOYEE_NAME"].ToString(), SH_EMPLOYEE_NATIONAL_ID = rd["SH_EMPLOYEE_NATIONAL_ID"].ToString(), SH_EMPLOYEE_ADDRESS = rd["SH_EMPLOYEE_ADDRESS"].ToString(), SH_EMPLOYEMENT_DATE = DateTime.Parse(rd["SH_EMPLOYEMENT_DATE"].ToString()), SH_EMPLOYEE_EMAIL = rd["SH_EMPLOYEE_EMAIL"].ToString(), SH_EMPLOYEE_FUNCTION_ID = long.Parse(rd["SH_EMPLOYEE_FUNCTION_ID"].ToString()), SH_EMPLOYEE_FUNCTION_NAME = rd["SH_EMPLOYEE_FUNCTION_NAME"].ToString(), SH_EMPLOYEE_GENDER = rd["SH_EMPLOYEE_GENDER"].ToString(), SH_EMPLOYEE_MOBILE = rd["SH_EMPLOYEE_MOBILE"].ToString(), SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(rd["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_NAME = rd["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(), SH_DATA_ENTRY_USER_ID = long.Parse(rd["SH_DATA_ENTRY_USER_ID"].ToString()), SH_DATA_ENTRY_USER_NAME = rd["SH_DATA_ENTRY_USER_NAME"].ToString(), SH_DEPARTMENT_ID = long.Parse(rd["SH_DEPARTMENT_ID"].ToString()), SH_DEPARTMENT_NAME = rd["SH_DEPARTMENT_NAME"].ToString(), SH_EMPLOYEE_IMAGE = Image.FromStream(new MemoryStream(ImageArray)) });
+                            employeeslist.Add(new SH_EMPLOYEES() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString(), SH_EMPLOYEE_NATIONAL_ID = reader["SH_EMPLOYEE_NATIONAL_ID"].ToString(), SH_EMPLOYEE_ADDRESS = reader["SH_EMPLOYEE_ADDRESS"].ToString(), SH_EMPLOYEMENT_DATE = DateTime.Parse(reader["SH_EMPLOYEMENT_DATE"].ToString()), SH_EMPLOYEE_EMAIL = reader["SH_EMPLOYEE_EMAIL"].ToString(), SH_EMPLOYEE_FUNCTION_ID = long.Parse(reader["SH_EMPLOYEE_FUNCTION_ID"].ToString()), SH_EMPLOYEE_FUNCTION_NAME = reader["SH_EMPLOYEE_FUNCTION_NAME"].ToString(), SH_EMPLOYEE_GENDER = reader["SH_EMPLOYEE_GENDER"].ToString(), SH_EMPLOYEE_MOBILE = reader["SH_EMPLOYEE_MOBILE"].ToString(), SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(), SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()), SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString(), SH_DEPARTMENT_ID = long.Parse(reader["SH_DEPARTMENT_ID"].ToString()), SH_DEPARTMENT_NAME = reader["SH_DEPARTMENT_NAME"].ToString(), SH_EMPLOYEE_IMAGE = Image.FromStream(new MemoryStream(ImageArray)) });
 
 
                         }
@@ -88,20 +88,20 @@ namespace Al_Shaheen_System
             SH_USER_ACCOUNTS account = new SH_USER_ACCOUNTS();
             try
             {
-                SqlConnection conn = new SqlConnection(@"server=SH_PC202\SH_SYSTEM_DB;Initial Catalog=sh_test_db;Integrated Security=true");
-                conn.Open();
-                SqlCommand comm = new SqlCommand("select * from SH_USER_ACCOUNTS", conn);
-                SqlDataReader rd = comm.ExecuteReader();
-                while (rd.Read())
+                DatabaseConnection conn = new DatabaseConnection();
+                conn.openConnection();
+                SqlCommand cmd = new SqlCommand("select * from SH_USER_ACCOUNTS",DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
 
 
 
                 {
 
-                    usersList_detail.Add(new SH_USER_ACCOUNTS() { SH_EMP_ID = long.Parse(rd["SH_EMP_ID"].ToString()), SH_EMP_NAME = (rd["SH_EMP_NAME"].ToString()), SH_EMP_USER_NAME = rd["SH_EMP_USER_NAME"].ToString(), SH_EMP_PASSWORD = rd["SH_EMP_PASSWORD"].ToString(), SH_CREATION_DATE = DateTime.Parse(rd["SH_CREATION_DATE"].ToString()) });
+                    usersList_detail.Add(new SH_USER_ACCOUNTS() {SH_ID=long.Parse( reader["SH_ID"].ToString()), SH_EMP_ID = long.Parse(reader["SH_EMP_ID"].ToString()), SH_EMP_NAME = (reader["SH_EMP_NAME"].ToString()), SH_EMP_USER_NAME = reader["SH_EMP_USER_NAME"].ToString(),SH_EMP_PASSWORD=reader["SH_EMP_PASSWORD"].ToString(),SH_CREATION_DATE=DateTime.Parse( reader["SH_CREATION_DATE"].ToString()) });
                 }
 
-                conn.Close();
+                conn.closeConnection();
                 return null;
             }
             catch (Exception)
@@ -118,18 +118,18 @@ namespace Al_Shaheen_System
             {
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
+
+                SqlCommand cmd = new SqlCommand("select * from SH_USER_PERMISIONS", DatabaseConnection.mConnection);
+              //  cmd.cmdandType = cmdandType.StoreaderProcedure;
                 
-                SqlCommand com2 = new SqlCommand("select * from SH_USER_PERMISIONS", DatabaseConnection.mConnection);
-              //  com2.CommandType = CommandType.StoredProcedure;
-                
-               // com2.Parameters.AddWithValue("@empid", acc.SH_EMP_ID);
-                SqlDataReader red = com2.ExecuteReader();
-                while (red.Read())
+               // cmd.Parameters.AddWithValue("@empid", acc.SH_EMP_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    perm.SH_ID = long.Parse(red["SH_ID"].ToString());
+                    perm.SH_ID = long.Parse(reader["SH_ID"].ToString());
                     
-                    perm.SH_ACCOUNT_ID = long.Parse(red["SH_ACCOUNT_ID"].ToString());
-                    perm.SH_ACCOUNT_NAME = red["SH_ACCOUNT_NAME"].ToString();
+                    perm.SH_ACCOUNT_ID = long.Parse(reader["SH_ACCOUNT_ID"].ToString());
+                    perm.SH_ACCOUNT_NAME = reader["SH_ACCOUNT_NAME"].ToString();
 
 
                 }
@@ -147,10 +147,10 @@ namespace Al_Shaheen_System
         {
             if (employees_grid_view.SelectedRows.Count > 0)
             {
-                using (makenewuser anyuser = new makenewuser(employeeslist[employees_grid_view.SelectedRows[0].Index], memployee, maccount, mpermission))
-                {
-                    anyuser.ShowDialog();
-                }            
+                makenewuser anyuser = new makenewuser(employeeslist[employees_grid_view.SelectedRows[0].Index], memployee, maccount, mpermission);
+            
+                    anyuser.Show();
+                        
             }else
             {
                 MessageBox.Show("الرجاء تحديد الموظف أولا");
@@ -176,15 +176,12 @@ namespace Al_Shaheen_System
 
         private void employees_grid_view_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            using (employee_portal myform = new employee_portal(employeeslist[e.RowIndex]))
-            {
-                myform.ShowDialog();
-            }
+            employee_portal myform = new employee_portal(employeeslist[e.RowIndex]);
+         
+                myform.Show();
+         
         }
 
-        private void employees_grid_view_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+       
     }
 }

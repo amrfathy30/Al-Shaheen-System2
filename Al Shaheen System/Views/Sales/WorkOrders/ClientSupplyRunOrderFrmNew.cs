@@ -322,7 +322,7 @@ namespace Al_Shaheen_System
                 for (int i = 0; i < cwList.Count; i++)
                 {
                     long newId = cwList[i].SH_ID + 1;
-                    textBoxOrderWorkClient.Text = "SH" + newId.ToString();
+                    textBoxOrderWorkClient.Text = "SH_"+ (DateTime.Now.Year).ToString().Substring(2)+"_" + newId.ToString();
                 }
                
               

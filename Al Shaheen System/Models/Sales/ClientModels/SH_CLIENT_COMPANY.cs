@@ -13,5 +13,6 @@ namespace Al_Shaheen_System
         public string SH_CLIENT_COMPANY_TYPE { get; set; }
         public string SH_CLIENT_COMPANY_TELEPHONE { get; set; }
         public string SH_CLIENT_COMPANY_FAX_NUMBER { get; set; }
+        public string SH_CLIENT_COMPANY_MOBILE { get; set; }
     }
 }

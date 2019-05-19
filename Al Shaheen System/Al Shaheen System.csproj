@@ -74,6 +74,12 @@
     <Compile Include="Holl1Frm.Designer.cs">
       <DependentUpon>Holl1Frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="newCutterFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newCutterFrm.Designer.cs">
+      <DependentUpon>newCutterFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductDetailsForExchangeFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,8 @@
     <Compile Include="ProductionFrm.Designer.cs">
       <DependentUpon>ProductionFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SH_CUTTER_BALANCEcs.cs" />
+    <Compile Include="SH_CUTTER_DAILY_WORK.cs" />
     <Compile Include="SH_EXCHANGE_REQUEST_FROM_SALES.cs" />
     <Compile Include="SH_QUANTITY_OF_EXCHANGED_PRINTED_MATERIAL.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
@@ -854,6 +862,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Holl1Frm.resx">
       <DependentUpon>Holl1Frm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="newCutterFrm.resx">
+      <DependentUpon>newCutterFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductDetailsForExchangeFrm.resx">
       <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>

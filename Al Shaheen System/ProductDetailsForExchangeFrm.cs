@@ -142,7 +142,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@id", requet.SH_PRODUCT_ID_SPECIFICATION);
                 cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", requet.SH_QUANTITIY_REQUIRED);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("تم الصرف");
+              
 
 
             }
@@ -165,7 +165,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@id", requet.SH_PRODUCT_ID_SPECIFICATION);
                 cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", requet.SH_QUANTITIY_REQUIRED);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("تم الصرف");
+           
 
 
             }
@@ -184,7 +184,7 @@ namespace Al_Shaheen_System
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("ExchangeRLTBySupplyOrderWork", DatabaseConnection.mConnection);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;
 
 
                 cmd.Parameters.AddWithValue("@SH_CLIENT_NAME", requet.SH_CLIENT_NAME);

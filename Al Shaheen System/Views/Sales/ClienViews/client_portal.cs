@@ -32,7 +32,7 @@ namespace Al_Shaheen_System
             
             fax_number_text_box.Text = mclient.SH_CLIENT_COMPANY_FAX_NUMBER;
             company_type_text_box.Text = mclient.SH_CLIENT_COMPANY_TYPE;
-
+            company_mobile_text_box.Text = mclient.SH_CLIENT_COMPANY_MOBILE;
             fillclientbranchesgridview();
             getallclientproducts();
            

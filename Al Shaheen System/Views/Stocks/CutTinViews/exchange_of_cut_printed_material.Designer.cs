@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p_text_box = new System.Windows.Forms.TextBox();
             this.p_label = new System.Windows.Forms.Label();
             this.stock_combo_box = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.receival_man_text_box = new System.Windows.Forms.TextBox();
             this.stock_man_text_box = new System.Windows.Forms.TextBox();
             this.confidential_man_text_box = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -55,17 +54,22 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.save_btn = new System.Windows.Forms.Button();
             this.cancel_btn = new System.Windows.Forms.Button();
+            this.comboBoxDept = new System.Windows.Forms.ComboBox();
+            this.comboBoxreceival_man = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cut_printed_parcels_grid_view)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxreceival_man);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.comboBoxDept);
             this.groupBox1.Controls.Add(this.p_text_box);
             this.groupBox1.Controls.Add(this.p_label);
             this.groupBox1.Controls.Add(this.stock_combo_box);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.receival_man_text_box);
             this.groupBox1.Controls.Add(this.stock_man_text_box);
             this.groupBox1.Controls.Add(this.confidential_man_text_box);
             this.groupBox1.Controls.Add(this.label11);
@@ -118,15 +122,9 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "المخزن ";
             // 
-            // receival_man_text_box
-            // 
-            this.receival_man_text_box.Location = new System.Drawing.Point(604, 109);
-            this.receival_man_text_box.Name = "receival_man_text_box";
-            this.receival_man_text_box.Size = new System.Drawing.Size(177, 30);
-            this.receival_man_text_box.TabIndex = 36;
-            // 
             // stock_man_text_box
             // 
+            this.stock_man_text_box.Enabled = false;
             this.stock_man_text_box.Location = new System.Drawing.Point(117, 75);
             this.stock_man_text_box.Name = "stock_man_text_box";
             this.stock_man_text_box.Size = new System.Drawing.Size(237, 30);
@@ -151,11 +149,11 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(841, 114);
+            this.label12.Location = new System.Drawing.Point(816, 127);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(55, 25);
+            this.label12.Size = new System.Drawing.Size(91, 25);
             this.label12.TabIndex = 28;
-            this.label12.Text = "المستلم";
+            this.label12.Text = "القسم المستلم";
             // 
             // label13
             // 
@@ -207,6 +205,7 @@
             this.label1.Size = new System.Drawing.Size(412, 39);
             this.label1.TabIndex = 23;
             this.label1.Text = "صرف الصفيح المقصوص المطبوع ";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cut_printed_parcels_grid_view
             // 
@@ -214,14 +213,14 @@
             this.cut_printed_parcels_grid_view.AllowUserToDeleteRows = false;
             this.cut_printed_parcels_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.cut_printed_parcels_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cut_printed_parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cut_printed_parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.cut_printed_parcels_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.cut_printed_parcels_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -233,14 +232,14 @@
             this.cut_printed_parcels_grid_view.Location = new System.Drawing.Point(33, 304);
             this.cut_printed_parcels_grid_view.Name = "cut_printed_parcels_grid_view";
             this.cut_printed_parcels_grid_view.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.cut_printed_parcels_grid_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.cut_printed_parcels_grid_view.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.cut_printed_parcels_grid_view.Size = new System.Drawing.Size(959, 366);
             this.cut_printed_parcels_grid_view.TabIndex = 24;
             // 
@@ -308,6 +307,32 @@
             this.cancel_btn.UseVisualStyleBackColor = false;
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
+            // comboBoxDept
+            // 
+            this.comboBoxDept.FormattingEnabled = true;
+            this.comboBoxDept.Location = new System.Drawing.Point(604, 119);
+            this.comboBoxDept.Name = "comboBoxDept";
+            this.comboBoxDept.Size = new System.Drawing.Size(177, 33);
+            this.comboBoxDept.TabIndex = 41;
+            this.comboBoxDept.SelectedIndexChanged += new System.EventHandler(this.comboBoxDept_SelectedIndexChanged);
+            // 
+            // comboBoxreceival_man
+            // 
+            this.comboBoxreceival_man.FormattingEnabled = true;
+            this.comboBoxreceival_man.Location = new System.Drawing.Point(604, 163);
+            this.comboBoxreceival_man.Name = "comboBoxreceival_man";
+            this.comboBoxreceival_man.Size = new System.Drawing.Size(177, 33);
+            this.comboBoxreceival_man.TabIndex = 43;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(816, 171);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 25);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "الموظف المستلم";
+            // 
             // exchange_of_cut_printed_material
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -340,7 +365,6 @@
         private System.Windows.Forms.Label p_label;
         private System.Windows.Forms.ComboBox stock_combo_box;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox receival_man_text_box;
         private System.Windows.Forms.TextBox stock_man_text_box;
         private System.Windows.Forms.TextBox confidential_man_text_box;
         private System.Windows.Forms.Label label11;
@@ -360,5 +384,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Button save_btn;
         private System.Windows.Forms.Button cancel_btn;
+        private System.Windows.Forms.ComboBox comboBoxreceival_man;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxDept;
     }
 }

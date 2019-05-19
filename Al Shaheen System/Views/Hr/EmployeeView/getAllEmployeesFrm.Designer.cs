@@ -91,7 +91,7 @@
             this.employees_grid_view.ReadOnly = true;
             this.employees_grid_view.Size = new System.Drawing.Size(914, 536);
             this.employees_grid_view.TabIndex = 0;
-            this.employees_grid_view.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employees_grid_view_CellContentClick);
+          
             this.employees_grid_view.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employees_grid_view_CellContentDoubleClick);
             // 
             // Column1

@@ -69,31 +69,40 @@ namespace Al_Shaheen_System
         
         private void bttn_Cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+          Close();
         }
 
         private void bttn_Save_Click(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrEmpty(textBox1.Text))
             {
-
-
-                DatabaseConnection myconn = new DatabaseConnection();
-                myconn.openConnection();
-
-
-                SqlCommand comm = new SqlCommand("addDepartement", DatabaseConnection.mConnection);
-                comm.CommandType = CommandType.StoredProcedure;
-                comm.Parameters.AddWithValue("@deptName", textBox1.Text);
-                comm.ExecuteNonQuery();
-                MessageBox.Show("تم تسجيل القسم بنجاح");
-                bttn_Save.Enabled = false;
-                myconn.closeConnection();
-                fillDeptGridView();
+                MessageBox.Show("ادخل اسم القسم اولا");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("error in"+ex.Message);
+                try
+                {
+
+
+                    DatabaseConnection myconn = new DatabaseConnection();
+                    myconn.openConnection();
+
+
+                    SqlCommand comm = new SqlCommand("addDepartement", DatabaseConnection.mConnection);
+                    comm.CommandType = CommandType.StoredProcedure;
+                    comm.Parameters.AddWithValue("@deptName", textBox1.Text);
+                    comm.Parameters.AddWithValue("@SH_DATA_ENTERED_BY", mAccount.SH_EMP_NAME);
+                    comm.Parameters.AddWithValue("@SH_ADDATION_DATE", DateTime.Now);
+                    comm.ExecuteNonQuery();
+                    MessageBox.Show("تم تسجيل القسم بنجاح");
+                    bttn_Save.Enabled = false;
+                    myconn.closeConnection();
+                    fillDeptGridView();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("error in" + ex.Message);
+                }
             }
         }
 

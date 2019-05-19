@@ -105,16 +105,16 @@ namespace Al_Shaheen_System
             SqlCommand com = new SqlCommand("getoneEmp", DatabaseConnection.mConnection);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@empID", acc.SH_EMP_ID);
-            SqlDataReader rd1 = com.ExecuteReader();
-            while (rd1.Read())
+            SqlDataReader reader = com.ExecuteReader();
+            while (reader.Read())
             {
-                emp.SH_EMPLOYEE_ADDRESS = rd1["SH_EMPLOYEE_ADDRESS"].ToString();
-                emp.SH_EMPLOYEMENT_DATE = DateTime.Parse(rd1["SH_EMPLOYEMENT_DATE"].ToString());
-                emp.SH_EMPLOYEE_EMAIL = rd1["SH_EMPLOYEE_EMAIL"].ToString();
-                emp.SH_EMPLOYEE_GENDER = rd1["SH_EMPLOYEE_GENDER"].ToString();
-                emp.SH_ID = long.Parse(rd1["SH_ID"].ToString());
-                emp.SH_EMPLOYEE_NAME = rd1["SH_EMPLOYEE_NAME"].ToString();
-                emp.SH_EMPLOYEE_NATIONAL_ID = rd1["SH_EMPLOYEE_NATIONAL_ID"].ToString();
+                emp.SH_EMPLOYEE_ADDRESS = reader["SH_EMPLOYEE_ADDRESS"].ToString();
+                emp.SH_EMPLOYEMENT_DATE = DateTime.Parse(reader["SH_EMPLOYEMENT_DATE"].ToString());
+                emp.SH_EMPLOYEE_EMAIL = reader["SH_EMPLOYEE_EMAIL"].ToString();
+                emp.SH_EMPLOYEE_GENDER = reader["SH_EMPLOYEE_GENDER"].ToString();
+                emp.SH_ID = long.Parse(reader["SH_ID"].ToString());
+                emp.SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString();
+                emp.SH_EMPLOYEE_NATIONAL_ID = reader["SH_EMPLOYEE_NATIONAL_ID"].ToString();
             }
             myconnection.closeConnection();
             return emp;
@@ -152,11 +152,11 @@ namespace Al_Shaheen_System
         {
             if (gridViewAllUsers.SelectedRows.Count > 0)
             {
+
+                changePassword anyuser = new changePassword(SH_acc, getEmployeeData(usersList_detail[gridViewAllUsers.SelectedRows[0].Index]), getUserPermission(usersList_detail[gridViewAllUsers.SelectedRows[0].Index]));
                
-                using(changePassword anyuser = new changePassword(SH_acc, getEmployeeData(usersList_detail[gridViewAllUsers.SelectedRows[0].Index]), getUserPermission(usersList_detail[gridViewAllUsers.SelectedRows[0].Index])))
-                {
-                    anyuser.ShowDialog();
-                }
+                    anyuser.Show();
+               
 
             }
             else

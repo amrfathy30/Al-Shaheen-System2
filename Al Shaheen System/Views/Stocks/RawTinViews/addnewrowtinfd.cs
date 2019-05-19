@@ -355,14 +355,7 @@ namespace Al_Shaheen_System
         private void saverawtinfirstdurationbtn_Click(object sender, EventArgs e)
         {
 
-            //validating quantity info 
-            //if (quantities.Count == 0 || all_packages_no_sheets == 0 || all_packages_gross_weight == 0 || total_no_packges == 0)
-            //{
-                
-            //    MessageBox.Show(" يجب إضافة كمية للصنف" , "خطأ"  , MessageBoxButtons.OK , MessageBoxIcon.Error , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
-            //}
-            //else
-            //{
+           
                 long id = check_if_specification_exists_or_not();
                 if (id == 0)
                 {

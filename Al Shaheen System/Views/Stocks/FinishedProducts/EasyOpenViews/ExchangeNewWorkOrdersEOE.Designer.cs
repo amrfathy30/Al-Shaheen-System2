@@ -368,6 +368,7 @@
             this.textBoxQntyInStock.Name = "textBoxQntyInStock";
             this.textBoxQntyInStock.Size = new System.Drawing.Size(157, 30);
             this.textBoxQntyInStock.TabIndex = 34;
+            this.textBoxQntyInStock.Text = "0";
             // 
             // label13
             // 

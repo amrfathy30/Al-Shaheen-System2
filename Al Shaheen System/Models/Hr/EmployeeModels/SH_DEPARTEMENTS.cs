@@ -11,5 +11,7 @@ namespace Al_Shaheen_System
 
         public long SH_ID { get; set; }
         public string SH_DEPARTEMNT_NAME { get; set; }
+        public string SH_DATA_ENTERED_BY { get; set; }
+        public DateTime SH_ADDATION_DATE { get; set; }
     }
 }

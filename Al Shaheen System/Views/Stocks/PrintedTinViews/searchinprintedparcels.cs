@@ -120,6 +120,7 @@ namespace Al_Shaheen_System
 
         void getallclientandproductparcels(long client_id , long product_id)
         {
+            parcels.Clear();
             try
             {
                 string query = "SELECT * FROM SH_PRINTED_MATERIAL_PARCEL WHERE SH_ID IN ( SELECT SH_PRINTED_MATERIAL_PARCEL_ID FROM SH_PRODUCT_OF_CLIENTS_PARCELS WHERE(SH_CLIENT_ID = @SH_CLIENT_ID AND SH_CLIENT_PRODUCT_ID = @SH_CLIENT_PRODUCT_ID) AND ( SH_PRINTED_MATERIAL_PARCEL_ID  NOT IN (SELECT SH_PRINTED_MATERIAL_PARCEL_ID  FROM SH_EXCHANGED_PRINTED_MATERIAL_PARCELS)) )";
@@ -162,6 +163,7 @@ namespace Al_Shaheen_System
             else
             {
                 getallclientandproductparcels(clients[clients_combo_box.SelectedIndex].SH_ID , products[client_products_combo_box.SelectedIndex].SH_ID);
+
                 fillprintedparcelsgridview();
             }
         }
