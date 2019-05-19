@@ -16,14 +16,13 @@ namespace Al_Shaheen_System
         List<SH_PRINTED_MATERIAL_PARCEL> parcels = new List<SH_PRINTED_MATERIAL_PARCEL>();
 
         List<SH_PRINTED_MATERIAL_PARCEL> ex_parcels = new List<SH_PRINTED_MATERIAL_PARCEL>();
-        SH_USER_ACCOUNTS account = new SH_USER_ACCOUNTS();
+
         List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
         List<SH_CLIENTS_PRODUCTS> products = new List<SH_CLIENTS_PRODUCTS>();
 
-        public searchinprintedparcels(SH_USER_ACCOUNTS anyAccount)
+        public searchinprintedparcels()
         {
             InitializeComponent();
-            account = anyAccount;
         }
         
         void gettingproductsbyclientid()
@@ -182,16 +181,18 @@ namespace Al_Shaheen_System
 
                 }
 
-                exchangeofprintedmaterial myform = new exchangeofprintedmaterial(ex_parcels,account);
-              
-                    myform.Show();
-              
+                using (exchangeofprintedmaterial myform = new exchangeofprintedmaterial(ex_parcels))
+                {
+                    myform.ShowDialog();
+                }
 
 
             }else
             {
                 MessageBox.Show("لابد من تحديد الطرد المراد صرفه " , "خطأ" , MessageBoxButtons.OK , MessageBoxIcon.Error , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
             }
+
+
 
            
         }
