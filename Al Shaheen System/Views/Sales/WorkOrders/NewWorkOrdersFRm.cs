@@ -52,7 +52,7 @@ namespace Al_Shaheen_System
                 }
             }
 
-           else if (Orders[dataGridViewAllNewWorkOrders.CurrentRow.Index].SH_ITEM_TYPE == "EOE")
+           else if (Orders[dataGridViewAllNewWorkOrders.CurrentRow.Index].SH_ITEM_TYPE == "ايزي اوبن")
             {
 
                 //EOE form

@@ -13,6 +13,8 @@ namespace Al_Shaheen_System
 {
     public partial class exchangeofprintedmaterial : Form
     {
+        List<SH_EMPLOYEES> empList = new List<SH_EMPLOYEES>();
+        List<SH_DEPARTEMENTS> deptList = new List<SH_DEPARTEMENTS>();
         List<SH_PRINTED_MATERIAL_PARCEL> parcels = new List<SH_PRINTED_MATERIAL_PARCEL>();
         List<SH_SHAHEEN_CUTTERS> cutters = new List<SH_SHAHEEN_CUTTERS>();
         List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
@@ -21,8 +23,139 @@ namespace Al_Shaheen_System
             InitializeComponent();
             parcels = anyparcels;
         }
+        void laodComboBxDept()
+        {
+          
+            try
+            {
+                string query = "SELECT * FROM SH_DEPARTEMENTS where SH_ID=5 or SH_ID=6";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
 
-         long calcualtetotalsheets()
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                //cmd.CommandType = CommandType.Text;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    deptList.Add(new SH_DEPARTEMENTS { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_DEPARTEMNT_NAME = reader["SH_DEPARTEMNT_NAME"].ToString() });
+                }
+
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO WHILE GETTING departements Parts DATA FROM DB " + ex.ToString());
+            }
+        }
+
+        void fillComboBxDept()
+        {
+
+            deptList.Clear();
+            laodComboBxDept();
+            comboBoxDept.Items.Clear();
+            if (deptList.Count <= 0)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < deptList.Count; i++)
+                {
+                    comboBoxDept.Items.Add(deptList[i].SH_DEPARTEMNT_NAME);
+                }
+            }
+        }
+
+
+
+
+        void laodComboStockMen()
+        {
+
+            try
+            {
+                string query = "select  * from SH_EMPLOYEES where SH_DEPARTMENT_ID=3";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                //cmd.CommandType = CommandType.Text;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    empList.Add(new SH_EMPLOYEES { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString() });
+                }
+
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO WHILE GETTING departements Parts DATA FROM DB " + ex.ToString());
+            }
+        }
+
+        void fillComboStockMen()
+        {
+
+            empList.Clear();
+            laodComboStockMen();
+            comboBoxStockMan.Items.Clear();
+            if (empList.Count <= 0)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < empList.Count; i++)
+                {
+                    comboBoxStockMan.Items.Add(empList[i].SH_EMPLOYEE_NAME);
+                }
+            }
+        }
+
+
+        void loadReciver()
+        {
+            try
+            {
+                string query = "select * from SH_EMPLOYEES where SH_DEPARTMENT_ID=@id";
+                DatabaseConnection myconnection = new DatabaseConnection();
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@id", deptList[comboBoxDept.SelectedIndex].SH_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    empList.Add(new SH_EMPLOYEES() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_EMPLOYEE_NAME=reader["SH_EMPLOYEE_NAME"].ToString() });
+                }
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error in getting deptID" + ex.ToString());
+            }
+        }
+        void fillReciverCombobox()
+        {
+            empList.Clear();
+            comboBoxreceival_man.Items.Clear();
+            loadReciver();
+            if (empList.Count <= 0)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < empList.Count; i++)
+                {
+                    comboBoxreceival_man.Items.Add(empList[i].SH_EMPLOYEE_NAME);
+                }
+            }
+        }
+
+        long calcualtetotalsheets()
         {
             long totalsheets = 0;
             if (parcels.Count>0)
@@ -109,12 +242,12 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_NUMBER_OF_SHEETS" , calcualtetotalsheets());
                 cmd.Parameters.AddWithValue("@SH_EXCHANGE_DATE", DateTime.Now);
                 cmd.Parameters.AddWithValue("@SH_EXCHANGE_PERMISSION_NUMBER" , exchange_permission_number.Text);
-                cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME" , stock_man_text_box.Text);
+                cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME" ,comboBoxStockMan.Text);
                 cmd.Parameters.AddWithValue("@SH_STOCK_ID" , stocks[stock_combo_box.SelectedIndex].SH_ID);
                 cmd.Parameters.AddWithValue("@SH_CUTTER_ID"  , cutters[cutters_combo_box.SelectedIndex].SH_ID);
                 cmd.Parameters.AddWithValue("@SH_CUTTER_NAME"  , cutters[cutters_combo_box.SelectedIndex].SH_CUTTER_NAME);
                 cmd.Parameters.AddWithValue("@SH_CUTTER_MAN_NAME", cutter_technical_man.Text );
-                cmd.Parameters.AddWithValue("@SH_RECEIVED_MAN_NAME" , receival_man_text_box.Text);
+                cmd.Parameters.AddWithValue("@SH_RECEIVED_MAN_NAME" , comboBoxreceival_man.Text);
                 cmd.Parameters.AddWithValue("@SH_CONFIDENTIAL_MAN_NAME"  , confidential_man_text_box.Text);
                 cmd.Parameters.AddWithValue("@SH_STOCK_NAME" , stocks[stock_combo_box.SelectedIndex].SH_STOCK_NAME);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -272,6 +405,8 @@ namespace Al_Shaheen_System
             fillstockscombobox();
             fillcutterscombobox();
             fillparcelsgridview();
+            fillComboBxDept();
+            fillComboStockMen();
         }
 
         private void exchanged_parcels_grid_view_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -283,6 +418,11 @@ namespace Al_Shaheen_System
                     myform.ShowDialog();
                 }
             }
+        }
+
+        private void comboBoxDept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fillReciverCombobox();
         }
     }
 }

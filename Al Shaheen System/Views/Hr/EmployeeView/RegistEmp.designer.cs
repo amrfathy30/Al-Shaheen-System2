@@ -178,6 +178,7 @@
             this.txtEmpMobile.Name = "txtEmpMobile";
             this.txtEmpMobile.Size = new System.Drawing.Size(219, 30);
             this.txtEmpMobile.TabIndex = 11;
+            this.txtEmpMobile.TextChanged += new System.EventHandler(this.txtEmpMobile_TextChanged);
             this.txtEmpMobile.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmpMobile_Validating);
             // 
             // txtEmpEmail
