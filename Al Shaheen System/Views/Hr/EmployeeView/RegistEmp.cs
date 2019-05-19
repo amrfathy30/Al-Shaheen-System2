@@ -454,6 +454,11 @@ namespace Al_Shaheen_System
             strFilePath = "";
             
         }
+
+        private void txtEmpMobile_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
             

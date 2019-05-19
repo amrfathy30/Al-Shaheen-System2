@@ -78,7 +78,12 @@ namespace Al_Shaheen_System
                 mydatatabel.Columns.Add("م");
                 mydatatabel.Columns.Add(" العميل");
                 mydatatabel.Columns.Add("الصنف");
+                //size
+                mydatatabel.Columns.Add("المقاس");
+               
+                //no_cans_per_pallet
                 mydatatabel.Columns.Add("إجمالى عدد البالتات");
+                mydatatabel.Columns.Add("عدد العلب بالبالتة");
                 mydatatabel.Columns.Add("إجمالى عدد العلب");
              
 
@@ -89,12 +94,14 @@ namespace Al_Shaheen_System
                 long counter = 0;
                 while (reader.Read())
                 {
-                    string[] mydata = new string[5];
+                    string[] mydata = new string[7];
                     mydata[0] = (counter + 1).ToString();
-                    mydata[1] = reader["SH_CLIENT_NAME"].ToString();
-                    mydata[2] = reader["SH_CLIENT_PRODUCT_NAME"].ToString();
-                    mydata[3] = reader["SH_TOTAL_NUMBER_OF_PALLET"].ToString();
-                    mydata[4] = reader["SH_TOTAL_NUMBER_OF_CANS"].ToString();
+                    mydata[1] = reader["SH_CLIENT_COMPANY_NAME"].ToString();
+                    mydata[2] = reader["SH_PRODUCT_NAME"].ToString();
+                    mydata[3] = reader["product_size"].ToString();
+                    mydata[4] = reader["NUMBER_OF_PALLETS"].ToString();
+                    mydata[5] = (long.Parse(reader["TOTAL_NO_CANS"].ToString()) / long.Parse(reader["NUMBER_OF_PALLETS"].ToString())).ToString();
+                    mydata[6] = reader["TOTAL_NO_CANS"].ToString();
                     mydatatabel.Rows.Add(mydata);
                 }
                 

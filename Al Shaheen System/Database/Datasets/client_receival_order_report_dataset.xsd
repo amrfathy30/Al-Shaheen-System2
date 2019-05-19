@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="client_receival_order_report_dataset" targetNamespace="http://tempuri.org/client_receival_order_report_dataset.xsd" xmlns:mstns="http://tempuri.org/client_receival_order_report_dataset.xsd" xmlns="http://tempuri.org/client_receival_order_report_dataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="client_receival_order_report_dataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="client_receival_order_report_dataset" msprop:Generator_UserDSName="client_receival_order_report_dataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Client_order_items" msprop:Generator_TableClassName="Client_order_itemsDataTable" msprop:Generator_TableVarName="tableClient_order_items" msprop:Generator_TablePropName="Client_order_items" msprop:Generator_RowDeletingName="Client_order_itemsRowDeleting" msprop:Generator_RowChangingName="Client_order_itemsRowChanging" msprop:Generator_RowEvHandlerName="Client_order_itemsRowChangeEventHandler" msprop:Generator_RowDeletedName="Client_order_itemsRowDeleted" msprop:Generator_UserTableName="Client_order_items" msprop:Generator_RowChangedName="Client_order_itemsRowChanged" msprop:Generator_RowEvArgName="Client_order_itemsRowChangeEvent" msprop:Generator_RowClassName="Client_order_itemsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NO" msprop:Generator_ColumnVarNameInTable="columnNO" msprop:Generator_ColumnPropNameInRow="NO" msprop:Generator_ColumnPropNameInTable="NOColumn" msprop:Generator_UserColumnName="NO" type="xs:int" minOccurs="0" />
+              <xs:element name="SH_ITEM_TYPE" msprop:Generator_ColumnVarNameInTable="columnSH_ITEM_TYPE" msprop:Generator_ColumnPropNameInRow="SH_ITEM_TYPE" msprop:Generator_ColumnPropNameInTable="SH_ITEM_TYPEColumn" msprop:Generator_UserColumnName="SH_ITEM_TYPE" type="xs:string" minOccurs="0" />
+              <xs:element name="SH_ITEM_NAME" msprop:Generator_ColumnVarNameInTable="columnSH_ITEM_NAME" msprop:Generator_ColumnPropNameInRow="SH_ITEM_NAME" msprop:Generator_ColumnPropNameInTable="SH_ITEM_NAMEColumn" msprop:Generator_UserColumnName="SH_ITEM_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="SH_ITEM_CONTAINER" msprop:Generator_ColumnVarNameInTable="columnSH_ITEM_CONTAINER" msprop:Generator_ColumnPropNameInRow="SH_ITEM_CONTAINER" msprop:Generator_ColumnPropNameInTable="SH_ITEM_CONTAINERColumn" msprop:Generator_UserColumnName="SH_ITEM_CONTAINER" type="xs:string" minOccurs="0" />
+              <xs:element name="SH_NO_CONTAINERS" msprop:Generator_ColumnVarNameInTable="columnSH_NO_CONTAINERS" msprop:Generator_ColumnPropNameInRow="SH_NO_CONTAINERS" msprop:Generator_ColumnPropNameInTable="SH_NO_CONTAINERSColumn" msprop:Generator_UserColumnName="SH_NO_CONTAINERS" type="xs:long" minOccurs="0" />
+              <xs:element name="SH_NO_ITEMS_PER_CONTAINER" msprop:Generator_ColumnVarNameInTable="columnSH_NO_ITEMS_PER_CONTAINER" msprop:Generator_ColumnPropNameInRow="SH_NO_ITEMS_PER_CONTAINER" msprop:Generator_ColumnPropNameInTable="SH_NO_ITEMS_PER_CONTAINERColumn" msprop:Generator_UserColumnName="SH_NO_ITEMS_PER_CONTAINER" type="xs:long" minOccurs="0" />
+              <xs:element name="SH_TOTAL_NO_ITEMS" msprop:Generator_ColumnVarNameInTable="columnSH_TOTAL_NO_ITEMS" msprop:Generator_ColumnPropNameInRow="SH_TOTAL_NO_ITEMS" msprop:Generator_ColumnPropNameInTable="SH_TOTAL_NO_ITEMSColumn" msprop:Generator_UserColumnName="SH_TOTAL_NO_ITEMS" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

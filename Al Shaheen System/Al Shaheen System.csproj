@@ -36,14 +36,20 @@
     <StartupObject>Al_Shaheen_System.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllRequestOfPerfectProductFromSales.cs">
+    <Compile Include="clientmaterialbalanceform.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AllRequestOfPerfectProductFromSales.designer.cs">
@@ -92,10 +98,7 @@
     <Compile Include="ProductionFrm.Designer.cs">
       <DependentUpon>ProductionFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SH_CUTTER_BALANCEcs.cs" />
-    <Compile Include="SH_CUTTER_DAILY_WORK.cs" />
     <Compile Include="SH_EXCHANGE_REQUEST_FROM_SALES.cs" />
-    <Compile Include="SH_QUANTITY_OF_EXCHANGED_PRINTED_MATERIAL.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -854,14 +857,8 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AllRequestOfPerfectProductFromSales.resx">
-      <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CutterFrm.resx">
-      <DependentUpon>CutterFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Holl1Frm.resx">
-      <DependentUpon>Holl1Frm.cs</DependentUpon>
+    <EmbeddedResource Include="clientmaterialbalanceform.resx">
+      <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="newCutterFrm.resx">
       <DependentUpon>newCutterFrm.cs</DependentUpon>
@@ -871,6 +868,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductionFrm.resx">
       <DependentUpon>ProductionFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="client_receit_order_report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>client_receit_order_report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="flashbackPalletscartonseparatorsandwoodbush.resx">
+      <DependentUpon>flashbackPalletscartonseparatorsandwoodbush.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printreceivalpermission.resx">
+      <DependentUpon>printreceivalpermission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.resx">
       <DependentUpon>ClientSupplyRunOrderFrmNew.cs</DependentUpon>
@@ -1211,6 +1218,17 @@
     <EmbeddedResource Include="Views\waitingform.resx">
       <DependentUpon>waitingform.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Database\Datasets\client_receival_order_report_dataset.xsc">
+      <DependentUpon>client_receival_order_report_dataset.xsd</DependentUpon>
+    </None>
+    <None Include="Database\Datasets\client_receival_order_report_dataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>client_receival_order_report_dataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Database\Datasets\client_receival_order_report_dataset.xss">
+      <DependentUpon>client_receival_order_report_dataset.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SH_QUANTITY_OF_RAW_MATERIAL.datasource" />
     <None Include="Properties\Settings.settings">
@@ -1243,7 +1261,9 @@
   <ItemGroup>
     <None Include="Resources\it-department-logo.jpeg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

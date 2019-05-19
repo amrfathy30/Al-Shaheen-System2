@@ -34,6 +34,7 @@ namespace Al_Shaheen_System
         }
         void addnewdepartment()
         {
+            //MessageBox.Show(mEmployee.SH_EMPLOYEE_NAME);
             try
             {
                 string query = "INSERT INTO SH_FUNCTION ";

@@ -38,7 +38,7 @@ namespace Al_Shaheen_System
         {
             try
             {
-                string query = "SELECT DISTINCT SH_STOCK_NAME FROM SH_RAW_MATERIAL_PARCEL WHERE SH_ID NOT IN (SELECT SH_RAW_MATERIAL_PARCEL_ID FROM SH_PACKAGES_DISBURSED_RAW_MATERIAL ";
+                string query = "SELECT DISTINCT SH_STOCK_NAME FROM SH_RAW_MATERIAL_PARCEL WHERE SH_ID NOT IN (SELECT SH_RAW_MATERIAL_PARCEL_ID FROM SH_PACKAGES_DISBURSED_RAW_MATERIAL) ";
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);

@@ -38,10 +38,19 @@ namespace Al_Shaheen_System
             {
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SH_GET_ALL_PLASTIC_COVER_SPECIFICATIONS", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    specifications.Add(new SH_SPECIFICATION_OF_PLASTIC_COVER() { SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_LOGO_OR_NOT = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()), SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()), SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString()), SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()), SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()) });
+                    specifications.Add(new SH_SPECIFICATION_OF_PLASTIC_COVER() {
+                        SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()),
+                        SH_CONTAINER_NAME = reader["SH_CONTAINER_NAME"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_LOGO_OR_NOT = long.Parse(reader["SH_LOGO_OR_NOT"].ToString()),
+                        SH_NO_OF_CONTAINERS = long.Parse(reader["SH_NO_OF_CONTAINERS"].ToString()),
+                        SH_SIZE_ID = long.Parse(reader["SH_SIZE_ID"].ToString())
+                        , SH_TOTAL_NO_ITEMS = long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()),
+                        SH_PILLOW_COLOR_ID = long.Parse(reader["SH_PILLOW_COLOR_ID"].ToString()) });
                 }
                 reader.Close();
                 myconnection.closeConnection();
@@ -52,14 +61,15 @@ namespace Al_Shaheen_System
         }
         async Task<long> check_if_specification_exists_or_not(SH_PLASTIC_COVER_DATA mydata)
         {
-            loadallspecifications();
+            await loadallspecifications();
             try
             {
+               // MessageBox.Show(specifications.Count.ToString());
                 if (specifications.Count > 0)
                 {
                     for (int i = 0; i < specifications.Count; i++)
                     {
-                        if (specifications[i].SH_CLIENT_ID == mydata.client.SH_ID && specifications[i].SH_LOGO_OR_NOT == mydata.logo_or_not && specifications[i].SH_SIZE_ID == mydata.size.SH_ID && string.Compare(specifications[i].SH_CONTAINER_NAME, mydata.container_name) == 0)
+                        if (specifications[i].SH_CLIENT_ID == mydata.client.SH_ID && specifications[i].SH_LOGO_OR_NOT == mydata.logo_or_not && specifications[i].SH_SIZE_ID == mydata.size.SH_ID && string.Compare(specifications[i].SH_CONTAINER_NAME, mydata.container_name) == 0 && specifications[i].SH_PILLOW_COLOR_ID == mydata.pillow_color.SH_ID)
                         {
                             return specifications[i].SH_ID;
                         }
@@ -812,10 +822,11 @@ namespace Al_Shaheen_System
                     for (int i = 0; i < form_data.Count; i++)
                     {
                         long sp_id = await check_if_specification_exists_or_not(form_data[i]);
+                        //MessageBox.Show(sp_id.ToString());
                         if (sp_id !=0)
                         {
                             await upsate_specifications(sp_id,form_data[i]);
-                           long q_id =  await save_new_plastic_cover_quantities(sp_id, form_data[i]);
+                            long q_id =  await save_new_plastic_cover_quantities(sp_id, form_data[i]);
                             await save_plastic_cover_containers(q_id , form_data[i]);
                         }else
                         {
@@ -845,6 +856,14 @@ namespace Al_Shaheen_System
         private void sizes_combo_box_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void new_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            addnewplasticcoverform myform = new addnewplasticcoverform();
+            myform.Show();
+            this.Close();
         }
     }
 }

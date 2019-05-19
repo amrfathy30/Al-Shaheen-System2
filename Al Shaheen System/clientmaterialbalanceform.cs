@@ -46,16 +46,16 @@ namespace Al_Shaheen_System
             }
 
 
-            if (string.IsNullOrWhiteSpace(client_products_combo_box.Text))
-            {
-                product = false;
+            //if (string.IsNullOrWhiteSpace(client_products_combo_box.Text))
+            //{
+            //    product = false;
 
-            }
-            else
-            {
-                product = true;
-                product_q = " AND SH_CLIENT_PRODUCT_ID = @SH_CLIENT_PRODUCT_ID";
-            }
+            //}
+            //else
+            //{
+            //    product = true;
+            //    product_q = " AND SH_CLIENT_PRODUCT_ID = @SH_CLIENT_PRODUCT_ID";
+            //}
             try
             {
 
@@ -136,7 +136,7 @@ namespace Al_Shaheen_System
                     materials.Add(new client_material_balance_items()
                     {
                         container_name = "طرد",
-                        material_name = "صفيح مورنش",
+                        material_name = "صفيح مطبوع",
                         no_of_containers = long.Parse(reader["SH_ITEM_TOTAL_NO_PARCELS"].ToString()),
                         total_no_items = long.Parse(reader["SH_ITEM_TOTAL_NO_SHEETS"].ToString())
                     });
