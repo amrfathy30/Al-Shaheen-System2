@@ -29,18 +29,19 @@ namespace Al_Shaheen_System
 
         private void إضافةرصيدأولالمدةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewrowtinfd myform = new addnewrowtinfd(mEmployee , mAccount , mPermission))
-            {
-                myform.ShowDialog();
-            }
+            addnewrowtinfd myform = new addnewrowtinfd(mEmployee, mAccount, mPermission);
+
+
+                myform.Show();
+            
         }
 
         private void إضافةصفيحخامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewrawtin myform = new addnewrawtin())
-            {
-                myform.ShowDialog();
-            }
+            addnewrawtin myform = new addnewrawtin();
+
+            myform.Show();
+            
         }
 
         private void صرفالصفيحالخامToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,10 +50,10 @@ namespace Al_Shaheen_System
             //{
             //    myform.ShowDialog();
             //}
-            using (searchinrawmaterialform myform = new searchinrawmaterialform())
-            {
-                myform.ShowDialog();
-            }
+            searchinrawmaterialform myform = new searchinrawmaterialform();
+
+            myform.Show();
+            
         }
 
         private void إضافةرصيدأولالمدةToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -62,60 +63,60 @@ namespace Al_Shaheen_System
 
         private void إعداداتقواعدالبياناتToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (DatabaseConnectionSettingForm myform = new DatabaseConnectionSettingForm())
-            {
-                myform.ShowDialog();
-            }
+            DatabaseConnectionSettingForm myform = new DatabaseConnectionSettingForm();
+
+            myform.Show();
+            
         }
 
         private void الأرصدةToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (raw_tin_all_spcifications myform = new raw_tin_all_spcifications())
-            {
-                myform.ShowDialog();
-            }
+            raw_tin_all_spcifications myform = new raw_tin_all_spcifications();
+
+            myform.Show();
+            
         }
 
         private void إضافةCoilsالصفيحToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (raw_material_second_form_coils myform = new raw_material_second_form_coils())
-            {
-                myform.ShowDialog();
-            }
+            raw_material_second_form_coils myform = new raw_material_second_form_coils();
+
+            myform.Show();
+            
         }
 
         private void إضافةعميلجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (add_new_client_company_btn myform = new add_new_client_company_btn(null))
-            {
-                myform.ShowDialog();
-            }
+            add_new_client_company_btn myform = new add_new_client_company_btn(null);
+
+            myform.Show();
+            
         }
 
         private void إضافةموردجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (add_new_supply_company_form myform = new add_new_supply_company_form())
-            {
-                myform.ShowDialog();
-            }
+            add_new_supply_company_form myform = new add_new_supply_company_form();
+
+            myform.Show();
+            
         }
 
         private void easyOpenايزيأوبنToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (Easyopenaddingform myform = new Easyopenaddingform())
-            {
-                myform.ShowDialog();
-            }
+            Easyopenaddingform myform = new Easyopenaddingform();
+
+            myform.Show();
+            
         }
 
         private void بياناتالعملاءToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (mPermission.SH_SHOW_ALL_CLIENTS == 1)
             {
-                using (all_clients_data myform = new all_clients_data())
-                {
-                    myform.ShowDialog();
-                }
+                all_clients_data myform = new all_clients_data();
+
+                myform.Show();
+                
             }
           
         }
@@ -151,10 +152,10 @@ namespace Al_Shaheen_System
         {
             using (allfacecolors myform = new allfacecolors())
             {
-                myform.ShowDialog();
+                myform.Show();
             }
 
-            myform.Show();
+           
 
 
         }
@@ -252,7 +253,7 @@ namespace Al_Shaheen_System
 
         private void صرفالصفيحالمورنشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchinmuranparcels myform = new searchinmuranparcels())
+            using (searchinmuranparcels myform = new searchinmuranparcels(mAccount))
             {
                 myform.ShowDialog();
             }
@@ -305,7 +306,7 @@ namespace Al_Shaheen_System
 
         private void صرفالصفيحالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchinprintedparcels myform = new searchinprintedparcels())
+            using (searchinprintedparcels myform = new searchinprintedparcels(mAccount))
             {
                 myform.ShowDialog();
             }
@@ -313,7 +314,7 @@ namespace Al_Shaheen_System
 
         private void صرفالصفيحالمقصوصالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (searchincutprintedmaterial myform = new searchincutprintedmaterial())
+            using (searchincutprintedmaterial myform = new searchincutprintedmaterial(mAccount))
             {
                 myform.ShowDialog();
             }
@@ -736,7 +737,7 @@ namespace Al_Shaheen_System
 
         private void أللإنتاجToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProductionFrm frm = new ProductionFrm();
+            ProductionFrm frm = new ProductionFrm(mAccount);
             frm.ShowDialog();
         }
 
@@ -744,5 +745,11 @@ namespace Al_Shaheen_System
         {
 
         }
+
+        private void إضافةسائقToolStripMenuItem_Click (object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

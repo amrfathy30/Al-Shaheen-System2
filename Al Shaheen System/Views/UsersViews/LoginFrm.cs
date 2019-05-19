@@ -13,9 +13,10 @@ namespace Al_Shaheen_System
 {
     public partial class LoginFrm : Form
     {
-        SH_EMPLOYEES shemp = new SH_EMPLOYEES();
-        SH_USER_PERMISIONS shuserPerm = new SH_USER_PERMISIONS();
-        SH_USER_ACCOUNTS account = new SH_USER_ACCOUNTS();
+        SH_EMPLOYEES mEmployee = new SH_EMPLOYEES();
+        SH_USER_PERMISIONS mPermission = new SH_USER_PERMISIONS();
+        SH_USER_ACCOUNTS mAccount = new SH_USER_ACCOUNTS();
+        DatabaseConnection myconnection = new DatabaseConnection();
 
         public LoginFrm()
         {
@@ -34,13 +35,13 @@ namespace Al_Shaheen_System
             SqlDataReader rd1 = com.ExecuteReader();
             if (rd1.Read())
             {
-                shemp.SH_EMPLOYEE_ADDRESS = rd1["SH_EMPLOYEE_ADDRESS"].ToString();
-                shemp.SH_EMPLOYEMENT_DATE = DateTime.Parse(rd1["SH_EMPLOYEMENT_DATE"].ToString());
-                shemp.SH_EMPLOYEE_EMAIL = rd1["SH_EMPLOYEE_EMAIL"].ToString();
-                shemp.SH_EMPLOYEE_GENDER = rd1["SH_EMPLOYEE_GENDER"].ToString();
-                shemp.SH_ID = long.Parse(rd1["SH_ID"].ToString());
-                shemp.SH_EMPLOYEE_NAME = rd1["SH_EMPLOYEE_NAME"].ToString();
-                shemp.SH_EMPLOYEE_NATIONAL_ID = rd1["SH_EMPLOYEE_NATIONAL_ID"].ToString();     
+                mEmployee.SH_EMPLOYEE_ADDRESS = rd1["SH_EMPLOYEE_ADDRESS"].ToString();
+                mEmployee.SH_EMPLOYEMENT_DATE = DateTime.Parse(rd1["SH_EMPLOYEMENT_DATE"].ToString());
+                mEmployee.SH_EMPLOYEE_EMAIL = rd1["SH_EMPLOYEE_EMAIL"].ToString();
+                mEmployee.SH_EMPLOYEE_GENDER = rd1["SH_EMPLOYEE_GENDER"].ToString();
+                mEmployee.SH_ID = long.Parse(rd1["SH_ID"].ToString());
+                mEmployee.SH_EMPLOYEE_NAME = rd1["SH_EMPLOYEE_NAME"].ToString();
+                mEmployee.SH_EMPLOYEE_NATIONAL_ID = rd1["SH_EMPLOYEE_NATIONAL_ID"].ToString();     
             }
             rd1.Close();
             myconnection.closeConnection();

@@ -62,11 +62,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllRequestOfPerfectProductFromSales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bottom_containers_data.cs" />
     <Compile Include="clientmaterialbalanceform.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="clientmaterialbalanceform.designer.cs">
+      <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
+    </Compile>
     <Compile Include="AllRequestOfPerfectProductFromSales.designer.cs">
       <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberform.Designer.cs">
+      <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberproducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clientreceivalpermissionnumberproducts.Designer.cs">
+      <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="client_material_balance_items.cs" />
+    <Compile Include="client_receit_order_report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>client_receit_order_report.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CutterFrm.cs">
       <SubType>Form</SubType>
@@ -74,11 +100,19 @@
     <Compile Include="CutterFrm.Designer.cs">
       <DependentUpon>CutterFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="easy_open_container_data.cs" />
+    <Compile Include="finished_cans_model_data.cs" />
     <Compile Include="Holl1Frm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Holl1Frm.Designer.cs">
       <DependentUpon>Holl1Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printreceivalpermission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printreceivalpermission.Designer.cs">
+      <DependentUpon>printreceivalpermission.cs</DependentUpon>
     </Compile>
     <Compile Include="newCutterFrm.cs">
       <SubType>Form</SubType>
@@ -86,6 +120,9 @@
     <Compile Include="newCutterFrm.Designer.cs">
       <DependentUpon>newCutterFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="order_receit_form_data.cs" />
+    <Compile Include="peel_off_container_data.cs" />
+    <Compile Include="plastic_cover_container_data.cs" />
     <Compile Include="ProductDetailsForExchangeFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,7 +135,24 @@
     <Compile Include="ProductionFrm.Designer.cs">
       <DependentUpon>ProductionFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="receival_permission_order_items.cs" />
+    <Compile Include="rlt_container_data.cs" />
+    <Compile Include="SH_CONTAINER_OF_BOTTEL_FACE.cs" />
+    <Compile Include="SH_CUTTER_BALANCEcs.cs" />
+    <Compile Include="SH_CUTTER_DAILY_WORK.cs" />
+    <Compile Include="SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA.cs" />
     <Compile Include="SH_EXCHANGE_REQUEST_FROM_SALES.cs" />
+    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS.cs" />
+    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_ADDING_FROM_SALES_JOURNAL.cs" />
+    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_FLASH_BACK_PERMISSIONS.cs" />
+    <Compile Include="sh_plastic_mold_finished_product_data.cs" />
+    <Compile Include="SH_QUANTITY_OF_BOTTEL_FACE.cs" />
+    <Compile Include="SH_QUANTITY_OF_EXCHANGED_MURAN_MATERIAL.cs" />
+    <Compile Include="SH_QUANTITY_OF_EXCHANGED_PRINTED_MATERIAL.cs" />
+    <Compile Include="SH_RECEIVING_PERMISSION_INFORMATION.cs" />
+    <Compile Include="SH_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_COVER_PLATE_BOTTEL_FACE.cs" />
+    <Compile Include="twist_of_container_data.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -857,8 +911,17 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AllRequestOfPerfectProductFromSales.resx">
+      <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="clientmaterialbalanceform.resx">
       <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="clientreceivalpermissionnumberform.resx">
+      <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="clientreceivalpermissionnumberproducts.resx">
+      <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="newCutterFrm.resx">
       <DependentUpon>newCutterFrm.cs</DependentUpon>
