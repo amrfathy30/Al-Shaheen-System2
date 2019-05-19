@@ -250,6 +250,7 @@
             this.label7.Size = new System.Drawing.Size(41, 25);
             this.label7.TabIndex = 26;
             this.label7.Text = "الفتح";
+            this.label7.Visible = false;
             // 
             // textBoxOpenType
             // 
@@ -259,6 +260,7 @@
             this.textBoxOpenType.Name = "textBoxOpenType";
             this.textBoxOpenType.Size = new System.Drawing.Size(139, 30);
             this.textBoxOpenType.TabIndex = 25;
+            this.textBoxOpenType.Visible = false;
             // 
             // label8
             // 

@@ -62,74 +62,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="addnewdriverform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="addnewdriverform.Designer.cs">
-      <DependentUpon>addnewdriverform.cs</DependentUpon>
-    </Compile>
-    <Compile Include="bottom_containers_data.cs" />
     <Compile Include="clientmaterialbalanceform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="clientmaterialbalanceform.Designer.cs">
-      <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
+    <Compile Include="AllRequestOfPerfectProductFromSales.designer.cs">
+      <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberform.cs">
+    <Compile Include="CutterFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberform.Designer.cs">
-      <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
+    <Compile Include="CutterFrm2.Designer.cs">
+      <DependentUpon>CutterFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberproducts.cs">
+    <Compile Include="Holl1Frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberproducts.Designer.cs">
-      <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
+    <Compile Include="Holl1Frm.Designer.cs">
+      <DependentUpon>Holl1Frm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetailsForExchangeFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductDetailsForExchangeFrm.designer.cs">
+      <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductionFrm.Designer.cs">
+      <DependentUpon>ProductionFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="client_material_balance_items.cs" />
-    <Compile Include="client_receit_order_report.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>client_receit_order_report.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Database\Datasets\client_receival_order_report_dataset.cs">
-      <DependentUpon>client_receival_order_report_dataset.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Datasets\client_receival_order_report_dataset.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>client_receival_order_report_dataset.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="easy_open_container_data.cs" />
-    <Compile Include="finished_cans_model_data.cs" />
-    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.Designer.cs">
-      <DependentUpon>flashbackPalletscartonseparatorsandwoodbush.cs</DependentUpon>
-    </Compile>
-    <Compile Include="order_receit_form_data.cs" />
-    <Compile Include="peel_off_container_data.cs" />
-    <Compile Include="plastic_cover_container_data.cs" />
-    <Compile Include="printreceivalpermission.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="printreceivalpermission.Designer.cs">
-      <DependentUpon>printreceivalpermission.cs</DependentUpon>
-    </Compile>
     <Compile Include="receival_permission_order_items.cs" />
-    <Compile Include="rlt_container_data.cs" />
-    <Compile Include="SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA.cs" />
-    <Compile Include="SH_DRIVERS.cs" />
-    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS.cs" />
-    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_ADDING_FROM_SALES_JOURNAL.cs" />
-    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_FLASH_BACK_PERMISSIONS.cs" />
     <Compile Include="sh_plastic_mold_finished_product_data.cs" />
-    <Compile Include="SH_RECEIVING_PERMISSION_INFORMATION.cs" />
-    <Compile Include="SH_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION.cs" />
-    <Compile Include="twist_of_container_data.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -888,17 +853,14 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="addnewdriverform.resx">
-      <DependentUpon>addnewdriverform.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="clientmaterialbalanceform.resx">
       <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="clientreceivalpermissionnumberform.resx">
-      <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
+    <EmbeddedResource Include="ProductDetailsForExchangeFrm.resx">
+      <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="clientreceivalpermissionnumberproducts.resx">
-      <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
+    <EmbeddedResource Include="ProductionFrm.resx">
+      <DependentUpon>ProductionFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="client_receit_order_report.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
