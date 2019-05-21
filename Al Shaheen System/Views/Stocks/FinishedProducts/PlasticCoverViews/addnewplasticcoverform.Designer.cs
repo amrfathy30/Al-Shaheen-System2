@@ -740,6 +740,7 @@
             this.Name = "addnewplasticcoverform";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إضافة تويست أوف";
             this.Load += new System.EventHandler(this.addnewtwistofform_Load);
             this.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.addnewtwistofform_ControlAdded);

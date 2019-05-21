@@ -320,13 +320,7 @@ namespace Al_Shaheen_System
             }
         }
 
-        private void قاعاووشToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (addnewBottom myform = new addnewBottom())
-            {
-                myform.ShowDialog();
-            }
-        }
+        
 
         private void pennyLeverRLTبيلأوفToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -759,7 +753,7 @@ namespace Al_Shaheen_System
 
         private void قــــــاعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addnewBottom myform = new addnewBottom();
+            addnewBottom myform = new addnewBottom(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
@@ -814,6 +808,18 @@ namespace Al_Shaheen_System
         private void حسابصنفالعميلToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clientmaterialbalanceform myform = new clientmaterialbalanceform();
+            myform.Show();
+        }
+
+        private void تويستأوفToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            addnewtwistofform myform = new addnewtwistofform();
+            myform.Show();
+        }
+
+        private void جميعأذونالإستلامToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            all_receiving_permission_informations myform = new all_receiving_permission_informations(mEmployee, mAccount, mPermission);
             myform.Show();
         }
     }

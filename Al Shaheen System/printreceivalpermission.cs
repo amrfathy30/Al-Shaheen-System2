@@ -1,4 +1,4 @@
-﻿using CrystalDecisions.Windows.Forms;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CrystalDecisions;
+
 using System.Data.SqlClient;
+using Microsoft.Reporting.WinForms;
 
 namespace Al_Shaheen_System
 {
@@ -144,26 +145,47 @@ namespace Al_Shaheen_System
 
                 mdatatabel.Rows.Add(mydata);
             }
-            client_receit_order_report myreport = new client_receit_order_report();
-            myreport.Database.Tables["Client_order_items"].SetDataSource(mdatatabel);
-            myreport.SetParameterValue("clientreceitnumber", order_number+ " : إذن رقم");
-            myreport.SetParameterValue("drivername", "إسم السائق : " + SH_DRIVER_NAME);
-            myreport.SetParameterValue("drivercarnumber", "رقم السيارة : " + SH_DRIVER_CAR_NUMBER);
-            myreport.SetParameterValue("driverlisencenumber", "رقم رخصة القيادة : "+SH_DRIVER_LICENSE_NUMBER);
-            myreport.SetParameterValue("clientname", "  إسم العميل :  "+client_name);
-            myreport.SetParameterValue("clientbranchname", " مكان التسليم : "+client_branch);
-            myreport.SetParameterValue("stockname", " المخزن  : "+stock_name);
-            myreport.SetParameterValue("stockmanname", "أمين المخزن : "+stock_man_name);
-            myreport.SetParameterValue("additiondate", DateTime.Now);
-            myreport.SetParameterValue("1stfieldname","عدد البالتات");
-            myreport.SetParameterValue("1stfieldvalue", SH_NO_PALLETS);
-            myreport.SetParameterValue("2ndfieldname", "عدد الفواصل الكرتون");
-            myreport.SetParameterValue("2ndfieldvalue", SH_CARDBOARD_DIVIDERS);
-            myreport.SetParameterValue("3rdfieldname", "عدد الزوايا الكوتونية");
-            myreport.SetParameterValue("3rdfieldvalue", SH_NO_WOOD_WINCHES);
 
-            crystalReportViewer2.ReportSource = myreport;
-            crystalReportViewer2.Refresh();
+            //client_receit_order_report myreport = new client_receit_order_report();
+            //myreport.Database.Tables["Client_order_items"].SetDataSource(mdatatabel);
+            //myreport.SetParameterValue("clientreceitnumber", order_number+ " : إذن رقم");
+            //myreport.SetParameterValue("drivername", "إسم السائق : " + SH_DRIVER_NAME);
+            //myreport.SetParameterValue("drivercarnumber", "رقم السيارة : " + SH_DRIVER_CAR_NUMBER);
+            //myreport.SetParameterValue("driverlisencenumber", "رقم رخصة القيادة : "+SH_DRIVER_LICENSE_NUMBER);
+            //myreport.SetParameterValue("clientname", "  إسم العميل :  "+client_name);
+            //myreport.SetParameterValue("clientbranchname", " مكان التسليم : "+client_branch);
+            //myreport.SetParameterValue("stockname", " المخزن  : "+stock_name);
+            //myreport.SetParameterValue("stockmanname", "أمين المخزن : "+stock_man_name);
+            //myreport.SetParameterValue("additiondate", DateTime.Now);
+            //myreport.SetParameterValue("1stfieldname","عدد البالتات");
+            //myreport.SetParameterValue("1stfieldvalue", SH_NO_PALLETS);
+            //myreport.SetParameterValue("2ndfieldname", "عدد الفواصل الكرتون");
+            //myreport.SetParameterValue("2ndfieldvalue", SH_CARDBOARD_DIVIDERS);
+            //myreport.SetParameterValue("3rdfieldname", "عدد الزوايا الكوتونية");
+            //myreport.SetParameterValue("3rdfieldvalue", SH_NO_WOOD_WINCHES);
+
+            //crystalReportViewer2.ReportSource = myreport;
+            //crystalReportViewer2.Refresh();
+
+            
+            ReportParameter[] myparm = new ReportParameter[10];
+            myparm[0] = new ReportParameter("no_client_order_number", order_number, true);
+            myparm[1] = new ReportParameter("client_branch_text_parameter", client_branch, true);
+            myparm[2] = new ReportParameter("client_name_text_parameter", client_name, true);
+            myparm[3] = new ReportParameter("no_pallets_text_parameter", SH_NO_PALLETS.ToString()+ " * 200 جنية مصرى ", true);
+            myparm[4] = new ReportParameter("no_wooden_face_text_parameter",  SH_NO_WOOD_WINCHES.ToString()+ " * 50 جنية مصرى", true);
+            myparm[5] = new ReportParameter("carton_divider_text_parameter", SH_CARDBOARD_DIVIDERS.ToString()+ " * 12 جنية مصرى", true);
+            myparm[6] = new ReportParameter("driver_name_text_parameter", SH_DRIVER_NAME, true);
+            myparm[7] = new ReportParameter("car_number_text_box", SH_DRIVER_CAR_NUMBER, true);
+            myparm[8] = new ReportParameter("lisence_number_text_parameter", SH_DRIVER_LICENSE_NUMBER, true);
+            myparm[9] = new ReportParameter("stock_man_name_text_parameter", stock_man_name, true);
+         
+            this.reportViewer1.LocalReport.SetParameters(myparm);
+            this.reportViewer1.LocalReport.DataSources.Add(
+                      new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", mdatatabel)
+                        );
+
+            this.reportViewer1.RefreshReport();
         }
     }
 }

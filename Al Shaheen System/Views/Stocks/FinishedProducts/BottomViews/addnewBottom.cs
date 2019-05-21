@@ -30,9 +30,20 @@ namespace Al_Shaheen_System
         List<SH_EMPLOYEES> stock_men = new List<SH_EMPLOYEES>();
         List<SH_SPECIFICATION_OF_BOTTOM> specifications = new List<SH_SPECIFICATION_OF_BOTTOM>();
         DatabaseConnection myconnection = new DatabaseConnection();
-        public addnewBottom()
+
+
+        public SH_EMPLOYEES mEmployee;
+        public SH_USER_ACCOUNTS mAccount;
+        public SH_USER_PERMISIONS mPermission { get; set; }
+
+
+
+        public addnewBottom(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyaccount , SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = anyperm;
         }
 
         async Task getalleasyopenusage()
@@ -129,18 +140,7 @@ namespace Al_Shaheen_System
 
         }
 
-         async void fillstockmencombobox()
-        {
-            await loadallstockmendata();
-            stock_men_combo_box.Items.Clear();
-            if (stock_men.Count > 0)
-            {
-                for (int i = 0; i < stock_men.Count; i++)
-                {
-                    stock_men_combo_box.Items.Add(stock_men[i].SH_EMPLOYEE_NAME);
-                }   
-            }
-        }
+       
 
 
 
@@ -485,7 +485,7 @@ namespace Al_Shaheen_System
             fillsupplierscombobox();
             fillsizesgridview();
             fillstockscombobox();
-            fillstockmencombobox();
+            stock_man_name_taxt_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             await fillsuagesgridview();
             await fillmaterialtypescombobox();
             F1_combo_box.Visible = false;
@@ -871,10 +871,7 @@ namespace Al_Shaheen_System
             {
                 cansave = false;
             }
-            else if (string.IsNullOrWhiteSpace(stock_men_combo_box.Text))
-            {
-                cansave = false;
-            }
+           
             else if (string.IsNullOrWhiteSpace(suppliers_combo_box.Text))
             {
                 cansave = false;
@@ -928,10 +925,10 @@ namespace Al_Shaheen_System
             {
                 if (f1_printing_stat.SelectedIndex==0)
                 {
-                    form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[F1_combo_box.SelectedIndex], container_name = container_types_combo_box.Text, first_face = null,second_face=null ,no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = c_products[f2_combo_box.SelectedIndex], no_items_per_subcontainer = long.Parse(no_items_per_bage.Text) , no_of_subcontainer_per_container= long.Parse(no_of_bages_per_container.Text) , SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex , SH_PRINTING_TYPE_NAME = f1_printing_stat.Text , SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex] , SH_USAGE = usages[usage_combo_box.SelectedIndex] , SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text) , size = sizes[sizes_combo_box.SelectedIndex] , stock = stocks[stocks_combo_box.SelectedIndex] , stock_man = stock_men[stock_men_combo_box.SelectedIndex] , sub_container_name= "أكياس" , supplier = suppliers[suppliers_combo_box.SelectedIndex] , supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex] , total_number_of_sub_container = long.Parse(total_no_bages.Text) });
+                    form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[F1_combo_box.SelectedIndex], container_name = container_types_combo_box.Text, first_face = null,second_face=null ,no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = c_products[f2_combo_box.SelectedIndex], no_items_per_subcontainer = long.Parse(no_items_per_bage.Text) , no_of_subcontainer_per_container= long.Parse(no_of_bages_per_container.Text) , SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex , SH_PRINTING_TYPE_NAME = f1_printing_stat.Text , SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex] , SH_USAGE = usages[usage_combo_box.SelectedIndex] , SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text) , size = sizes[sizes_combo_box.SelectedIndex] , stock = stocks[stocks_combo_box.SelectedIndex] , stock_man = mEmployee , sub_container_name= "أكياس" , supplier = suppliers[suppliers_combo_box.SelectedIndex] , supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex] , total_number_of_sub_container = long.Parse(total_no_bages.Text) });
                 }else
                 {
-                    form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = null, container_name = container_types_combo_box.Text, first_face = faces[F1_combo_box.SelectedIndex], second_face = faces[f2_combo_box.SelectedIndex], no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = null, no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = stock_men[stock_men_combo_box.SelectedIndex], sub_container_name = "أكياس", supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], total_number_of_sub_container = long.Parse(total_no_bages.Text) });
+                    form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = null, container_name = container_types_combo_box.Text, first_face = faces[F1_combo_box.SelectedIndex], second_face = faces[f2_combo_box.SelectedIndex], no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = null, no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = mEmployee, sub_container_name = "أكياس", supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], total_number_of_sub_container = long.Parse(total_no_bages.Text) });
 
                 }
                 filleasyopengridview();
@@ -1020,7 +1017,7 @@ namespace Al_Shaheen_System
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewBottom myform = new  addnewBottom())
+            using (addnewBottom myform = new  addnewBottom(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }

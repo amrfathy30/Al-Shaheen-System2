@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.stock_men_combo_box = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.stocks_combo_box = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -92,6 +91,7 @@
             this.remove_quantity_btn = new System.Windows.Forms.Button();
             this.date_text_box = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.stock_man_name_taxt_box = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -111,7 +111,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.stock_men_combo_box);
+            this.groupBox1.Controls.Add(this.stock_man_name_taxt_box);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.stocks_combo_box);
             this.groupBox1.Controls.Add(this.label9);
@@ -126,14 +126,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات المورد";
-            // 
-            // stock_men_combo_box
-            // 
-            this.stock_men_combo_box.FormattingEnabled = true;
-            this.stock_men_combo_box.Location = new System.Drawing.Point(122, 62);
-            this.stock_men_combo_box.Name = "stock_men_combo_box";
-            this.stock_men_combo_box.Size = new System.Drawing.Size(222, 28);
-            this.stock_men_combo_box.TabIndex = 7;
             // 
             // label12
             // 
@@ -705,6 +697,14 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // stock_man_name_taxt_box
+            // 
+            this.stock_man_name_taxt_box.Enabled = false;
+            this.stock_man_name_taxt_box.Location = new System.Drawing.Point(122, 64);
+            this.stock_man_name_taxt_box.Name = "stock_man_name_taxt_box";
+            this.stock_man_name_taxt_box.Size = new System.Drawing.Size(222, 26);
+            this.stock_man_name_taxt_box.TabIndex = 7;
+            // 
             // addnewBottom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -781,7 +781,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox addition_permission_number_text_box;
         private System.Windows.Forms.ComboBox f1_printing_stat;
-        private System.Windows.Forms.ComboBox stock_men_combo_box;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox stocks_combo_box;
         private System.Windows.Forms.Label label9;
@@ -807,5 +806,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.TextBox stock_man_name_taxt_box;
     }
 }

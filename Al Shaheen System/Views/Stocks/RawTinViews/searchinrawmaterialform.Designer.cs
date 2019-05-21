@@ -52,19 +52,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.search_btn = new System.Windows.Forms.Button();
             this.raw_parcels_grid_view = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.total_number_of_packages = new System.Windows.Forms.TextBox();
-            this.total_number_of_sheets = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.exchange_btn = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.total_net_weight_text_box = new System.Windows.Forms.TextBox();
-            this.Message_label = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.print_grid_view_btn = new System.Windows.Forms.Button();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +66,19 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.total_number_of_packages = new System.Windows.Forms.TextBox();
+            this.total_number_of_sheets = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.exchange_btn = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.total_net_weight_text_box = new System.Windows.Forms.TextBox();
+            this.Message_label = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.print_grid_view_btn = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.raw_parcels_grid_view)).BeginInit();
             this.SuspendLayout();
@@ -314,7 +314,7 @@
             this.search_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.search_btn.Location = new System.Drawing.Point(15, 310);
             this.search_btn.Name = "search_btn";
-            this.search_btn.Size = new System.Drawing.Size(185, 37);
+            this.search_btn.Size = new System.Drawing.Size(122, 37);
             this.search_btn.TabIndex = 23;
             this.search_btn.Text = "بحث ";
             this.search_btn.UseVisualStyleBackColor = false;
@@ -351,127 +351,8 @@
             this.raw_parcels_grid_view.ReadOnly = true;
             this.raw_parcels_grid_view.Size = new System.Drawing.Size(959, 485);
             this.raw_parcels_grid_view.TabIndex = 24;
+            this.raw_parcels_grid_view.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.raw_parcels_grid_view_CellContentClick);
             this.raw_parcels_grid_view.SelectionChanged += new System.EventHandler(this.raw_parcels_grid_view_SelectionChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 103);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 25);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "إجمالى عدد الطرود ";
-            // 
-            // total_number_of_packages
-            // 
-            this.total_number_of_packages.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_number_of_packages.Location = new System.Drawing.Point(164, 103);
-            this.total_number_of_packages.Name = "total_number_of_packages";
-            this.total_number_of_packages.Size = new System.Drawing.Size(118, 30);
-            this.total_number_of_packages.TabIndex = 26;
-            // 
-            // total_number_of_sheets
-            // 
-            this.total_number_of_sheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_number_of_sheets.Location = new System.Drawing.Point(439, 103);
-            this.total_number_of_sheets.Name = "total_number_of_sheets";
-            this.total_number_of_sheets.Size = new System.Drawing.Size(122, 30);
-            this.total_number_of_sheets.TabIndex = 27;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(296, 106);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(137, 25);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "إجمالى عدد الأفرخ ";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(263, 22);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(338, 46);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "البحث فى الصفيح الخام ";
-            // 
-            // exchange_btn
-            // 
-            this.exchange_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.exchange_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exchange_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exchange_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.exchange_btn.Location = new System.Drawing.Point(829, 310);
-            this.exchange_btn.Name = "exchange_btn";
-            this.exchange_btn.Size = new System.Drawing.Size(145, 37);
-            this.exchange_btn.TabIndex = 30;
-            this.exchange_btn.Text = "صرف";
-            this.exchange_btn.UseVisualStyleBackColor = false;
-            this.exchange_btn.Click += new System.EventHandler(this.exchange_btn_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(606, 100);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(155, 25);
-            this.label12.TabIndex = 32;
-            this.label12.Text = "إجمالى الوزن الصافى ";
-            // 
-            // total_net_weight_text_box
-            // 
-            this.total_net_weight_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_net_weight_text_box.Location = new System.Drawing.Point(761, 100);
-            this.total_net_weight_text_box.Name = "total_net_weight_text_box";
-            this.total_net_weight_text_box.Size = new System.Drawing.Size(162, 30);
-            this.total_net_weight_text_box.TabIndex = 31;
-            // 
-            // Message_label
-            // 
-            this.Message_label.AutoSize = true;
-            this.Message_label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Message_label.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Message_label.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Message_label.Location = new System.Drawing.Point(353, 311);
-            this.Message_label.Name = "Message_label";
-            this.Message_label.Size = new System.Drawing.Size(84, 30);
-            this.Message_label.TabIndex = 33;
-            this.Message_label.Text = "label13";
-            this.Message_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(929, 102);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 28);
-            this.label16.TabIndex = 43;
-            this.label16.Text = "كجم";
-            // 
-            // print_grid_view_btn
-            // 
-            this.print_grid_view_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.print_grid_view_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.print_grid_view_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.print_grid_view_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.print_grid_view_btn.Location = new System.Drawing.Point(829, 858);
-            this.print_grid_view_btn.Name = "print_grid_view_btn";
-            this.print_grid_view_btn.Size = new System.Drawing.Size(145, 37);
-            this.print_grid_view_btn.TabIndex = 45;
-            this.print_grid_view_btn.Text = "طباعة";
-            this.print_grid_view_btn.UseVisualStyleBackColor = false;
-            this.print_grid_view_btn.Click += new System.EventHandler(this.print_grid_view_btn_Click);
-            // 
-            // printDialog1
-            // 
-            this.printDialog1.Document = this.printDocument1;
-            this.printDialog1.UseEXDialog = true;
             // 
             // Column1
             // 
@@ -583,6 +464,125 @@
             this.Column12.HeaderText = "الوزن القائم";
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(17, 103);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 25);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "إجمالى عدد الطرود ";
+            // 
+            // total_number_of_packages
+            // 
+            this.total_number_of_packages.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_number_of_packages.Location = new System.Drawing.Point(164, 103);
+            this.total_number_of_packages.Name = "total_number_of_packages";
+            this.total_number_of_packages.Size = new System.Drawing.Size(118, 30);
+            this.total_number_of_packages.TabIndex = 26;
+            // 
+            // total_number_of_sheets
+            // 
+            this.total_number_of_sheets.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_number_of_sheets.Location = new System.Drawing.Point(439, 103);
+            this.total_number_of_sheets.Name = "total_number_of_sheets";
+            this.total_number_of_sheets.Size = new System.Drawing.Size(122, 30);
+            this.total_number_of_sheets.TabIndex = 27;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(296, 106);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(137, 25);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "إجمالى عدد الأفرخ ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(263, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(338, 46);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "البحث فى الصفيح الخام ";
+            // 
+            // exchange_btn
+            // 
+            this.exchange_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.exchange_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exchange_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exchange_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.exchange_btn.Location = new System.Drawing.Point(870, 310);
+            this.exchange_btn.Name = "exchange_btn";
+            this.exchange_btn.Size = new System.Drawing.Size(104, 37);
+            this.exchange_btn.TabIndex = 30;
+            this.exchange_btn.Text = "صرف";
+            this.exchange_btn.UseVisualStyleBackColor = false;
+            this.exchange_btn.Click += new System.EventHandler(this.exchange_btn_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(606, 100);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(155, 25);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "إجمالى الوزن الصافى ";
+            // 
+            // total_net_weight_text_box
+            // 
+            this.total_net_weight_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_net_weight_text_box.Location = new System.Drawing.Point(761, 100);
+            this.total_net_weight_text_box.Name = "total_net_weight_text_box";
+            this.total_net_weight_text_box.Size = new System.Drawing.Size(162, 30);
+            this.total_net_weight_text_box.TabIndex = 31;
+            // 
+            // Message_label
+            // 
+            this.Message_label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Message_label.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Message_label.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Message_label.Location = new System.Drawing.Point(164, 307);
+            this.Message_label.Name = "Message_label";
+            this.Message_label.Size = new System.Drawing.Size(683, 43);
+            this.Message_label.TabIndex = 33;
+            this.Message_label.Text = "label13";
+            this.Message_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(929, 102);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(46, 28);
+            this.label16.TabIndex = 43;
+            this.label16.Text = "كجم";
+            // 
+            // print_grid_view_btn
+            // 
+            this.print_grid_view_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.print_grid_view_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.print_grid_view_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.print_grid_view_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.print_grid_view_btn.Location = new System.Drawing.Point(829, 858);
+            this.print_grid_view_btn.Name = "print_grid_view_btn";
+            this.print_grid_view_btn.Size = new System.Drawing.Size(145, 37);
+            this.print_grid_view_btn.TabIndex = 45;
+            this.print_grid_view_btn.Text = "طباعة";
+            this.print_grid_view_btn.UseVisualStyleBackColor = false;
+            this.print_grid_view_btn.Click += new System.EventHandler(this.print_grid_view_btn_Click);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.Document = this.printDocument1;
+            this.printDialog1.UseEXDialog = true;
             // 
             // searchinrawmaterialform
             // 

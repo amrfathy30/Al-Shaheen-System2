@@ -22,6 +22,8 @@ namespace Al_Shaheen_System
         SH_EMPLOYEES memployee = new SH_EMPLOYEES();
         SH_USER_ACCOUNTS maccount = new SH_USER_ACCOUNTS();
         SH_USER_PERMISIONS mpermission = new SH_USER_PERMISIONS();
+        long dividers = 0;
+        long pallets = 0;
 
         public long back = 0;
         public clientreceivalpermissionnumberform(SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyaccount, SH_USER_PERMISIONS anyperm)
@@ -31,6 +33,27 @@ namespace Al_Shaheen_System
             maccount = anyaccount;
             mpermission = anyperm;
         }
+
+
+        void getallcartondividersandpallets(SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA anydata)
+        {
+            if (anydata.product_type ==0)
+            {     
+                for (int i = 0; i < anydata.cans_parcels.Count; i++)
+                {
+                    dividers += anydata.cans_parcels[i].SH_NUMBER_OF_CANS_HEIGHT + 1;
+                }
+                pallets = anydata.cans_parcels.Count;
+            }
+            no_carton_dividers_text_box.Text = dividers.ToString();
+           
+        }
+
+
+
+
+
+
         async Task getallstocksdata()
         {
             stocks.Clear();
@@ -76,7 +99,7 @@ namespace Al_Shaheen_System
             try
             {
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SELECT IDENT_CURRENT('SH_RECEIVING_PERMISSION_INFORMATION') AS Current_Identity;", DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1)  AS Current_Identity from SH_RECEIVING_PERMISSION_INFORMATION", DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 long current_id = 0;
                 if (reader.Read())
@@ -116,8 +139,10 @@ namespace Al_Shaheen_System
                             for (int i = 0; i < myform.dismissed_containers.Count; i++)
                             {
                                 dismissed_containers.Add(myform.dismissed_containers[i]);
+                                getallcartondividersandpallets(myform.dismissed_containers[i]);
                             }
-                            
+                            no_pallets_text_box.Text = pallets.ToString();
+
                         }
                         await filldismissedcontainersgridview();
                     }
@@ -452,7 +477,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_DRIVER_CAR_NUMBER", car_number_text_box.Text);
                 cmd.Parameters.AddWithValue("@SH_CLIENT_BRANCH_ID",client_branches[client_branches_combo_box.SelectedIndex].SH_ID);
                 cmd.Parameters.AddWithValue("@SH_NO_PALLETS",long.Parse(no_pallets_text_box.Text));
-                cmd.Parameters.AddWithValue("@SH_NO_WOOD_WINCHES",long.Parse(no_carton_corners_text_box.Text));
+                cmd.Parameters.AddWithValue("@SH_NO_WOOD_WINCHES",long.Parse(no_wooden_face_text_box.Text));
                 cmd.Parameters.AddWithValue("@SH_CARDBOARD_DIVIDERS", long.Parse(no_carton_dividers_text_box.Text));
                 SqlDataReader reader = cmd.ExecuteReader();
                 long myid = 0;
@@ -1611,114 +1636,114 @@ namespace Al_Shaheen_System
             Cursor.Current = Cursors.WaitCursor;
             //save_receival_order_information_
 
-            //long info_id = await savenewreceitinformation();
-          
-
-            //for (int i = 0; i < dismissed_containers.Count; i++)
-            //{
-            //    string cur_string = "";
-            //    long cur_size = (i + 1).ToString().Length;
-            //    for (int k = 0; k < 3 - cur_size; k++)
-            //    {
-            //        cur_string += "0";
-            //    }
-            //    cur_string += (i + 1);
+            long info_id = await savenewreceitinformation();
 
 
-            //    switch (dismissed_containers[i].product_type)
-            //    {
-            //        case 0:
-            //            {
-            //                //finished cans
-            //                //save receive information
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedfinishedcansquantity(dismissed_containers[i]);
-            //                await savenewdismissedpalletsoffinishedcans(myid, dismissed_containers[i]);
-            //                await updatefinishedcansspecifications(dismissed_containers[i]);
-            //              //  MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-                            
-            //                break;
-            //            }
-            //        case 1:
-            //            {
-            //                //bottom
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedbottomquantity(dismissed_containers[i]);
-            //                await savenewdismissedbottomcontainers(myid , dismissed_containers[i]);
-            //                await updatebottomspecifications(dismissed_containers[i]);
-            //                break;
-            //            }
-            //        case 2:
-            //            {
-            //                //rlt
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedrltquantity(dismissed_containers[i]);
-            //                await savenewdismissedrltcontainers(myid, dismissed_containers[i]);
-            //                await updaterltpecifications(dismissed_containers[i]);
-            //                break;
-            //            }
-            //        case 3:
-            //            {
-            //                //easy open
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedeasyopenquantity(dismissed_containers[i]);
-            //                await savenewdismissedeastyopencontainers(myid, dismissed_containers[i]);
-            //                await updateeasyopenspecifications(dismissed_containers[i]);
-            //                break;
-            //            }
-            //        case 4:
-            //            {
-            //                //peel off
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedpeeloffquantity(dismissed_containers[i]);
-            //                await savenewdismissedpeeloffcontainers(myid, dismissed_containers[i]);
-            //                await updatepeeloffspecifications(dismissed_containers[i]);                        
-            //                break;
-            //            }
-            //        case 5:
-            //            {
-            //                //twist of
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedtwistofquantity(dismissed_containers[i]);
-            //                await savenewdismissedtwistofcontainers(myid, dismissed_containers[i]);
-            //                await updatetwistofspecifications(dismissed_containers[i]);
-            //                break;
-            //            }
-            //        case 6:
-            //            {
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedplasticcoverqunatity(dismissed_containers[i]);
-            //                await savenewdismissedplasticcovercontainers(myid , dismissed_containers[i]);
-            //                await updateplasticcoverspecifications(dismissed_containers[i]);
-            //                //plastic cover
-            //                break;
-            //            }
-            //        case 7:
-            //            {
-            //                long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
-            //                await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
-            //                long myid = await savenewdismissedplasticmoldquantity(dismissed_containers[i]);
-            //                await savenewdismissedplasticmoldcontainers(myid , dismissed_containers[i]);
-            //                await updatedismissedplasticmoldspecifications(dismissed_containers[i]);
-            //                //plastic mold
-            //                break;
-            //            }
-            //        default:
-            //            break;
-            //    }
-            //}
+            for (int i = 0; i < dismissed_containers.Count; i++)
+            {
+                string cur_string = "";
+                long cur_size = (i + 1).ToString().Length;
+                for (int k = 0; k < 3 - cur_size; k++)
+                {
+                    cur_string += "0";
+                }
+                cur_string += (i + 1);
 
-           // MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
-            //printreceivalpermission myform = new printreceivalpermission(no_receiving_permission_number_text_box.Text);
-            printreceivalpermission myform = new printreceivalpermission("SH_19-0020");
+                switch (dismissed_containers[i].product_type)
+                {
+                    case 0:
+                        {
+                            //finished cans
+                            //save receive information
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedfinishedcansquantity(dismissed_containers[i]);
+                            await savenewdismissedpalletsoffinishedcans(myid, dismissed_containers[i]);
+                            await updatefinishedcansspecifications(dismissed_containers[i]);
+                            //  MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+                            break;
+                        }
+                    case 1:
+                        {
+                            //bottom
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedbottomquantity(dismissed_containers[i]);
+                            await savenewdismissedbottomcontainers(myid, dismissed_containers[i]);
+                            await updatebottomspecifications(dismissed_containers[i]);
+                            break;
+                        }
+                    case 2:
+                        {
+                            //rlt
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedrltquantity(dismissed_containers[i]);
+                            await savenewdismissedrltcontainers(myid, dismissed_containers[i]);
+                            await updaterltpecifications(dismissed_containers[i]);
+                            break;
+                        }
+                    case 3:
+                        {
+                            //easy open
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedeasyopenquantity(dismissed_containers[i]);
+                            await savenewdismissedeastyopencontainers(myid, dismissed_containers[i]);
+                            await updateeasyopenspecifications(dismissed_containers[i]);
+                            break;
+                        }
+                    case 4:
+                        {
+                            //peel off
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedpeeloffquantity(dismissed_containers[i]);
+                            await savenewdismissedpeeloffcontainers(myid, dismissed_containers[i]);
+                            await updatepeeloffspecifications(dismissed_containers[i]);
+                            break;
+                        }
+                    case 5:
+                        {
+                            //twist of
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedtwistofquantity(dismissed_containers[i]);
+                            await savenewdismissedtwistofcontainers(myid, dismissed_containers[i]);
+                            await updatetwistofspecifications(dismissed_containers[i]);
+                            break;
+                        }
+                    case 6:
+                        {
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedplasticcoverqunatity(dismissed_containers[i]);
+                            await savenewdismissedplasticcovercontainers(myid, dismissed_containers[i]);
+                            await updateplasticcoverspecifications(dismissed_containers[i]);
+                            //plastic cover
+                            break;
+                        }
+                    case 7:
+                        {
+                            long qu_id = await savenewreceitinformationitems(info_id, dismissed_containers[i], cur_string);
+                            await savenewreceitinformationitemsfinishedcans(qu_id, dismissed_containers[i]);
+                            long myid = await savenewdismissedplasticmoldquantity(dismissed_containers[i]);
+                            await savenewdismissedplasticmoldcontainers(myid, dismissed_containers[i]);
+                            await updatedismissedplasticmoldspecifications(dismissed_containers[i]);
+                            //plastic mold
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+
+            MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+            printreceivalpermission myform = new printreceivalpermission(no_receiving_permission_number_text_box.Text);
+            //printreceivalpermission myform = new printreceivalpermission("SH_19-0012");
             myform.ShowDialog();
             Cursor.Current = Cursors.Default;
         }

@@ -33,7 +33,7 @@ namespace Al_Shaheen_System
         List<twist_of_container_data> twist_of_containers = new List<twist_of_container_data>();
         List<easy_open_container_data> easy_open_containers = new List<easy_open_container_data>();
         List<plastic_cover_container_data> plastic_cover_data = new List<plastic_cover_container_data>();
-        List<SH_CALCULATE_TOTAL_FINISHED_PRODUCT> finished_cans = new List<SH_CALCULATE_TOTAL_FINISHED_PRODUCT>();
+        List<finished_cans_model_data> finished_cans = new List<finished_cans_model_data>();
 
         List<SH_COLOR_PILLOW> pillow_colors = new List<SH_COLOR_PILLOW>();
         List<SH_MOLD_TYPES> MOLD_TYPES = new List<SH_MOLD_TYPES>();
@@ -119,12 +119,12 @@ namespace Al_Shaheen_System
 
             if (client_products.Count > 0)
             {
-                List<string> sizes = new List<string>();
+                f1_combo_box.Items.Clear();
                 for (int i = 0; i < client_products.Count; i++)
                 {
-                    sizes.Add(client_products[i].SH_PRODUCT_NAME);
+                    f1_combo_box.Items.Add(client_products[i].SH_PRODUCT_NAME);
                 }
-                f1_combo_box.DataSource = sizes;
+                
 
             }
 
@@ -400,24 +400,88 @@ namespace Al_Shaheen_System
             finished_cans.Clear();
             try
             {
+                bool product = false;
+                bool msize = false;
+                string product_string = "";
+                string size_string = "";
+
+                if (string.IsNullOrEmpty(f1_combo_box.Text))
+                {
+                    product = false;
+                }else
+                {
+                    product = true;
+                    product_string = " AND CTFP.SH_CLIENT_PRODUCT_ID = @SH_CLIENT_PRODUCT_ID";
+                }
+
+                if (string.IsNullOrWhiteSpace(f2_combo_box.Text))
+                {
+                    msize = false;
+                }else
+                {
+                    size_string = " AND CP.SH_SIZE_ID = @SH_SIZE_ID";
+                }
+
+
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_GET_ALL_FINISHED_CANS_DATA ", DatabaseConnection.mConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
+
+                string query = " SELECT COUNT(APFP.SH_ID)AS TOTAL_NO_PALLET, APFP.SH_TOTAL_NUMBER_OF_CANS AS PALLET_NO_OF_CANS, ";
+                query += " SUM(APFP.SH_TOTAL_NUMBER_OF_CANS) AS QUANTITY_NUMBER_OF_CANS, ";
+                query += " ITS.SH_SIZE_NAME, ";
+                query += " ITS.SH_ID AS SH_SIZE_ID, ";
+                query += " CTFP.SH_ID AS SPECIFICATION_ID,";
+                query += " CC.SH_ID as SH_CLIENT_ID, ";
+                query += " CC.SH_CLIENT_COMPANY_NAME, ";
+                query += " CP.SH_ID AS CLIENT_PRODUCT_ID, ";
+                query += " CP.SH_PRODUCT_NAME ";
+                query += " FROM SH_ADDED_PARCELS_OF_FINISHED_PRODUCT APFP ";
+                query += " LEFT JOIN SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS AQFP ON ";
+                query += " AQFP.SH_ID = APFP.SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID ";
+                query += " LEFT JOIN SH_CALCULATE_TOTAL_FINISHED_PRODUCT CTFP ON ";
+                query += " CTFP.SH_ID = AQFP.SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID ";
+                query += " LEFT JOIN SH_CLIENT_COMPANY CC ON ";
+                query += " CC.SH_ID = CTFP.SH_CLIENT_ID ";
+                query += " LEFT JOIN SH_CLIENTS_PRODUCTS CP ON ";
+                query += " CP.SH_ID = CTFP.SH_CLIENT_PRODUCT_ID ";
+                query += " LEFT JOIN SH_ITEM_SIZE ITS ON ";
+                query += " CP.SH_SIZE_ID = ITS.SH_ID ";
+                query += " LEFT  JOIN SH_DISMISSED_PALLETS_OF_FINISHED_CANS DPFP ON ";
+                query += " DPFP.SH_ADDED_PARCELS_OF_FINISHED_PRODUCT_ID = APFP.SH_ID ";
+                query += " WHERE DPFP.SH_ADDED_PARCELS_OF_FINISHED_PRODUCT_ID is null ";
+                query += " AND (CTFP.SH_CLIENT_ID = @SH_CLIENT_ID OR CC.SH_CLIENT_COMPANY_NAME LIKE N'عام') ";
+                query += size_string + product_string;
+
+                //query += "GROUP BY CP.SH_ID,
+                query += " GROUP BY APFP.SH_TOTAL_NUMBER_OF_CANS,CP.SH_PRODUCT_NAME, CP.SH_ID, CTFP.SH_ID,  CC.SH_ID, CC.SH_CLIENT_COMPANY_NAME, ITS.SH_SIZE_NAME,  ITS.SH_ID ";
+                query += " ORDER BY APFP.SH_TOTAL_NUMBER_OF_CANS DESC ";
+
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                //cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", client_products[f1_combo_box.SelectedIndex].SH_ID);
+                if (product)
+                {
+                    cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", client_products[f1_combo_box.SelectedIndex].SH_ID);
+                }
+                if (msize)
+                {
+                    cmd.Parameters.AddWithValue("@SH_SIZE_ID", item_sizes[f2_combo_box.SelectedIndex].SH_ID);
+
+                }
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    finished_cans.Add(new SH_CALCULATE_TOTAL_FINISHED_PRODUCT()
+                    finished_cans.Add(new finished_cans_model_data()
                     {
-                        SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()),
-                        SH_CLIENT_NAME = reader["SH_CLIENT_NAME"].ToString(),
-                        //SH_CLIENT_PRODUCT_ID = long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()),
-                        SH_CLIENT_PRODUCT_NAME = reader["SH_CLIENT_PRODUCT_NAME"].ToString(),
-                        //SH_ID = long.Parse(reader["SH_ID"].ToString()),
-                        SH_PARCEL_NO_OF_CANS = long.Parse(reader["TOTAL_NUMBER_OF_CANS"].ToString()) / long.Parse(reader["TOTAL_NUMBER_OF_PARCELS"].ToString()),
-                        SH_TOTAL_NUMBER_OF_CANS = long.Parse(reader["TOTAL_NUMBER_OF_CANS"].ToString()),
-                        SH_TOTAL_NUMBER_OF_PALLET = long.Parse(reader["TOTAL_NUMBER_OF_PARCELS"].ToString())
+                        client_name = reader["SH_CLIENT_COMPANY_NAME"].ToString(),
+                        no_cans_per_pallet = long.Parse(reader["PALLET_NO_OF_CANS"].ToString()),
+                        no_pallets = long.Parse(reader["TOTAL_NO_PALLET"].ToString()),
+                        product_name = reader["SH_PRODUCT_NAME"].ToString(),
+                        size_name = reader["SH_SIZE_NAME"].ToString(),
+                        specification_id = long.Parse(reader["SPECIFICATION_ID"].ToString())
+                        , total_no_cans = long.Parse(reader["QUANTITY_NUMBER_OF_CANS"].ToString())
+                        , client_id = long.Parse(reader["SH_CLIENT_ID"].ToString())
+                        , client_product_id = long.Parse(reader["CLIENT_PRODUCT_ID"].ToString())
+                        ,size_id = long.Parse(reader["SH_SIZE_ID"].ToString())
                     });
                 }
                 reader.Close();
@@ -441,6 +505,7 @@ namespace Al_Shaheen_System
                 mydatatabel.Columns.Add("م");
                 mydatatabel.Columns.Add("العميل");
                 mydatatabel.Columns.Add("الصنف");
+                mydatatabel.Columns.Add("المقاس");
                 mydatatabel.Columns.Add("التعبئة");
                 mydatatabel.Columns.Add("عدد التعبئة");
                 mydatatabel.Columns.Add("عدد العلب بالتعبئة");
@@ -448,14 +513,15 @@ namespace Al_Shaheen_System
 
                 for (int i = 0; i < finished_cans.Count; i++)
                 {
-                    string[] mydata = new string[7];
+                    string[] mydata = new string[8];
                     mydata[0] = (i + 1).ToString();
-                    mydata[1] = finished_cans[i].SH_CLIENT_NAME;
-                    mydata[2] = finished_cans[i].SH_CLIENT_PRODUCT_NAME;
-                    mydata[3] = "بالتة";
-                    mydata[4] = finished_cans[i].SH_TOTAL_NUMBER_OF_PALLET.ToString();
-                    mydata[5] = finished_cans[i].SH_PARCEL_NO_OF_CANS.ToString();
-                    mydata[6] = finished_cans[i].SH_TOTAL_NUMBER_OF_CANS.ToString();
+                    mydata[1] = finished_cans[i].client_name;
+                    mydata[2] = finished_cans[i].product_name;
+                    mydata[3] = finished_cans[i].size_name;
+                    mydata[4] = "بالتة";
+                    mydata[5] = finished_cans[i].no_pallets.ToString();
+                    mydata[6] = finished_cans[i].no_cans_per_pallet.ToString();
+                    mydata[7] = finished_cans[i].total_no_cans.ToString();
                     mydatatabel.Rows.Add(mydata);
                 }
                 finished_product_properties_grid_view.DataSource = mydatatabel;
@@ -2055,7 +2121,7 @@ namespace Al_Shaheen_System
                             //cans
                             //container_name_text_box.Text = finished_cans[finished_product_properties_grid_view.SelectedRows[0].Index].
                             container_name_text_box.Text = "بالتة";
-                            no_items_per_container_text_box.Text = finished_cans[finished_product_properties_grid_view.SelectedRows[0].Index].SH_PARCEL_NO_OF_CANS.ToString();
+                            no_items_per_container_text_box.Text = finished_cans[finished_product_properties_grid_view.SelectedRows[0].Index].no_cans_per_pallet.ToString();
                             break;
                         }
                     case 1:
@@ -2120,36 +2186,62 @@ namespace Al_Shaheen_System
 
         }
 
-        async Task getselectedfinishedproductparcels()
+        async Task getselectedfinishedproductparcels(finished_cans_model_data mydata)
         {
             try
             {
+
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_GET_ALL_PALLETS_WITH_SPECIFICED_NO_OF_CANS", DatabaseConnection.mConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", client_products[f1_combo_box.SelectedIndex].SH_ID);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_CANS", long.Parse(no_items_per_container_text_box.Text));
-                cmd.Parameters.AddWithValue("@NO_PALLETS", long.Parse(no_of_selected_containers_text_box.Text));
+                string query = " SELECT TOP(" + long.Parse(no_of_selected_containers_text_box.Text) + ") ";
+                query += " ADPFP.* FROM ";
+                query += " SH_ADDED_PARCELS_OF_FINISHED_PRODUCT ADPFP ";
+                query += " LEFT JOIN SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS AQFP ";
+                query += " ON AQFP.SH_ID = ADPFP.SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID ";
+                query += " LEFT JOIN SH_CALCULATE_TOTAL_FINISHED_PRODUCT CTFP ON ";
+                query += " CTFP.SH_ID = AQFP.SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID ";
+                query += " LEFT JOIN SH_CLIENT_COMPANY CC ON ";
+                query += " CC.SH_ID = CTFP.SH_CLIENT_ID ";
+                query += " LEFT JOIN SH_CLIENTS_PRODUCTS CP ON ";
+                query += " CP.SH_ID = CTFP.SH_CLIENT_PRODUCT_ID ";
+                query += " LEFT JOIN SH_ITEM_SIZE ITS ON ";
+                query += " ITS.SH_ID = CP.SH_SIZE_ID ";
+                query += " LEFT JOIN SH_DISMISSED_PALLETS_OF_FINISHED_CANS DPFP ON ";
+                query += " DPFP.SH_ADDED_PARCELS_OF_FINISHED_PRODUCT_ID = ADPFP.SH_ID ";
+                query += " WHERE DPFP.SH_ADDED_PARCELS_OF_FINISHED_PRODUCT_ID IS NULL ";
+                query += " AND CTFP.SH_CLIENT_ID = @SH_CLIENT_ID ";
+                query += " AND ADPFP.SH_TOTAL_NUMBER_OF_CANS = @NO_CANS ";
+                query += " AND ADPFP.SH_CLIENT_PRODUCT_ID = @SH_CLIENT_PRODUCT_ID ";
+                query += " AND ITS.SH_ID = @SH_ITEM_SIZE_ID ";
+                query += " AND CTFP.SH_ID = @SH_SPECIFICATION_ID ";
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                //MessageBox.Show(mydata.no_cans_per_pallet.ToString());
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mydata.client_id);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", mydata.client_product_id);
+                cmd.Parameters.AddWithValue("@NO_CANS", mydata.no_cans_per_pallet);
+               // cmd.Parameters.AddWithValue("@NO_PALLETS", );
+                cmd.Parameters.AddWithValue("@SH_ITEM_SIZE_ID" , mydata.size_id);
+                cmd.Parameters.AddWithValue("@SH_SPECIFICATION_ID" ,mydata.specification_id );
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT> anycanspallets = new List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT>();
+                long counter = 0;
                 while (reader.Read())
                 {
+                    //MessageBox.Show("HERE #1");
+                    counter++;
                     anycanspallets.Add(new SH_ADDED_PARCELS_OF_FINISHED_PRODUCT()
                     {
-                        SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID = long.Parse(reader["SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID"].ToString())
-                        ,
+                        SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID = long.Parse(reader["SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID"].ToString()),
                         SH_ADDING_PERMISSION_NUMBER = reader["SH_ADDING_PERMISSION_NUMBER"].ToString(),
                         SH_ADDITION_DATE = DateTime.Parse(reader["SH_ADDITION_DATE"].ToString()),
-                        SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID = long.Parse(reader["SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID"].ToString())
-                        ,
+                        SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID = long.Parse(reader["SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID"].ToString()),
                         SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()),
                         SH_CLIENT_NAME = reader["SH_CLIENT_NAME"].ToString(),
                         SH_CLIENT_PRODUCT_ID = long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()),
                         SH_CLIENT_PRODUCT_NAME = reader["SH_CLIENT_PRODUCT_NAME"].ToString(),
                         SH_ID = long.Parse(reader["SH_ID"].ToString()),
-                        SH_LAST_RECORD_NUMBER_OF_CANS = long.Parse(reader["SH_LAST_RECORD_NUMBER_OF_CANS"].ToString())
-                         ,
+                        SH_LAST_RECORD_NUMBER_OF_CANS = long.Parse(reader["SH_LAST_RECORD_NUMBER_OF_CANS"].ToString()),
                         SH_NUMBER_OF_CANS_HEIGHT = long.Parse(reader["SH_NUMBER_OF_CANS_HEIGHT"].ToString()),
                         SH_NUMBER_OF_CANS_LENGTH = long.Parse(reader["SH_NUMBER_OF_CANS_LENGTH"].ToString()),
                         SH_NUMBER_OF_CANS_WIDTH = long.Parse(reader["SH_NUMBER_OF_CANS_WIDTH"].ToString()),
@@ -2161,7 +2253,7 @@ namespace Al_Shaheen_System
                 }
                 reader.Close();
                 myconnection.closeConnection();
-
+                MessageBox.Show(counter.ToString());
                 dismissed_containers.Add(new SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA()
                 {
                     total_no_of_items_of_selected_containers = long.Parse(total_number_of_items_of_selected_containers.Text),
@@ -2558,7 +2650,7 @@ namespace Al_Shaheen_System
                                     dismissed_containers[i].cans_parcels[0].SH_CLIENT_NAME,
                                     dismissed_containers[i].cans_parcels[0].SH_CLIENT_PRODUCT_NAME,
                                     "بالتة",
-                                    dismissed_containers[i].cans_parcels.Count.ToString(),
+                                    dismissed_containers[i].no_of_selected_containers.ToString(),
                                     dismissed_containers[i].cans_parcels[0].SH_TOTAL_NUMBER_OF_CANS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
@@ -2741,7 +2833,7 @@ namespace Al_Shaheen_System
                             //cans
                             //get top no_of_containers_pallets_of_product_specifications
 
-                            await getselectedfinishedproductparcels();
+                            await getselectedfinishedproductparcels(finished_cans[finished_product_properties_grid_view.SelectedRows[0].Index]);
                             await filldismissedcontainersgridview();
 
 
@@ -2979,7 +3071,7 @@ namespace Al_Shaheen_System
                             long testnumber = 0;
                             if (long.TryParse(no_of_selected_containers_text_box.Text, out testnumber))
                             {
-                                if (finished_cans[finished_product_properties_grid_view.SelectedRows[0].Index].SH_TOTAL_NUMBER_OF_PALLET < long.Parse(no_of_selected_containers_text_box.Text))
+                                if (finished_cans[finished_product_properties_grid_view.SelectedRows[0].Index].no_pallets < long.Parse(no_of_selected_containers_text_box.Text))
                                 {
                                     MessageBox.Show("الكمية غير موجودة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                                     no_of_selected_containers_text_box.Text = "";

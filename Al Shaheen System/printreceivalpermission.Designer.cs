@@ -28,30 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.client_receit_order_report2 = new Al_Shaheen_System.client_receit_order_report();
-            this.client_receit_order_report1 = new Al_Shaheen_System.client_receit_order_report();
-            this.crystalReportViewer2 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // crystalReportViewer2
+            // reportViewer1
             // 
-            this.crystalReportViewer2.ActiveViewIndex = 0;
-            this.crystalReportViewer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.crystalReportViewer2.Location = new System.Drawing.Point(0, 0);
-            this.crystalReportViewer2.Name = "crystalReportViewer2";
-            this.crystalReportViewer2.ReportSource = this.client_receit_order_report2;
-            this.crystalReportViewer2.Size = new System.Drawing.Size(875, 831);
-            this.crystalReportViewer2.TabIndex = 2;
-            this.crystalReportViewer2.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Al_Shaheen_System.print_client_receit_order.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;
+            this.reportViewer1.Size = new System.Drawing.Size(875, 831);
+            this.reportViewer1.TabIndex = 0;
             // 
             // printreceivalpermission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 831);
-            this.Controls.Add(this.crystalReportViewer2);
+            this.Controls.Add(this.reportViewer1);
             this.Name = "printreceivalpermission";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
@@ -63,8 +59,6 @@
 
         #endregion
 
-        private client_receit_order_report client_receit_order_report1;
-        private client_receit_order_report client_receit_order_report2;
-        private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer2;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

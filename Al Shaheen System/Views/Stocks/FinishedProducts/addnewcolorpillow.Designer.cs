@@ -214,6 +214,7 @@
             this.Name = "addnewcolorpillow";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إضافة لون سادة";
             this.Load += new System.EventHandler(this.addnewcolorpillow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.colors_pillow_grid_view)).EndInit();

@@ -343,6 +343,33 @@ namespace Al_Shaheen_System
         {
 
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void add_new_face_btn_Click(object sender, EventArgs e)
+        {
+            addnewfacecolorform myform = new addnewfacecolorform();
+            myform.Show();
+        }
+
+        private void addnewclientproduct_Activated(object sender, EventArgs e)
+        {
+            client_name_text_box.Text = mclient.SH_CLIENT_COMPANY_NAME;
+            fillfacescombobox();
+            mproduct.Clear();
+            getallclientproducts();
+            productsgridview();
+            fillsizescombobox();
+        }
+
+        private void add_new_size_btn_Click(object sender, EventArgs e)
+        {
+            addnewsizesform myfrom = new addnewsizesform();
+            myfrom.Show();
+        }
     }
         
 

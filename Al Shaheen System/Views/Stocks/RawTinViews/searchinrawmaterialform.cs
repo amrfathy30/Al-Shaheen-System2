@@ -479,7 +479,7 @@ namespace Al_Shaheen_System
                     no_sheets += parcels[raw_parcels_grid_view.SelectedRows[i].Index].SH_ITEM_NUMBER_OF_SHEETS;
                     net_weight += Math.Round(parcels[raw_parcels_grid_view.SelectedRows[i].Index].SH_ITEM_PARCEL_NET_WEIGHT,2);
                 }
-                Message_label.Text = "عدد الافرخ : " + no_sheets.ToString() + " "+" الوزن الصافى : "+ String.Format("{0:0,0.0}", net_weight);
+                Message_label.Text = "عدد الطرود :  ("+ raw_parcels_grid_view.SelectedRows.Count +" ) "+ "عدد الافرخ : " + no_sheets.ToString() + " "+" الوزن الصافى : "+ String.Format("{0:0,0.0}", net_weight)+" كجم";
             }
         }
 
@@ -560,7 +560,12 @@ namespace Al_Shaheen_System
                 printer.PrintNoDisplay(raw_parcels_grid_view);
 
             }
+
+        private void raw_parcels_grid_view_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
+    }
 
         //private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         //{

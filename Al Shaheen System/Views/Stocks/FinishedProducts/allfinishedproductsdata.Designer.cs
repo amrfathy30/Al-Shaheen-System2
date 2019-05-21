@@ -314,6 +314,7 @@
             this.Name = "allfinishedproductsdata";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "أرصدة المنتج التام";
             ((System.ComponentModel.ISupportInitialize)(this.finished_products_grid_view)).EndInit();
             this.ResumeLayout(false);
