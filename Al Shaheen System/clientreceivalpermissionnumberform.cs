@@ -43,10 +43,10 @@ namespace Al_Shaheen_System
                 {
                     dividers += anydata.cans_parcels[i].SH_NUMBER_OF_CANS_HEIGHT + 1;
                 }
-                pallets = anydata.cans_parcels.Count;
+                pallets += anydata.cans_parcels.Count;
             }
             no_carton_dividers_text_box.Text = dividers.ToString();
-           
+            
         }
 
 
@@ -142,7 +142,7 @@ namespace Al_Shaheen_System
                                 getallcartondividersandpallets(myform.dismissed_containers[i]);
                             }
                             no_pallets_text_box.Text = pallets.ToString();
-
+                            no_wooden_face_text_box.Text = pallets.ToString();
                         }
                         await filldismissedcontainersgridview();
                     }
@@ -600,7 +600,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "EASY OPEN ");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "إيزى أوبن");
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.easy_open_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.easy_open_containers[0].SH_TOTAL_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.easy_open_containers.Count);
@@ -627,7 +627,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "PEEL OFF ");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "بيل أوف");
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.peel_off_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.peel_off_containers[0].SH_TOTAL_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.peel_off_containers.Count);
@@ -654,7 +654,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "TWIST OF");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "تويست أوف");
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.twist_of_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.twist_of_containers[0].SH_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.twist_of_containers.Count);
@@ -681,7 +681,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "PLASTIC COVER");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "غطاء بلاستيك");
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.plastic_cover_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.plastic_cover_containers[0].SH_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.plastic_cover_containers.Count);
@@ -708,7 +708,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "PLASTIC MOLD");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "طبة بلاستيك");
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.plastic_mold_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.plastic_mold_containers[0].SH_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.plastic_mold_containers.Count);
@@ -1367,7 +1367,7 @@ namespace Al_Shaheen_System
                 {
                     SqlCommand cmd = new SqlCommand("SH_UPDATE_SPECIFICATION_OF_TWIST_OF_PROCEDURE_MINUS", DatabaseConnection.mConnection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SH_ID", 0);//sp_id
+                    cmd.Parameters.AddWithValue("@SH_ID", anydata.twist_of_containers[i].SPECIFICATIONS_ID);
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NO_TEMS", anydata.twist_of_containers[i].SH_NO_ITEMS);
                     cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", 1);
 
@@ -1427,7 +1427,7 @@ namespace Al_Shaheen_System
                     SqlCommand cmd = new SqlCommand("SH_INSERT_NEW_SH_DISMISSAL_CONTAINERS_OF_PLASTIC_COVER_DATA", DatabaseConnection.mConnection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SH_CONTAINER_OF_PLASTIC_COVER_ID", anydata.plastic_cover_containers[i].SH_ID);
-                    cmd.Parameters.AddWithValue("@SH_DISMISSAL_PERMISSION_NUMBER", no_receiving_permission_number_text_box);
+                    cmd.Parameters.AddWithValue("@SH_DISMISSAL_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
                     cmd.Parameters.AddWithValue("@SH_DISMISSAL_DATE", DateTime.Now);
                     cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", maccount.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", memployee.SH_ID);
@@ -1453,7 +1453,7 @@ namespace Al_Shaheen_System
                 {
                     SqlCommand cmd = new SqlCommand("SH_UPDATE_SPECIFICATION_OF_PLASTIC_COVER_PROCEDURE_MINUS", DatabaseConnection.mConnection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SH_ID", 0); //sp_id
+                    cmd.Parameters.AddWithValue("@SH_ID", anydata.plastic_cover_containers[i].SH_SPECIFICATION_OF_PLASTIC_COVER_ID); //sp_id
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", anydata.plastic_cover_containers[i].SH_NO_ITEMS);
                     cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", 1);
                     cmd.ExecuteNonQuery();
@@ -1536,7 +1536,7 @@ namespace Al_Shaheen_System
                 {
                     SqlCommand cmd = new SqlCommand("SH_UPDATE_SPECIFICATION_OF_PLASTIC_MOLD_PROCEDURE_MINUS", DatabaseConnection.mConnection);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@SH_ID", 0);//sp_id
+                    cmd.Parameters.AddWithValue("@SH_ID", anydata.plastic_mold_containers[i].SH_SPCIFICATION_OF_PLASTIC_MOLD_ID);//sp_id
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS ", anydata.plastic_mold_containers[i].SH_NO_ITEMS);
                     cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", 1);
                     cmd.ExecuteNonQuery();
@@ -1751,9 +1751,57 @@ namespace Al_Shaheen_System
 
         private async void save_and_print_btn_Click(object sender, EventArgs e)
         {
-            await savereceitdata();
+            bool msave = true;
+            if (string.IsNullOrWhiteSpace(no_of_order_text_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل رقم أمر التوريد", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            }
+            else
+            if (string.IsNullOrWhiteSpace(client_branches_combo_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل مكان التسليم", "خطأ", MessageBoxButtons.OK , MessageBoxIcon.Warning , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+            }else if (string.IsNullOrWhiteSpace(stocks_combo_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل إسم المخزن", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
+            }else if (string.IsNullOrWhiteSpace(driver_name_text_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل إسم السائق", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
+            }else if (string.IsNullOrWhiteSpace(car_number_text_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل رقم السيارة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+            }else if (string.IsNullOrWhiteSpace(no_pallets_text_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل عدد البالتات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+            }else if (string.IsNullOrWhiteSpace(no_wooden_face_text_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل عدد الوش الخشب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            }else if (string.IsNullOrWhiteSpace(no_carton_dividers_text_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل عدد الفاصل الكرتون", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            }else if (string.IsNullOrWhiteSpace(no_carton_corners_text_box.Text))
+            {
+                msave = false;
+                MessageBox.Show("إدخل عدد الزوايا الكرتون", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            }
+            if (msave)
+            {
+                await savereceitdata();
+            }else
+            {
+                MessageBox.Show("لم يتم الحفظ ", "خطأ", MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+            }
         }
 
         private void driver_name_text_box_TextChanged(object sender, EventArgs e)

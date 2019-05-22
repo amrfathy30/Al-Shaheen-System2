@@ -568,6 +568,7 @@
             // 
             // adding_request_number_text_box
             // 
+            this.adding_request_number_text_box.Enabled = false;
             this.adding_request_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adding_request_number_text_box.Location = new System.Drawing.Point(154, 70);
             this.adding_request_number_text_box.Name = "adding_request_number_text_box";

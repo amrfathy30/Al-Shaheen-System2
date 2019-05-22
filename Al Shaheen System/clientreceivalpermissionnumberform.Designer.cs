@@ -65,14 +65,6 @@
             this.client_branches_combo_box = new System.Windows.Forms.ComboBox();
             this.current_date_timer = new System.Windows.Forms.Timer(this.components);
             this.dismissed_containers_grid_view = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.stocks_combo_box = new System.Windows.Forms.ComboBox();
             this.client_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -87,6 +79,14 @@
             this.carton_corners_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.carton_dividers_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.order_number_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dismissed_containers_grid_view)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.client_error_provider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stocks_error_provider)).BeginInit();
@@ -334,9 +334,9 @@
             this.new_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.new_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.new_btn.Location = new System.Drawing.Point(459, 681);
+            this.new_btn.Location = new System.Drawing.Point(451, 679);
             this.new_btn.Name = "new_btn";
-            this.new_btn.Size = new System.Drawing.Size(130, 34);
+            this.new_btn.Size = new System.Drawing.Size(153, 38);
             this.new_btn.TabIndex = 29;
             this.new_btn.Text = "جديد";
             this.new_btn.UseVisualStyleBackColor = false;
@@ -474,54 +474,6 @@
             this.dismissed_containers_grid_view.Size = new System.Drawing.Size(1031, 261);
             this.dismissed_containers_grid_view.TabIndex = 48;
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "م";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "نوع المنتج";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "إسم  العميل";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "البيان";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "التعبئة";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "عدد التعبئة";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "الكمية بالتعبئة";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "إجمالى الكمية";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -590,6 +542,54 @@
             // order_number_error_provider
             // 
             this.order_number_error_provider.ContainerControl = this;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "م";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "نوع المنتج";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "المقاس";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "الصنف";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "التعبئة";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "عدد التعبئة";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "الكمية بالتعبئة";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "إجمالى الكمية";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
             // 
             // clientreceivalpermissionnumberform
             // 

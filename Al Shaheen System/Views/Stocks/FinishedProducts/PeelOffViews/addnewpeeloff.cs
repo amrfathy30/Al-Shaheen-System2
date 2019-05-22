@@ -485,7 +485,7 @@ namespace Al_Shaheen_System
             fillsupplierscombobox();
             fillsizesgridview();
             fillstockscombobox();
-            fillstockmencombobox();
+            //fillstockmencombobox();
             await fillsuagesgridview();
             await fillmaterialtypescombobox();
             F1_combo_box.Visible = false;

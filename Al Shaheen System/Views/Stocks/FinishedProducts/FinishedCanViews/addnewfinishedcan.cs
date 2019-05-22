@@ -375,18 +375,7 @@ namespace Al_Shaheen_System
 
 
 
-        void fillclientsbytextcombobox()
-        {
-            loadclientsbytext();
-            clients_combo_box.Items.Clear();
-            if (clients.Count > 0)
-            {
-                for (int i = 0; i < clients.Count; i++)
-                {
-                    clients_combo_box.Items.Add(clients[i].SH_CLIENT_COMPANY_NAME);
-                }
-            }
-        }
+     
 
 
         void fillstockscombobox()
