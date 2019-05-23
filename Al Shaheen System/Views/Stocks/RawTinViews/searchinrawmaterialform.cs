@@ -29,9 +29,17 @@ namespace Al_Shaheen_System
         long mtotal_number_of_parcels = 0;
         long mtotal_number_of_sheets = 0;
         double mtotoal_net_weight = 0;
-        public searchinrawmaterialform()
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+        public searchinrawmaterialform(SH_EMPLOYEES anyemp ,SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
+           mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyperm;
         }
 
         void loadallstocks()
@@ -448,7 +456,7 @@ namespace Al_Shaheen_System
                     exchange_total_net_weight += Math.Round(parcels[raw_parcels_grid_view.SelectedRows[i].Index].SH_ITEM_PARCEL_NET_WEIGHT,2);
                     exch_parcels.Add(parcels[raw_parcels_grid_view.SelectedRows[i].Index]);
                 }
-                using (Exchangerawtinbasicinfo myform = new Exchangerawtinbasicinfo(exch_parcels , exchange_total_no_sheets , exchange_total_net_weight))
+                using (Exchangerawtinbasicinfo myform = new Exchangerawtinbasicinfo(exch_parcels , exchange_total_no_sheets , exchange_total_net_weight ,mEmployee,mAccount,mPermission))
                 {
                     myform.ShowDialog();
                 }

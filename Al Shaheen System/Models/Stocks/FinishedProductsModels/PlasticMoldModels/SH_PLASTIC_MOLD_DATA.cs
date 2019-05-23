@@ -12,6 +12,7 @@ namespace Al_Shaheen_System
         public SH_SUPPLY_COMPANY supplier { get; set; }
         public SH_SUPPLY_COMPANY_BRANCHES supplier_branch { get; set; }
         public SH_SHAHEEN_STOCK stock { get; set; }
+        public SH_EMPLOYEES  stock_man   { get; set; }
         public SH_MOLD_TYPES mold_types { get; set; }
         public SH_MOLD_SIZE size { get; set; }
         public SH_COLOR_PILLOW color { get; set; }

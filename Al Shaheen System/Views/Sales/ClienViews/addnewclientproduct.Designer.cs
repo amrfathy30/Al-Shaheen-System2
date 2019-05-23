@@ -34,18 +34,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.product_name_text_box = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.height_text_box = new System.Windows.Forms.ComboBox();
+            this.capacity_tect_box = new System.Windows.Forms.ComboBox();
+            this.add_new_size_btn = new System.Windows.Forms.Button();
             this.sizes_combo_box = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.height_text_box = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.capacity_tect_box = new System.Windows.Forms.TextBox();
+            this.height_label = new System.Windows.Forms.Label();
+            this.capacity_label = new System.Windows.Forms.Label();
             this.save_new_client_product_btn = new System.Windows.Forms.Button();
             this.new_client_product_btn = new System.Windows.Forms.Button();
             this.cancel_btn = new System.Windows.Forms.Button();
             this.client_name_text_box = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.products_grid_view = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.add_new_face_btn = new System.Windows.Forms.Button();
+            this.faces_combo_box = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.easy_open_rado_btn = new System.Windows.Forms.RadioButton();
+            this.twist_of_radio_btn = new System.Windows.Forms.RadioButton();
+            this.head_radio_btn = new System.Windows.Forms.RadioButton();
+            this.bottom_radio_btn = new System.Windows.Forms.RadioButton();
+            this.body_radio_btn = new System.Windows.Forms.RadioButton();
             this.product_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shape_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,15 +68,6 @@
             this.surrounding = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.item_height = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.second_face = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.add_new_face_btn = new System.Windows.Forms.Button();
-            this.faces_combo_box = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.head_radio_btn = new System.Windows.Forms.RadioButton();
-            this.bottom_radio_btn = new System.Windows.Forms.RadioButton();
-            this.body_radio_btn = new System.Windows.Forms.RadioButton();
-            this.add_new_size_btn = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.products_grid_view)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -102,20 +104,55 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.height_text_box);
+            this.groupBox5.Controls.Add(this.capacity_tect_box);
             this.groupBox5.Controls.Add(this.add_new_size_btn);
             this.groupBox5.Controls.Add(this.sizes_combo_box);
             this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Controls.Add(this.height_text_box);
-            this.groupBox5.Controls.Add(this.label34);
-            this.groupBox5.Controls.Add(this.label30);
-            this.groupBox5.Controls.Add(this.capacity_tect_box);
+            this.groupBox5.Controls.Add(this.height_label);
+            this.groupBox5.Controls.Add(this.capacity_label);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 394);
+            this.groupBox5.Location = new System.Drawing.Point(10, 452);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(441, 210);
+            this.groupBox5.Size = new System.Drawing.Size(441, 215);
             this.groupBox5.TabIndex = 44;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "معلومات المقاس";
+            // 
+            // height_text_box
+            // 
+            this.height_text_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.height_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.height_text_box.FormattingEnabled = true;
+            this.height_text_box.Location = new System.Drawing.Point(156, 91);
+            this.height_text_box.Name = "height_text_box";
+            this.height_text_box.Size = new System.Drawing.Size(146, 35);
+            this.height_text_box.TabIndex = 45;
+            this.height_text_box.SelectedIndexChanged += new System.EventHandler(this.height_text_box_SelectedIndexChanged);
+            // 
+            // capacity_tect_box
+            // 
+            this.capacity_tect_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.capacity_tect_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capacity_tect_box.FormattingEnabled = true;
+            this.capacity_tect_box.Location = new System.Drawing.Point(156, 134);
+            this.capacity_tect_box.Name = "capacity_tect_box";
+            this.capacity_tect_box.Size = new System.Drawing.Size(146, 28);
+            this.capacity_tect_box.TabIndex = 44;
+            this.capacity_tect_box.SelectedIndexChanged += new System.EventHandler(this.capacity_tect_box_SelectedIndexChanged);
+            // 
+            // add_new_size_btn
+            // 
+            this.add_new_size_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.add_new_size_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_new_size_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.add_new_size_btn.Location = new System.Drawing.Point(6, 42);
+            this.add_new_size_btn.Name = "add_new_size_btn";
+            this.add_new_size_btn.Size = new System.Drawing.Size(120, 28);
+            this.add_new_size_btn.TabIndex = 43;
+            this.add_new_size_btn.Text = "إضافة مقاس جديد";
+            this.add_new_size_btn.UseVisualStyleBackColor = false;
+            this.add_new_size_btn.Click += new System.EventHandler(this.add_new_size_btn_Click);
             // 
             // sizes_combo_box
             // 
@@ -123,58 +160,40 @@
             this.sizes_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.sizes_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sizes_combo_box.FormattingEnabled = true;
-            this.sizes_combo_box.Location = new System.Drawing.Point(168, 42);
+            this.sizes_combo_box.Location = new System.Drawing.Point(156, 42);
             this.sizes_combo_box.Name = "sizes_combo_box";
-            this.sizes_combo_box.Size = new System.Drawing.Size(144, 28);
+            this.sizes_combo_box.Size = new System.Drawing.Size(146, 28);
             this.sizes_combo_box.TabIndex = 42;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(371, 50);
+            this.label6.Location = new System.Drawing.Point(324, 50);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 20);
             this.label6.TabIndex = 41;
             this.label6.Text = "المقاس";
             // 
-            // height_text_box
+            // height_label
             // 
-            this.height_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.height_text_box.Location = new System.Drawing.Point(165, 156);
-            this.height_text_box.Name = "height_text_box";
-            this.height_text_box.Size = new System.Drawing.Size(144, 30);
-            this.height_text_box.TabIndex = 38;
+            this.height_label.AutoSize = true;
+            this.height_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.height_label.Location = new System.Drawing.Point(322, 94);
+            this.height_label.Name = "height_label";
+            this.height_label.Size = new System.Drawing.Size(86, 20);
+            this.height_label.TabIndex = 37;
+            this.height_label.Text = "إرتفاع الشرحة";
             // 
-            // label34
+            // capacity_label
             // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(319, 160);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(105, 25);
-            this.label34.TabIndex = 37;
-            this.label34.Text = "إرتفاع الشرحة";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(371, 123);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(47, 25);
-            this.label30.TabIndex = 25;
-            this.label30.Text = "السعة";
-            this.label30.Visible = false;
-            // 
-            // capacity_tect_box
-            // 
-            this.capacity_tect_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.capacity_tect_box.Location = new System.Drawing.Point(165, 118);
-            this.capacity_tect_box.Name = "capacity_tect_box";
-            this.capacity_tect_box.Size = new System.Drawing.Size(144, 30);
-            this.capacity_tect_box.TabIndex = 26;
-            this.capacity_tect_box.Text = "0";
-            this.capacity_tect_box.Visible = false;
+            this.capacity_label.AutoSize = true;
+            this.capacity_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capacity_label.Location = new System.Drawing.Point(327, 137);
+            this.capacity_label.Name = "capacity_label";
+            this.capacity_label.Size = new System.Drawing.Size(38, 20);
+            this.capacity_label.TabIndex = 25;
+            this.capacity_label.Text = "السعة";
+            this.capacity_label.Visible = false;
             // 
             // save_new_client_product_btn
             // 
@@ -182,7 +201,7 @@
             this.save_new_client_product_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_new_client_product_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_new_client_product_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.save_new_client_product_btn.Location = new System.Drawing.Point(4, 610);
+            this.save_new_client_product_btn.Location = new System.Drawing.Point(10, 686);
             this.save_new_client_product_btn.Name = "save_new_client_product_btn";
             this.save_new_client_product_btn.Size = new System.Drawing.Size(117, 40);
             this.save_new_client_product_btn.TabIndex = 46;
@@ -196,7 +215,7 @@
             this.new_client_product_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.new_client_product_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_client_product_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.new_client_product_btn.Location = new System.Drawing.Point(160, 610);
+            this.new_client_product_btn.Location = new System.Drawing.Point(166, 686);
             this.new_client_product_btn.Name = "new_client_product_btn";
             this.new_client_product_btn.Size = new System.Drawing.Size(125, 40);
             this.new_client_product_btn.TabIndex = 47;
@@ -209,7 +228,7 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cancel_btn.Location = new System.Drawing.Point(319, 610);
+            this.cancel_btn.Location = new System.Drawing.Point(341, 686);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(110, 40);
             this.cancel_btn.TabIndex = 48;
@@ -275,8 +294,134 @@
             this.products_grid_view.Location = new System.Drawing.Point(459, 35);
             this.products_grid_view.Name = "products_grid_view";
             this.products_grid_view.ReadOnly = true;
-            this.products_grid_view.Size = new System.Drawing.Size(811, 615);
+            this.products_grid_view.Size = new System.Drawing.Size(811, 691);
             this.products_grid_view.TabIndex = 51;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.add_new_face_btn);
+            this.groupBox1.Controls.Add(this.faces_combo_box);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.product_name_text_box);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(10, 281);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(441, 165);
+            this.groupBox1.TabIndex = 52;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "معلومات الطباعة";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // add_new_face_btn
+            // 
+            this.add_new_face_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.add_new_face_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_new_face_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_new_face_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.add_new_face_btn.Location = new System.Drawing.Point(175, 119);
+            this.add_new_face_btn.Name = "add_new_face_btn";
+            this.add_new_face_btn.Size = new System.Drawing.Size(127, 30);
+            this.add_new_face_btn.TabIndex = 53;
+            this.add_new_face_btn.Text = "إضافة وجة جديد";
+            this.add_new_face_btn.UseVisualStyleBackColor = false;
+            this.add_new_face_btn.Click += new System.EventHandler(this.add_new_face_btn_Click);
+            // 
+            // faces_combo_box
+            // 
+            this.faces_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.faces_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.faces_combo_box.FormattingEnabled = true;
+            this.faces_combo_box.Location = new System.Drawing.Point(45, 80);
+            this.faces_combo_box.Name = "faces_combo_box";
+            this.faces_combo_box.Size = new System.Drawing.Size(257, 33);
+            this.faces_combo_box.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(312, 88);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 25);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "الوجة الداخلى ";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.easy_open_rado_btn);
+            this.groupBox4.Controls.Add(this.twist_of_radio_btn);
+            this.groupBox4.Controls.Add(this.head_radio_btn);
+            this.groupBox4.Controls.Add(this.bottom_radio_btn);
+            this.groupBox4.Controls.Add(this.body_radio_btn);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(36, 153);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(403, 122);
+            this.groupBox4.TabIndex = 46;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "نوع الطباعة";
+            this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
+            // 
+            // easy_open_rado_btn
+            // 
+            this.easy_open_rado_btn.AutoSize = true;
+            this.easy_open_rado_btn.Location = new System.Drawing.Point(131, 69);
+            this.easy_open_rado_btn.Name = "easy_open_rado_btn";
+            this.easy_open_rado_btn.Size = new System.Drawing.Size(80, 24);
+            this.easy_open_rado_btn.TabIndex = 4;
+            this.easy_open_rado_btn.TabStop = true;
+            this.easy_open_rado_btn.Text = "إيزى أوبن";
+            this.easy_open_rado_btn.UseVisualStyleBackColor = true;
+            this.easy_open_rado_btn.CheckedChanged += new System.EventHandler(this.easy_open_rado_btn_CheckedChanged);
+            // 
+            // twist_of_radio_btn
+            // 
+            this.twist_of_radio_btn.AutoSize = true;
+            this.twist_of_radio_btn.Location = new System.Drawing.Point(236, 69);
+            this.twist_of_radio_btn.Name = "twist_of_radio_btn";
+            this.twist_of_radio_btn.Size = new System.Drawing.Size(90, 24);
+            this.twist_of_radio_btn.TabIndex = 3;
+            this.twist_of_radio_btn.TabStop = true;
+            this.twist_of_radio_btn.Text = "تويست أوف";
+            this.twist_of_radio_btn.UseVisualStyleBackColor = true;
+            this.twist_of_radio_btn.CheckedChanged += new System.EventHandler(this.twist_of_radio_btn_CheckedChanged);
+            // 
+            // head_radio_btn
+            // 
+            this.head_radio_btn.AutoSize = true;
+            this.head_radio_btn.Location = new System.Drawing.Point(31, 25);
+            this.head_radio_btn.Name = "head_radio_btn";
+            this.head_radio_btn.Size = new System.Drawing.Size(55, 24);
+            this.head_radio_btn.TabIndex = 2;
+            this.head_radio_btn.TabStop = true;
+            this.head_radio_btn.Text = "غطاء";
+            this.head_radio_btn.UseVisualStyleBackColor = true;
+            this.head_radio_btn.CheckedChanged += new System.EventHandler(this.head_radio_btn_CheckedChanged);
+            // 
+            // bottom_radio_btn
+            // 
+            this.bottom_radio_btn.AutoSize = true;
+            this.bottom_radio_btn.Location = new System.Drawing.Point(167, 25);
+            this.bottom_radio_btn.Name = "bottom_radio_btn";
+            this.bottom_radio_btn.Size = new System.Drawing.Size(44, 24);
+            this.bottom_radio_btn.TabIndex = 1;
+            this.bottom_radio_btn.TabStop = true;
+            this.bottom_radio_btn.Text = "قاع";
+            this.bottom_radio_btn.UseVisualStyleBackColor = true;
+            this.bottom_radio_btn.CheckedChanged += new System.EventHandler(this.bottom_radio_btn_CheckedChanged);
+            // 
+            // body_radio_btn
+            // 
+            this.body_radio_btn.AutoSize = true;
+            this.body_radio_btn.Location = new System.Drawing.Point(277, 25);
+            this.body_radio_btn.Name = "body_radio_btn";
+            this.body_radio_btn.Size = new System.Drawing.Size(49, 24);
+            this.body_radio_btn.TabIndex = 0;
+            this.body_radio_btn.TabStop = true;
+            this.body_radio_btn.Text = "علبة";
+            this.body_radio_btn.UseVisualStyleBackColor = true;
+            this.body_radio_btn.CheckedChanged += new System.EventHandler(this.body_radio_btn_CheckedChanged);
             // 
             // product_id
             // 
@@ -298,31 +443,31 @@
             // 
             // printing_type
             // 
-            this.printing_type.HeaderText = "نوع الطباعة";
+            this.printing_type.HeaderText = "نوع المنتج";
             this.printing_type.Name = "printing_type";
             this.printing_type.ReadOnly = true;
             // 
             // first_dimention_name
             // 
-            this.first_dimention_name.HeaderText = "إسم البعد الاول";
+            this.first_dimention_name.HeaderText = "البيان";
             this.first_dimention_name.Name = "first_dimention_name";
             this.first_dimention_name.ReadOnly = true;
             // 
             // product_first_diameter
             // 
-            this.product_first_diameter.HeaderText = "البعد الأول";
+            this.product_first_diameter.HeaderText = "البيان";
             this.product_first_diameter.Name = "product_first_diameter";
             this.product_first_diameter.ReadOnly = true;
             // 
             // second_dimention_name
             // 
-            this.second_dimention_name.HeaderText = "إسم البعد الثانى ";
+            this.second_dimention_name.HeaderText = "البيان";
             this.second_dimention_name.Name = "second_dimention_name";
             this.second_dimention_name.ReadOnly = true;
             // 
             // seconddimention
             // 
-            this.seconddimention.HeaderText = "البعد الثانى ";
+            this.seconddimention.HeaderText = "البيان";
             this.seconddimention.Name = "seconddimention";
             this.seconddimention.ReadOnly = true;
             // 
@@ -344,122 +489,12 @@
             this.second_face.Name = "second_face";
             this.second_face.ReadOnly = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.add_new_face_btn);
-            this.groupBox1.Controls.Add(this.faces_combo_box);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.product_name_text_box);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 216);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(430, 165);
-            this.groupBox1.TabIndex = 52;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "معلومات الطباعة";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // add_new_face_btn
-            // 
-            this.add_new_face_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.add_new_face_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.add_new_face_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.add_new_face_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_face_btn.Location = new System.Drawing.Point(172, 119);
-            this.add_new_face_btn.Name = "add_new_face_btn";
-            this.add_new_face_btn.Size = new System.Drawing.Size(127, 35);
-            this.add_new_face_btn.TabIndex = 53;
-            this.add_new_face_btn.Text = "إضافة وجة جديد";
-            this.add_new_face_btn.UseVisualStyleBackColor = false;
-            this.add_new_face_btn.Click += new System.EventHandler(this.add_new_face_btn_Click);
-            // 
-            // faces_combo_box
-            // 
-            this.faces_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.faces_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.faces_combo_box.FormattingEnabled = true;
-            this.faces_combo_box.Location = new System.Drawing.Point(45, 80);
-            this.faces_combo_box.Name = "faces_combo_box";
-            this.faces_combo_box.Size = new System.Drawing.Size(254, 33);
-            this.faces_combo_box.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(312, 88);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "الوجة الداخلى ";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.head_radio_btn);
-            this.groupBox4.Controls.Add(this.bottom_radio_btn);
-            this.groupBox4.Controls.Add(this.body_radio_btn);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(36, 153);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(403, 57);
-            this.groupBox4.TabIndex = 46;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "نوع الطباعة";
-            // 
-            // head_radio_btn
-            // 
-            this.head_radio_btn.AutoSize = true;
-            this.head_radio_btn.Location = new System.Drawing.Point(31, 25);
-            this.head_radio_btn.Name = "head_radio_btn";
-            this.head_radio_btn.Size = new System.Drawing.Size(55, 24);
-            this.head_radio_btn.TabIndex = 2;
-            this.head_radio_btn.TabStop = true;
-            this.head_radio_btn.Text = "غطاء";
-            this.head_radio_btn.UseVisualStyleBackColor = true;
-            // 
-            // bottom_radio_btn
-            // 
-            this.bottom_radio_btn.AutoSize = true;
-            this.bottom_radio_btn.Location = new System.Drawing.Point(167, 25);
-            this.bottom_radio_btn.Name = "bottom_radio_btn";
-            this.bottom_radio_btn.Size = new System.Drawing.Size(44, 24);
-            this.bottom_radio_btn.TabIndex = 1;
-            this.bottom_radio_btn.TabStop = true;
-            this.bottom_radio_btn.Text = "قاع";
-            this.bottom_radio_btn.UseVisualStyleBackColor = true;
-            // 
-            // body_radio_btn
-            // 
-            this.body_radio_btn.AutoSize = true;
-            this.body_radio_btn.Location = new System.Drawing.Point(277, 25);
-            this.body_radio_btn.Name = "body_radio_btn";
-            this.body_radio_btn.Size = new System.Drawing.Size(44, 24);
-            this.body_radio_btn.TabIndex = 0;
-            this.body_radio_btn.TabStop = true;
-            this.body_radio_btn.Text = "بدن";
-            this.body_radio_btn.UseVisualStyleBackColor = true;
-            this.body_radio_btn.CheckedChanged += new System.EventHandler(this.body_radio_btn_CheckedChanged);
-            // 
-            // add_new_size_btn
-            // 
-            this.add_new_size_btn.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.add_new_size_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.add_new_size_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_size_btn.Location = new System.Drawing.Point(6, 42);
-            this.add_new_size_btn.Name = "add_new_size_btn";
-            this.add_new_size_btn.Size = new System.Drawing.Size(139, 36);
-            this.add_new_size_btn.TabIndex = 43;
-            this.add_new_size_btn.Text = "إضافة مقاس جديد";
-            this.add_new_size_btn.UseVisualStyleBackColor = false;
-            this.add_new_size_btn.Click += new System.EventHandler(this.add_new_size_btn_Click);
-            // 
             // addnewclientproduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1282, 674);
+            this.ClientSize = new System.Drawing.Size(1282, 738);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.products_grid_view);
@@ -495,10 +530,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox product_name_text_box;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox height_text_box;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox capacity_tect_box;
+        private System.Windows.Forms.Label height_label;
+        private System.Windows.Forms.Label capacity_label;
         private System.Windows.Forms.Button save_new_client_product_btn;
         private System.Windows.Forms.Button new_client_product_btn;
         private System.Windows.Forms.Button cancel_btn;
@@ -513,6 +546,13 @@
         private System.Windows.Forms.ComboBox faces_combo_box;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button add_new_face_btn;
+        private System.Windows.Forms.ComboBox sizes_combo_box;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button add_new_size_btn;
+        private System.Windows.Forms.RadioButton easy_open_rado_btn;
+        private System.Windows.Forms.RadioButton twist_of_radio_btn;
+        private System.Windows.Forms.ComboBox height_text_box;
+        private System.Windows.Forms.ComboBox capacity_tect_box;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn shape_type;
@@ -524,8 +564,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn surrounding;
         private System.Windows.Forms.DataGridViewTextBoxColumn item_height;
         private System.Windows.Forms.DataGridViewTextBoxColumn second_face;
-        private System.Windows.Forms.ComboBox sizes_combo_box;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button add_new_size_btn;
     }
 }

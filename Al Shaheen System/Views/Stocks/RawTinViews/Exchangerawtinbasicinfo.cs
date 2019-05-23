@@ -18,12 +18,21 @@ namespace Al_Shaheen_System
         List<SH_TIN_PRINTER> printers = new List<SH_TIN_PRINTER>();
         long mtotal_no_sheets = 0;
         double mtotal_net_weight = 0;
-        public Exchangerawtinbasicinfo(List<SH_RAW_MATERIAL_PARCEL> anyparcels , long total_no_sheets, double total_net_weight)
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+        public Exchangerawtinbasicinfo(List<SH_RAW_MATERIAL_PARCEL> anyparcels , long total_no_sheets, double total_net_weight , SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
             parcels = anyparcels;
             mtotal_no_sheets = total_no_sheets;
             mtotal_net_weight = total_net_weight;
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
+
         }
         void loadallprintersdata()
         {
@@ -119,6 +128,7 @@ namespace Al_Shaheen_System
 
         private void Exchangerawtinbasicinfo_Load(object sender, EventArgs e)
         {
+            stock_man_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             fillparcelsgridview();
             fillstockscombobox();
             total_net_weight_text_box.Text = mtotal_net_weight.ToString();

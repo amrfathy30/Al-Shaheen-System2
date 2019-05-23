@@ -15,6 +15,7 @@ namespace Al_Shaheen_System
         public DateTime addition_date { get; set; }
         public string addition_permission_number { get; set; }
         public SH_COLOR_PILLOW pillow_color { get; set; }
+        public SH_EMPLOYEES  STOCK_MAN { get; set; }
         public long logo_or_not { get; set; }
         public string container_name { get; set; }
         public long no_of_containers { get; set; }

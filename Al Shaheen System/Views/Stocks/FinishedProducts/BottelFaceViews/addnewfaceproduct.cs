@@ -37,12 +37,104 @@ namespace Al_Shaheen_System
 
         int face_product_type = 0;
 
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
 
-        public addnewfaceproduct(SH_EMPLOYEES anyemp)
+        public addnewfaceproduct(SH_EMPLOYEES anyemp ,SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyPermission)
         {
             InitializeComponent();
             mstockman = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPermission;
         }
+        async Task autogenerateadditionpermisionnumber()
+        {
+            long mycount = 0;
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1) AS lastedid FROM SH_ADDITION_PERMISSION_NUMBER_OF_FACE_PRODUCT  ", DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }
+                    else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }
+                }
+
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                permissionnumber += "TOP-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = 1.ToString();
+                for (int i = 0; i < 5 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                permissionnumber += "TOP-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 5 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+        }
+
+
+
+
+
+
+
+        private void savenewpermssionnumber()
+        {
+            try
+            {
+                DatabaseConnection myconnection = new DatabaseConnection();
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO SH_ADDITION_PERMISSION_NUMBER_OF_FACE_PRODUCT (SH_NUMBER) VALUES(@SH_NUMBER) ", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_NUMBER", 1.ToString());
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
+
+
+
+
+
         //save specifications 
         //mold bottel face 
         async Task getallmoldbottelface()
@@ -129,7 +221,10 @@ namespace Al_Shaheen_System
                 if (mydata.hand_or_not==0)
                 {
                     cmd.Parameters.AddWithValue("@SH_HAND_TYPE_ID",0);
-                }else
+                    cmd.Parameters.AddWithValue("@SH_HAND_TYPE_NAME", 0);
+
+                }
+                else
                 {
                     cmd.Parameters.AddWithValue("@SH_HAND_TYPE_ID", mydata.hand_type.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_HAND_TYPE_NAME",mydata.hand_type.SH_TYPE_NAME );
@@ -985,7 +1080,7 @@ namespace Al_Shaheen_System
         {
             //  Cursor 
             Cursor.Current = Cursors.WaitCursor;
-
+            await autogenerateadditionpermisionnumber();
             mold_panel.Visible = false;
             qlawooz_panel.Visible = false;
             printing_panel.Visible = false;
@@ -1478,7 +1573,7 @@ namespace Al_Shaheen_System
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewfaceproduct myform = new addnewfaceproduct(mstockman))
+            using (addnewfaceproduct myform = new addnewfaceproduct(mstockman, mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -1502,6 +1597,7 @@ namespace Al_Shaheen_System
                         if (sp_id==0)
                         {
                             //sp_id = mol
+                            savenewpermssionnumber();
                             sp_id =  await savemoldtypespecification(form_data[i]);
                             sp_id = await savenewgeneralspecification(sp_id, 0, 0, 0, 0, form_data[i]);
                             long q_id = await savenewfacequantity(sp_id, form_data[i]);
@@ -1509,6 +1605,7 @@ namespace Al_Shaheen_System
                         }
                         else
                         {
+                            savenewpermssionnumber();
                             await updatemoldbottelfacesspecifications(sp_id , form_data[i]);
                             sp_id = await update_general_bottel_face_specification(sp_id , 0,0,0,0,form_data[i]);
                             long q_id = await savenewfacequantity(sp_id  , form_data[i]);
@@ -1516,6 +1613,12 @@ namespace Al_Shaheen_System
                         }
                     }
                     MessageBox.Show("تم الحفظ بنجاح", "معلومات",  MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+                    this.Hide();
+                    using (addnewfaceproduct myform = new addnewfaceproduct(mstockman, mAccount, mPermission))
+                    {
+                        myform.ShowDialog();
+                    }
+                    this.Close();
                 }
             }
             else if (face_product_type == 1)

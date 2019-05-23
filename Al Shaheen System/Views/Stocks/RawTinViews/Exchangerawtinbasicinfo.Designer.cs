@@ -208,6 +208,7 @@
             // 
             // stock_man_text_box
             // 
+            this.stock_man_text_box.Enabled = false;
             this.stock_man_text_box.Location = new System.Drawing.Point(117, 75);
             this.stock_man_text_box.Name = "stock_man_text_box";
             this.stock_man_text_box.Size = new System.Drawing.Size(237, 29);

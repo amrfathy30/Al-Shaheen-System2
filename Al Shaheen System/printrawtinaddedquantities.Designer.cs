@@ -1,6 +1,6 @@
 ﻿namespace Al_Shaheen_System
 {
-    partial class printrawmaterialaddingrequest
+    partial class printrawtinaddedquantities
     {
         /// <summary>
         /// Required designer variable.
@@ -38,24 +38,24 @@
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "ADDING_REQUEST_QUANTITIES";
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Al_Shaheen_System.Views.Stocks.RawTinViews.rawmaterialaddingrequestreport.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Al_Shaheen_System.adding_raw_material_quantites.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(663, 745);
+            this.reportViewer1.Size = new System.Drawing.Size(688, 731);
             this.reportViewer1.TabIndex = 0;
+            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
-            // printrawmaterialaddingrequest
+            // printrawtinaddedquantities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(663, 745);
+            this.ClientSize = new System.Drawing.Size(688, 731);
             this.Controls.Add(this.reportViewer1);
-            this.Name = "printrawmaterialaddingrequest";
+            this.Name = "printrawtinaddedquantities";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "طباعة إذن إضافة الصفيح الخام ";
-            this.Load += new System.EventHandler(this.printrawmaterialaddingrequest_Load);
+            this.Load += new System.EventHandler(this.printrawtinaddedquantities_Load);
             this.ResumeLayout(false);
 
         }

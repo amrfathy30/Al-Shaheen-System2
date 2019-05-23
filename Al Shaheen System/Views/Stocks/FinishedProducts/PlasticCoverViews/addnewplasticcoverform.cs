@@ -26,10 +26,100 @@ namespace Al_Shaheen_System
         List<SH_QUANTITY_OF_PLASTIC_COVER> QUANTITIES = new List<SH_QUANTITY_OF_PLASTIC_COVER>();
         List<SH_ITEM_SIZE> sizes = new List<SH_ITEM_SIZE>();
 
-        public addnewplasticcoverform()
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+        public addnewplasticcoverform(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyaccount , SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = anyPerm;
         }
+
+        async Task autogenerateadditionpermisionnumber()
+        {
+            long mycount = 0;
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1) AS lastedid FROM SH_ADDITION_PERMISSION_NUMBER_OF_PLASTIC_COVER  ", DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }
+                    else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }
+                }
+
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                permissionnumber += "PLASTIC_COVER-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = 1.ToString();
+                for (int i = 0; i < 5 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                permissionnumber += "PLASTIC_COVER-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 5 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+        }
+
+
+
+
+
+        private void savenewpermssionnumber()
+        {
+            try
+            {
+                DatabaseConnection myconnection = new DatabaseConnection();
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO SH_ADDITION_PERMISSION_NUMBER_OF_PLASTIC_COVER (SH_NUMBER) VALUES(@SH_NUMBER) ", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_NUMBER", 1.ToString());
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
+
+
 
         async Task loadallspecifications()
         {
@@ -274,12 +364,6 @@ namespace Al_Shaheen_System
                 }
             }
         }
-       
-
-
-
-
-
         async Task getallsupplier()
         {
             suppliers.Clear();
@@ -360,8 +444,6 @@ namespace Al_Shaheen_System
                 }
             }
         }
-       
-      
         async Task gettwistofcolorspillow()
         {
             color_pillows.Clear();
@@ -439,16 +521,7 @@ namespace Al_Shaheen_System
                     });
                 }
             }
-        }
-      
-       
-        
-
-       
-
-
-       
-      
+        }   
         void calculatenoitemsofunsimilarquantity()
         {
             long testnumber = 0;
@@ -494,6 +567,7 @@ namespace Al_Shaheen_System
         private async void addnewtwistofform_Load(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
+            await autogenerateadditionpermisionnumber();
             await fillsupplierscombobox();
            // await getalltwistoftypes();
            
@@ -502,7 +576,7 @@ namespace Al_Shaheen_System
             await fillclientscombobox();
             await fillwistofcolorpillowcombobox();
             fillsizescombobox();
-
+            stock_man_name_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             no_of_containers_text_box.Enabled = true;
             no_items_per_container.Enabled = true;
             unsimilar_no_items_per_container.Enabled = false;
@@ -644,11 +718,11 @@ namespace Al_Shaheen_System
                 }
                 if (unsimilarquantities_check_box.Checked)
                 {
-                    form_data.Add(new SH_PLASTIC_COVER_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = "أكياس بلاستيك", logo_or_not = logo_or_not, no_items_per_container = long.Parse(unsimilar_no_items_per_container.Text), no_of_containers = long.Parse(unsimilar_no_of_containers.Text), size = sizes[sizes_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex] });
+                    form_data.Add(new SH_PLASTIC_COVER_DATA() {  STOCK_MAN = mEmployee,addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = "أكياس بلاستيك", logo_or_not = logo_or_not, no_items_per_container = long.Parse(unsimilar_no_items_per_container.Text), no_of_containers = long.Parse(unsimilar_no_of_containers.Text), size = sizes[sizes_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex] });
 
                 }else
                 {
-                    form_data.Add(new SH_PLASTIC_COVER_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = "أكياس بلاستيك", logo_or_not = logo_or_not, no_items_per_container = long.Parse(no_items_per_container.Text), no_of_containers = long.Parse(no_of_containers_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex] });
+                    form_data.Add(new SH_PLASTIC_COVER_DATA() { STOCK_MAN = mEmployee ,addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = "أكياس بلاستيك", logo_or_not = logo_or_not, no_items_per_container = long.Parse(no_items_per_container.Text), no_of_containers = long.Parse(no_of_containers_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex] });
 
                 }
                 fillplasticovergridview();
@@ -702,8 +776,7 @@ namespace Al_Shaheen_System
 
         private async void clients_combo_box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-              
+                    
         }
         private async void client_product_combo_box_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -825,11 +898,13 @@ namespace Al_Shaheen_System
                         //MessageBox.Show(sp_id.ToString());
                         if (sp_id !=0)
                         {
+                            savenewpermssionnumber();
                             await upsate_specifications(sp_id,form_data[i]);
                             long q_id =  await save_new_plastic_cover_quantities(sp_id, form_data[i]);
                             await save_plastic_cover_containers(q_id , form_data[i]);
                         }else
                         {
+                            savenewpermssionnumber();
                             sp_id = await save_new_specification(form_data[i]);
                             long q_id = await save_new_plastic_cover_quantities(sp_id, form_data[i]);
                             await save_plastic_cover_containers(q_id, form_data[i]);
@@ -837,6 +912,10 @@ namespace Al_Shaheen_System
                     }
                     MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
                     Cursor.Current = Cursors.Default;
+                    this.Hide();
+                    addnewplasticcoverform myform = new addnewplasticcoverform(mEmployee, mAccount, mPermission);
+                    myform.Show();
+                    this.Close();
                 }
 
             }
@@ -861,7 +940,7 @@ namespace Al_Shaheen_System
         private void new_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            addnewplasticcoverform myform = new addnewplasticcoverform();
+            addnewplasticcoverform myform = new addnewplasticcoverform(mEmployee,mAccount,mPermission);
             myform.Show();
             this.Close();
         }

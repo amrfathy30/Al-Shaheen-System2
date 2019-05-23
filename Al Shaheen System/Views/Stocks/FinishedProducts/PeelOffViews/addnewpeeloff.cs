@@ -30,10 +30,105 @@ namespace Al_Shaheen_System
         List<SH_EMPLOYEES> stock_men = new List<SH_EMPLOYEES>();
         List<SH_SPECIFICATION_OF_PEEL_OFF> specifications = new List<SH_SPECIFICATION_OF_PEEL_OFF>();
         DatabaseConnection myconnection = new DatabaseConnection();
-        public addnewpeeloff()
+
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+        public addnewpeeloff(SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
         }
+
+
+        async Task autogenerateadditionpermisionnumber()
+        {
+            long mycount = 0;
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1) AS lastedid FROM SH_ADDITION_PERMISSION_NUMBER_PEEL_OFF  ", DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }
+                    else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }
+                }
+
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                permissionnumber += "PEEL_OFF-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = 1.ToString();
+                for (int i = 0; i < 5 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                permissionnumber += "PEEL_OFF-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 5 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+        }
+
+
+
+
+
+
+
+        private void savenewpermssionnumber()
+        {
+            try
+            {
+                DatabaseConnection myconnection = new DatabaseConnection();
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO  SH_ADDITION_PERMISSION_NUMBER_PEEL_OFF (SH_NUMBER) VALUES(@SH_NUMBER) ", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_NUMBER", 1.ToString());
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
+
 
         async Task getalleasyopenusage()
         {
@@ -104,45 +199,8 @@ namespace Al_Shaheen_System
             }
         }
 
-        async Task loadallstockmendata()
-        {
-            stock_men.Clear();
-            string mystring = "امين مخزن";
-            try
-            {
-                string query = "SELECT * FROM SH_EMPLOYEES WHERE  SH_EMPLOYEE_FUNCTION_NAME LIKE N'%" + mystring + "%' OR SH_EMPLOYEE_FUNCTION_NAME LIKE N'" + mystring + "%' OR SH_EMPLOYEE_FUNCTION_NAME LIKE N'%" + mystring + "'";
-                
-                myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    stock_men.Add(new SH_EMPLOYEES() { SH_EMPLOYEE_ADDRESS = reader["SH_EMPLOYEE_ADDRESS"].ToString(), SH_EMPLOYEMENT_DATE = DateTime.Parse(reader["SH_EMPLOYEMENT_DATE"].ToString()), SH_EMPLOYEE_EMAIL = reader["SH_EMPLOYEE_EMAIL"].ToString(), SH_EMPLOYEE_FUNCTION_ID = long.Parse(reader["SH_EMPLOYEE_FUNCTION_ID"].ToString()), SH_EMPLOYEE_FUNCTION_NAME = reader["SH_EMPLOYEE_FUNCTION_NAME"].ToString(), SH_EMPLOYEE_GENDER = reader["SH_EMPLOYEE_GENDER"].ToString(), SH_EMPLOYEE_MOBILE = reader["SH_EMPLOYEE_MOBILE"].ToString(), SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString(), SH_EMPLOYEE_NATIONAL_ID = reader["SH_EMPLOYEE_NATIONAL_ID"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(), SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()) , SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString() });
-                }
-                reader.Close();
-                myconnection.closeConnection();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR WHILE GETTING STOCK MEN FROM DB "+ex.ToString());
-            }
-
-        }
-
-         async void fillstockmencombobox()
-        {
-            await loadallstockmendata();
-            stock_men_combo_box.Items.Clear();
-            if (stock_men.Count > 0)
-            {
-                for (int i = 0; i < stock_men.Count; i++)
-                {
-                    stock_men_combo_box.Items.Add(stock_men[i].SH_EMPLOYEE_NAME);
-                }   
-            }
-        }
-
-
+        
+    
 
         async Task loadallstocks()
         {
@@ -482,9 +540,11 @@ namespace Al_Shaheen_System
         private async void Easyopenaddingform_Load(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
+            await autogenerateadditionpermisionnumber(); 
             fillsupplierscombobox();
             fillsizesgridview();
             fillstockscombobox();
+            stock_man_name_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             //fillstockmencombobox();
             await fillsuagesgridview();
             await fillmaterialtypescombobox();
@@ -559,6 +619,7 @@ namespace Al_Shaheen_System
                     long t_sp_id = checkifeasyopenspecificationsexistsornot(form_data[i]);
                     if (t_sp_id == 0)
                     {
+                        savenewpermssionnumber();
                         t_sp_id = await saveneweasyopenspecifications(form_data[i]);
                         long q_id = await saveneweasyopenquantities(t_sp_id, form_data[i]);
                         await saveeasyopencontainers(t_sp_id, q_id, form_data[i]);
@@ -566,6 +627,7 @@ namespace Al_Shaheen_System
                     }
                     else
                     {
+                        savenewpermssionnumber();
                         await updateeasyopenspecifications(t_sp_id, form_data[i]);
                         long q_id = await saveneweasyopenquantities(t_sp_id, form_data[i]);
                         await saveeasyopencontainers(t_sp_id, q_id, form_data[i]);
@@ -591,6 +653,12 @@ namespace Al_Shaheen_System
             Cursor.Current = Cursors.WaitCursor;
             await saveeasyopensdata();
             Cursor.Current = Cursors.Default;
+            this.Hide();
+            using (addnewpeeloff myform = new addnewpeeloff(mEmployee, mAccount, mPermission))
+            {
+                myform.ShowDialog();
+            }
+            this.Close();
         }
 
         void loadalleasyopenspecifications()
@@ -928,10 +996,10 @@ namespace Al_Shaheen_System
             {
                 if (f1_printing_stat.SelectedIndex==0)
                 {
-                    form_data.Add(new SH_PEEL_OFF_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[F1_combo_box.SelectedIndex], container_name = container_types_combo_box.Text, first_face = null,second_face=null ,no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = c_products[f2_combo_box.SelectedIndex], no_items_per_subcontainer = long.Parse(no_items_per_bage.Text) , no_of_subcontainer_per_container= long.Parse(no_of_bages_per_container.Text) , SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex , SH_PRINTING_TYPE_NAME = f1_printing_stat.Text , SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex] , SH_USAGE = usages[usage_combo_box.SelectedIndex] , SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text) , size = sizes[sizes_combo_box.SelectedIndex] , stock = stocks[stocks_combo_box.SelectedIndex] , stock_man = stock_men[stock_men_combo_box.SelectedIndex] , sub_container_name= "أكياس" , supplier = suppliers[suppliers_combo_box.SelectedIndex] , supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex] , total_number_of_sub_container = long.Parse(total_no_bages.Text) });
+                    form_data.Add(new SH_PEEL_OFF_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[F1_combo_box.SelectedIndex], container_name = container_types_combo_box.Text, first_face = null,second_face=null ,no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = c_products[f2_combo_box.SelectedIndex], no_items_per_subcontainer = long.Parse(no_items_per_bage.Text) , no_of_subcontainer_per_container= long.Parse(no_of_bages_per_container.Text) , SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex , SH_PRINTING_TYPE_NAME = f1_printing_stat.Text , SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex] , SH_USAGE = usages[usage_combo_box.SelectedIndex] , SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text) , size = sizes[sizes_combo_box.SelectedIndex] , stock = stocks[stocks_combo_box.SelectedIndex] , stock_man = mEmployee, sub_container_name= "أكياس" , supplier = suppliers[suppliers_combo_box.SelectedIndex] , supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex] , total_number_of_sub_container = long.Parse(total_no_bages.Text) });
                 }else
                 {
-                    form_data.Add(new SH_PEEL_OFF_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = null, container_name = container_types_combo_box.Text, first_face = faces[F1_combo_box.SelectedIndex], second_face = faces[f2_combo_box.SelectedIndex], no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = null, no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = stock_men[stock_men_combo_box.SelectedIndex], sub_container_name = "أكياس", supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], total_number_of_sub_container = long.Parse(total_no_bages.Text) });
+                    form_data.Add(new SH_PEEL_OFF_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = null, container_name = container_types_combo_box.Text, first_face = faces[F1_combo_box.SelectedIndex], second_face = faces[f2_combo_box.SelectedIndex], no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = null, no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = mEmployee , sub_container_name = "أكياس", supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], total_number_of_sub_container = long.Parse(total_no_bages.Text) });
 
                 }
                 filleasyopengridview();
@@ -1020,12 +1088,10 @@ namespace Al_Shaheen_System
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewpeeloff myform = new addnewpeeloff() )
+            using (addnewpeeloff myform = new addnewpeeloff(mEmployee,mAccount,mPermission) )
             {
-
                 myform.ShowDialog();
             }
-
             this.Close();
         }
     }

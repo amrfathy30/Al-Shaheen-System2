@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.stock_man_text_box = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.stocks_combo_box = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -91,7 +92,6 @@
             this.remove_quantity_btn = new System.Windows.Forms.Button();
             this.date_text_box = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.stock_man_text_box = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -126,6 +126,14 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات المورد";
+            // 
+            // stock_man_text_box
+            // 
+            this.stock_man_text_box.Enabled = false;
+            this.stock_man_text_box.Location = new System.Drawing.Point(122, 70);
+            this.stock_man_text_box.Name = "stock_man_text_box";
+            this.stock_man_text_box.Size = new System.Drawing.Size(222, 26);
+            this.stock_man_text_box.TabIndex = 7;
             // 
             // label12
             // 
@@ -357,7 +365,7 @@
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(28, 443);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(955, 155);
+            this.groupBox7.Size = new System.Drawing.Size(955, 209);
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "التعبئة";
@@ -365,7 +373,7 @@
             // total_no_bages
             // 
             this.total_no_bages.Enabled = false;
-            this.total_no_bages.Location = new System.Drawing.Point(122, 70);
+            this.total_no_bages.Location = new System.Drawing.Point(109, 30);
             this.total_no_bages.Name = "total_no_bages";
             this.total_no_bages.Size = new System.Drawing.Size(222, 26);
             this.total_no_bages.TabIndex = 14;
@@ -374,7 +382,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(372, 73);
+            this.label14.Location = new System.Drawing.Point(359, 33);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(108, 20);
             this.label14.TabIndex = 13;
@@ -399,7 +407,7 @@
             // 
             // no_of_bages_per_container
             // 
-            this.no_of_bages_per_container.Location = new System.Drawing.Point(122, 30);
+            this.no_of_bages_per_container.Location = new System.Drawing.Point(511, 113);
             this.no_of_bages_per_container.Name = "no_of_bages_per_container";
             this.no_of_bages_per_container.Size = new System.Drawing.Size(222, 26);
             this.no_of_bages_per_container.TabIndex = 8;
@@ -408,7 +416,7 @@
             // total_no_of_products_text_box
             // 
             this.total_no_of_products_text_box.Enabled = false;
-            this.total_no_of_products_text_box.Location = new System.Drawing.Point(122, 110);
+            this.total_no_of_products_text_box.Location = new System.Drawing.Point(109, 158);
             this.total_no_of_products_text_box.Name = "total_no_of_products_text_box";
             this.total_no_of_products_text_box.Size = new System.Drawing.Size(222, 26);
             this.total_no_of_products_text_box.TabIndex = 7;
@@ -416,7 +424,7 @@
             // total_no_items
             // 
             this.total_no_items.AutoSize = true;
-            this.total_no_items.Location = new System.Drawing.Point(372, 113);
+            this.total_no_items.Location = new System.Drawing.Point(359, 161);
             this.total_no_items.Name = "total_no_items";
             this.total_no_items.Size = new System.Drawing.Size(96, 20);
             this.total_no_items.TabIndex = 6;
@@ -424,7 +432,7 @@
             // 
             // no_of_container_text_box
             // 
-            this.no_of_container_text_box.Location = new System.Drawing.Point(512, 113);
+            this.no_of_container_text_box.Location = new System.Drawing.Point(512, 158);
             this.no_of_container_text_box.Name = "no_of_container_text_box";
             this.no_of_container_text_box.Size = new System.Drawing.Size(221, 26);
             this.no_of_container_text_box.TabIndex = 5;
@@ -433,7 +441,7 @@
             // p_container_no_label
             // 
             this.p_container_no_label.AutoSize = true;
-            this.p_container_no_label.Location = new System.Drawing.Point(739, 116);
+            this.p_container_no_label.Location = new System.Drawing.Point(739, 161);
             this.p_container_no_label.Name = "p_container_no_label";
             this.p_container_no_label.Size = new System.Drawing.Size(80, 20);
             this.p_container_no_label.TabIndex = 4;
@@ -442,7 +450,7 @@
             // p_no_per_comtainer_label
             // 
             this.p_no_per_comtainer_label.AutoSize = true;
-            this.p_no_per_comtainer_label.Location = new System.Drawing.Point(360, 33);
+            this.p_no_per_comtainer_label.Location = new System.Drawing.Point(749, 116);
             this.p_no_per_comtainer_label.Name = "p_no_per_comtainer_label";
             this.p_no_per_comtainer_label.Size = new System.Drawing.Size(48, 20);
             this.p_no_per_comtainer_label.TabIndex = 2;
@@ -475,7 +483,7 @@
             this.save_easy_open_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_easy_open_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_easy_open_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.save_easy_open_btn.Location = new System.Drawing.Point(28, 878);
+            this.save_easy_open_btn.Location = new System.Drawing.Point(28, 946);
             this.save_easy_open_btn.Name = "save_easy_open_btn";
             this.save_easy_open_btn.Size = new System.Drawing.Size(132, 40);
             this.save_easy_open_btn.TabIndex = 5;
@@ -489,7 +497,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(506, 878);
+            this.button1.Location = new System.Drawing.Point(433, 946);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 40);
             this.button1.TabIndex = 6;
@@ -503,7 +511,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(851, 878);
+            this.button2.Location = new System.Drawing.Point(851, 946);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(132, 40);
             this.button2.TabIndex = 7;
@@ -523,7 +531,9 @@
             // 
             // addition_permission_number_text_box
             // 
+            this.addition_permission_number_text_box.Enabled = false;
             this.addition_permission_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addition_permission_number_text_box.ForeColor = System.Drawing.Color.Red;
             this.addition_permission_number_text_box.Location = new System.Drawing.Point(151, 111);
             this.addition_permission_number_text_box.Name = "addition_permission_number_text_box";
             this.addition_permission_number_text_box.Size = new System.Drawing.Size(223, 26);
@@ -535,14 +545,14 @@
             this.easy_open_form_data_grid_view.AllowUserToDeleteRows = false;
             this.easy_open_form_data_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.easy_open_form_data_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.easy_open_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.easy_open_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.easy_open_form_data_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.easy_open_form_data_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -558,20 +568,20 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.easy_open_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.easy_open_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
             this.easy_open_form_data_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.easy_open_form_data_grid_view.Location = new System.Drawing.Point(28, 650);
+            this.easy_open_form_data_grid_view.Location = new System.Drawing.Point(33, 718);
             this.easy_open_form_data_grid_view.Name = "easy_open_form_data_grid_view";
             this.easy_open_form_data_grid_view.ReadOnly = true;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.easy_open_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.easy_open_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.easy_open_form_data_grid_view.Size = new System.Drawing.Size(955, 222);
             this.easy_open_form_data_grid_view.TabIndex = 10;
             // 
@@ -659,7 +669,7 @@
             this.add_new_quantity_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_quantity_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_quantity_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.add_new_quantity_btn.Location = new System.Drawing.Point(28, 604);
+            this.add_new_quantity_btn.Location = new System.Drawing.Point(28, 672);
             this.add_new_quantity_btn.Name = "add_new_quantity_btn";
             this.add_new_quantity_btn.Size = new System.Drawing.Size(176, 40);
             this.add_new_quantity_btn.TabIndex = 11;
@@ -673,7 +683,7 @@
             this.remove_quantity_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remove_quantity_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remove_quantity_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.remove_quantity_btn.Location = new System.Drawing.Point(807, 604);
+            this.remove_quantity_btn.Location = new System.Drawing.Point(807, 672);
             this.remove_quantity_btn.Name = "remove_quantity_btn";
             this.remove_quantity_btn.Size = new System.Drawing.Size(176, 40);
             this.remove_quantity_btn.TabIndex = 12;
@@ -697,20 +707,12 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // stock_man_text_box
-            // 
-            this.stock_man_text_box.Enabled = false;
-            this.stock_man_text_box.Location = new System.Drawing.Point(122, 70);
-            this.stock_man_text_box.Name = "stock_man_text_box";
-            this.stock_man_text_box.Size = new System.Drawing.Size(222, 26);
-            this.stock_man_text_box.TabIndex = 7;
-            // 
             // Easyopenaddingform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1014, 930);
+            this.ClientSize = new System.Drawing.Size(1014, 998);
             this.Controls.Add(this.date_text_box);
             this.Controls.Add(this.remove_quantity_btn);
             this.Controls.Add(this.add_new_quantity_btn);

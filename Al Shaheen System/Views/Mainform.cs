@@ -38,7 +38,7 @@ namespace Al_Shaheen_System
 
         private void إضافةصفيحخامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addnewrawtin myform = new addnewrawtin();
+            addnewrawtin myform = new addnewrawtin(mEmployee,mAccount,mPermission);
 
             myform.Show();
             
@@ -50,7 +50,7 @@ namespace Al_Shaheen_System
             //{
             //    myform.ShowDialog();
             //}
-            searchinrawmaterialform myform = new searchinrawmaterialform();
+            searchinrawmaterialform myform = new searchinrawmaterialform(mEmployee,mAccount,mPermission);
 
             myform.Show();
             
@@ -103,7 +103,7 @@ namespace Al_Shaheen_System
 
         private void easyOpenايزيأوبنToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Easyopenaddingform myform = new Easyopenaddingform();
+            Easyopenaddingform myform = new Easyopenaddingform(mEmployee,mAccount,mPermission);
 
             myform.Show();
             
@@ -204,7 +204,7 @@ namespace Al_Shaheen_System
 
         private void علبالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewfinishedcan myform= new addnewfinishedcan())
+            using (addnewfinishedcan myform= new addnewfinishedcan(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -322,29 +322,9 @@ namespace Al_Shaheen_System
 
         
 
-        private void pennyLeverRLTبيلأوفToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            addnewrlt myform = new addnewrlt();
+       
 
-            myform.Show();
 
-        }
-
-        private void بيلأوفToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (addnewpeeloff myform = new addnewpeeloff())
-            {
-                myform.ShowDialog();
-            }
-        }
-
-        private void صرفالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (searchinfinishedproducts myform = new searchinfinishedproducts())
-            {
-                myform.ShowDialog();
-            }
-        }
 
         private void Mainform_Load(object sender, EventArgs e)
         {
@@ -487,7 +467,7 @@ namespace Al_Shaheen_System
 
         private void تويستأوفToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewtwistofform myform = new addnewtwistofform())
+            using (addnewtwistofform myform = new addnewtwistofform(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -503,7 +483,7 @@ namespace Al_Shaheen_System
 
         private void غطاءبلاستيكللعبواتToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewplasticcoverform myform = new addnewplasticcoverform())
+            using (addnewplasticcoverform myform = new addnewplasticcoverform(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -521,7 +501,7 @@ namespace Al_Shaheen_System
 
         private void طبةبلاستيكToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewplasticmoldform myform = new addnewplasticmoldform())
+            using (addnewplasticmoldform myform = new addnewplasticmoldform(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -610,7 +590,7 @@ namespace Al_Shaheen_System
 
         private void وشToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewfaceproduct myform = new addnewfaceproduct(mEmployee))
+            using (addnewfaceproduct myform = new addnewfaceproduct(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -747,7 +727,7 @@ namespace Al_Shaheen_System
 
         private void علبمنتجتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addnewfinishedcan myform = new addnewfinishedcan();
+            addnewfinishedcan myform = new addnewfinishedcan(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
@@ -759,37 +739,37 @@ namespace Al_Shaheen_System
 
         private void وشToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            addnewfaceproduct myform = new addnewfaceproduct(mEmployee);
+            addnewfaceproduct myform = new addnewfaceproduct(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
         private void rLTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addnewrlt myform = new addnewrlt();
+            addnewrlt myform = new addnewrlt(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
         private void إيزىأوبنToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Easyopenaddingform myform = new Easyopenaddingform();
+            Easyopenaddingform myform = new Easyopenaddingform(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
         private void بيلأوفToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            addnewpeeloff myform = new addnewpeeloff();
+            addnewpeeloff myform = new addnewpeeloff(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
         private void غطاءبلاستيكToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addnewplasticcoverform myform = new addnewplasticcoverform();
+            addnewplasticcoverform myform = new addnewplasticcoverform(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
         private void طبةبلاستيكToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            addnewplasticmoldform myform = new addnewplasticmoldform();
+            addnewplasticmoldform myform = new addnewplasticmoldform(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
@@ -813,7 +793,7 @@ namespace Al_Shaheen_System
 
         private void تويستأوفToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            addnewtwistofform myform = new addnewtwistofform();
+            addnewtwistofform myform = new addnewtwistofform(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 

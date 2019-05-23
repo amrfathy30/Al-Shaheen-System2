@@ -379,9 +379,15 @@ namespace Al_Shaheen_System
                     update_specifiction_quanities(id);
                     save_raw_tin_quantites(id);
                     MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-
+                   
                 }
-           // }
+            this.Hide();
+            using (addnewrowtinfd myform = new addnewrowtinfd(mEmployee, mAccount, mPermission))
+            {
+                myform.ShowDialog();
+            }
+            this.Close();
+            // }
         }
         void fillgridviewitems()
         {

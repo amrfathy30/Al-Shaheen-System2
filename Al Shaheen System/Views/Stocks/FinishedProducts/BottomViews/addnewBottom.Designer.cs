@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.stock_man_name_taxt_box = new System.Windows.Forms.TextBox();
@@ -92,6 +92,9 @@
             this.remove_quantity_btn = new System.Windows.Forms.Button();
             this.date_text_box = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label10 = new System.Windows.Forms.Label();
+            this.inner_working_radio_btn = new System.Windows.Forms.RadioButton();
+            this.outer_sale_radio_btn = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -103,7 +106,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(321, 24);
+            this.label1.Location = new System.Drawing.Point(394, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 46);
             this.label1.TabIndex = 0;
@@ -111,6 +114,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.outer_sale_radio_btn);
+            this.groupBox1.Controls.Add(this.inner_working_radio_btn);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.stock_man_name_taxt_box);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.stocks_combo_box);
@@ -119,10 +125,10 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.suppliers_combo_box);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(28, 153);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(28, 73);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(955, 114);
+            this.groupBox1.Size = new System.Drawing.Size(955, 150);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات المورد";
@@ -130,51 +136,51 @@
             // stock_man_name_taxt_box
             // 
             this.stock_man_name_taxt_box.Enabled = false;
-            this.stock_man_name_taxt_box.Location = new System.Drawing.Point(122, 64);
+            this.stock_man_name_taxt_box.Location = new System.Drawing.Point(219, 104);
             this.stock_man_name_taxt_box.Name = "stock_man_name_taxt_box";
-            this.stock_man_name_taxt_box.Size = new System.Drawing.Size(222, 26);
+            this.stock_man_name_taxt_box.Size = new System.Drawing.Size(222, 30);
             this.stock_man_name_taxt_box.TabIndex = 7;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(382, 70);
+            this.label12.Location = new System.Drawing.Point(479, 110);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 20);
+            this.label12.Size = new System.Drawing.Size(98, 25);
             this.label12.TabIndex = 6;
             this.label12.Text = "إمين المخزن ";
             // 
             // stocks_combo_box
             // 
             this.stocks_combo_box.FormattingEnabled = true;
-            this.stocks_combo_box.Location = new System.Drawing.Point(496, 62);
+            this.stocks_combo_box.Location = new System.Drawing.Point(593, 107);
             this.stocks_combo_box.Name = "stocks_combo_box";
-            this.stocks_combo_box.Size = new System.Drawing.Size(222, 28);
+            this.stocks_combo_box.Size = new System.Drawing.Size(222, 33);
             this.stocks_combo_box.TabIndex = 5;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(748, 70);
+            this.label9.Location = new System.Drawing.Point(845, 110);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 20);
+            this.label9.Size = new System.Drawing.Size(65, 25);
             this.label9.TabIndex = 4;
             this.label9.Text = "المخزن ";
             // 
             // supplier_branches_combo_box
             // 
             this.supplier_branches_combo_box.FormattingEnabled = true;
-            this.supplier_branches_combo_box.Location = new System.Drawing.Point(122, 28);
+            this.supplier_branches_combo_box.Location = new System.Drawing.Point(219, 68);
             this.supplier_branches_combo_box.Name = "supplier_branches_combo_box";
-            this.supplier_branches_combo_box.Size = new System.Drawing.Size(222, 28);
+            this.supplier_branches_combo_box.Size = new System.Drawing.Size(222, 33);
             this.supplier_branches_combo_box.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(382, 31);
+            this.label3.Location = new System.Drawing.Point(479, 71);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 20);
+            this.label3.Size = new System.Drawing.Size(73, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "إسم الفرع";
             // 
@@ -183,18 +189,18 @@
             this.suppliers_combo_box.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.suppliers_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.suppliers_combo_box.FormattingEnabled = true;
-            this.suppliers_combo_box.Location = new System.Drawing.Point(495, 28);
+            this.suppliers_combo_box.Location = new System.Drawing.Point(593, 68);
             this.suppliers_combo_box.Name = "suppliers_combo_box";
-            this.suppliers_combo_box.Size = new System.Drawing.Size(222, 28);
+            this.suppliers_combo_box.Size = new System.Drawing.Size(222, 33);
             this.suppliers_combo_box.TabIndex = 1;
             this.suppliers_combo_box.SelectedIndexChanged += new System.EventHandler(this.suppliers_combo_box_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(736, 31);
+            this.label2.Location = new System.Drawing.Point(833, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 20);
+            this.label2.Size = new System.Drawing.Size(80, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "إسم المورد";
             // 
@@ -206,8 +212,8 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.material_type_combo_box);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(28, 273);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(28, 229);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(955, 75);
             this.groupBox2.TabIndex = 2;
@@ -222,7 +228,7 @@
             this.sizes_combo_box.FormattingEnabled = true;
             this.sizes_combo_box.Location = new System.Drawing.Point(346, 25);
             this.sizes_combo_box.Name = "sizes_combo_box";
-            this.sizes_combo_box.Size = new System.Drawing.Size(165, 28);
+            this.sizes_combo_box.Size = new System.Drawing.Size(165, 33);
             this.sizes_combo_box.TabIndex = 44;
             // 
             // label11
@@ -230,7 +236,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(532, 28);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(43, 20);
+            this.label11.Size = new System.Drawing.Size(54, 25);
             this.label11.TabIndex = 43;
             this.label11.Text = "المقاس";
             // 
@@ -242,7 +248,7 @@
             "بودر"});
             this.usage_combo_box.Location = new System.Drawing.Point(24, 25);
             this.usage_combo_box.Name = "usage_combo_box";
-            this.usage_combo_box.Size = new System.Drawing.Size(169, 28);
+            this.usage_combo_box.Size = new System.Drawing.Size(169, 33);
             this.usage_combo_box.TabIndex = 12;
             // 
             // label7
@@ -250,7 +256,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(219, 33);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 20);
+            this.label7.Size = new System.Drawing.Size(72, 25);
             this.label7.TabIndex = 11;
             this.label7.Text = "الإستخدام";
             // 
@@ -263,7 +269,7 @@
             "ALU"});
             this.material_type_combo_box.Location = new System.Drawing.Point(656, 25);
             this.material_type_combo_box.Name = "material_type_combo_box";
-            this.material_type_combo_box.Size = new System.Drawing.Size(159, 28);
+            this.material_type_combo_box.Size = new System.Drawing.Size(159, 33);
             this.material_type_combo_box.TabIndex = 4;
             // 
             // label4
@@ -271,7 +277,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(834, 33);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 20);
+            this.label4.Size = new System.Drawing.Size(77, 25);
             this.label4.TabIndex = 0;
             this.label4.Text = "نوع الخام ";
             // 
@@ -283,10 +289,10 @@
             this.groupBox5.Controls.Add(this.f1_label);
             this.groupBox5.Controls.Add(this.f1_printing_stat);
             this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(33, 354);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(28, 310);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(950, 83);
+            this.groupBox5.Size = new System.Drawing.Size(955, 83);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "الطلاء";
@@ -296,7 +302,7 @@
             this.f2_combo_box.FormattingEnabled = true;
             this.f2_combo_box.Location = new System.Drawing.Point(24, 33);
             this.f2_combo_box.Name = "f2_combo_box";
-            this.f2_combo_box.Size = new System.Drawing.Size(169, 28);
+            this.f2_combo_box.Size = new System.Drawing.Size(169, 33);
             this.f2_combo_box.TabIndex = 5;
             // 
             // f2_label
@@ -304,7 +310,7 @@
             this.f2_label.AutoSize = true;
             this.f2_label.Location = new System.Drawing.Point(248, 36);
             this.f2_label.Name = "f2_label";
-            this.f2_label.Size = new System.Drawing.Size(28, 20);
+            this.f2_label.Size = new System.Drawing.Size(35, 25);
             this.f2_label.TabIndex = 4;
             this.f2_label.Text = "F1";
             // 
@@ -313,7 +319,7 @@
             this.F1_combo_box.FormattingEnabled = true;
             this.F1_combo_box.Location = new System.Drawing.Point(345, 33);
             this.F1_combo_box.Name = "F1_combo_box";
-            this.F1_combo_box.Size = new System.Drawing.Size(165, 28);
+            this.F1_combo_box.Size = new System.Drawing.Size(165, 33);
             this.F1_combo_box.TabIndex = 3;
             this.F1_combo_box.SelectedIndexChanged += new System.EventHandler(this.F1_combo_box_SelectedIndexChanged);
             // 
@@ -322,7 +328,7 @@
             this.f1_label.AutoSize = true;
             this.f1_label.Location = new System.Drawing.Point(564, 41);
             this.f1_label.Name = "f1_label";
-            this.f1_label.Size = new System.Drawing.Size(28, 20);
+            this.f1_label.Size = new System.Drawing.Size(35, 25);
             this.f1_label.TabIndex = 2;
             this.f1_label.Text = "F1";
             // 
@@ -334,7 +340,7 @@
             "مورنش"});
             this.f1_printing_stat.Location = new System.Drawing.Point(656, 33);
             this.f1_printing_stat.Name = "f1_printing_stat";
-            this.f1_printing_stat.Size = new System.Drawing.Size(159, 28);
+            this.f1_printing_stat.Size = new System.Drawing.Size(159, 33);
             this.f1_printing_stat.Sorted = true;
             this.f1_printing_stat.TabIndex = 1;
             this.f1_printing_stat.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -344,7 +350,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(846, 41);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 20);
+            this.label6.Size = new System.Drawing.Size(99, 25);
             this.label6.TabIndex = 0;
             this.label6.Text = "حالة الطباعة ";
             // 
@@ -362,10 +368,10 @@
             this.groupBox7.Controls.Add(this.p_no_per_comtainer_label);
             this.groupBox7.Controls.Add(this.container_types_combo_box);
             this.groupBox7.Controls.Add(this.label8);
-            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(28, 443);
+            this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(28, 399);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(955, 155);
+            this.groupBox7.Size = new System.Drawing.Size(955, 199);
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "التعبئة";
@@ -373,18 +379,18 @@
             // total_no_bages
             // 
             this.total_no_bages.Enabled = false;
-            this.total_no_bages.Location = new System.Drawing.Point(122, 70);
+            this.total_no_bages.Location = new System.Drawing.Point(64, 55);
             this.total_no_bages.Name = "total_no_bages";
-            this.total_no_bages.Size = new System.Drawing.Size(222, 26);
+            this.total_no_bages.Size = new System.Drawing.Size(222, 30);
             this.total_no_bages.TabIndex = 14;
             this.total_no_bages.TextChanged += new System.EventHandler(this.total_no_bages_TextChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(372, 73);
+            this.label14.Location = new System.Drawing.Point(314, 58);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(108, 20);
+            this.label14.Size = new System.Drawing.Size(140, 25);
             this.label14.TabIndex = 13;
             this.label14.Text = "إجمالى عدد الأكياس";
             // 
@@ -392,7 +398,7 @@
             // 
             this.no_items_per_bage.Location = new System.Drawing.Point(512, 30);
             this.no_items_per_bage.Name = "no_items_per_bage";
-            this.no_items_per_bage.Size = new System.Drawing.Size(221, 26);
+            this.no_items_per_bage.Size = new System.Drawing.Size(221, 30);
             this.no_items_per_bage.TabIndex = 12;
             this.no_items_per_bage.TextChanged += new System.EventHandler(this.no_items_per_bage_TextChanged);
             // 
@@ -401,58 +407,58 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(745, 33);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(74, 20);
+            this.label13.Size = new System.Drawing.Size(95, 25);
             this.label13.TabIndex = 11;
             this.label13.Text = "العدد / الكيس";
             // 
             // no_of_bages_per_container
             // 
-            this.no_of_bages_per_container.Location = new System.Drawing.Point(122, 30);
+            this.no_of_bages_per_container.Location = new System.Drawing.Point(512, 108);
             this.no_of_bages_per_container.Name = "no_of_bages_per_container";
-            this.no_of_bages_per_container.Size = new System.Drawing.Size(222, 26);
+            this.no_of_bages_per_container.Size = new System.Drawing.Size(222, 30);
             this.no_of_bages_per_container.TabIndex = 8;
             this.no_of_bages_per_container.TextChanged += new System.EventHandler(this.no_of_items_per_container_TextChanged);
             // 
             // total_no_of_products_text_box
             // 
             this.total_no_of_products_text_box.Enabled = false;
-            this.total_no_of_products_text_box.Location = new System.Drawing.Point(122, 110);
+            this.total_no_of_products_text_box.Location = new System.Drawing.Point(64, 95);
             this.total_no_of_products_text_box.Name = "total_no_of_products_text_box";
-            this.total_no_of_products_text_box.Size = new System.Drawing.Size(222, 26);
+            this.total_no_of_products_text_box.Size = new System.Drawing.Size(222, 30);
             this.total_no_of_products_text_box.TabIndex = 7;
             // 
             // total_no_items
             // 
             this.total_no_items.AutoSize = true;
-            this.total_no_items.Location = new System.Drawing.Point(372, 113);
+            this.total_no_items.Location = new System.Drawing.Point(314, 98);
             this.total_no_items.Name = "total_no_items";
-            this.total_no_items.Size = new System.Drawing.Size(96, 20);
+            this.total_no_items.Size = new System.Drawing.Size(125, 25);
             this.total_no_items.TabIndex = 6;
             this.total_no_items.Text = "إجمالى عدد القطع";
             // 
             // no_of_container_text_box
             // 
-            this.no_of_container_text_box.Location = new System.Drawing.Point(512, 113);
+            this.no_of_container_text_box.Location = new System.Drawing.Point(512, 148);
             this.no_of_container_text_box.Name = "no_of_container_text_box";
-            this.no_of_container_text_box.Size = new System.Drawing.Size(221, 26);
+            this.no_of_container_text_box.Size = new System.Drawing.Size(221, 30);
             this.no_of_container_text_box.TabIndex = 5;
             this.no_of_container_text_box.TextChanged += new System.EventHandler(this.no_of_container_text_box_TextChanged);
             // 
             // p_container_no_label
             // 
             this.p_container_no_label.AutoSize = true;
-            this.p_container_no_label.Location = new System.Drawing.Point(739, 116);
+            this.p_container_no_label.Location = new System.Drawing.Point(739, 151);
             this.p_container_no_label.Name = "p_container_no_label";
-            this.p_container_no_label.Size = new System.Drawing.Size(80, 20);
+            this.p_container_no_label.Size = new System.Drawing.Size(103, 25);
             this.p_container_no_label.TabIndex = 4;
             this.p_container_no_label.Text = "عدد الحاويات ";
             // 
             // p_no_per_comtainer_label
             // 
             this.p_no_per_comtainer_label.AutoSize = true;
-            this.p_no_per_comtainer_label.Location = new System.Drawing.Point(360, 33);
+            this.p_no_per_comtainer_label.Location = new System.Drawing.Point(750, 111);
             this.p_no_per_comtainer_label.Name = "p_no_per_comtainer_label";
-            this.p_no_per_comtainer_label.Size = new System.Drawing.Size(48, 20);
+            this.p_no_per_comtainer_label.Size = new System.Drawing.Size(63, 25);
             this.p_no_per_comtainer_label.TabIndex = 2;
             this.p_no_per_comtainer_label.Text = "العدد /  ";
             // 
@@ -462,18 +468,18 @@
             this.container_types_combo_box.Items.AddRange(new object[] {
             "كرتونة ",
             "بالتة"});
-            this.container_types_combo_box.Location = new System.Drawing.Point(512, 73);
+            this.container_types_combo_box.Location = new System.Drawing.Point(512, 69);
             this.container_types_combo_box.Name = "container_types_combo_box";
-            this.container_types_combo_box.Size = new System.Drawing.Size(221, 28);
+            this.container_types_combo_box.Size = new System.Drawing.Size(221, 33);
             this.container_types_combo_box.TabIndex = 1;
             this.container_types_combo_box.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(748, 76);
+            this.label8.Location = new System.Drawing.Point(748, 72);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 20);
+            this.label8.Size = new System.Drawing.Size(80, 25);
             this.label8.TabIndex = 0;
             this.label8.Text = "نوع التعبئة";
             // 
@@ -497,7 +503,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(506, 878);
+            this.button1.Location = new System.Drawing.Point(460, 878);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 40);
             this.button1.TabIndex = 6;
@@ -522,21 +528,24 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(29, 111);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(22, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 20);
+            this.label5.Size = new System.Drawing.Size(116, 25);
             this.label5.TabIndex = 8;
             this.label5.Text = "رقم إذن الإضافة";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // addition_permission_number_text_box
             // 
             this.addition_permission_number_text_box.Enabled = false;
-            this.addition_permission_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addition_permission_number_text_box.Location = new System.Drawing.Point(151, 111);
+            this.addition_permission_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addition_permission_number_text_box.ForeColor = System.Drawing.Color.Red;
+            this.addition_permission_number_text_box.Location = new System.Drawing.Point(146, 25);
             this.addition_permission_number_text_box.Name = "addition_permission_number_text_box";
-            this.addition_permission_number_text_box.Size = new System.Drawing.Size(223, 26);
+            this.addition_permission_number_text_box.Size = new System.Drawing.Size(223, 30);
             this.addition_permission_number_text_box.TabIndex = 9;
+            this.addition_permission_number_text_box.TextChanged += new System.EventHandler(this.addition_permission_number_text_box_TextChanged);
             // 
             // BOTTOM_form_data_grid_view
             // 
@@ -544,14 +553,14 @@
             this.BOTTOM_form_data_grid_view.AllowUserToDeleteRows = false;
             this.BOTTOM_form_data_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BOTTOM_form_data_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.BOTTOM_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.BOTTOM_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.BOTTOM_form_data_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BOTTOM_form_data_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -567,20 +576,20 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BOTTOM_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BOTTOM_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle17;
             this.BOTTOM_form_data_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BOTTOM_form_data_grid_view.Location = new System.Drawing.Point(28, 650);
             this.BOTTOM_form_data_grid_view.Name = "BOTTOM_form_data_grid_view";
             this.BOTTOM_form_data_grid_view.ReadOnly = true;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOTTOM_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BOTTOM_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.BOTTOM_form_data_grid_view.Size = new System.Drawing.Size(955, 222);
             this.BOTTOM_form_data_grid_view.TabIndex = 10;
             // 
@@ -695,7 +704,7 @@
             this.date_text_box.AutoSize = true;
             this.date_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.date_text_box.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.date_text_box.Location = new System.Drawing.Point(758, 54);
+            this.date_text_box.Location = new System.Drawing.Point(768, 26);
             this.date_text_box.Name = "date_text_box";
             this.date_text_box.Size = new System.Drawing.Size(82, 25);
             this.date_text_box.TabIndex = 13;
@@ -705,6 +714,39 @@
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(831, 33);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(90, 25);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "نوع التصنيع";
+            // 
+            // inner_working_radio_btn
+            // 
+            this.inner_working_radio_btn.AutoSize = true;
+            this.inner_working_radio_btn.Location = new System.Drawing.Point(706, 25);
+            this.inner_working_radio_btn.Name = "inner_working_radio_btn";
+            this.inner_working_radio_btn.Size = new System.Drawing.Size(68, 29);
+            this.inner_working_radio_btn.TabIndex = 9;
+            this.inner_working_radio_btn.TabStop = true;
+            this.inner_working_radio_btn.Text = "داخلى";
+            this.inner_working_radio_btn.UseVisualStyleBackColor = true;
+            this.inner_working_radio_btn.CheckedChanged += new System.EventHandler(this.inner_working_radio_btn_CheckedChanged);
+            // 
+            // outer_sale_radio_btn
+            // 
+            this.outer_sale_radio_btn.AutoSize = true;
+            this.outer_sale_radio_btn.Location = new System.Drawing.Point(548, 25);
+            this.outer_sale_radio_btn.Name = "outer_sale_radio_btn";
+            this.outer_sale_radio_btn.Size = new System.Drawing.Size(117, 29);
+            this.outer_sale_radio_btn.TabIndex = 10;
+            this.outer_sale_radio_btn.TabStop = true;
+            this.outer_sale_radio_btn.Text = "شراء خارجي";
+            this.outer_sale_radio_btn.UseVisualStyleBackColor = true;
+            this.outer_sale_radio_btn.CheckedChanged += new System.EventHandler(this.outer_sale_radio_btn_CheckedChanged);
             // 
             // addnewBottom
             // 
@@ -808,5 +850,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.TextBox stock_man_name_taxt_box;
+        private System.Windows.Forms.RadioButton inner_working_radio_btn;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RadioButton outer_sale_radio_btn;
     }
 }

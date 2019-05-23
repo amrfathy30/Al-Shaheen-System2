@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.addition_permission_number_text_box = new System.Windows.Forms.TextBox();
+            this.stock_man_name_text_box = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.stock_combo_box = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,19 +47,19 @@
             this.no_of_containers_text_box = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.total_number_of_items_text_box = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.unsimilar_no_items_per_quantity = new System.Windows.Forms.TextBox();
             this.unsimilar_no_items_per_container_label = new System.Windows.Forms.Label();
-            this.unsimilar_no_items_per_container = new System.Windows.Forms.TextBox();
             this.unsimilar_no_of_containers_label = new System.Windows.Forms.Label();
+            this.unsimilar_no_items_per_container = new System.Windows.Forms.TextBox();
             this.unsimilar_no_of_containers = new System.Windows.Forms.TextBox();
             this.unsimilarquantities_check_box = new System.Windows.Forms.CheckBox();
             this.no_items_per_container_text_box = new System.Windows.Forms.Label();
             this.no_of_containers_label = new System.Windows.Forms.Label();
             this.container_type_combo_box = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.total_number_of_items_text_box = new System.Windows.Forms.TextBox();
             this.twist_of_quantities_grid_view = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +108,8 @@
             this.twist_type_combo_box_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.item_type_combo_box_error_provider = new System.Windows.Forms.ErrorProvider(this.components);
             this.new_btn = new System.Windows.Forms.Button();
+            this.addition_permission_number_text_box = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.twist_of_quantities_grid_view)).BeginInit();
@@ -141,7 +143,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.addition_permission_number_text_box);
+            this.groupBox1.Controls.Add(this.stock_man_name_text_box);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.stock_combo_box);
             this.groupBox1.Controls.Add(this.label4);
@@ -150,29 +152,30 @@
             this.groupBox1.Controls.Add(this.suppliers_combo_box);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 71);
+            this.groupBox1.Location = new System.Drawing.Point(12, 106);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1124, 116);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات التوريد ";
             // 
-            // addition_permission_number_text_box
+            // stock_man_name_text_box
             // 
-            this.addition_permission_number_text_box.Location = new System.Drawing.Point(114, 66);
-            this.addition_permission_number_text_box.Name = "addition_permission_number_text_box";
-            this.addition_permission_number_text_box.Size = new System.Drawing.Size(245, 30);
-            this.addition_permission_number_text_box.TabIndex = 7;
-            this.addition_permission_number_text_box.TextChanged += new System.EventHandler(this.addition_permission_number_text_box_TextChanged);
+            this.stock_man_name_text_box.Enabled = false;
+            this.stock_man_name_text_box.Location = new System.Drawing.Point(114, 66);
+            this.stock_man_name_text_box.Name = "stock_man_name_text_box";
+            this.stock_man_name_text_box.Size = new System.Drawing.Size(245, 30);
+            this.stock_man_name_text_box.TabIndex = 7;
+            this.stock_man_name_text_box.TextChanged += new System.EventHandler(this.addition_permission_number_text_box_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(365, 69);
+            this.label5.Location = new System.Drawing.Point(378, 69);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 25);
+            this.label5.Size = new System.Drawing.Size(93, 25);
             this.label5.TabIndex = 6;
-            this.label5.Text = "رقم إذن الإضافة";
+            this.label5.Text = "أمين المخزن";
             // 
             // stock_combo_box
             // 
@@ -206,7 +209,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(373, 30);
+            this.label3.Location = new System.Drawing.Point(386, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 25);
             this.label3.TabIndex = 2;
@@ -250,7 +253,7 @@
             this.groupBox2.Controls.Add(this.container_type_combo_box);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(15, 374);
+            this.groupBox2.Location = new System.Drawing.Point(15, 409);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1121, 209);
             this.groupBox2.TabIndex = 2;
@@ -299,27 +302,6 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "الكمية الكلية";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label14.Location = new System.Drawing.Point(373, 595);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(154, 25);
-            this.label14.TabIndex = 16;
-            this.label14.Text = "إجمالى الكمية المضافة";
-            // 
-            // total_number_of_items_text_box
-            // 
-            this.total_number_of_items_text_box.Enabled = false;
-            this.total_number_of_items_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_number_of_items_text_box.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.total_number_of_items_text_box.Location = new System.Drawing.Point(545, 592);
-            this.total_number_of_items_text_box.Name = "total_number_of_items_text_box";
-            this.total_number_of_items_text_box.Size = new System.Drawing.Size(218, 30);
-            this.total_number_of_items_text_box.TabIndex = 15;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -347,14 +329,6 @@
             this.unsimilar_no_items_per_container_label.TabIndex = 12;
             this.unsimilar_no_items_per_container_label.Text = "الكمية / التعبئة";
             // 
-            // unsimilar_no_items_per_container
-            // 
-            this.unsimilar_no_items_per_container.Location = new System.Drawing.Point(755, 165);
-            this.unsimilar_no_items_per_container.Name = "unsimilar_no_items_per_container";
-            this.unsimilar_no_items_per_container.Size = new System.Drawing.Size(131, 30);
-            this.unsimilar_no_items_per_container.TabIndex = 11;
-            this.unsimilar_no_items_per_container.TextChanged += new System.EventHandler(this.unsimilar_no_items_per_container_TextChanged);
-            // 
             // unsimilar_no_of_containers_label
             // 
             this.unsimilar_no_of_containers_label.AutoSize = true;
@@ -363,6 +337,14 @@
             this.unsimilar_no_of_containers_label.Size = new System.Drawing.Size(81, 25);
             this.unsimilar_no_of_containers_label.TabIndex = 10;
             this.unsimilar_no_of_containers_label.Text = "عدد التعبئة";
+            // 
+            // unsimilar_no_items_per_container
+            // 
+            this.unsimilar_no_items_per_container.Location = new System.Drawing.Point(755, 165);
+            this.unsimilar_no_items_per_container.Name = "unsimilar_no_items_per_container";
+            this.unsimilar_no_items_per_container.Size = new System.Drawing.Size(131, 30);
+            this.unsimilar_no_items_per_container.TabIndex = 11;
+            this.unsimilar_no_items_per_container.TextChanged += new System.EventHandler(this.unsimilar_no_items_per_container_TextChanged);
             // 
             // unsimilar_no_of_containers
             // 
@@ -423,6 +405,27 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "نوع التعبئة";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label14.Location = new System.Drawing.Point(373, 630);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(154, 25);
+            this.label14.TabIndex = 16;
+            this.label14.Text = "إجمالى الكمية المضافة";
+            // 
+            // total_number_of_items_text_box
+            // 
+            this.total_number_of_items_text_box.Enabled = false;
+            this.total_number_of_items_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total_number_of_items_text_box.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.total_number_of_items_text_box.Location = new System.Drawing.Point(545, 627);
+            this.total_number_of_items_text_box.Name = "total_number_of_items_text_box";
+            this.total_number_of_items_text_box.Size = new System.Drawing.Size(218, 30);
+            this.total_number_of_items_text_box.TabIndex = 15;
+            // 
             // twist_of_quantities_grid_view
             // 
             this.twist_of_quantities_grid_view.AllowUserToAddRows = false;
@@ -459,7 +462,7 @@
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.twist_of_quantities_grid_view.DefaultCellStyle = dataGridViewCellStyle10;
             this.twist_of_quantities_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.twist_of_quantities_grid_view.Location = new System.Drawing.Point(15, 631);
+            this.twist_of_quantities_grid_view.Location = new System.Drawing.Point(15, 666);
             this.twist_of_quantities_grid_view.Name = "twist_of_quantities_grid_view";
             this.twist_of_quantities_grid_view.ReadOnly = true;
             this.twist_of_quantities_grid_view.Size = new System.Drawing.Size(1121, 232);
@@ -548,7 +551,7 @@
             this.add_new_quantity_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_quantity_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_quantity_button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_quantity_button.Location = new System.Drawing.Point(15, 589);
+            this.add_new_quantity_button.Location = new System.Drawing.Point(15, 624);
             this.add_new_quantity_button.Name = "add_new_quantity_button";
             this.add_new_quantity_button.Size = new System.Drawing.Size(174, 36);
             this.add_new_quantity_button.TabIndex = 5;
@@ -562,7 +565,7 @@
             this.remove_quantity_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remove_quantity_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remove_quantity_button.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.remove_quantity_button.Location = new System.Drawing.Point(987, 589);
+            this.remove_quantity_button.Location = new System.Drawing.Point(987, 624);
             this.remove_quantity_button.Name = "remove_quantity_button";
             this.remove_quantity_button.Size = new System.Drawing.Size(149, 36);
             this.remove_quantity_button.TabIndex = 6;
@@ -588,7 +591,7 @@
             this.groupBox3.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(14, 194);
+            this.groupBox3.Location = new System.Drawing.Point(14, 229);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1122, 174);
             this.groupBox3.TabIndex = 7;
@@ -730,7 +733,7 @@
             this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.save_btn.Location = new System.Drawing.Point(15, 881);
+            this.save_btn.Location = new System.Drawing.Point(15, 916);
             this.save_btn.Name = "save_btn";
             this.save_btn.Size = new System.Drawing.Size(174, 37);
             this.save_btn.TabIndex = 8;
@@ -744,7 +747,7 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cancel_btn.Location = new System.Drawing.Point(989, 881);
+            this.cancel_btn.Location = new System.Drawing.Point(989, 916);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(147, 37);
             this.cancel_btn.TabIndex = 9;
@@ -838,7 +841,7 @@
             this.new_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.new_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.new_btn.Location = new System.Drawing.Point(563, 881);
+            this.new_btn.Location = new System.Drawing.Point(447, 916);
             this.new_btn.Name = "new_btn";
             this.new_btn.Size = new System.Drawing.Size(147, 37);
             this.new_btn.TabIndex = 10;
@@ -846,12 +849,33 @@
             this.new_btn.UseVisualStyleBackColor = false;
             this.new_btn.Click += new System.EventHandler(this.new_btn_Click);
             // 
+            // addition_permission_number_text_box
+            // 
+            this.addition_permission_number_text_box.Enabled = false;
+            this.addition_permission_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addition_permission_number_text_box.Location = new System.Drawing.Point(212, 79);
+            this.addition_permission_number_text_box.Name = "addition_permission_number_text_box";
+            this.addition_permission_number_text_box.Size = new System.Drawing.Size(262, 30);
+            this.addition_permission_number_text_box.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(73, 79);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(116, 25);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "رقم إذن الإضافة";
+            // 
             // addnewtwistofform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1148, 932);
+            this.ClientSize = new System.Drawing.Size(1148, 972);
+            this.Controls.Add(this.addition_permission_number_text_box);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.new_btn);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.save_btn);
@@ -902,7 +926,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox addition_permission_number_text_box;
+        private System.Windows.Forms.TextBox stock_man_name_text_box;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox stock_combo_box;
         private System.Windows.Forms.Label label4;
@@ -977,5 +1001,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.Button new_btn;
+        private System.Windows.Forms.TextBox addition_permission_number_text_box;
+        private System.Windows.Forms.Label label7;
     }
 }

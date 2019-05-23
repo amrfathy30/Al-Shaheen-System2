@@ -425,11 +425,13 @@ namespace Al_Shaheen_System
             {
                 try
                 {
-                    string query = "SELECT SH_CLIENTS_PRODUCTS.* FROM SH_CLIENTS_PRODUCTS WHERE(SH_CLIENT_ID = @CLIENT_ID)";
+                    string query = "SELECT SH_CLIENTS_PRODUCTS.* FROM SH_CLIENTS_PRODUCTS WHERE(SH_CLIENT_ID = @CLIENT_ID OR SH_CLIENT_ID IN (SELECT SH_ID FROM SH_CLIENT_COMPANY WHERE SH_CLIENT_COMPANY_NAME LIKE N'عام')) AND SH_PRINTING_TYPE = @SH_PRINTING_TYPE";
                     DatabaseConnection myconnection = new DatabaseConnection();
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                     cmd.Parameters.AddWithValue("@CLIENT_ID", clients[F1_combo_box.SelectedIndex].SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_PRINTING_TYPE","إيزى أوبن");
+
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -454,6 +456,7 @@ namespace Al_Shaheen_System
         private async void Easyopenaddingform_Load(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
+            await autogeneratebottomaddtion_permission_number();
             fillsupplierscombobox();
             fillsizesgridview();
             fillstockscombobox();
@@ -467,6 +470,84 @@ namespace Al_Shaheen_System
             Cursor.Current = Cursors.Default;
         }
 
+
+        async Task autogeneratebottomaddtion_permission_number()
+        {
+            long mycount = 0;
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1) AS lastedid FROM SH_ADDITION_PERMISSION_NUMBER_OF_EASY_OPEN  ", DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }    
+                }
+
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception)
+            {
+                mycount = 0;
+                //MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                permissionnumber += "EOE-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = 1.ToString();
+                for (int i = 0; i < 5 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                permissionnumber += "EOE-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 5 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+        }
+
+
+        private void savenewpermssionnumber()
+        {
+            try
+            {
+                DatabaseConnection myconnection = new DatabaseConnection();
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO SH_ADDITION_PERMISSION_NUMBER_OF_EASY_OPEN (SH_NUMBER) VALUES(@SH_NUMBER) ", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_NUMBER", 1.ToString());
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
 
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -529,6 +610,7 @@ namespace Al_Shaheen_System
                     long t_sp_id = checkifeasyopenspecificationsexistsornot(form_data[i]);
                     if (t_sp_id == 0)
                     {
+                        savenewpermssionnumber();
                         t_sp_id = await saveneweasyopenspecifications(form_data[i]);
                         long q_id = await saveneweasyopenquantities(t_sp_id, form_data[i]);
                         await saveeasyopencontainers(t_sp_id, q_id, form_data[i]);
@@ -536,6 +618,7 @@ namespace Al_Shaheen_System
                     }
                     else
                     {
+                        savenewpermssionnumber();
                         await updateeasyopenspecifications(t_sp_id, form_data[i]);
                         long q_id = await saveneweasyopenquantities(t_sp_id, form_data[i]);
                         await saveeasyopencontainers(t_sp_id, q_id, form_data[i]);
@@ -561,6 +644,12 @@ namespace Al_Shaheen_System
             Cursor.Current = Cursors.WaitCursor;
             await saveeasyopensdata();
             Cursor.Current = Cursors.Default;
+            this.Hide();
+            using (Easyopenaddingform myform = new Easyopenaddingform(mEmployee, mAccount, mPermission))
+            {
+                myform.ShowDialog();
+            }
+            this.Close();
         }
 
         void loadalleasyopenspecifications()

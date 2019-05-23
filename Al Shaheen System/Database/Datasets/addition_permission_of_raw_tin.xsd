@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="addition_permission_of_raw_tin" targetNamespace="http://tempuri.org/addition_permission_of_raw_tin.xsd" xmlns:mstns="http://tempuri.org/addition_permission_of_raw_tin.xsd" xmlns="http://tempuri.org/addition_permission_of_raw_tin.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="addition_permission_of_raw_tin" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="addition_permission_of_raw_tin" msprop:Generator_UserDSName="addition_permission_of_raw_tin">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="raw_tin_quantities" msprop:Generator_TableClassName="raw_tin_quantitiesDataTable" msprop:Generator_TableVarName="tableraw_tin_quantities" msprop:Generator_RowChangedName="raw_tin_quantitiesRowChanged" msprop:Generator_TablePropName="raw_tin_quantities" msprop:Generator_RowDeletingName="raw_tin_quantitiesRowDeleting" msprop:Generator_RowChangingName="raw_tin_quantitiesRowChanging" msprop:Generator_RowEvHandlerName="raw_tin_quantitiesRowChangeEventHandler" msprop:Generator_RowDeletedName="raw_tin_quantitiesRowDeleted" msprop:Generator_RowClassName="raw_tin_quantitiesRow" msprop:Generator_UserTableName="raw_tin_quantities" msprop:Generator_RowEvArgName="raw_tin_quantitiesRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="no" msprop:Generator_ColumnVarNameInTable="columnno" msprop:Generator_ColumnPropNameInRow="no" msprop:Generator_ColumnPropNameInTable="noColumn" msprop:Generator_UserColumnName="no" type="xs:long" minOccurs="0" />
+              <xs:element name="item_code" msprop:Generator_ColumnVarNameInTable="columnitem_code" msprop:Generator_ColumnPropNameInRow="item_code" msprop:Generator_ColumnPropNameInTable="item_codeColumn" msprop:Generator_UserColumnName="item_code" type="xs:string" minOccurs="0" />
+              <xs:element name="item_finish" msprop:Generator_ColumnVarNameInTable="columnitem_finish" msprop:Generator_ColumnPropNameInRow="item_finish" msprop:Generator_ColumnPropNameInTable="item_finishColumn" msprop:Generator_UserColumnName="item_finish" type="xs:string" minOccurs="0" />
+              <xs:element name="item_temper" msprop:Generator_ColumnVarNameInTable="columnitem_temper" msprop:Generator_ColumnPropNameInRow="item_temper" msprop:Generator_ColumnPropNameInTable="item_temperColumn" msprop:Generator_UserColumnName="item_temper" type="xs:string" minOccurs="0" />
+              <xs:element name="item_no_parcels" msprop:Generator_ColumnVarNameInTable="columnitem_no_parcels" msprop:Generator_ColumnPropNameInRow="item_no_parcels" msprop:Generator_ColumnPropNameInTable="item_no_parcelsColumn" msprop:Generator_UserColumnName="item_no_parcels" type="xs:long" minOccurs="0" />
+              <xs:element name="item_no_sheets_per_parcel" msprop:Generator_ColumnVarNameInTable="columnitem_no_sheets_per_parcel" msprop:Generator_ColumnPropNameInRow="item_no_sheets_per_parcel" msprop:Generator_ColumnPropNameInTable="item_no_sheets_per_parcelColumn" msprop:Generator_UserColumnName="item_no_sheets_per_parcel" type="xs:long" minOccurs="0" />
+              <xs:element name="item_total_no_sheets" msprop:Generator_ColumnVarNameInTable="columnitem_total_no_sheets" msprop:Generator_ColumnPropNameInRow="item_total_no_sheets" msprop:Generator_ColumnPropNameInTable="item_total_no_sheetsColumn" msprop:Generator_UserColumnName="item_total_no_sheets" type="xs:long" minOccurs="0" />
+              <xs:element name="item_net_weigth" msprop:Generator_ColumnVarNameInTable="columnitem_net_weigth" msprop:Generator_ColumnPropNameInRow="item_net_weigth" msprop:Generator_ColumnPropNameInTable="item_net_weigthColumn" msprop:Generator_UserColumnName="item_net_weigth" type="xs:double" minOccurs="0" />
+              <xs:element name="item_gross_weight" msprop:Generator_ColumnVarNameInTable="columnitem_gross_weight" msprop:Generator_ColumnPropNameInRow="item_gross_weight" msprop:Generator_ColumnPropNameInTable="item_gross_weightColumn" msprop:Generator_UserColumnName="item_gross_weight" type="xs:double" minOccurs="0" />
+              <xs:element name="item_coating" msprop:Generator_ColumnVarNameInTable="columnitem_coating" msprop:Generator_ColumnPropNameInRow="item_coating" msprop:Generator_ColumnPropNameInTable="item_coatingColumn" msprop:Generator_UserColumnName="item_coating" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

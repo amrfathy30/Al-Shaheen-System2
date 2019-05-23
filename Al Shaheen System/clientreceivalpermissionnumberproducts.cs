@@ -698,7 +698,7 @@ namespace Al_Shaheen_System
         }
         async Task filltwistofgridview()
         {
-            getalltwistofspecifications();
+            await getalltwistofspecifications();
             if (twist_of_containers.Count > 0)
             {
                 DataTable mydatatabel = new DataTable();
@@ -2469,7 +2469,7 @@ namespace Al_Shaheen_System
                 query += "  FROM  SH_CONTAINER_OF_TWIST_OF COTF  " ;
                 query += "  JOIN SH_QUANTITY_OF_TWIST_OF QTWF ON COTF.SH_QUANTITY_OF_TWIST_OF_ID = QTWF.SH_ID";
                 query += "  JOIN SH_SPECIFICATION_OF_TWIST_OF SPTWOF ON  QTWF.SH_SPECIFICATION_OF_TWIST_OF_ID = SPTWOF.SH_ID";
-                query += "  WHERE (SPTWOF.SH_CLIENT_ID = @SH_CLIENT_ID OR SPTWOF.SH_CLIENT_ID IN (SELECT CC.SH_ID  FROM SH_CLIENT_COMPANY CC WHERE CC.SH_CLIENT_COMPANY_NAME LIKE N'عام')) "; 
+                query += "  WHERE (SPTWOF.SH_CLIENT_ID = @SH_CLIENT_ID OR SPTWOF.SH_CLIENT_ID IN (SELECT CC.SH_ID  FROM SH_CLIENT_COMPANY CC WHERE CC.SH_CLIENT_COMPANY_NAME = 'عام')) "; 
                 query += "    AND COTF.SH_ID NOT IN ";
                 query += "  (SELECT DCTWOF.SH_ID FROM SH_DISMISSAL_CONTAINERS_OF_TWIST_OF DCTWOF WHERE DCTWOF.SH_ID = COTF.SH_ID) ";
                 SqlCommand cmd = new SqlCommand(query,DatabaseConnection.mConnection);

@@ -64,15 +64,6 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -90,6 +81,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\Datasets\addition_permission_of_raw_tin.cs">
+      <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Datasets\addition_permission_of_raw_tin.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AllRequestOfPerfectProductFromSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +141,12 @@
     <Compile Include="Holl1Frm.Designer.cs">
       <DependentUpon>Holl1Frm.cs</DependentUpon>
     </Compile>
+    <Compile Include="printrawtinaddedquantities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printrawtinaddedquantities.Designer.cs">
+      <DependentUpon>printrawtinaddedquantities.cs</DependentUpon>
+    </Compile>
     <Compile Include="printreceivalpermission.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +174,7 @@
     <Compile Include="ProductionFrm.Designer.cs">
       <DependentUpon>ProductionFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="rawtinaddingprinterdata.cs" />
     <Compile Include="receival_permission_order_items.cs" />
     <Compile Include="rlt_container_data.cs" />
     <Compile Include="SH_CONTAINER_OF_BOTTEL_FACE.cs" />
@@ -945,6 +951,7 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="adding_raw_material_quantites.rdlc" />
     <EmbeddedResource Include="AllRequestOfPerfectProductFromSales.resx">
       <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
     </EmbeddedResource>
@@ -962,6 +969,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="newCutterFrm.resx">
       <DependentUpon>newCutterFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printrawtinaddedquantities.resx">
+      <DependentUpon>printrawtinaddedquantities.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="print_client_receit_order.rdlc" />
     <EmbeddedResource Include="ProductDetailsForExchangeFrm.resx">
@@ -1251,7 +1261,6 @@
     <EmbeddedResource Include="Views\Stocks\RawTinViews\quantities_of_selected_sp_raw_tin.resx">
       <DependentUpon>quantities_of_selected_sp_raw_tin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Stocks\RawTinViews\rawmaterialaddingrequestreport.rdlc" />
     <EmbeddedResource Include="Views\Stocks\RawTinViews\rawmaterialexchangedquantities.resx">
       <DependentUpon>rawmaterialexchangedquantities.cs</DependentUpon>
     </EmbeddedResource>
@@ -1312,6 +1321,17 @@
     <EmbeddedResource Include="Views\waitingform.resx">
       <DependentUpon>waitingform.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Database\Datasets\addition_permission_of_raw_tin.xsc">
+      <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
+    </None>
+    <None Include="Database\Datasets\addition_permission_of_raw_tin.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>addition_permission_of_raw_tin.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Database\Datasets\addition_permission_of_raw_tin.xss">
+      <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
+    </None>
     <None Include="Al Shaheen System_TemporaryKey.pfx" />
     <None Include="Database\Datasets\client_receival_order_report_dataset.xsc">
       <DependentUpon>client_receival_order_report_dataset.xsd</DependentUpon>

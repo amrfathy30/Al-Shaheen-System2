@@ -31,7 +31,7 @@ namespace Al_Shaheen_System
 
         private void printrawmaterialaddingrequest_Load(object sender, EventArgs e)
         {
-            SH_QUANTITY_OF_RAW_MATERIALBindingSource.DataSource = quantities;
+            //SH_QUANTITY_OF_RAW_MATERIALBindingSource.DataSource = quantities;
 
             ReportParameter[] myparameters = new ReportParameter[4];
             myparameters[0] = new ReportParameter("pra_adding_request_number", request_number);

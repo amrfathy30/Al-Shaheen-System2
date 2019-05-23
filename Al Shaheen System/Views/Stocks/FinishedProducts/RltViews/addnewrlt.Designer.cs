@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.stock_men_combo_box = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.stocks_combo_box = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -92,6 +91,7 @@
             this.remove_quantity_btn = new System.Windows.Forms.Button();
             this.date_text_box = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.stock_man_name_text_box = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -111,7 +111,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.stock_men_combo_box);
+            this.groupBox1.Controls.Add(this.stock_man_name_text_box);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.stocks_combo_box);
             this.groupBox1.Controls.Add(this.label9);
@@ -126,15 +126,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات المورد";
-            // 
-            // stock_men_combo_box
-            // 
-            this.stock_men_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stock_men_combo_box.FormattingEnabled = true;
-            this.stock_men_combo_box.Location = new System.Drawing.Point(122, 62);
-            this.stock_men_combo_box.Name = "stock_men_combo_box";
-            this.stock_men_combo_box.Size = new System.Drawing.Size(222, 28);
-            this.stock_men_combo_box.TabIndex = 7;
             // 
             // label12
             // 
@@ -507,7 +498,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(506, 878);
+            this.button1.Location = new System.Drawing.Point(412, 878);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 40);
             this.button1.TabIndex = 6;
@@ -541,7 +532,9 @@
             // 
             // addition_permission_number_text_box
             // 
+            this.addition_permission_number_text_box.Enabled = false;
             this.addition_permission_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addition_permission_number_text_box.ForeColor = System.Drawing.Color.Red;
             this.addition_permission_number_text_box.Location = new System.Drawing.Point(151, 111);
             this.addition_permission_number_text_box.Name = "addition_permission_number_text_box";
             this.addition_permission_number_text_box.Size = new System.Drawing.Size(223, 26);
@@ -553,14 +546,14 @@
             this.RLT_form_data_grid_view.AllowUserToDeleteRows = false;
             this.RLT_form_data_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.RLT_form_data_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RLT_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.RLT_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.RLT_form_data_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RLT_form_data_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -576,20 +569,20 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.RLT_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.RLT_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle8;
             this.RLT_form_data_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.RLT_form_data_grid_view.Location = new System.Drawing.Point(28, 650);
             this.RLT_form_data_grid_view.Name = "RLT_form_data_grid_view";
             this.RLT_form_data_grid_view.ReadOnly = true;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RLT_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RLT_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.RLT_form_data_grid_view.Size = new System.Drawing.Size(955, 222);
             this.RLT_form_data_grid_view.TabIndex = 10;
             // 
@@ -715,6 +708,14 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // stock_man_name_text_box
+            // 
+            this.stock_man_name_text_box.Enabled = false;
+            this.stock_man_name_text_box.Location = new System.Drawing.Point(122, 62);
+            this.stock_man_name_text_box.Name = "stock_man_name_text_box";
+            this.stock_man_name_text_box.Size = new System.Drawing.Size(222, 26);
+            this.stock_man_name_text_box.TabIndex = 7;
+            // 
             // addnewrlt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -791,7 +792,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox addition_permission_number_text_box;
         private System.Windows.Forms.ComboBox f1_printing_stat;
-        private System.Windows.Forms.ComboBox stock_men_combo_box;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox stocks_combo_box;
         private System.Windows.Forms.Label label9;
@@ -817,5 +817,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.TextBox stock_man_name_text_box;
     }
 }

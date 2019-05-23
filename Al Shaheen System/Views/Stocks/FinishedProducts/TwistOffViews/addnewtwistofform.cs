@@ -32,9 +32,17 @@ namespace Al_Shaheen_System
         List<SH_CONTAINER_OF_TWIST_OF> mcontainers = new List<SH_CONTAINER_OF_TWIST_OF>();
         List<string> item_types = new List<string>();
 
-        public addnewtwistofform()
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public addnewtwistofform(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyaccount , SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = anyperm;
         }
 
         long total_no_container_cartons = 0;
@@ -42,6 +50,100 @@ namespace Al_Shaheen_System
         long total_no_items_cartons = 0;
         long total_no_items_pallets = 0;
         long total_no_items = 0;
+
+
+
+
+
+
+        async Task autogenerateadditionpermisionnumber()
+        {
+            long mycount = 0;
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1) AS lastedid FROM SH_ADDITION_PERMISSION_NUMBER_OF_TWIST_OF  ", DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }
+                    else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }
+                }
+
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                permissionnumber += "TWIST_OFF-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = 1.ToString();
+                for (int i = 0; i < 5 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                permissionnumber += "TWIST_OFF-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 5 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                addition_permission_number_text_box.Text = permissionnumber;
+            }
+        }
+
+
+
+        private void savenewpermssionnumber()
+        {
+            try
+            {
+                DatabaseConnection myconnection = new DatabaseConnection();
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO     SH_ADDITION_PERMISSION_NUMBER_OF_TWIST_OF (SH_NUMBER) VALUES(@SH_NUMBER) ", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_NUMBER", 1.ToString());
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
         void getallitemtypes()
         {
@@ -76,12 +178,7 @@ namespace Al_Shaheen_System
                     item_type_combo_box.Items.Add(item_types[i]);
                 }
             }
-        }
-
-
-
-
-        
+        }        
         async Task getallstocks()
         {
             stocks.Clear();
@@ -319,9 +416,10 @@ namespace Al_Shaheen_System
             try
             {
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SH_GET_CLIENT_PRODUCTS_BY_CLIENT_ID", DatabaseConnection.mConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("SELECT * FROM SH_CLIENTS_PRODUCTS WHERE SH_CLIENT_ID = @SH_CLIENT_ID AND SH_PRINTING_TYPE = @SH_PRINTING_TYPE", DatabaseConnection.mConnection);
+               // cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@SH_CLIENT_ID", client_id);
+                cmd.Parameters.AddWithValue("@SH_PRINTING_TYPE", "تويست أوف");
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -724,14 +822,16 @@ namespace Al_Shaheen_System
         {
             Cursor.Current = Cursors.WaitCursor;
             await fillsupplierscombobox();
-           // await getalltwistoftypes();
+            // await getalltwistoftypes();
             //await filltwisttypescombobox();
+            await autogenerateadditionpermisionnumber();
             await fillstockscombobox();
             await getallclientsdata();
             await fillclientscombobox();
             await fillfacescombobox();
             await fillsizescombobox();
             fillitemtypescombobox();
+            stock_man_name_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             no_of_containers_text_box.Enabled = true;
             no_items_per_container.Enabled = true;
             unsimilar_no_items_per_container.Enabled = false;
@@ -751,12 +851,14 @@ namespace Al_Shaheen_System
                             long sp_id = await CHECK_IF_SPECIFICATION_EXISTS_OR_NOT(form_data[i]);
                             if (sp_id!=0)
                             {
+                            savenewpermssionnumber();
                                 await UPDATE_TWIST_OF_SPECIFICATIONS(sp_id,form_data[i]);
                                 long qu_id = await savetwistofquantities(sp_id , form_data[i]);
                                 //MessageBox.Show("Quantity id : "+qu_id.ToString());
                                 await savetwistofcontainers(sp_id, qu_id , form_data[i]);
                             }else
                             {
+                            savenewpermssionnumber();
                                 sp_id = await savetwistofspecification(form_data[i]);
                                 long qu_id = await savetwistofquantities(sp_id, form_data[i]);
                                // MessageBox.Show("Quantity id : " + qu_id.ToString());
@@ -764,8 +866,15 @@ namespace Al_Shaheen_System
                             }                                                                 
                     }
                     Cursor.Current = Cursors.Default;
+
                 }
                 MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK , MessageBoxIcon.Information , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+                this.Hide();
+                using (addnewtwistofform myform = new addnewtwistofform(mEmployee, mAccount, mPermission))
+                {
+                    myform.ShowDialog();
+                }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -805,9 +914,9 @@ namespace Al_Shaheen_System
             {
                 stocks_combo_box_error_provider.Clear();
             }
-            if (string.IsNullOrWhiteSpace(addition_permission_number_text_box.Text))
+            if (string.IsNullOrWhiteSpace(stock_man_name_text_box.Text))
             {
-                addition_permission_number_error_provider.SetError(addition_permission_number_text_box, "لابد من إدخال رقم إذن الإضافة");
+                addition_permission_number_error_provider.SetError(stock_man_name_text_box, "لابد من إدخال رقم إذن الإضافة");
                 cansave = false;
             }else
             {
@@ -915,12 +1024,12 @@ namespace Al_Shaheen_System
                     {
                         if (unsimilarquantities_check_box.Checked)
                         {
-                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 1, item_type = item_type_combo_box.Text, product = null, size = sizes[f2_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(unsimilar_no_of_containers.Text), no_of_item_per_container = long.Parse(unsimilar_no_items_per_container.Text) });
+                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = stock_man_name_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 1, item_type = item_type_combo_box.Text, product = null, size = sizes[f2_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(unsimilar_no_of_containers.Text), no_of_item_per_container = long.Parse(unsimilar_no_items_per_container.Text) });
                             total_no_items += long.Parse(unsimilar_no_items_per_quantity.Text);
                         }
                         else
                         {
-                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 1, item_type = item_type_combo_box.Text, product = null, size = sizes[f2_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(no_of_containers_text_box.Text), no_of_item_per_container = long.Parse(no_items_per_container.Text) });
+                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = stock_man_name_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 1, item_type = item_type_combo_box.Text, product = null, size = sizes[f2_combo_box.SelectedIndex], pillow_color = color_pillows[client_product_combo_box.SelectedIndex], supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(no_of_containers_text_box.Text), no_of_item_per_container = long.Parse(no_items_per_container.Text) });
                             total_no_items += long.Parse(no_items_per_quantity.Text);
                         }
                     }
@@ -928,12 +1037,12 @@ namespace Al_Shaheen_System
                     {
                         if (unsimilarquantities_check_box.Checked)
                         {
-                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 0, item_type = item_type_combo_box.Text, product = client_products[client_product_combo_box.SelectedIndex], size = sizes[f2_combo_box.SelectedIndex], pillow_color = null, supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(unsimilar_no_of_containers.Text), no_of_item_per_container = long.Parse(unsimilar_no_items_per_container.Text) });
+                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = stock_man_name_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 0, item_type = item_type_combo_box.Text, product = client_products[client_product_combo_box.SelectedIndex], size = sizes[f2_combo_box.SelectedIndex], pillow_color = null, supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(unsimilar_no_of_containers.Text), no_of_item_per_container = long.Parse(unsimilar_no_items_per_container.Text) });
                             total_no_items += long.Parse(unsimilar_no_items_per_quantity.Text);
                         }
                         else
                         {
-                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 0, item_type = item_type_combo_box.Text, product = client_products[client_product_combo_box.SelectedIndex], size = sizes[f2_combo_box.SelectedIndex], pillow_color = null, supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(no_of_containers_text_box.Text), no_of_item_per_container = long.Parse(no_items_per_container.Text) });
+                            form_data.Add(new SH_TWIST_OF_DATA() { AdditionDate = DateTime.Now, addition_permission_number = stock_man_name_text_box.Text, client = clients[clients_combo_box.SelectedIndex], container_name = container_type_combo_box.Text, first_face_pillow_or_not = 0, item_type = item_type_combo_box.Text, product = client_products[client_product_combo_box.SelectedIndex], size = sizes[f2_combo_box.SelectedIndex], pillow_color = null, supplier = suppliers[suppliers_combo_box.SelectedIndex], twist_type = twist_of_types[twist_type_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], second_face = faces[f1_combo_box.SelectedIndex], no_of_containers = long.Parse(no_of_containers_text_box.Text), no_of_item_per_container = long.Parse(no_items_per_container.Text) });
                             total_no_items += long.Parse(no_items_per_quantity.Text);
                         }
                     }
@@ -1253,9 +1362,9 @@ namespace Al_Shaheen_System
 
         private void addition_permission_number_text_box_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(addition_permission_number_text_box.Text))
+            if (!string.IsNullOrWhiteSpace(stock_man_name_text_box.Text))
             {
-                if (addition_permission_number_error_provider.GetError(addition_permission_number_text_box)!="")
+                if (addition_permission_number_error_provider.GetError(stock_man_name_text_box)!="")
                 {
                     addition_permission_number_error_provider.Clear();
                 }
@@ -1300,7 +1409,7 @@ namespace Al_Shaheen_System
         private void new_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewtwistofform myform = new addnewtwistofform())
+            using (addnewtwistofform myform = new addnewtwistofform(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }

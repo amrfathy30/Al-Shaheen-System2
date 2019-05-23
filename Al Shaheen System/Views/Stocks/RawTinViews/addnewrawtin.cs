@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper; 
+
      
 
 namespace Al_Shaheen_System
@@ -33,10 +33,101 @@ namespace Al_Shaheen_System
 
         DatabaseConnection myconnection = new DatabaseConnection();
 
-        public addnewrawtin()
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+        public addnewrawtin(SH_EMPLOYEES anyemp ,SH_USER_ACCOUNTS anyaccount , SH_USER_PERMISIONS mPerm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = mPerm;
+
         }
+
+        async Task autogenerateadditionpermisionnumber()
+        {
+            long mycount = 0;
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1) AS lastedid FROM SH_ADDITION_PERMISSION_NUMBER_OF_RAW_TIN  ", DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }
+                    else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }
+                }
+
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                permissionnumber += "RAW_TIN-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = 1.ToString();
+                for (int i = 0; i < 5 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                adding_request_number_text_box.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                permissionnumber += "RAW_TIN-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 5 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                adding_request_number_text_box.Text = permissionnumber;
+            }
+        }
+
+
+
+
+
+        private void savenewpermssionnumber()
+        {
+            try
+            {
+                DatabaseConnection myconnection = new DatabaseConnection();
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO SH_ADDITION_PERMISSION_NUMBER_OF_RAW_TIN (SH_NUMBER) VALUES(@SH_NUMBER) ", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_NUMBER", 1.ToString());
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
+
 
         void loadallspecifications()
         {
@@ -270,17 +361,22 @@ namespace Al_Shaheen_System
                 try
                 {
                     string query = "INSERT INTO SH_QUANTITY_OF_RAW_MATERIAL ";
-                    query += "(SH_SPECIFICATION_OF_RAW_MATERIAL_ID,SH_ADDING_PERMISSION_DATE, SH_ITEM_LENGTH, SH_ITEM_WIDTH,";
-                    query += "SH_ITEM_THICKNESS, SH_ITEM_INTENSITY, SH_ITEM_TEMPER, SH_ITEM_FINISH, ";
-                    query += "SH_ITEM_COATING,SH_SUPPLIER_NAME, SH_ITEM_TYPE,SH_ITEM_NAME, ";
-                    query += "SH_ITEM_CODE,SH_ADDING_NUMBER, SH_ITEM_SHEET_WEIGHT, SH_TOTAL_NUMBER_OF_PACKAGES, ";
-                    query += "SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE, SH_NET_WEIGHT,";
-                    query += " SH_STOCK_NAME, SH_ADDITION_DATE, SH_ITEM_GROSS_WEIGHT) VALUES( ";
-                    query += "@SH_SPECIFICATION_OF_RAW_MATERIAL_ID,@SH_ADDING_PERMISSION_DATE,@SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS";
-                    query += ",@SH_ITEM_INTENSITY,@SH_ITEM_TEMPER,@SH_ITEM_FINISH,@SH_ITEM_COATING,@SH_SUPPLIER_NAME,@SH_ITEM_TYPE";
-                    query += ",@SH_ITEM_NAME,@SH_ITEM_CODE,@SH_ADDING_NUMBER,@SH_ITEM_SHEET_WEIGHT,@SH_TOTAL_NUMBER_OF_PACKAGES,";
-                    query += "@SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE,@SH_NET_WEIGHT,@SH_STOCK_NAME,@SH_ADDITION_DATE,";
-                    query += "@SH_ITEM_GROSS_WEIGHT) SELECT SCOPE_IDENTITY() AS myidentity";
+                    query += "( SH_SPECIFICATION_OF_RAW_MATERIAL_ID,SH_ADDING_PERMISSION_DATE, SH_ITEM_LENGTH, SH_ITEM_WIDTH,";
+                    query += " SH_ITEM_THICKNESS, SH_ITEM_INTENSITY, SH_ITEM_TEMPER, SH_ITEM_FINISH, ";
+                    query += " SH_ITEM_COATING,SH_SUPPLIER_NAME, SH_ITEM_TYPE,SH_ITEM_NAME, ";
+                    query += " SH_ITEM_CODE,SH_ADDING_NUMBER, SH_ITEM_SHEET_WEIGHT, SH_TOTAL_NUMBER_OF_PACKAGES, ";
+                    query += " SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE, SH_NET_WEIGHT,";
+                    query += " SH_STOCK_NAME, SH_ADDITION_DATE, SH_ITEM_GROSS_WEIGHT ";
+                    query += " ,SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_USER_NAME, ";
+                    query += " SH_DATA_ENTRY_EMPLOYEE_ID,SH_DATA_ENTRY_EMPLOYEE_NAME)VALUES( ";
+                    query += " @SH_SPECIFICATION_OF_RAW_MATERIAL_ID,@SH_ADDING_PERMISSION_DATE,@SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS";
+                    query += " , @SH_ITEM_INTENSITY,@SH_ITEM_TEMPER,@SH_ITEM_FINISH,@SH_ITEM_COATING,@SH_SUPPLIER_NAME,@SH_ITEM_TYPE";
+                    query += " , @SH_ITEM_NAME,@SH_ITEM_CODE,@SH_ADDING_NUMBER,@SH_ITEM_SHEET_WEIGHT,@SH_TOTAL_NUMBER_OF_PACKAGES,";
+                    query += " @SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE,@SH_NET_WEIGHT,@SH_STOCK_NAME,@SH_ADDITION_DATE,";
+                    query += " @SH_ITEM_GROSS_WEIGHT ";
+                    query += " , @SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_USER_NAME, ";
+                    query += " @SH_DATA_ENTRY_EMPLOYEE_ID,@SH_DATA_ENTRY_EMPLOYEE_NAME";
+                    query += ") SELECT SCOPE_IDENTITY() AS myidentity";
                     
                     
                     myconnection.openConnection();
@@ -307,7 +403,12 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_STOCK_NAME", myquantity.SH_STOCK_NAME);
                     cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", addition_date);
                     cmd.Parameters.AddWithValue("@SH_ITEM_GROSS_WEIGHT", myquantity.SH_ITEM_GROSS_WEIGHT);
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID",mAccount.SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_NAME" , mAccount.SH_EMP_USER_NAME);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID" ,mEmployee.SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_NAME" ,mEmployee.SH_EMPLOYEE_NAME);
+
+                SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
                         //MessageBox.Show("Quantity : "+reader["myidentity"].ToString());
@@ -596,17 +697,19 @@ namespace Al_Shaheen_System
             }
         }
 
-        private void addnewrawtin_Load(object sender, EventArgs e)
+        private async void addnewrawtin_Load(object sender, EventArgs e)
         {
+            await autogenerateadditionpermisionnumber();
+            stock_man_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             fillstockscombobox();
             loadsuppliersdata();
             fillsupplierscombobox();
             if (suppliers.Count > 0)
             {
                 suppliers_combo_box.SelectedIndex = 0;
-            }          
+            }
             item_total_number_of_packages.Text = total_no_packges.ToString();
-          //  item_type_combo_box.SelectedIndex = 0;
+            //  item_type_combo_box.SelectedIndex = 0;
             stocks_combo_box.SelectedIndex = 0;
             item_finish_combo_box.SelectedIndex = 0;
             item_intensity_text_box.Text = (7.85).ToString();
@@ -614,18 +717,18 @@ namespace Al_Shaheen_System
             item_temper_combo_box.SelectedIndex = 0;
         }
 
-       
+
 
         private void adding_request_number_text_box_TextChanged(object sender, EventArgs e)
         {
-            long testnumber; 
-            if (!long.TryParse(adding_request_number_text_box.Text , out testnumber))
-            { 
-                errorProvider1.SetError(adding_request_number_text_box, "إكتب أرقام فقط 123...");
-            }else
-            {
-                errorProvider1.Clear();
-            }
+            //long testnumber; 
+            //if (!long.TryParse(adding_request_number_text_box.Text , out testnumber))
+            //{ 
+            //    errorProvider1.SetError(adding_request_number_text_box, "إكتب أرقام فقط 123...");
+            //}else
+            //{
+            //    errorProvider1.Clear();
+            //}
         }
 
         private void item_length_text_box_TextChanged(object sender, EventArgs e)
@@ -731,7 +834,7 @@ namespace Al_Shaheen_System
         private void newaddingrequest_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewrawtin myform = new addnewrawtin())
+            using (addnewrawtin myform = new addnewrawtin(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -762,7 +865,7 @@ namespace Al_Shaheen_System
                         if (id == 0)
                         {
                             //error
-
+                            savenewpermssionnumber();
                             long sid = await savetofirstduration_rawtin(quantities[i]);
                             if (sid == 0)
                             {
@@ -775,6 +878,7 @@ namespace Al_Shaheen_System
                         }
                         else
                         {
+                            savenewpermssionnumber();
                             await update_specifiction_quanities(id, quantities[i]);
                             await save_raw_tin_quantites(id, quantities[i]);
 
@@ -795,8 +899,20 @@ namespace Al_Shaheen_System
                 //}
 
                 MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-
-
+                rawtinaddingprinterdata mydata = new rawtinaddingprinterdata();
+                mydata.addition_permission_number = adding_request_number_text_box.Text;
+                mydata.additiondate = DateTime.Now;
+                mydata.stock = stocks[stocks_combo_box.SelectedIndex];
+                mydata.stock_man_name = mEmployee;
+                mydata.quantities = quantities;
+                printrawtinaddedquantities myf = new printrawtinaddedquantities(mydata);
+                myf.Show();
+                this.Hide();
+                using (addnewrawtin myform = new addnewrawtin(mEmployee, mAccount, mPermission))
+                {
+                    myform.ShowDialog();
+                }
+                this.Close();
 
             }
 
@@ -822,11 +938,7 @@ namespace Al_Shaheen_System
             //  MessageBox.Show("");
 
         }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            printedcaredsforrawmaterial MYFORM = new printedcaredsforrawmaterial();
-            MYFORM.ShowDialog();
-        }
+        
 
         private void delete_quantity_columne_Click(object sender, EventArgs e)
         {
@@ -868,6 +980,16 @@ namespace Al_Shaheen_System
                 double num = double.Parse(item_thickness_text_box.Text);
                 item_thickness_text_box.Text = num.ToString();
             }
+        }
+
+        private async void addnewrawtin_Enter(object sender, EventArgs e)
+        {
+            await autogenerateadditionpermisionnumber();
+        }
+
+        private async void addnewrawtin_Activated(object sender, EventArgs e)
+        {
+            await autogenerateadditionpermisionnumber();
         }
     }
     

@@ -115,31 +115,7 @@ namespace Al_Shaheen_System
             }
         }
 
-        async Task loadallstockmendata()
-        {
-            stock_men.Clear();
-            string mystring = "امين مخزن";
-            try
-            {
-                string query = "SELECT * FROM SH_EMPLOYEES WHERE  SH_EMPLOYEE_FUNCTION_NAME LIKE N'%" + mystring + "%' OR SH_EMPLOYEE_FUNCTION_NAME LIKE N'" + mystring + "%' OR SH_EMPLOYEE_FUNCTION_NAME LIKE N'%" + mystring + "'";
-                
-                myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    stock_men.Add(new SH_EMPLOYEES() { SH_EMPLOYEE_ADDRESS = reader["SH_EMPLOYEE_ADDRESS"].ToString(), SH_EMPLOYEMENT_DATE = DateTime.Parse(reader["SH_EMPLOYEMENT_DATE"].ToString()), SH_EMPLOYEE_EMAIL = reader["SH_EMPLOYEE_EMAIL"].ToString(), SH_EMPLOYEE_FUNCTION_ID = long.Parse(reader["SH_EMPLOYEE_FUNCTION_ID"].ToString()), SH_EMPLOYEE_FUNCTION_NAME = reader["SH_EMPLOYEE_FUNCTION_NAME"].ToString(), SH_EMPLOYEE_GENDER = reader["SH_EMPLOYEE_GENDER"].ToString(), SH_EMPLOYEE_MOBILE = reader["SH_EMPLOYEE_MOBILE"].ToString(), SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString(), SH_EMPLOYEE_NATIONAL_ID = reader["SH_EMPLOYEE_NATIONAL_ID"].ToString(), SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()), SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(), SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()) , SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString() });
-                }
-                reader.Close();
-                myconnection.closeConnection();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR WHILE GETTING STOCK MEN FROM DB "+ex.ToString());
-            }
-
-        }
-
+       
        
 
 
@@ -453,11 +429,12 @@ namespace Al_Shaheen_System
             {
                 try
                 {
-                    string query = "SELECT SH_CLIENTS_PRODUCTS.* FROM SH_CLIENTS_PRODUCTS WHERE(SH_CLIENT_ID = @CLIENT_ID)";
+                    string query = "SELECT SH_CLIENTS_PRODUCTS.* FROM SH_CLIENTS_PRODUCTS WHERE(SH_CLIENT_ID = @CLIENT_ID OR SH_CLIENT_ID IN (SELECT SH_ID FROM SH_CLIENT_COMPANY WHERE SH_CLIENT_COMPANY_NAME LIKE N'عام')) AND SH_PRINTING_TYPE = @SH_PRINTING_TYPE";
                     DatabaseConnection myconnection = new DatabaseConnection();
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                     cmd.Parameters.AddWithValue("@CLIENT_ID", clients[F1_combo_box.SelectedIndex].SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_PRINTING_TYPE","قاع");
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -489,23 +466,32 @@ namespace Al_Shaheen_System
 
                 if (reader.Read())
                 {
-                    mycount = long.Parse(reader["lastedid"].ToString());
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }   else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());                  
+                    }                
                 }
 
                 reader.Close();
                 myconnection.closeConnection();
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+               
+                mycount = 0;
+                //MessageBox.Show("Error while getting new permission number " + ex.ToString());
             }
+            
 
 
             if (mycount == 0)
             {
                 //there is the first rows in the db
                 string permissionnumber = "SH_";
-                permissionnumber += "FC-";
+                permissionnumber += "BOTTOM-";
                 permissionnumber += DateTime.Now.ToString("yy");
                 string currentr = 1.ToString();
                 for (int i = 0; i < 5 - 1; i++)
@@ -518,7 +504,7 @@ namespace Al_Shaheen_System
             else
             {
                 string permissionnumber = "SH_";
-                permissionnumber += "FB-";
+                permissionnumber += "BOTTOM-";
                 permissionnumber += DateTime.Now.ToString("yy");
                 string currentr = mycount.ToString();
                 for (int i = 0; i < 5 - currentr.Length; i++)
@@ -661,6 +647,12 @@ namespace Al_Shaheen_System
             Cursor.Current = Cursors.WaitCursor;
             await saveeasyopensdata();
             Cursor.Current = Cursors.Default;
+            this.Hide();
+            using (addnewBottom myform = new addnewBottom(mEmployee, mAccount, mPermission))
+            {
+                myform.ShowDialog();
+            }
+            this.Close();
         }
 
         void loadalleasyopenspecifications()
@@ -698,9 +690,20 @@ namespace Al_Shaheen_System
                     if (mydata.SH_PRINTING_TYPE ==0 )
                     {
                         //printed
-                        if (specifications[i].SH_SIZE_ID == mydata.size.SH_ID && specifications[i].SH_PRINTING_TYPE == mydata.SH_PRINTING_TYPE && specifications[i].SH_CLIENT_ID == mydata.client.SH_ID && specifications[i].SH_CLIENT_PRODUCT_ID == mydata.product.SH_ID && string.Compare(specifications[i].SH_USAGE , mydata.SH_USAGE.SH_USAGE_TYPE) ==0 && string.Compare(specifications[i].SH_RAW_MATERIAL_TYPE , mydata.SH_RAW_MATERIAL_TYPE.SH_MATERIAL_TYPE_NAME) == 0 && string.Compare(container_types_combo_box.Text , mydata.container_name) ==0 )
+                        if (specifications[i].SH_SIZE_ID == mydata.size.SH_ID && specifications[i].SH_PRINTING_TYPE == mydata.SH_PRINTING_TYPE && specifications[i].SH_CLIENT_ID == mydata.client.SH_ID && specifications[i].SH_CLIENT_PRODUCT_ID == mydata.product.SH_ID && string.Compare(specifications[i].SH_USAGE , mydata.SH_USAGE.SH_USAGE_TYPE) ==0 && string.Compare(specifications[i].SH_RAW_MATERIAL_TYPE , mydata.SH_RAW_MATERIAL_TYPE.SH_MATERIAL_TYPE_NAME) == 0 && string.Compare(container_types_combo_box.Text , mydata.container_name) ==0 && specifications[i].SH_SUPPLY_TYPE_ID == mydata.SH_SUPPLY_TYPE )
                         {
-                            return specifications[i].SH_ID;
+                            if (specifications[i].SH_SUPPLY_TYPE_ID==0)
+                            {
+                                return specifications[i].SH_ID;
+                            }else if (specifications[i].SH_SUPPLY_TYPE_ID == 1)
+                            {
+                                if (specifications[i].SH_SUPPLIER_ID==mydata.supplier.SH_ID && specifications[i].SH_SUPPLIER_BRANCH_ID==mydata.supplier_branch.SH_ID)
+                                {
+                                    return specifications[i].SH_ID;
+                                }
+                               
+                            }
+                            
                         }
                     }else
                     {
@@ -764,6 +767,22 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_SECOND_FACE_NAME", 0);
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS" , mydata.SH_TOTAL_NO_ITEMS);
                     cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME" , mydata.container_name);
+                    if (mydata.SH_SUPPLY_TYPE==1)
+                    {
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", mydata.supplier.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID", mydata.supplier_branch.SH_ID);
+
+                    }else
+                    {
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", 0);
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID", 0);
+
+                    }
+
+                    cmd.Parameters.AddWithValue("@SH_SUPPLY_TYPE_ID", mydata.SH_SUPPLY_TYPE);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLY_TYPE_NAME", mydata.SH_SUPPLY_TYPE_NAME);
+
+
                     SqlDataReader reader = cmd.ExecuteReader();
                     long myid = 0;
                     if (reader.Read())
@@ -807,6 +826,22 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_SECOND_FACE_NAME", mydata.second_face.SH_FACE_COLOR_NAME);
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", mydata.SH_TOTAL_NO_ITEMS);
                     cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", mydata.container_name);
+                    if (mydata.SH_SUPPLY_TYPE == 1)
+                    {
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", mydata.supplier.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID", mydata.supplier_branch.SH_ID);
+
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", 0);
+                        cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID", 0);
+
+                    }
+
+                    cmd.Parameters.AddWithValue("@SH_SUPPLY_TYPE_ID", mydata.SH_SUPPLY_TYPE);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLY_TYPE_NAME", mydata.SH_SUPPLY_TYPE_NAME);
+
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     long myid = 0;
@@ -835,8 +870,8 @@ namespace Al_Shaheen_System
                     query += "(SH_SPECIFICATION_OF_BOTTOM_ID, SH_ADDITION_PERMISSION_NUMBER, SH_ADDTION_DATE, SH_STOCK_ID, SH_STOCK_NAME, SH_STOCK_MAN_ID, SH_STOCK_MAN_NAME, SH_SUPPLY_DATE, SH_SUPPLIER_ID,";
                     query += " SH_SUPPLIER_BRANCH_ID, SH_SUPPLIER_NAME, SH_SUPPLIER_BRANCH_NAME, SH_CONTAINER_NAME, SH_NO_ITEMS_PER_CONTAINER, SH_TOTAL_NO_ITEMS, SH_NO_OF_CONTAINERS";
                     query += ",SH_SUBCONTAINER_NAME , SH_NO_OF_SUB_CONTAINER_PER_CONTAINER,SH_TOTAL_NUMBER_OF_SUB_CONTAINERS,SH_NO_ITEMS_PER_SUB_CONTAINER";
-                    query += ") VALUES(@SH_SPECIFICATION_OF_BOTTOM_ID,@SH_ADDITION_PERMISSION_NUMBER,@SH_ADDTION_DATE,@SH_STOCK_ID,@SH_STOCK_NAME,@SH_STOCK_MAN_ID,@SH_STOCK_MAN_NAME,@SH_SUPPLY_DATE,@SH_SUPPLIER_ID,@SH_SUPPLIER_BRANCH_ID,@SH_SUPPLIER_BRANCH_NAME,@SH_SUPPLIER_NAME,@SH_CONTAINER_NAME,@SH_NO_ITEMS_PER_CONTAINER";
-                    query += ",@SH_TOTAL_NO_ITEMS,@SH_NO_OF_CONTAINERS , @SH_SUBCONTAINER_NAME , @SH_NO_OF_SUB_CONTAINER_PER_CONTAINER,@SH_TOTAL_NUMBER_OF_SUB_CONTAINERS,@SH_NO_ITEMS_PER_SUB_CONTAINER)";
+                    query += ",SH_WORK_ORDER_NUMBER) VALUES(@SH_SPECIFICATION_OF_BOTTOM_ID,@SH_ADDITION_PERMISSION_NUMBER,@SH_ADDTION_DATE,@SH_STOCK_ID,@SH_STOCK_NAME,@SH_STOCK_MAN_ID,@SH_STOCK_MAN_NAME,@SH_SUPPLY_DATE,@SH_SUPPLIER_ID,@SH_SUPPLIER_BRANCH_ID,@SH_SUPPLIER_BRANCH_NAME,@SH_SUPPLIER_NAME,@SH_CONTAINER_NAME,@SH_NO_ITEMS_PER_CONTAINER";
+                    query += ",@SH_TOTAL_NO_ITEMS,@SH_NO_OF_CONTAINERS , @SH_SUBCONTAINER_NAME , @SH_NO_OF_SUB_CONTAINER_PER_CONTAINER,@SH_TOTAL_NUMBER_OF_SUB_CONTAINERS,@SH_NO_ITEMS_PER_SUB_CONTAINER,@SH_WORK_ORDER_NUMBER)";
                     query += "SELECT SCOPE_IDENTITY() AS myidentity";
                    
                     myconnection.openConnection();
@@ -849,11 +884,26 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_STOCK_MAN_ID",mydata.stock_man.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_STOCK_MAN_NAME", mydata.stock_man.SH_EMPLOYEE_NAME);
                     cmd.Parameters.AddWithValue("@SH_SUPPLY_DATE", DateTime.Now);
+                if (mydata.SH_SUPPLY_TYPE==0)
+                {
+                    cmd.Parameters.AddWithValue("@SH_WORK_ORDER_NUMBER", mydata.SH_WORK_ORDER_NUMBER);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", 0);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID", 0);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_NAME", 0);
+                    cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_NAME", 0);
+
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@SH_WORK_ORDER_NUMBER", 0);
                     cmd.Parameters.AddWithValue("@SH_SUPPLIER_ID", mydata.supplier.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_ID", mydata.supplier_branch.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_SUPPLIER_NAME", mydata.supplier.SH_SUPPLY_COMAPNY_NAME);
                     cmd.Parameters.AddWithValue("@SH_SUPPLIER_BRANCH_NAME", mydata.supplier_branch.SH_SUPPLY_COMPANY_NAME);
-                    cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", mydata.container_name );
+
+                }
+
+                cmd.Parameters.AddWithValue("@SH_CONTAINER_NAME", mydata.container_name );
                     cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", mydata.no_of_items_per_container);
                     cmd.Parameters.AddWithValue("@SH_TOTAL_NO_ITEMS", mydata.SH_TOTAL_NO_ITEMS);
                     cmd.Parameters.AddWithValue("@SH_NO_OF_CONTAINERS", mydata.no_of_container);
@@ -932,6 +982,10 @@ namespace Al_Shaheen_System
 
         private void add_new_quantity_btn_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+           
             bool cansave = true;
             if (string.IsNullOrWhiteSpace(addition_permission_number_text_box.Text))
             {
@@ -942,15 +996,32 @@ namespace Al_Shaheen_System
                 cansave = false;
             }
            
-            else if (string.IsNullOrWhiteSpace(suppliers_combo_box.Text))
+            else
+            if (!((inner_working_radio_btn.Checked) || (outer_sale_radio_btn.Checked)))
             {
-                cansave = false;
-            }
-            else if (string.IsNullOrWhiteSpace(supplier_branches_combo_box.Text))
+               
+            }else
             {
-                cansave = false;
+                if (inner_working_radio_btn.Checked)
+                {
+                    if (string.IsNullOrWhiteSpace(suppliers_combo_box.Text))
+                    {
+                        cansave = false;
+                    }
+                }else if (outer_sale_radio_btn.Checked)
+                {
+                    if (string.IsNullOrWhiteSpace(suppliers_combo_box.Text))
+                    {
+                        cansave = false;
+                    }
+                    else if (string.IsNullOrWhiteSpace(supplier_branches_combo_box.Text))
+                    {
+                        cansave = false;
+                    }
+                }
             }
-            else if (string.IsNullOrWhiteSpace(material_type_combo_box.Text))
+            
+            if (string.IsNullOrWhiteSpace(material_type_combo_box.Text))
             {
                 cansave = false;
             }
@@ -995,10 +1066,27 @@ namespace Al_Shaheen_System
             {
                 if (f1_printing_stat.SelectedIndex==0)
                 {
-                    form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[F1_combo_box.SelectedIndex], container_name = container_types_combo_box.Text, first_face = null,second_face=null ,no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = c_products[f2_combo_box.SelectedIndex], no_items_per_subcontainer = long.Parse(no_items_per_bage.Text) , no_of_subcontainer_per_container= long.Parse(no_of_bages_per_container.Text) , SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex , SH_PRINTING_TYPE_NAME = f1_printing_stat.Text , SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex] , SH_USAGE = usages[usage_combo_box.SelectedIndex] , SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text) , size = sizes[sizes_combo_box.SelectedIndex] , stock = stocks[stocks_combo_box.SelectedIndex] , stock_man = mEmployee , sub_container_name= "أكياس" , supplier = suppliers[suppliers_combo_box.SelectedIndex] , supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex] , total_number_of_sub_container = long.Parse(total_no_bages.Text) });
-                }else
+                    if (inner_working_radio_btn.Checked)
+                    {
+                        form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[F1_combo_box.SelectedIndex], container_name = container_types_combo_box.Text, first_face = null, second_face = null, no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = c_products[f2_combo_box.SelectedIndex], no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = mEmployee, sub_container_name = "أكياس", supplier = null, supplier_branch = null,SH_SUPPLY_TYPE=0,SH_SUPPLY_TYPE_NAME="داخلى", SH_WORK_ORDER_NUMBER = suppliers_combo_box.Text, total_number_of_sub_container = long.Parse(total_no_bages.Text), });
+
+                    }
+                    else if (outer_sale_radio_btn.Checked)
+                    {
+                        form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = clients[F1_combo_box.SelectedIndex], container_name = container_types_combo_box.Text, first_face = null, second_face = null, no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = c_products[f2_combo_box.SelectedIndex], no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = mEmployee, sub_container_name = "أكياس", supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], SH_SUPPLY_TYPE = 1, SH_SUPPLY_TYPE_NAME = "خارجى", SH_WORK_ORDER_NUMBER = null, total_number_of_sub_container = long.Parse(total_no_bages.Text), });
+
+                    }
+                }
+                else
                 {
-                    form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = null, container_name = container_types_combo_box.Text, first_face = faces[F1_combo_box.SelectedIndex], second_face = faces[f2_combo_box.SelectedIndex], no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = null, no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = mEmployee, sub_container_name = "أكياس", supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex], total_number_of_sub_container = long.Parse(total_no_bages.Text) });
+                    if (inner_working_radio_btn.Checked)
+                    {
+                        form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = null, container_name = container_types_combo_box.Text, first_face = faces[F1_combo_box.SelectedIndex], second_face = faces[f2_combo_box.SelectedIndex], no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = null, no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = mEmployee, sub_container_name = "أكياس", supplier = null, supplier_branch = null, SH_SUPPLY_TYPE = 0, SH_SUPPLY_TYPE_NAME="داخلى",SH_WORK_ORDER_NUMBER = suppliers_combo_box.Text, total_number_of_sub_container = long.Parse(total_no_bages.Text)});
+
+                    }else if (outer_sale_radio_btn.Checked)
+                    {
+                        form_data.Add(new SH_BOTTOM_DATA() { addition_date = DateTime.Now, addition_permission_number = addition_permission_number_text_box.Text, client = null, container_name = container_types_combo_box.Text, first_face = faces[F1_combo_box.SelectedIndex], second_face = faces[f2_combo_box.SelectedIndex], no_of_container = long.Parse(no_of_container_text_box.Text), no_of_items_per_container = (long.Parse(no_items_per_bage.Text) * long.Parse(no_of_bages_per_container.Text)), product = null, no_items_per_subcontainer = long.Parse(no_items_per_bage.Text), no_of_subcontainer_per_container = long.Parse(no_of_bages_per_container.Text), SH_PRINTING_TYPE = f1_printing_stat.SelectedIndex, SH_PRINTING_TYPE_NAME = f1_printing_stat.Text, SH_RAW_MATERIAL_TYPE = material_types[material_type_combo_box.SelectedIndex], SH_USAGE = usages[usage_combo_box.SelectedIndex], SH_TOTAL_NO_ITEMS = long.Parse(total_no_of_products_text_box.Text), size = sizes[sizes_combo_box.SelectedIndex], stock = stocks[stocks_combo_box.SelectedIndex], stock_man = mEmployee, sub_container_name = "أكياس", supplier = suppliers[suppliers_combo_box.SelectedIndex], supplier_branch = supplier_branches[supplier_branches_combo_box.SelectedIndex],SH_SUPPLY_TYPE = 1 , SH_SUPPLY_TYPE_NAME="خارجى" ,SH_WORK_ORDER_NUMBER = suppliers_combo_box.Text,total_number_of_sub_container = long.Parse(total_no_bages.Text) });
+                    }
 
                 }
                 filleasyopengridview();
@@ -1006,6 +1094,11 @@ namespace Al_Shaheen_System
             else
             {
                 MessageBox.Show("لا يمكن الاضافة لعدم إكتمال البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -1018,7 +1111,15 @@ namespace Al_Shaheen_System
                 {
                     string[] myparms = new string[13];
                     myparms[0] = (i+1).ToString();
-                    myparms[1] = form_data[i].supplier.SH_SUPPLY_COMAPNY_NAME;
+                    if (form_data[i].SH_SUPPLY_TYPE==0)
+                    {
+                        myparms[1] = form_data[i].SH_WORK_ORDER_NUMBER;
+
+                    }else
+                    {
+                        myparms[1] = form_data[i].supplier.SH_SUPPLY_COMAPNY_NAME;
+
+                    }
                     myparms[2] = form_data[i].SH_RAW_MATERIAL_TYPE.SH_MATERIAL_TYPE_NAME;
                     myparms[3] = form_data[i].SH_USAGE.SH_USAGE_TYPE;
                     myparms[4] = form_data[i].size.SH_SIZE_NAME;
@@ -1097,6 +1198,70 @@ namespace Al_Shaheen_System
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void inner_working_radio_btn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (inner_working_radio_btn.Checked)
+            {
+                suppliers_combo_box.DropDownStyle = ComboBoxStyle.Simple;
+                label2.Text = "رقم أمر الشغل";
+                label2.Visible = true;
+                supplier_branches_combo_box.Visible = false;
+                label3.Visible = false;
+            }else
+            {
+                fillsupplierscombobox();
+                suppliers_combo_box.DropDownStyle = ComboBoxStyle.DropDown;
+                suppliers_combo_box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                suppliers_combo_box.AutoCompleteSource = AutoCompleteSource.ListItems;
+                label2.Text = "إسم المورد";
+                supplier_branches_combo_box.Visible = true;
+                label3.Visible = true;
+            }
+        }
+
+        long getsourcetype()
+        {
+            if (inner_working_radio_btn.Checked)
+            {
+                return 0;
+            }else
+            {
+                return 1;
+            }
+        }
+
+
+        private void outer_sale_radio_btn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!outer_sale_radio_btn.Checked)
+            {
+                suppliers_combo_box.DropDownStyle = ComboBoxStyle.Simple;
+                label2.Text = "رقم أمر الشغل";
+                label2.Visible = true;
+                supplier_branches_combo_box.Visible = false;
+                label3.Visible = false;
+            }
+            else
+            {
+                suppliers_combo_box.DropDownStyle = ComboBoxStyle.DropDown;
+                suppliers_combo_box.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                suppliers_combo_box.AutoCompleteSource = AutoCompleteSource.ListItems;
+                label2.Text = "إسم المورد";
+                supplier_branches_combo_box.Visible = true;
+                label3.Visible = true;
+            }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addition_permission_number_text_box_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

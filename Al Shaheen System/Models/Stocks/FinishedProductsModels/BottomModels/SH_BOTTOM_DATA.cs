@@ -31,5 +31,8 @@ namespace Al_Shaheen_System
         public long no_of_container { get; set; }
         public long no_of_items_per_container { get; set; }
         public long SH_TOTAL_NO_ITEMS { get; set; }
+        public long SH_SUPPLY_TYPE { get; set; }
+        public string SH_SUPPLY_TYPE_NAME { get; set; }
+        public string SH_WORK_ORDER_NUMBER { get; set; }
     }
 }

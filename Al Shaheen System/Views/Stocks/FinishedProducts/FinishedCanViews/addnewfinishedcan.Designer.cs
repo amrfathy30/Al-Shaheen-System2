@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -90,6 +90,7 @@
             this.pallets_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.number_of_cans_per_pallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total_number_of_cans_per_pallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stock_man_name_text_box = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.stock_man_name_text_box);
             this.groupBox3.Controls.Add(this.stocks_combo_box);
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.label24);
@@ -156,9 +158,9 @@
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(345, 22);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(116, 25);
+            this.label25.Size = new System.Drawing.Size(93, 25);
             this.label25.TabIndex = 1;
-            this.label25.Text = "المكان بالمخزن ";
+            this.label25.Text = "أمين المخزن";
             // 
             // label24
             // 
@@ -570,6 +572,7 @@
             // 
             this.adding_request_number_text_box.Enabled = false;
             this.adding_request_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adding_request_number_text_box.ForeColor = System.Drawing.Color.Red;
             this.adding_request_number_text_box.Location = new System.Drawing.Point(154, 70);
             this.adding_request_number_text_box.Name = "adding_request_number_text_box";
             this.adding_request_number_text_box.Size = new System.Drawing.Size(262, 30);
@@ -652,14 +655,14 @@
             this.parcels_grid_view.AllowUserToDeleteRows = false;
             this.parcels_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.parcels_grid_view.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.parcels_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.parcels_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.index,
@@ -668,14 +671,14 @@
             this.pallets_number,
             this.number_of_cans_per_pallet,
             this.total_number_of_cans_per_pallet});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.parcels_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.parcels_grid_view.DefaultCellStyle = dataGridViewCellStyle4;
             this.parcels_grid_view.GridColor = System.Drawing.SystemColors.ControlLightLight;
             this.parcels_grid_view.Location = new System.Drawing.Point(27, 663);
             this.parcels_grid_view.Name = "parcels_grid_view";
@@ -718,6 +721,14 @@
             this.total_number_of_cans_per_pallet.HeaderText = "إجمالى عدد العلب بالكمية ";
             this.total_number_of_cans_per_pallet.Name = "total_number_of_cans_per_pallet";
             this.total_number_of_cans_per_pallet.ReadOnly = true;
+            // 
+            // stock_man_name_text_box
+            // 
+            this.stock_man_name_text_box.Enabled = false;
+            this.stock_man_name_text_box.Location = new System.Drawing.Point(70, 21);
+            this.stock_man_name_text_box.Name = "stock_man_name_text_box";
+            this.stock_man_name_text_box.Size = new System.Drawing.Size(266, 30);
+            this.stock_man_name_text_box.TabIndex = 27;
             // 
             // addnewfinishedcan
             // 
@@ -819,5 +830,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pallets_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn number_of_cans_per_pallet;
         private System.Windows.Forms.DataGridViewTextBoxColumn total_number_of_cans_per_pallet;
+        private System.Windows.Forms.TextBox stock_man_name_text_box;
     }
 }

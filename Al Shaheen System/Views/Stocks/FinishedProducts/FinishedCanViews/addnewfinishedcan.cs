@@ -22,6 +22,9 @@ namespace Al_Shaheen_System
 
         DatabaseConnection myconnection = new DatabaseConnection();
 
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
 
         long total_number_of_pallets = 0;
         long total_number_of_cans = 0;
@@ -75,7 +78,13 @@ namespace Al_Shaheen_System
                 
                 if (reader.Read())
                 {
-                    mycount = long.Parse(reader["lastedid"].ToString());
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }   
                 }
 
                 reader.Close();
@@ -91,7 +100,7 @@ namespace Al_Shaheen_System
             {
                 //there is the first rows in the db
                 string permissionnumber = "SH_";
-                permissionnumber += "FC-";
+                permissionnumber += "CANS-";
                 permissionnumber += DateTime.Now.ToString("yy");
                 string currentr = 1.ToString();
                 for (int i = 0; i < 5 - 1; i++)
@@ -104,7 +113,7 @@ namespace Al_Shaheen_System
             else
             {
                 string permissionnumber = "SH_";
-                permissionnumber +="FC-" ;
+                permissionnumber +="CANS-" ;
                 permissionnumber += DateTime.Now.ToString("yy");
                 string currentr = mycount.ToString();
                 for (int i = 0; i < 5- currentr.Length; i++)
@@ -264,9 +273,12 @@ namespace Al_Shaheen_System
 
 
 
-        public addnewfinishedcan()
+        public addnewfinishedcan(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
         }
 
         void loadallstocks()
@@ -400,6 +412,7 @@ namespace Al_Shaheen_System
         private async void addnewfinishedcan_Load(object sender, EventArgs e)
         {
             await autogenerateadditionpermisionnumber();
+            stock_man_name_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             fillstockscombobox();
             fill_clients_combo_box();
         }
@@ -636,22 +649,28 @@ namespace Al_Shaheen_System
             {
                 try
                 {
-                    string query = "SELECT SH_CLIENTS_PRODUCTS.* FROM SH_CLIENTS_PRODUCTS WHERE(SH_CLIENT_ID = @CLIENT_ID)";
+                    string query = "SELECT SH_CLIENTS_PRODUCTS.* FROM SH_CLIENTS_PRODUCTS WHERE (SH_CLIENT_ID = @CLIENT_ID OR SH_CLIENT_ID IN (SELECT SH_ID FROM SH_CLIENT_COMPANY WHERE SH_CLIENT_COMPANY_NAME LIKE N'عام'  )) AND (SH_PRINTING_TYPE = @SH_PRINTING_TYPE OR SH_PRINTING_TYPE = @SH_PRINTING_TYPE2 )";
                     DatabaseConnection myconnection = new DatabaseConnection();
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                     cmd.Parameters.AddWithValue("@CLIENT_ID", clients[clients_combo_box.SelectedIndex].SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_PRINTING_TYPE","علبة");
+                    cmd.Parameters.AddWithValue("@SH_PRINTING_TYPE2","بدن");
                     SqlDataReader reader = cmd.ExecuteReader();
-
                     while (reader.Read())
                     {
-
                         //getting products data
-                        products.Add(new SH_CLIENTS_PRODUCTS() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()), SH_CLIENT_NAME = reader["SH_CLIENT_NAME"].ToString(), SH_BOTTLE_HEIGHT = double.Parse(reader["SH_BOTTLE_HEIGHT"].ToString()),  SH_PRINTING_TYPE = reader["SH_PRINTING_TYPE"].ToString(), SH_PRODUCT_NAME = reader["SH_PRODUCT_NAME"].ToString(), SH_BOTTLE_CAPACITY = double.Parse(reader["SH_BOTTLE_CAPACITY"].ToString()) });
-
-
+                        products.Add(new SH_CLIENTS_PRODUCTS() {
+                            SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                            SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()),
+                            SH_CLIENT_NAME = reader["SH_CLIENT_NAME"].ToString(),
+                            SH_BOTTLE_HEIGHT = double.Parse(reader["SH_BOTTLE_HEIGHT"].ToString()),
+                            SH_PRINTING_TYPE = reader["SH_PRINTING_TYPE"].ToString(),
+                            SH_PRODUCT_NAME = reader["SH_PRODUCT_NAME"].ToString(),
+                            SH_BOTTLE_CAPACITY = double.Parse(reader["SH_BOTTLE_CAPACITY"].ToString())
+                        });
                     }
-
+                    reader.Close();
                     myconnection.closeConnection();
                 }
                 catch (Exception)
@@ -811,7 +830,7 @@ namespace Al_Shaheen_System
         private void new_quantity_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewfinishedcan myform = new addnewfinishedcan())
+            using (addnewfinishedcan myform = new addnewfinishedcan(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -923,11 +942,16 @@ namespace Al_Shaheen_System
                     }
                     
                     MessageBox.Show("تم الحفظ ", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-
+                    this.Hide();
+                    using (addnewfinishedcan myform = new addnewfinishedcan(mEmployee, mAccount, mPermission))
+                    {
+                        myform.ShowDialog();
                     }
+                    this.Close();
+                }
                 Cursor.Current = Cursors.Default;
                 this.Hide();
-                using (addnewfinishedcan myform = new addnewfinishedcan())
+                using (addnewfinishedcan myform = new addnewfinishedcan(mEmployee,mAccount,mPermission))
                 {
                     myform.ShowDialog();
                 }

@@ -25,5 +25,9 @@ namespace Al_Shaheen_System
         public string SH_SECOND_FACE_NAME { get; set; }
         public string SH_CONTAINER_NAME { get; set; }
         public long SH_TOTAL_NO_ITEMS { get; set; }
+        public long SH_SUPPLIER_ID { get; set; }
+        public long SH_SUPPLIER_BRANCH_ID { get; set; }
+        public long SH_SUPPLY_TYPE_ID { get; set; }
+        public string SH_SUPPLY_TYPE_NAME { get; set; }
     }
 }

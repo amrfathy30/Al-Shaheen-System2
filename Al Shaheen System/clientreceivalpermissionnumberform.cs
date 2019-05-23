@@ -1744,8 +1744,12 @@ namespace Al_Shaheen_System
 
             printreceivalpermission myform = new printreceivalpermission(no_receiving_permission_number_text_box.Text);
             //printreceivalpermission myform = new printreceivalpermission("SH_19-0012");
-            myform.ShowDialog();
+            myform.Show();
             Cursor.Current = Cursors.Default;
+            this.Hide();
+            clientreceivalpermissionnumberform newform = new clientreceivalpermissionnumberform(memployee, maccount, mpermission);
+            newform.Show();
+            this.Close();
         }
 
 
@@ -1939,6 +1943,14 @@ namespace Al_Shaheen_System
                     carton_corners_error_provider.SetError(no_carton_corners_text_box, "عدد الزوايا الكرتون عبارة عن أرقام صحيحة");
                 }
             }
+        }
+
+        private void new_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            clientreceivalpermissionnumberform myform = new clientreceivalpermissionnumberform(memployee,maccount,mpermission);
+            myform.Show();
+            this.Close();
         }
     }
 }
