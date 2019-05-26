@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.add_new_quantity_btn = new System.Windows.Forms.Button();
             this.item_quantities_grid_view = new System.Windows.Forms.DataGridView();
             this.item_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,10 +55,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.stock_name_combo_box = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.addition_date_text_box = new System.Windows.Forms.DateTimePicker();
-            this.label13 = new System.Windows.Forms.Label();
             this.item_sheet_weight_text_box = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.item_intensity_text_box = new System.Windows.Forms.TextBox();
@@ -73,6 +69,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.item_length_text_box = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.stock_name_combo_box = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.printing_permission_number = new System.Windows.Forms.TextBox();
@@ -101,6 +100,21 @@
             this.label6 = new System.Windows.Forms.Label();
             this.clients_combo_box = new System.Windows.Forms.ComboBox();
             this.label37 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.technicien_man_2_text_box = new System.Windows.Forms.ComboBox();
+            this.technicien_man_1_text_box = new System.Windows.Forms.ComboBox();
+            this.stock_man_examin_text_box = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.examination_number_text_box = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.stock_man_text_box = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.addition_permission_number = new System.Windows.Forms.TextBox();
+            this.current_date_time_label = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.item_quantities_grid_view)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.Quantity_Group_Box.SuspendLayout();
@@ -109,6 +123,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.client_products_grid_view)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // add_new_quantity_btn
@@ -117,7 +132,7 @@
             this.add_new_quantity_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_quantity_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_quantity_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_quantity_btn.Location = new System.Drawing.Point(656, 227);
+            this.add_new_quantity_btn.Location = new System.Drawing.Point(657, 358);
             this.add_new_quantity_btn.Name = "add_new_quantity_btn";
             this.add_new_quantity_btn.Size = new System.Drawing.Size(185, 34);
             this.add_new_quantity_btn.TabIndex = 14;
@@ -131,14 +146,14 @@
             this.item_quantities_grid_view.AllowUserToDeleteRows = false;
             this.item_quantities_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.item_quantities_grid_view.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.item_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.item_quantities_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.item_quantities_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.item_quantities_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.item_no,
@@ -147,16 +162,16 @@
             this.gross_weight,
             this.quantity_net_weight_no,
             this.total_number_of_bottels});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.item_quantities_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.item_quantities_grid_view.DefaultCellStyle = dataGridViewCellStyle4;
             this.item_quantities_grid_view.GridColor = System.Drawing.SystemColors.ControlLightLight;
-            this.item_quantities_grid_view.Location = new System.Drawing.Point(656, 263);
+            this.item_quantities_grid_view.Location = new System.Drawing.Point(657, 394);
             this.item_quantities_grid_view.MultiSelect = false;
             this.item_quantities_grid_view.Name = "item_quantities_grid_view";
             this.item_quantities_grid_view.ReadOnly = true;
@@ -204,7 +219,7 @@
             // 
             this.item_total_number_of_packages.Enabled = false;
             this.item_total_number_of_packages.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.item_total_number_of_packages.Location = new System.Drawing.Point(1081, 102);
+            this.item_total_number_of_packages.Location = new System.Drawing.Point(940, 362);
             this.item_total_number_of_packages.Name = "item_total_number_of_packages";
             this.item_total_number_of_packages.Size = new System.Drawing.Size(177, 26);
             this.item_total_number_of_packages.TabIndex = 17;
@@ -213,7 +228,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(1003, 109);
+            this.label22.Location = new System.Drawing.Point(862, 369);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(67, 20);
             this.label22.TabIndex = 16;
@@ -224,7 +239,7 @@
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.total_net_weight);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(656, 443);
+            this.groupBox3.Location = new System.Drawing.Point(657, 574);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(618, 97);
             this.groupBox3.TabIndex = 15;
@@ -234,7 +249,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.SystemColors.Control;
+            this.label20.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label20.Location = new System.Drawing.Point(433, 47);
             this.label20.Name = "label20";
@@ -262,7 +277,7 @@
             this.Quantity_Group_Box.Controls.Add(this.label14);
             this.Quantity_Group_Box.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Quantity_Group_Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quantity_Group_Box.Location = new System.Drawing.Point(656, 134);
+            this.Quantity_Group_Box.Location = new System.Drawing.Point(657, 265);
             this.Quantity_Group_Box.Name = "Quantity_Group_Box";
             this.Quantity_Group_Box.Size = new System.Drawing.Size(618, 87);
             this.Quantity_Group_Box.TabIndex = 13;
@@ -339,10 +354,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.stock_name_combo_box);
-            this.groupBox1.Controls.Add(this.label32);
-            this.groupBox1.Controls.Add(this.addition_date_text_box);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.item_sheet_weight_text_box);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.item_intensity_text_box);
@@ -359,9 +370,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(26, 525);
+            this.groupBox1.Location = new System.Drawing.Point(26, 574);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(588, 224);
+            this.groupBox1.Size = new System.Drawing.Size(588, 175);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات الصفيح ";
@@ -369,54 +380,15 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 119);
+            this.label5.Location = new System.Drawing.Point(9, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 20);
             this.label5.TabIndex = 27;
             this.label5.Text = "كجم";
             // 
-            // stock_name_combo_box
-            // 
-            this.stock_name_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stock_name_combo_box.FormattingEnabled = true;
-            this.stock_name_combo_box.Items.AddRange(new object[] {
-            "المخزن الرئيسي ( مصنع العاشر من  رمضان)"});
-            this.stock_name_combo_box.Location = new System.Drawing.Point(45, 148);
-            this.stock_name_combo_box.Name = "stock_name_combo_box";
-            this.stock_name_combo_box.Size = new System.Drawing.Size(463, 28);
-            this.stock_name_combo_box.TabIndex = 26;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(530, 151);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(45, 20);
-            this.label32.TabIndex = 25;
-            this.label32.Text = "المخزن";
-            // 
-            // addition_date_text_box
-            // 
-            this.addition_date_text_box.CustomFormat = "yyyy\\mm\\dd";
-            this.addition_date_text_box.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.addition_date_text_box.Location = new System.Drawing.Point(14, 189);
-            this.addition_date_text_box.Name = "addition_date_text_box";
-            this.addition_date_text_box.RightToLeftLayout = true;
-            this.addition_date_text_box.Size = new System.Drawing.Size(180, 26);
-            this.addition_date_text_box.TabIndex = 24;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(216, 195);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 20);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "تاريخ الإضافة ";
-            // 
             // item_sheet_weight_text_box
             // 
-            this.item_sheet_weight_text_box.Location = new System.Drawing.Point(45, 116);
+            this.item_sheet_weight_text_box.Location = new System.Drawing.Point(48, 134);
             this.item_sheet_weight_text_box.Name = "item_sheet_weight_text_box";
             this.item_sheet_weight_text_box.ReadOnly = true;
             this.item_sheet_weight_text_box.Size = new System.Drawing.Size(146, 26);
@@ -425,7 +397,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(203, 119);
+            this.label10.Location = new System.Drawing.Point(206, 137);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 20);
             this.label10.TabIndex = 17;
@@ -433,7 +405,7 @@
             // 
             // item_intensity_text_box
             // 
-            this.item_intensity_text_box.Location = new System.Drawing.Point(11, 77);
+            this.item_intensity_text_box.Location = new System.Drawing.Point(14, 100);
             this.item_intensity_text_box.Name = "item_intensity_text_box";
             this.item_intensity_text_box.ReadOnly = true;
             this.item_intensity_text_box.Size = new System.Drawing.Size(180, 26);
@@ -442,7 +414,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(213, 80);
+            this.label9.Location = new System.Drawing.Point(216, 103);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 20);
             this.label9.TabIndex = 15;
@@ -451,7 +423,7 @@
             // item_code_text_box
             // 
             this.item_code_text_box.Enabled = false;
-            this.item_code_text_box.Location = new System.Drawing.Point(11, 38);
+            this.item_code_text_box.Location = new System.Drawing.Point(14, 68);
             this.item_code_text_box.Name = "item_code_text_box";
             this.item_code_text_box.Size = new System.Drawing.Size(180, 26);
             this.item_code_text_box.TabIndex = 14;
@@ -459,7 +431,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(213, 41);
+            this.label8.Location = new System.Drawing.Point(216, 71);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(34, 20);
             this.label8.TabIndex = 13;
@@ -472,7 +444,7 @@
             this.item_type_combo_box.Items.AddRange(new object[] {
             "TFS",
             "ETP"});
-            this.item_type_combo_box.Location = new System.Drawing.Point(331, 186);
+            this.item_type_combo_box.Location = new System.Drawing.Point(334, 132);
             this.item_type_combo_box.Name = "item_type_combo_box";
             this.item_type_combo_box.Size = new System.Drawing.Size(177, 28);
             this.item_type_combo_box.TabIndex = 12;
@@ -481,7 +453,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(516, 189);
+            this.label7.Location = new System.Drawing.Point(519, 135);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 20);
             this.label7.TabIndex = 11;
@@ -489,7 +461,7 @@
             // 
             // item_thickness_text_box
             // 
-            this.item_thickness_text_box.Location = new System.Drawing.Point(331, 116);
+            this.item_thickness_text_box.Location = new System.Drawing.Point(334, 100);
             this.item_thickness_text_box.Name = "item_thickness_text_box";
             this.item_thickness_text_box.Size = new System.Drawing.Size(177, 26);
             this.item_thickness_text_box.TabIndex = 5;
@@ -499,7 +471,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(530, 119);
+            this.label4.Location = new System.Drawing.Point(533, 103);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 20);
             this.label4.TabIndex = 4;
@@ -507,7 +479,7 @@
             // 
             // item_width_text_box
             // 
-            this.item_width_text_box.Location = new System.Drawing.Point(331, 77);
+            this.item_width_text_box.Location = new System.Drawing.Point(334, 68);
             this.item_width_text_box.Name = "item_width_text_box";
             this.item_width_text_box.Size = new System.Drawing.Size(177, 26);
             this.item_width_text_box.TabIndex = 3;
@@ -516,7 +488,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(530, 80);
+            this.label3.Location = new System.Drawing.Point(533, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 20);
             this.label3.TabIndex = 2;
@@ -524,26 +496,59 @@
             // 
             // item_length_text_box
             // 
-            this.item_length_text_box.Location = new System.Drawing.Point(331, 38);
+            this.item_length_text_box.Location = new System.Drawing.Point(334, 36);
             this.item_length_text_box.Name = "item_length_text_box";
             this.item_length_text_box.Size = new System.Drawing.Size(177, 26);
             this.item_length_text_box.TabIndex = 1;
             this.item_length_text_box.TextChanged += new System.EventHandler(this.item_length_text_box_TextChanged);
+            this.item_length_text_box.Leave += new System.EventHandler(this.item_length_text_box_Leave);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(530, 41);
+            this.label2.Location = new System.Drawing.Point(533, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "الطول ";
             // 
+            // stock_name_combo_box
+            // 
+            this.stock_name_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stock_name_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stock_name_combo_box.FormattingEnabled = true;
+            this.stock_name_combo_box.Items.AddRange(new object[] {
+            "المخزن الرئيسي ( مصنع العاشر من  رمضان)"});
+            this.stock_name_combo_box.Location = new System.Drawing.Point(762, 204);
+            this.stock_name_combo_box.Name = "stock_name_combo_box";
+            this.stock_name_combo_box.Size = new System.Drawing.Size(463, 28);
+            this.stock_name_combo_box.TabIndex = 26;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(691, 207);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(45, 20);
+            this.label32.TabIndex = 25;
+            this.label32.Text = "المخزن";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(55, 29);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(88, 20);
+            this.label13.TabIndex = 23;
+            this.label13.Text = "تاريخ الإضافة ";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 29F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(468, 27);
+            this.label1.Location = new System.Drawing.Point(474, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(355, 44);
             this.label1.TabIndex = 11;
@@ -556,9 +561,9 @@
             this.groupBox7.Controls.Add(this.printers_combo_box);
             this.groupBox7.Controls.Add(this.label36);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(26, 451);
+            this.groupBox7.Location = new System.Drawing.Point(655, 122);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(588, 68);
+            this.groupBox7.Size = new System.Drawing.Size(620, 68);
             this.groupBox7.TabIndex = 21;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "معلومات المطبعة";
@@ -650,7 +655,7 @@
             this.remove_quantity_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remove_quantity_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remove_quantity_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.remove_quantity_btn.Location = new System.Drawing.Point(1135, 227);
+            this.remove_quantity_btn.Location = new System.Drawing.Point(1136, 358);
             this.remove_quantity_btn.Name = "remove_quantity_btn";
             this.remove_quantity_btn.Size = new System.Drawing.Size(139, 34);
             this.remove_quantity_btn.TabIndex = 31;
@@ -664,7 +669,7 @@
             this.add_new_product.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_product.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_product.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_product.Location = new System.Drawing.Point(14, 84);
+            this.add_new_product.Location = new System.Drawing.Point(14, 69);
             this.add_new_product.Name = "add_new_product";
             this.add_new_product.Size = new System.Drawing.Size(158, 32);
             this.add_new_product.TabIndex = 46;
@@ -676,7 +681,7 @@
             // 
             this.total_number_of_bottels_per_sheet.Enabled = false;
             this.total_number_of_bottels_per_sheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total_number_of_bottels_per_sheet.Location = new System.Drawing.Point(1081, 60);
+            this.total_number_of_bottels_per_sheet.Location = new System.Drawing.Point(1098, 238);
             this.total_number_of_bottels_per_sheet.Name = "total_number_of_bottels_per_sheet";
             this.total_number_of_bottels_per_sheet.Size = new System.Drawing.Size(177, 26);
             this.total_number_of_bottels_per_sheet.TabIndex = 53;
@@ -685,11 +690,11 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(973, 66);
+            this.label18.Location = new System.Drawing.Point(990, 244);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(97, 20);
+            this.label18.Size = new System.Drawing.Size(94, 20);
             this.label18.TabIndex = 52;
-            this.label18.Text = "عدد العلب بالشيت";
+            this.label18.Text = "عدد العلب بالفرخ";
             // 
             // groupBox2
             // 
@@ -704,12 +709,12 @@
             this.groupBox2.Controls.Add(this.clients_combo_box);
             this.groupBox2.Controls.Add(this.label37);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(26, 86);
+            this.groupBox2.Location = new System.Drawing.Point(26, 238);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(588, 368);
+            this.groupBox2.Size = new System.Drawing.Size(588, 326);
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "معلومات الأصناف بالشيت الواحد  ";
+            this.groupBox2.Text = "معلومات الأصناف بالفرخ الواحد  ";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // remove_client_product
@@ -718,9 +723,9 @@
             this.remove_client_product.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remove_client_product.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remove_client_product.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.remove_client_product.Location = new System.Drawing.Point(14, 129);
+            this.remove_client_product.Location = new System.Drawing.Point(14, 113);
             this.remove_client_product.Name = "remove_client_product";
-            this.remove_client_product.Size = new System.Drawing.Size(138, 42);
+            this.remove_client_product.Size = new System.Drawing.Size(138, 34);
             this.remove_client_product.TabIndex = 60;
             this.remove_client_product.Text = "مسح صنف";
             this.remove_client_product.UseVisualStyleBackColor = false;
@@ -732,9 +737,9 @@
             this.add_new_client_product_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_client_product_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_client_product_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_client_product_btn.Location = new System.Drawing.Point(453, 129);
+            this.add_new_client_product_btn.Location = new System.Drawing.Point(453, 113);
             this.add_new_client_product_btn.Name = "add_new_client_product_btn";
-            this.add_new_client_product_btn.Size = new System.Drawing.Size(129, 42);
+            this.add_new_client_product_btn.Size = new System.Drawing.Size(129, 34);
             this.add_new_client_product_btn.TabIndex = 59;
             this.add_new_client_product_btn.Text = "إضافة صنف جديد";
             this.add_new_client_product_btn.UseVisualStyleBackColor = false;
@@ -743,7 +748,7 @@
             // no_bottels_per_sheet
             // 
             this.no_bottels_per_sheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.no_bottels_per_sheet.Location = new System.Drawing.Point(298, 93);
+            this.no_bottels_per_sheet.Location = new System.Drawing.Point(298, 78);
             this.no_bottels_per_sheet.Name = "no_bottels_per_sheet";
             this.no_bottels_per_sheet.Size = new System.Drawing.Size(181, 26);
             this.no_bottels_per_sheet.TabIndex = 58;
@@ -752,7 +757,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(485, 99);
+            this.label12.Location = new System.Drawing.Point(485, 84);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(97, 20);
             this.label12.TabIndex = 57;
@@ -771,7 +776,7 @@
             this.PRODUCT_NAME,
             this.NUMBER_OF_BOTTLES_PER_SHEET});
             this.client_products_grid_view.GridColor = System.Drawing.SystemColors.ControlLightLight;
-            this.client_products_grid_view.Location = new System.Drawing.Point(11, 177);
+            this.client_products_grid_view.Location = new System.Drawing.Point(11, 153);
             this.client_products_grid_view.Name = "client_products_grid_view";
             this.client_products_grid_view.ReadOnly = true;
             this.client_products_grid_view.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -798,7 +803,7 @@
             // 
             // NUMBER_OF_BOTTLES_PER_SHEET
             // 
-            this.NUMBER_OF_BOTTLES_PER_SHEET.HeaderText = "عدد العلب بالشيت";
+            this.NUMBER_OF_BOTTLES_PER_SHEET.HeaderText = "عدد العلب بالفرخ";
             this.NUMBER_OF_BOTTLES_PER_SHEET.Name = "NUMBER_OF_BOTTLES_PER_SHEET";
             this.NUMBER_OF_BOTTLES_PER_SHEET.ReadOnly = true;
             // 
@@ -810,7 +815,7 @@
             this.client_products_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.client_products_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.client_products_combo_box.FormattingEnabled = true;
-            this.client_products_combo_box.Location = new System.Drawing.Point(14, 36);
+            this.client_products_combo_box.Location = new System.Drawing.Point(14, 34);
             this.client_products_combo_box.Name = "client_products_combo_box";
             this.client_products_combo_box.Size = new System.Drawing.Size(180, 28);
             this.client_products_combo_box.TabIndex = 54;
@@ -820,7 +825,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(216, 44);
+            this.label6.Location = new System.Drawing.Point(216, 42);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 20);
             this.label6.TabIndex = 55;
@@ -832,7 +837,7 @@
             this.clients_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.clients_combo_box.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.clients_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clients_combo_box.Location = new System.Drawing.Point(309, 36);
+            this.clients_combo_box.Location = new System.Drawing.Point(309, 34);
             this.clients_combo_box.Name = "clients_combo_box";
             this.clients_combo_box.Size = new System.Drawing.Size(217, 28);
             this.clients_combo_box.TabIndex = 52;
@@ -842,11 +847,152 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(543, 44);
+            this.label37.Location = new System.Drawing.Point(543, 42);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(39, 20);
             this.label37.TabIndex = 53;
             this.label37.Text = "العميل";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.technicien_man_2_text_box);
+            this.groupBox4.Controls.Add(this.technicien_man_1_text_box);
+            this.groupBox4.Controls.Add(this.stock_man_examin_text_box);
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.label23);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.examination_number_text_box);
+            this.groupBox4.Controls.Add(this.label24);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(26, 122);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(588, 101);
+            this.groupBox4.TabIndex = 55;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "لجنة الفحص";
+            // 
+            // technicien_man_2_text_box
+            // 
+            this.technicien_man_2_text_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.technicien_man_2_text_box.FormattingEnabled = true;
+            this.technicien_man_2_text_box.Location = new System.Drawing.Point(6, 62);
+            this.technicien_man_2_text_box.Name = "technicien_man_2_text_box";
+            this.technicien_man_2_text_box.Size = new System.Drawing.Size(186, 28);
+            this.technicien_man_2_text_box.TabIndex = 36;
+            // 
+            // technicien_man_1_text_box
+            // 
+            this.technicien_man_1_text_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.technicien_man_1_text_box.FormattingEnabled = true;
+            this.technicien_man_1_text_box.Location = new System.Drawing.Point(6, 25);
+            this.technicien_man_1_text_box.Name = "technicien_man_1_text_box";
+            this.technicien_man_1_text_box.Size = new System.Drawing.Size(186, 28);
+            this.technicien_man_1_text_box.TabIndex = 35;
+            // 
+            // stock_man_examin_text_box
+            // 
+            this.stock_man_examin_text_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stock_man_examin_text_box.FormattingEnabled = true;
+            this.stock_man_examin_text_box.Location = new System.Drawing.Point(275, 60);
+            this.stock_man_examin_text_box.Name = "stock_man_examin_text_box";
+            this.stock_man_examin_text_box.Size = new System.Drawing.Size(186, 28);
+            this.stock_man_examin_text_box.TabIndex = 34;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(485, 68);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(85, 20);
+            this.label21.TabIndex = 33;
+            this.label21.Text = "مندوب المخازن";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(199, 65);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(70, 20);
+            this.label23.TabIndex = 31;
+            this.label23.Text = "مراقب جودة";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(474, 33);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(106, 20);
+            this.label26.TabIndex = 25;
+            this.label26.Text = "رقم محضر الفحص";
+            // 
+            // examination_number_text_box
+            // 
+            this.examination_number_text_box.Location = new System.Drawing.Point(275, 30);
+            this.examination_number_text_box.Name = "examination_number_text_box";
+            this.examination_number_text_box.Size = new System.Drawing.Size(186, 26);
+            this.examination_number_text_box.TabIndex = 26;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(193, 33);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(76, 20);
+            this.label24.TabIndex = 29;
+            this.label24.Text = "فنى المقصات";
+            // 
+            // stock_man_text_box
+            // 
+            this.stock_man_text_box.Enabled = false;
+            this.stock_man_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stock_man_text_box.Location = new System.Drawing.Point(823, 84);
+            this.stock_man_text_box.Name = "stock_man_text_box";
+            this.stock_man_text_box.Size = new System.Drawing.Size(261, 26);
+            this.stock_man_text_box.TabIndex = 33;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(736, 87);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(63, 20);
+            this.label25.TabIndex = 27;
+            this.label25.Text = "أمين مخزن";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(68, 87);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(93, 20);
+            this.label19.TabIndex = 56;
+            this.label19.Text = "رقم إذن الإضافة";
+            // 
+            // addition_permission_number
+            // 
+            this.addition_permission_number.Enabled = false;
+            this.addition_permission_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addition_permission_number.Location = new System.Drawing.Point(171, 84);
+            this.addition_permission_number.Name = "addition_permission_number";
+            this.addition_permission_number.Size = new System.Drawing.Size(360, 26);
+            this.addition_permission_number.TabIndex = 57;
+            // 
+            // current_date_time_label
+            // 
+            this.current_date_time_label.AutoSize = true;
+            this.current_date_time_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.current_date_time_label.Location = new System.Drawing.Point(166, 25);
+            this.current_date_time_label.Name = "current_date_time_label";
+            this.current_date_time_label.Size = new System.Drawing.Size(75, 25);
+            this.current_date_time_label.TabIndex = 58;
+            this.current_date_time_label.Text = "label27";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // addnewprintingmaterialfd
             // 
@@ -854,7 +1000,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1306, 768);
+            this.Controls.Add(this.current_date_time_label);
+            this.Controls.Add(this.stock_man_text_box);
+            this.Controls.Add(this.addition_permission_number);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label25);
+            this.Controls.Add(this.stock_name_combo_box);
+            this.Controls.Add(this.label32);
             this.Controls.Add(this.total_number_of_bottels_per_sheet);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.remove_quantity_btn);
@@ -878,6 +1033,7 @@
             this.Text = "إضافة رصيد أول المدة من الصفيح المورنش";
             this.Activated += new System.EventHandler(this.addnewprintingmaterialfd_Activated);
             this.Load += new System.EventHandler(this.addnewmuranmaterialfd_Load);
+            this.Enter += new System.EventHandler(this.addnewprintingmaterialfd_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.item_quantities_grid_view)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -891,6 +1047,8 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.client_products_grid_view)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -913,7 +1071,6 @@
         private System.Windows.Forms.TextBox no_packages_text_box;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker addition_date_text_box;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox item_sheet_weight_text_box;
         private System.Windows.Forms.Label label10;
@@ -960,13 +1117,28 @@
         private System.Windows.Forms.TextBox no_bottels_per_sheet;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView client_products_grid_view;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NUM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CLIENT_NAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCT_NAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NUMBER_OF_BOTTLES_PER_SHEET;
         private System.Windows.Forms.ComboBox client_products_combo_box;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox clients_combo_box;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NUM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CLIENT_NAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRODUCT_NAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NUMBER_OF_BOTTLES_PER_SHEET;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox stock_man_text_box;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox examination_number_text_box;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox addition_permission_number;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label current_date_time_label;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ComboBox technicien_man_2_text_box;
+        private System.Windows.Forms.ComboBox technicien_man_1_text_box;
+        private System.Windows.Forms.ComboBox stock_man_examin_text_box;
     }
 }

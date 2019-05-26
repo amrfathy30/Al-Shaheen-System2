@@ -615,6 +615,24 @@ namespace Al_Shaheen_System
 
             return numerFDS.Replace(".", "");
         }
+
+
+        void calculateprcelnetweight()
+        {
+            if (string.IsNullOrWhiteSpace(item_length_text_box.Text) || string.IsNullOrWhiteSpace(item_width_text_box.Text)|| string.IsNullOrWhiteSpace(item_thickness_text_box.Text))
+            {
+            }else
+            {
+                double testnumber = 0;
+                if (double.TryParse(item_length_text_box.Text,out testnumber)&& double.TryParse(item_width_text_box.Text,out testnumber)&& double.TryParse(item_thickness_text_box.Text,out testnumber))
+                {
+                    item_sheet_weight_text_box.Text = ((double.Parse(item_length_text_box.Text) * double.Parse(item_width_text_box.Text)* double.Parse(item_thickness_text_box.Text)*7.85)/1000000).ToString();
+                }
+            }
+        }
+
+
+
         void fillgridviewitems()
         {
             item_quantities_grid_view.Rows.Clear();
@@ -744,6 +762,7 @@ namespace Al_Shaheen_System
                 competecode();
 
             }
+            calculateprcelnetweight();
         }
 
         private void item_width_text_box_TextChanged(object sender, EventArgs e)
@@ -758,6 +777,7 @@ namespace Al_Shaheen_System
                 errorProvider1.Clear();
                 competecode();
             }
+            calculateprcelnetweight();
         }
 
         private void item_thickness_text_box_TextChanged(object sender, EventArgs e)
@@ -772,6 +792,7 @@ namespace Al_Shaheen_System
                 errorProvider1.Clear();
                 competecode();
             }
+            calculateprcelnetweight();
         }
 
         private void no_packages_text_box_TextChanged(object sender, EventArgs e)
@@ -796,7 +817,12 @@ namespace Al_Shaheen_System
             }
             else
             {
+
                 errorProvider1.Clear();
+                if (!string.IsNullOrEmpty(no_sheets_per_package_text_box.Text))
+                {
+                    parcel_net_weight.Text = (double.Parse(item_sheet_weight_text_box.Text) * long.Parse(no_sheets_per_package_text_box.Text)).ToString();
+                }
             }
         }
 

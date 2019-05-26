@@ -19,9 +19,12 @@ namespace Al_Shaheen_System
         List<SH_PRODUCT_OF_CLIENTS_PARCELS> client_products = new List<SH_PRODUCT_OF_CLIENTS_PARCELS>();
         List<SH_CLIENTS_PRODUCTS> products = new List<SH_CLIENTS_PRODUCTS>();
         List<SH_QUANTITIES_OF_PRINTED_MATERIAL> quantities = new List<SH_QUANTITIES_OF_PRINTED_MATERIAL>();
-        List<SH_MURAN_MATERIAL_PARCEL> muran_material_parcels = new List<SH_MURAN_MATERIAL_PARCEL>();
+        List<SH_PRINTED_MATERIAL_PARCEL> muran_material_parcels = new List<SH_PRINTED_MATERIAL_PARCEL>();
         List<SH_SPECIFICATION_OF_PRINTED_MATERIAL> printed_materials = new List<SH_SPECIFICATION_OF_PRINTED_MATERIAL>();
         List<SH_TIN_PRINTER> printers = new List<SH_TIN_PRINTER>();
+
+        List<SH_EMPLOYEES> techniciens = new List<SH_EMPLOYEES>();
+        List<SH_EMPLOYEES> stock_men = new List<SH_EMPLOYEES>();
 
         long total_no_packges = 0;
         long all_packages_no_sheets = 0;
@@ -32,11 +35,204 @@ namespace Al_Shaheen_System
 
         long total_number_of_bottel_per_sheet = 0;
 
+        DatabaseConnection myconnection = new DatabaseConnection();
 
-        public addnewprintingmaterialfd()
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+        public addnewprintingmaterialfd(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyaccount , SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = anyperm;
         }
+
+        async Task autogenerateadditionpermisionnumber()
+        {
+            long mycount = 0;
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1) AS lastedid FROM SH_ADDITION_PERMISSION_NUMBER_PRINTED_TIN  ", DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }
+                    else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }
+                }
+
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                permissionnumber += "PRINTED_TIN-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = 1.ToString();
+                for (int i = 0; i < 5 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                addition_permission_number.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                permissionnumber += "PRINTED_TIN-";
+                permissionnumber += DateTime.Now.ToString("yy");
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 5 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                addition_permission_number.Text = permissionnumber;
+            }
+        }
+
+        void getstocksmantoexamination()
+        {
+            stock_men.Clear();
+            try
+            {
+                string query = "SELECT EMP.* FROM SH_EMPLOYEES EMP ";
+                query += " LEFT JOIN SH_DEPARTEMENTS DPT ON ";
+                query += " DPT.SH_ID = EMP.SH_DEPARTMENT_ID ";
+                query += " WHERE DPT.SH_DEPARTEMNT_NAME LIKE N'%مخازن%' ";
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    stock_men.Add(new SH_EMPLOYEES() {
+                        SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()),
+                        SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(),
+                        SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()),
+                        SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString(),
+                        SH_DEPARTMENT_ID = long.Parse(reader["SH_DEPARTMENT_ID"].ToString()),
+                        SH_DEPARTMENT_NAME = reader["SH_DEPARTMENT_NAME"].ToString(),
+                        SH_EMPLOYEE_ADDRESS = reader["SH_EMPLOYEE_ADDRESS"].ToString(),
+                        SH_EMPLOYEE_EMAIL = reader["SH_EMPLOYEE_EMAIL"].ToString(),
+                        SH_EMPLOYEE_FUNCTION_ID = long.Parse(reader["SH_EMPLOYEE_FUNCTION_ID"].ToString()),
+                        SH_EMPLOYEE_FUNCTION_NAME = reader["SH_EMPLOYEE_FUNCTION_NAME"].ToString(),
+                        SH_EMPLOYEE_GENDER = reader["SH_EMPLOYEE_GENDER"].ToString(),
+                        SH_EMPLOYEE_MOBILE = reader["SH_EMPLOYEE_MOBILE"].ToString(),
+                        SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString(),
+                        SH_EMPLOYEE_NATIONAL_ID = reader["SH_EMPLOYEE_NATIONAL_ID"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_EMPLOYEMENT_DATE = DateTime.Parse(reader["SH_EMPLOYEMENT_DATE"].ToString())
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING STOCK_MEN "+ex.ToString());
+            }
+
+            if (stock_men.Count>0)
+            {
+                stock_man_examin_text_box.Items.Clear();
+                for (int i = 0; i < stock_men.Count; i++)
+                {
+                    stock_man_examin_text_box.Items.Add(stock_men[i].SH_EMPLOYEE_NAME);
+                }
+            }
+
+        }
+
+        void gettechnicienexamination()
+        {
+            techniciens.Clear();
+            try
+            {
+                string query = " SELECT EMP.* FROM SH_EMPLOYEES EMP ";
+                query += " LEFT JOIN SH_FUNCTION FUNC ON ";
+                query += " FUNC.SH_ID = EMP.SH_EMPLOYEE_FUNCTION_ID ";
+                query += " WHERE FUNC.SH_FUNCTION_NAME LIKE N'%فنى%' OR FUNC.SH_FUNCTION_NAME LIKE N'%فني%'";
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    techniciens.Add(new SH_EMPLOYEES() {
+                        SH_DATA_ENTRY_EMPLOYEE_ID = long.Parse(reader["SH_DATA_ENTRY_EMPLOYEE_ID"].ToString()),
+                        SH_DATA_ENTRY_EMPLOYEE_NAME = reader["SH_DATA_ENTRY_EMPLOYEE_NAME"].ToString(),
+                        SH_DATA_ENTRY_USER_ID = long.Parse(reader["SH_DATA_ENTRY_USER_ID"].ToString()),
+                        SH_DATA_ENTRY_USER_NAME = reader["SH_DATA_ENTRY_USER_NAME"].ToString(),
+                        SH_DEPARTMENT_ID = long.Parse(reader["SH_DEPARTMENT_ID"].ToString()),
+                        SH_DEPARTMENT_NAME = reader["SH_DEPARTMENT_NAME"].ToString(),
+                        SH_EMPLOYEE_ADDRESS = reader["SH_EMPLOYEE_ADDRESS"].ToString(),
+                        SH_EMPLOYEE_EMAIL = reader["SH_EMPLOYEE_EMAIL"].ToString(),
+                        SH_EMPLOYEE_FUNCTION_ID = long.Parse(reader["SH_EMPLOYEE_FUNCTION_ID"].ToString()),
+                        SH_EMPLOYEE_FUNCTION_NAME = reader["SH_EMPLOYEE_FUNCTION_NAME"].ToString(),
+                        SH_EMPLOYEE_GENDER = reader["SH_EMPLOYEE_GENDER"].ToString(),
+                        SH_EMPLOYEE_MOBILE = reader["SH_EMPLOYEE_MOBILE"].ToString(),
+                        SH_EMPLOYEE_NAME = reader["SH_EMPLOYEE_NAME"].ToString(),
+                        SH_EMPLOYEE_NATIONAL_ID = reader["SH_EMPLOYEE_NATIONAL_ID"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_EMPLOYEMENT_DATE = DateTime.Parse(reader["SH_EMPLOYEMENT_DATE"].ToString())
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING TECHINICIENS "+ex.ToString());
+            }
+            if (techniciens.Count>0)
+            {
+                technicien_man_1_text_box.Items.Clear();
+                technicien_man_2_text_box.Items.Clear();
+                for (int i = 0; i < techniciens.Count; i++)
+                {
+                    technicien_man_1_text_box.Items.Add(techniciens[i].SH_EMPLOYEE_NAME);
+                    technicien_man_2_text_box.Items.Add(techniciens[i].SH_EMPLOYEE_NAME);
+                }
+            }
+        }
+
+
+        private void savenewpermssionnumber()
+        {
+            try
+            {
+                DatabaseConnection myconnection = new DatabaseConnection();
+
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("INSERT INTO SH_ADDITION_PERMISSION_NUMBER_PRINTED_TIN (SH_NUMBER) VALUES(@SH_NUMBER) ", DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_NUMBER", 1.ToString());
+                cmd.ExecuteNonQuery();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
+        }
+
+
+
+
         void loadallstocks()
         {
             try
@@ -199,8 +395,11 @@ namespace Al_Shaheen_System
                         string query = "INSERT INTO SH_QUANTITIES_OF_PRINTED_MATERIAL ";
                         query += "(SH_SPECIFICATION_OF_PRINTED_MATERIAL_ID, SH_ITEM_LENGTH, SH_ITEM_WIDTH, SH_ITEM_THICKNESS, SH_ITEM_CODE, SH_ITEM_TYPE, SH_ITEM_SHEET_WEIGHT, SH_ITEM_NO_SHEETS, SH_ITEM_NET_WEIGHT, ";
                         query += " SH_ITEM_GROSS_WEIGHT, SH_ITEM_NO_PARCELS, SH_ADDITION_DATE, SH_STOCK_NAME, SH_PRINTER_ID, SH_PRINTER_NAME, SH_PRINTING_PERMISSION_NUMBER, SH_TOTAL_NUMBER_OF_BOTTELS, ";
-                        query += " SH_PARCEL_NET_WEIGHT) VALUES( @SH_SPECIFICATION_OF_PRINTED_MATERIAL_ID,@SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS,@SH_ITEM_CODE,@SH_ITEM_TYPE,@SH_ITEM_SHEET_WEIGHT,@SH_ITEM_NO_SHEETS,@SH_ITEM_NET_WEIGHT,@SH_ITEM_GROSS_WEIGHT";
-                        query += ",@SH_ITEM_NO_PARCELS,@SH_ADDITION_DATE,@SH_STOCK_NAME,@SH_PRINTER_ID,@SH_PRINTER_NAME,@SH_PRINTING_PERMISSION_NUMBER,@SH_TOTAL_NUMBER_OF_BOTTELS,@SH_PARCEL_NET_WEIGHT)";
+                        query += " SH_PARCEL_NET_WEIGHT , ";
+                        query += " SH_DATA_ENTRY_USER_ID , SH_DATA_ENTRY_EMPLOYEE_ID , SH_EXAMINATION_PERMISSION_NUMBER ,SH_EXAMINATION_STOCK_MAN_ID ,SH_TECHNICAL_MAN_ONE_ID, SH_TECHNICAL_MAN_TWO_ID";
+                        query += ") VALUES( @SH_SPECIFICATION_OF_PRINTED_MATERIAL_ID,@SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS,@SH_ITEM_CODE,@SH_ITEM_TYPE,@SH_ITEM_SHEET_WEIGHT,@SH_ITEM_NO_SHEETS,@SH_ITEM_NET_WEIGHT,@SH_ITEM_GROSS_WEIGHT";
+                        query += ",@SH_ITEM_NO_PARCELS,@SH_ADDITION_DATE,@SH_STOCK_NAME,@SH_PRINTER_ID,@SH_PRINTER_NAME,@SH_PRINTING_PERMISSION_NUMBER,@SH_TOTAL_NUMBER_OF_BOTTELS,@SH_PARCEL_NET_WEIGHT ,";
+                        query += " @SH_DATA_ENTRY_USER_ID , @SH_DATA_ENTRY_EMPLOYEE_ID , @SH_EXAMINATION_PERMISSION_NUMBER ,@SH_EXAMINATION_STOCK_MAN_ID ,@SH_TECHNICAL_MAN_ONE_ID, @SH_TECHNICAL_MAN_TWO_ID )";
                         query += "SELECT SCOPE_IDENTITY() AS myidentity";
                         DatabaseConnection myconnection = new DatabaseConnection();
                         myconnection.openConnection();
@@ -223,6 +422,12 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_PRINTING_PERMISSION_NUMBER" , quantities[i].SH_PRINTING_PERMISSION_NUMBER);
                         cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_BOTTELS" , quantities[i].SH_TOTAL_NUMBER_OF_BOTTELS);
                         cmd.Parameters.AddWithValue("@SH_PARCEL_NET_WEIGHT" , quantities[i].SH_PARCEL_NET_WEIGHT);
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID",mAccount.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID",mEmployee.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_EXAMINATION_PERMISSION_NUMBER", examination_number_text_box.Text);
+                        cmd.Parameters.AddWithValue("@SH_EXAMINATION_STOCK_MAN_ID",stock_men[stock_man_examin_text_box.SelectedIndex].SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_TECHNICAL_MAN_ONE_ID", techniciens[technicien_man_1_text_box.SelectedIndex].SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_TECHNICAL_MAN_TWO_ID", techniciens[technicien_man_2_text_box.SelectedIndex].SH_ID);
                         SqlDataReader reader = cmd.ExecuteReader();
                         if (reader.Read())
                         {
@@ -445,16 +650,19 @@ namespace Al_Shaheen_System
             }
         }
 
-        private void addnewmuranmaterialfd_Load(object sender, EventArgs e)
+        private async void addnewmuranmaterialfd_Load(object sender, EventArgs e)
         {
-           
+            await autogenerateadditionpermisionnumber();
+            stock_man_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             item_intensity_text_box.Text = 7.85.ToString();
+            getstocksmantoexamination();
+            gettechnicienexamination();
             fillprintersgridview();
             fillstockscombobox();
             item_total_number_of_packages.Text = "0";
             parcel_net_weight.Text = "0.00";
             total_net_weight.Text = "0.00";
-           // total_gross_weight.Text = "0.00";
+            // total_gross_weight.Text = "0.00";
             item_sheet_weight_text_box.Text = "0.00";
             fill_clients_combo_box();
 
@@ -564,51 +772,63 @@ namespace Al_Shaheen_System
         }
         private void add_new_quantity_btn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(item_length_text_box.Text) || string.IsNullOrWhiteSpace(item_width_text_box.Text) || string.IsNullOrWhiteSpace(item_thickness_text_box.Text) || string.IsNullOrEmpty(item_type_combo_box.Text) || string.IsNullOrEmpty(stock_name_combo_box.Text))
+            try
             {
-                //DO NOTHING
-                MessageBox.Show("لا يمكن حفظ البيانات  \n  الرجاء التاكد من كتابة البيانات بشكل صحيح ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-            }
-            else if ((errorProvider1.GetError(item_length_text_box) == "") && (errorProvider1.GetError(item_width_text_box) == "") && (errorProvider1.GetError(item_thickness_text_box) == ""))
-            {
-                item_code_text_box.Text = item_type_combo_box.Text + removedotinnumber(double.Parse(item_thickness_text_box.Text)) + removedotinnumber(double.Parse(item_width_text_box.Text)) + removedotinnumber(double.Parse(item_length_text_box.Text));
-                item_sheet_weight_text_box.Text = ((double.Parse(item_length_text_box.Text) * double.Parse(item_width_text_box.Text) * double.Parse(item_thickness_text_box.Text) / 1000000) * double.Parse(item_intensity_text_box.Text)).ToString();
-
-                if (string.IsNullOrWhiteSpace(no_packages_text_box.Text) || string.IsNullOrWhiteSpace(no_sheets_per_package_text_box.Text))
+                if (string.IsNullOrWhiteSpace(item_length_text_box.Text) || string.IsNullOrWhiteSpace(item_width_text_box.Text) || string.IsNullOrWhiteSpace(item_thickness_text_box.Text) || string.IsNullOrEmpty(item_type_combo_box.Text) || string.IsNullOrEmpty(stock_name_combo_box.Text))
                 {
-                    MessageBox.Show("لا يمكن إضافة فراغات من الكمية  ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-                }
-                else if (errorProvider1.GetError(no_packages_text_box) != "" || errorProvider1.GetError(no_sheets_per_package_text_box) != "")
-                {
+                    //DO NOTHING
                     MessageBox.Show("لا يمكن حفظ البيانات  \n  الرجاء التاكد من كتابة البيانات بشكل صحيح ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                 }
-                else if (string.IsNullOrEmpty(printers_combo_box.Text))
+                else if ((errorProvider1.GetError(item_length_text_box) == "") && (errorProvider1.GetError(item_width_text_box) == "") && (errorProvider1.GetError(item_thickness_text_box) == ""))
                 {
-                    MessageBox.Show("يجب إختيار إسم المطبعة " , " خطأ" , MessageBoxButtons.OK , MessageBoxIcon.Error , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
+                    item_code_text_box.Text = item_type_combo_box.Text + removedotinnumber(double.Parse(item_thickness_text_box.Text)) + removedotinnumber(double.Parse(item_width_text_box.Text)) + removedotinnumber(double.Parse(item_length_text_box.Text));
+                    item_sheet_weight_text_box.Text = ((double.Parse(item_length_text_box.Text) * double.Parse(item_width_text_box.Text) * double.Parse(item_thickness_text_box.Text) / 1000000) * double.Parse(item_intensity_text_box.Text)).ToString();
                 }
-                else
-                {
-                    long total_n_bottels = total_number_of_bottel_per_sheet * long.Parse(no_packages_text_box.Text)*long.Parse(no_sheets_per_package_text_box.Text);
-                    quantity_net_weight.Text = (long.Parse(no_packages_text_box.Text) * long.Parse(no_sheets_per_package_text_box.Text) * double.Parse(item_sheet_weight_text_box.Text)).ToString();
-                    parcel_net_weight.Text = (long.Parse(no_sheets_per_package_text_box.Text) * double.Parse(item_sheet_weight_text_box.Text)).ToString();
 
-
-                    if (check_if_quantity_is_exists_or_not())
+                    if (string.IsNullOrWhiteSpace(no_packages_text_box.Text) || string.IsNullOrWhiteSpace(no_sheets_per_package_text_box.Text))
                     {
-
-                        MessageBox.Show("الكمية موجودة"  , "خطأ" , MessageBoxButtons.OK , MessageBoxIcon.Error , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
-
-                    }else
-                    {
-                        quantities.Add(new SH_QUANTITIES_OF_PRINTED_MATERIAL() { SH_ITEM_CODE  = item_code_text_box.Text  , SH_ITEM_LENGTH = long.Parse(item_length_text_box.Text)  , SH_ITEM_THICKNESS = double.Parse(item_thickness_text_box.Text) , SH_ITEM_TOTAL_NO_PARCELS = long.Parse(no_packages_text_box.Text) , SH_ITEM_TOTAL_NO_SHEETS = long.Parse(no_packages_text_box.Text)*long.Parse(no_sheets_per_package_text_box.Text) , SH_ITEM_SHEET_WEIGHT = double.Parse(item_sheet_weight_text_box.Text) , SH_PARCEL_NET_WEIGHT = double.Parse(parcel_net_weight.Text) , SH_PRINTER_ID = printers[printers_combo_box.SelectedIndex].SH_ID , SH_PRINTER_NAME = printers_combo_box.Text , SH_ITEM_TOTAL_NET_WEIGHT = double.Parse(quantity_net_weight.Text) , SH_STOCK_NAME = stock_name_combo_box.Text , SH_TOTAL_NUMBER_OF_BOTTELS = total_n_bottels , SH_ITEM_TYPE = item_type_combo_box.Text , SH_PRINTING_PERMISSION_NUMBER = printing_permission_number.Text   , SH_ITEM_WIDTH = double.Parse(item_width_text_box.Text) , SH_PARCEL_NO_SHEETS = long.Parse(no_sheets_per_package_text_box.Text) });
-                        fillgridviewitems();
-                        all_packages_no_sheets += long.Parse(no_sheets_per_package_text_box.Text) * long.Parse(no_packages_text_box.Text);
-                        total_no_packges += long.Parse(no_packages_text_box.Text);
-                        all_packages_net_weight += double.Parse(quantity_net_weight.Text);
-                        total_net_weight.Text = all_packages_net_weight.ToString();
-                        item_total_number_of_packages.Text = total_no_packges.ToString();
+                        MessageBox.Show("لا يمكن إضافة فراغات من الكمية  ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                     }
-                }
+                    else if (errorProvider1.GetError(no_packages_text_box) != "" || errorProvider1.GetError(no_sheets_per_package_text_box) != "")
+                    {
+                        MessageBox.Show("لا يمكن حفظ البيانات  \n  الرجاء التاكد من كتابة البيانات بشكل صحيح ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                    }
+                    else if (string.IsNullOrEmpty(printers_combo_box.Text))
+                    {
+                        MessageBox.Show("يجب إختيار إسم المطبعة ", " خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                    }else if (string.IsNullOrWhiteSpace(printing_permission_number.Text))
+                    {
+                        MessageBox.Show("يجب كتابة رقم إذن الطباعة", " خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+                    }
+                    else
+                    {
+                        long total_n_bottels = total_number_of_bottel_per_sheet * long.Parse(no_packages_text_box.Text) * long.Parse(no_sheets_per_package_text_box.Text);
+                        quantity_net_weight.Text = (long.Parse(no_packages_text_box.Text) * long.Parse(no_sheets_per_package_text_box.Text) * double.Parse(item_sheet_weight_text_box.Text)).ToString();
+                        parcel_net_weight.Text = (long.Parse(no_sheets_per_package_text_box.Text) * double.Parse(item_sheet_weight_text_box.Text)).ToString();
+
+
+                        if (check_if_quantity_is_exists_or_not())
+                        {
+
+                            MessageBox.Show("الكمية موجودة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
+                        }
+                        else
+                        {
+                            quantities.Add(new SH_QUANTITIES_OF_PRINTED_MATERIAL() { SH_ITEM_CODE = item_code_text_box.Text, SH_ITEM_LENGTH = long.Parse(item_length_text_box.Text), SH_ITEM_THICKNESS = double.Parse(item_thickness_text_box.Text), SH_ITEM_TOTAL_NO_PARCELS = long.Parse(no_packages_text_box.Text), SH_ITEM_TOTAL_NO_SHEETS = long.Parse(no_packages_text_box.Text) * long.Parse(no_sheets_per_package_text_box.Text), SH_ITEM_SHEET_WEIGHT = double.Parse(item_sheet_weight_text_box.Text), SH_PARCEL_NET_WEIGHT = double.Parse(parcel_net_weight.Text), SH_PRINTER_ID = printers[printers_combo_box.SelectedIndex].SH_ID, SH_PRINTER_NAME = printers_combo_box.Text, SH_ITEM_TOTAL_NET_WEIGHT = double.Parse(quantity_net_weight.Text), SH_STOCK_NAME = stock_name_combo_box.Text, SH_TOTAL_NUMBER_OF_BOTTELS = total_n_bottels, SH_ITEM_TYPE = item_type_combo_box.Text, SH_PRINTING_PERMISSION_NUMBER = printing_permission_number.Text, SH_ITEM_WIDTH = double.Parse(item_width_text_box.Text), SH_PARCEL_NO_SHEETS = long.Parse(no_sheets_per_package_text_box.Text) });
+                            fillgridviewitems();
+                            all_packages_no_sheets += long.Parse(no_sheets_per_package_text_box.Text) * long.Parse(no_packages_text_box.Text);
+                            total_no_packges += long.Parse(no_packages_text_box.Text);
+                            all_packages_net_weight += double.Parse(quantity_net_weight.Text);
+                            total_net_weight.Text = all_packages_net_weight.ToString();
+                            item_total_number_of_packages.Text = total_no_packges.ToString();
+                        }
+                    }
+                
+            }catch(Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE ADDING QUANTITIES TO PRINTEd TIN PARCELS FORM "+ex.ToString());
             }
         }
         private void remove_quantity_btn_Click(object sender, EventArgs e)
@@ -645,7 +865,7 @@ namespace Al_Shaheen_System
                 MessageBox.Show("الرجاء إضافة الكميات المطبوعة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
             }
-            if  (string.IsNullOrEmpty(printers_combo_box.Text))
+            if (string.IsNullOrEmpty(printers_combo_box.Text))
             {
                 MessageBox.Show("الرجاء إختيار إسم المطبعة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
 
@@ -657,7 +877,23 @@ namespace Al_Shaheen_System
             else if (string.IsNullOrEmpty(printing_permission_number.Text))
             {
                 MessageBox.Show("الرجاء إختيار إذن خروج من المطبعة ");
-            }else 
+            } else if (string.IsNullOrWhiteSpace(examination_number_text_box.Text))
+            {
+                MessageBox.Show("الرجاء إدخال رقم محضر الفحص  ");
+            } else if (string.IsNullOrWhiteSpace(stock_man_examin_text_box.Text))
+            {
+                MessageBox.Show("الرجاء إدخال عضو المخازن فى لجنة الفحص  ");
+            }
+            else  if (string.IsNullOrWhiteSpace(technicien_man_1_text_box.Text))
+            {
+                MessageBox.Show("الرجاء إدخال عضو الفنين الاول فى لجنة الفحص  ");
+            }
+            else
+            if (string.IsNullOrWhiteSpace(technicien_man_2_text_box.Text))
+            {
+                MessageBox.Show("الرجاء إدخال عضو الفنين الثانى فى لجنة الفحص  ");
+            }
+            else
             {
                 //MessageBox.Show("safe to save");
 
@@ -665,11 +901,13 @@ namespace Al_Shaheen_System
                 long sp_id =  check_where_specification_exists_or_not();
                 if (sp_id == 0)
                 {
+                    savenewpermssionnumber();
                     sp_id = saveprintedmaterialspecification();
                     saveprintedmaterialquantity(sp_id);
                 }
                 else
                 {
+                    savenewpermssionnumber();
                     updatespecificationvalues(sp_id);
                     saveprintedmaterialquantity(sp_id);
 
@@ -851,6 +1089,8 @@ namespace Al_Shaheen_System
             {
                 fillproductscombobox();
             }
+            //getstocksmantoexamination();
+            //gettechnicienexamination();
         }
 
         private void item_type_combo_box_SelectedIndexChanged(object sender, EventArgs e)
@@ -875,6 +1115,21 @@ namespace Al_Shaheen_System
                 double num = double.Parse(item_thickness_text_box.Text);
                 item_thickness_text_box.Text = num.ToString();
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            current_date_time_label.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void addnewprintingmaterialfd_Enter(object sender, EventArgs e)
+        {
+            //gettechnicienexamination();
+        }
+
+        private void item_length_text_box_Leave(object sender, EventArgs e)
+        {
+           // double x = double.Parse()
         }
     }
 }

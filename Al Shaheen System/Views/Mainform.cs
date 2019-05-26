@@ -196,7 +196,7 @@ namespace Al_Shaheen_System
 
         private void إضافةالصفيحالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewprintingmaterialfd myform = new addnewprintingmaterialfd())
+            using (addnewprintingmaterialfd myform = new addnewprintingmaterialfd(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }

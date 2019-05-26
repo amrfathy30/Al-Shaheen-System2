@@ -39,6 +39,10 @@ namespace Al_Shaheen_System
             mdatatabel.Columns.Add("item_total_no_sheets");
             mdatatabel.Columns.Add("item_net_weight");
             mdatatabel.Columns.Add("item_gross_weight");
+            mdatatabel.Columns.Add("length");
+            mdatatabel.Columns.Add("width");
+            mdatatabel.Columns.Add("thickness");
+
             for (int i = 0; i < mQuntities.quantities.Count; i++)
             {
                 mdatatabel.Rows.Add(
@@ -50,7 +54,11 @@ namespace Al_Shaheen_System
                  (mQuntities.quantities[i].SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE)
                  ,(mQuntities.quantities[i].SH_TOTAL_NUMBER_OF_SHEETS()),
                  (mQuntities.quantities[i].SH_NET_WEIGHT),
-                 (mQuntities.quantities[i].SH_ITEM_GROSS_WEIGHT)
+                 (mQuntities.quantities[i].SH_ITEM_GROSS_WEIGHT),
+                 (mQuntities.quantities[i].SH_QUANTITY_PARCELS[0].SH_ITEM_LENGTH.ToString()),
+                 (mQuntities.quantities[i].SH_QUANTITY_PARCELS[0].SH_ITEM_WIDTH.ToString()),
+                 (mQuntities.quantities[i].SH_QUANTITY_PARCELS[0].SH_ITEM_THICKNESS.ToString())
+
                 );
             }
 

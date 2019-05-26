@@ -16,6 +16,15 @@ namespace Al_Shaheen_System
         List<SH_RAW_MATERIAL_PARCEL> parcels = new List<SH_RAW_MATERIAL_PARCEL>();
         List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
         List<SH_TIN_PRINTER> printers = new List<SH_TIN_PRINTER>();
+
+        List<SH_FACE_COLOR> faces = new List<SH_FACE_COLOR>();
+        List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
+        List<SH_CLIENTS_PRODUCTS> client_products = new List<SH_CLIENTS_PRODUCTS>();
+        
+
+
+        DatabaseConnection myconnection = new DatabaseConnection();
+
         long mtotal_no_sheets = 0;
         double mtotal_net_weight = 0;
 
@@ -38,7 +47,7 @@ namespace Al_Shaheen_System
         {
             try
             {
-                DatabaseConnection myconnection = new DatabaseConnection();
+                 
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM SH_TIN_PRINTER", DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -140,15 +149,73 @@ namespace Al_Shaheen_System
             p_label.Text = "إسم المطبعة";
             p_text_box.DropDownStyle = ComboBoxStyle.DropDown;
             fillprintersgridview();
+            printing_panel.Visible = true;
+            //fill clients combobox 
+            fillclientscombobox();
+
         }
+
+        void fillclientscombobox()
+        {
+            clients.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_CLIENTS_DATA",DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    clients.Add(new SH_CLIENT_COMPANY() {
+                        SH_CLIENT_COMPANY_FAX_NUMBER = reader["SH_CLIENT_COMPANY_FAX_NUMBER"].ToString(),
+                        SH_CLIENT_COMPANY_MOBILE = reader["SH_CLIENT_COMPANY_MOBILE"].ToString(),
+                        SH_CLIENT_COMPANY_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString(),
+                        SH_CLIENT_COMPANY_TELEPHONE = reader["SH_CLIENT_COMPANY_TELEPHONE"].ToString(),
+                        SH_CLIENT_COMPANY_TYPE = reader["SH_CLIENT_COMPANY_TYPE"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString())
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING CLIENTS COMBO Box "+ex.ToString());
+            }
+
+            if (clients.Count > 0)
+            {
+                clients_combo_box.Items.Clear();
+                for (int i = 0; i < clients.Count; i++)
+                {
+                    clients_combo_box.Items.Add(clients[i].SH_CLIENT_COMPANY_NAME);
+                }
+            }
+        }
+
 
         private void production_radio_btn_CheckedChanged(object sender, EventArgs e)
         {
             p_label.Text = "مرحلة الانتاج";
-            p_text_box.DropDownStyle = ComboBoxStyle.Simple;
+            p_text_box.DropDownStyle = ComboBoxStyle.DropDown;
+            fillproductionddepartments();
+        }
+        void fillproductionddepartments()
+        {
+            try
+            {
+                p_text_box.Text = "";
+                p_text_box.Items.Clear();
+                p_text_box.Items.Add("المقصات");
+                p_text_box.Items.Add("المكابس");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE ADDING PRODUTIoN DEPARTMENTS "+ex.ToString());
+            }
         }
 
-       
         private void cancel_btn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -318,6 +385,16 @@ namespace Al_Shaheen_System
             p_label.Text = "إسم المطبعة";
             p_text_box.DropDownStyle = ComboBoxStyle.DropDown;
             fillprintersgridview();
+        }
+
+        private void clients_combo_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (clients_combo_box.SelectedIndex >= 0)
+            {
+                //fill client products combo box
+
+
+            }
         }
     }
 }

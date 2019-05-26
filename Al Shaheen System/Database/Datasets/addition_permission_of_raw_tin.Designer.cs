@@ -299,6 +299,12 @@ namespace Al_Shaheen_System.Database.Datasets {
             
             private global::System.Data.DataColumn columnitem_coating;
             
+            private global::System.Data.DataColumn columnlength;
+            
+            private global::System.Data.DataColumn columnwidth;
+            
+            private global::System.Data.DataColumn columnthickness;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public raw_tin_quantitiesDataTable() {
@@ -414,6 +420,30 @@ namespace Al_Shaheen_System.Database.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn lengthColumn {
+                get {
+                    return this.columnlength;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn widthColumn {
+                get {
+                    return this.columnwidth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn thicknessColumn {
+                get {
+                    return this.columnthickness;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +479,7 @@ namespace Al_Shaheen_System.Database.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public raw_tin_quantitiesRow Addraw_tin_quantitiesRow(long no, string item_code, string item_finish, string item_temper, long item_no_parcels, long item_no_sheets_per_parcel, long item_total_no_sheets, double item_net_weigth, double item_gross_weight, string item_coating) {
+            public raw_tin_quantitiesRow Addraw_tin_quantitiesRow(long no, string item_code, string item_finish, string item_temper, long item_no_parcels, long item_no_sheets_per_parcel, long item_total_no_sheets, double item_net_weigth, double item_gross_weight, string item_coating, string length, string width, string thickness) {
                 raw_tin_quantitiesRow rowraw_tin_quantitiesRow = ((raw_tin_quantitiesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         no,
@@ -461,7 +491,10 @@ namespace Al_Shaheen_System.Database.Datasets {
                         item_total_no_sheets,
                         item_net_weigth,
                         item_gross_weight,
-                        item_coating};
+                        item_coating,
+                        length,
+                        width,
+                        thickness};
                 rowraw_tin_quantitiesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowraw_tin_quantitiesRow);
                 return rowraw_tin_quantitiesRow;
@@ -494,6 +527,9 @@ namespace Al_Shaheen_System.Database.Datasets {
                 this.columnitem_net_weigth = base.Columns["item_net_weigth"];
                 this.columnitem_gross_weight = base.Columns["item_gross_weight"];
                 this.columnitem_coating = base.Columns["item_coating"];
+                this.columnlength = base.Columns["length"];
+                this.columnwidth = base.Columns["width"];
+                this.columnthickness = base.Columns["thickness"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +555,12 @@ namespace Al_Shaheen_System.Database.Datasets {
                 base.Columns.Add(this.columnitem_gross_weight);
                 this.columnitem_coating = new global::System.Data.DataColumn("item_coating", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnitem_coating);
+                this.columnlength = new global::System.Data.DataColumn("length", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlength);
+                this.columnwidth = new global::System.Data.DataColumn("width", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnwidth);
+                this.columnthickness = new global::System.Data.DataColumn("thickness", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnthickness);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -824,6 +866,54 @@ namespace Al_Shaheen_System.Database.Datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string length {
+                get {
+                    try {
+                        return ((string)(this[this.tableraw_tin_quantities.lengthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'length\' in table \'raw_tin_quantities\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableraw_tin_quantities.lengthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string width {
+                get {
+                    try {
+                        return ((string)(this[this.tableraw_tin_quantities.widthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'width\' in table \'raw_tin_quantities\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableraw_tin_quantities.widthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string thickness {
+                get {
+                    try {
+                        return ((string)(this[this.tableraw_tin_quantities.thicknessColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'thickness\' in table \'raw_tin_quantities\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableraw_tin_quantities.thicknessColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsnoNull() {
                 return this.IsNull(this.tableraw_tin_quantities.noColumn);
             }
@@ -940,6 +1030,42 @@ namespace Al_Shaheen_System.Database.Datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setitem_coatingNull() {
                 this[this.tableraw_tin_quantities.item_coatingColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IslengthNull() {
+                return this.IsNull(this.tableraw_tin_quantities.lengthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetlengthNull() {
+                this[this.tableraw_tin_quantities.lengthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IswidthNull() {
+                return this.IsNull(this.tableraw_tin_quantities.widthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetwidthNull() {
+                this[this.tableraw_tin_quantities.widthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsthicknessNull() {
+                return this.IsNull(this.tableraw_tin_quantities.thicknessColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetthicknessNull() {
+                this[this.tableraw_tin_quantities.thicknessColumn] = global::System.Convert.DBNull;
             }
         }
         
