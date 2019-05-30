@@ -89,110 +89,110 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
     </Compile>
-    <Compile Include="AllRequestOfPerfectProductFromSales.cs">
+    <Compile Include="Views\Sales\AllRequestOfPerfectProductFromSales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="all_receiving permission_informations.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\all_receiving permission_informations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="all_receiving permission_informations.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\all_receiving permission_informations.Designer.cs">
       <DependentUpon>all_receiving permission_informations.cs</DependentUpon>
     </Compile>
-    <Compile Include="bottom_containers_data.cs" />
-    <Compile Include="clientmaterialbalanceform.cs">
+    <Compile Include="Models\Stocks\FinishedProductsModels\bottom_containers_data.cs" />
+    <Compile Include="Views\Stocks\FinishedProducts\clientmaterialbalanceform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="clientmaterialbalanceform.designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\clientmaterialbalanceform.designer.cs">
       <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
     </Compile>
-    <Compile Include="AllRequestOfPerfectProductFromSales.designer.cs">
+    <Compile Include="Views\Sales\AllRequestOfPerfectProductFromSales.designer.cs">
       <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberform.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\clientreceivalpermissionnumberform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberform.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\clientreceivalpermissionnumberform.Designer.cs">
       <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberproducts.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\clientreceivalpermissionnumberproducts.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="clientreceivalpermissionnumberproducts.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\clientreceivalpermissionnumberproducts.Designer.cs">
       <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="client_material_balance_items.cs" />
-    <Compile Include="CutterFrm.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\client_material_balance_items.cs" />
+    <Compile Include="Views\CutterFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CutterFrm.Designer.cs">
+    <Compile Include="Views\CutterFrm.Designer.cs">
       <DependentUpon>CutterFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="easy_open_container_data.cs" />
-    <Compile Include="finished_cans_model_data.cs" />
-    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.cs">
+    <Compile Include="Models\Stocks\FinishedProductsModels\easy_open_container_data.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\finished_cans_model_data.cs" />
+    <Compile Include="Views\flashbackPalletscartonseparatorsandwoodbush.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="flashbackPalletscartonseparatorsandwoodbush.Designer.cs">
+    <Compile Include="Views\flashbackPalletscartonseparatorsandwoodbush.Designer.cs">
       <DependentUpon>flashbackPalletscartonseparatorsandwoodbush.cs</DependentUpon>
     </Compile>
-    <Compile Include="Holl1Frm.cs">
+    <Compile Include="Views\Holl1Frm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Holl1Frm.Designer.cs">
+    <Compile Include="Views\Holl1Frm.Designer.cs">
       <DependentUpon>Holl1Frm.cs</DependentUpon>
     </Compile>
-    <Compile Include="printrawtinaddedquantities.cs">
+    <Compile Include="Views\Stocks\RawTinViews\printrawtinaddedquantities.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="printrawtinaddedquantities.Designer.cs">
+    <Compile Include="Views\Stocks\RawTinViews\printrawtinaddedquantities.Designer.cs">
       <DependentUpon>printrawtinaddedquantities.cs</DependentUpon>
     </Compile>
-    <Compile Include="printreceivalpermission.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\printreceivalpermission.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="printreceivalpermission.Designer.cs">
+    <Compile Include="Views\Stocks\FinishedProducts\printreceivalpermission.Designer.cs">
       <DependentUpon>printreceivalpermission.cs</DependentUpon>
     </Compile>
-    <Compile Include="newCutterFrm.cs">
+    <Compile Include="Views\newCutterFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="newCutterFrm.Designer.cs">
+    <Compile Include="Views\newCutterFrm.Designer.cs">
       <DependentUpon>newCutterFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="order_receit_form_data.cs" />
-    <Compile Include="peel_off_container_data.cs" />
-    <Compile Include="plastic_cover_container_data.cs" />
-    <Compile Include="ProductDetailsForExchangeFrm.cs">
+    <Compile Include="Models\Stocks\FinishedProductsModels\order_receit_form_data.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\peel_off_container_data.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\plastic_cover_container_data.cs" />
+    <Compile Include="Views\ProductDetailsForExchangeFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductDetailsForExchangeFrm.designer.cs">
+    <Compile Include="Views\ProductDetailsForExchangeFrm.designer.cs">
       <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductionFrm.cs">
+    <Compile Include="Views\ProductionFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductionFrm.Designer.cs">
+    <Compile Include="Views\ProductionFrm.Designer.cs">
       <DependentUpon>ProductionFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="rawtinaddingprinterdata.cs" />
-    <Compile Include="receival_permission_order_items.cs" />
-    <Compile Include="rlt_container_data.cs" />
-    <Compile Include="SH_CONTAINER_OF_BOTTEL_FACE.cs" />
-    <Compile Include="SH_CUTTER_BALANCEcs.cs" />
-    <Compile Include="SH_CUTTER_DAILY_WORK.cs" />
-    <Compile Include="SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA.cs" />
-    <Compile Include="SH_EXCHANGE_REQUEST_FROM_SALES.cs" />
-    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS.cs" />
-    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_ADDING_FROM_SALES_JOURNAL.cs" />
-    <Compile Include="SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_FLASH_BACK_PERMISSIONS.cs" />
-    <Compile Include="sh_plastic_mold_finished_product_data.cs" />
-    <Compile Include="SH_QUANTITY_OF_BOTTEL_FACE.cs" />
-    <Compile Include="SH_QUANTITY_OF_EXCHANGED_MURAN_MATERIAL.cs" />
-    <Compile Include="SH_QUANTITY_OF_EXCHANGED_PRINTED_MATERIAL.cs" />
-    <Compile Include="SH_RECEIVING_PERMISSION_INFORMATION.cs" />
-    <Compile Include="SH_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION.cs" />
-    <Compile Include="SH_SPECIFICATION_OF_COVER_PLATE_BOTTEL_FACE.cs" />
-    <Compile Include="twist_of_container_data.cs" />
+    <Compile Include="Views\Stocks\RawTinViews\rawtinaddingprinterdata.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\receival_permission_order_items.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\rlt_container_data.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_CONTAINER_OF_BOTTEL_FACE.cs" />
+    <Compile Include="Models\SH_CUTTER_BALANCEcs.cs" />
+    <Compile Include="Models\SH_CUTTER_DAILY_WORK.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_DISMISSAL_FINISHED_PRODUCTS_FORM_DATA.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_EXCHANGE_REQUEST_FROM_SALES.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_ADDING_FROM_SALES_JOURNAL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_PALLETS_WOOD_WINCHES_AND_CARDBOARD_DIVIDERS_FLASH_BACK_PERMISSIONS.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\sh_plastic_mold_finished_product_data.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_QUANTITY_OF_BOTTEL_FACE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_QUANTITY_OF_EXCHANGED_MURAN_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_QUANTITY_OF_EXCHANGED_PRINTED_MATERIAL.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_RECEIVING_PERMISSION_INFORMATION.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_RECEIVING_PERMISSION_ITEMS_QUANTITIES_INFORMATION.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\SH_SPECIFICATION_OF_COVER_PLATE_BOTTEL_FACE.cs" />
+    <Compile Include="Models\Stocks\FinishedProductsModels\twist_of_container_data.cs" />
     <Compile Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -951,36 +951,36 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="adding_raw_material_quantites.rdlc" />
-    <EmbeddedResource Include="AllRequestOfPerfectProductFromSales.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\adding_raw_material_quantites.rdlc" />
+    <EmbeddedResource Include="Views\Sales\AllRequestOfPerfectProductFromSales.resx">
       <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="all_receiving permission_informations.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\all_receiving permission_informations.resx">
       <DependentUpon>all_receiving permission_informations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="clientmaterialbalanceform.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\clientmaterialbalanceform.resx">
       <DependentUpon>clientmaterialbalanceform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="clientreceivalpermissionnumberform.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\clientreceivalpermissionnumberform.resx">
       <DependentUpon>clientreceivalpermissionnumberform.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="clientreceivalpermissionnumberproducts.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\clientreceivalpermissionnumberproducts.resx">
       <DependentUpon>clientreceivalpermissionnumberproducts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="newCutterFrm.resx">
+    <EmbeddedResource Include="Views\newCutterFrm.resx">
       <DependentUpon>newCutterFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="printrawtinaddedquantities.resx">
+    <EmbeddedResource Include="Views\Stocks\RawTinViews\printrawtinaddedquantities.resx">
       <DependentUpon>printrawtinaddedquantities.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="print_client_receit_order.rdlc" />
-    <EmbeddedResource Include="ProductDetailsForExchangeFrm.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\print_client_receit_order.rdlc" />
+    <EmbeddedResource Include="Views\ProductDetailsForExchangeFrm.resx">
       <DependentUpon>ProductDetailsForExchangeFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductionFrm.resx">
+    <EmbeddedResource Include="Views\ProductionFrm.resx">
       <DependentUpon>ProductionFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="printreceivalpermission.resx">
+    <EmbeddedResource Include="Views\Stocks\FinishedProducts\printreceivalpermission.resx">
       <DependentUpon>printreceivalpermission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Sales\WorkOrders\ClientSupplyRunOrderFrmNew.resx">

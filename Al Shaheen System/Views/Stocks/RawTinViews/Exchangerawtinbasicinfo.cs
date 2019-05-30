@@ -392,8 +392,6 @@ namespace Al_Shaheen_System
             if (clients_combo_box.SelectedIndex >= 0)
             {
                 //fill client products combo box
-
-
             }
         }
     }
