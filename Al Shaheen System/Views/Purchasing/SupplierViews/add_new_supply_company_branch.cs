@@ -16,10 +16,19 @@ namespace Al_Shaheen_System
         SH_SUPPLY_COMPANY msupply = new SH_SUPPLY_COMPANY();
         List<SH_SUPPLY_COMPANY_BRANCHES> supplier_branches = new List<SH_SUPPLY_COMPANY_BRANCHES>();
 
-        public add_new_supply_company_branch(SH_SUPPLY_COMPANY anycompany)
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+        public add_new_supply_company_branch(SH_SUPPLY_COMPANY anycompany , SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyaccount, SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
             msupply = anycompany;
+
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = anyperm;
+
+
         }
 
 
@@ -103,7 +112,7 @@ namespace Al_Shaheen_System
         private void new_client_branch_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (add_new_supply_company_branch myform = new add_new_supply_company_branch(msupply))
+            using (add_new_supply_company_branch myform = new add_new_supply_company_branch(msupply,mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -138,7 +147,9 @@ namespace Al_Shaheen_System
                 {
                     string query = "INSERT INTO SH_SUPPLY_COMPANY_BRANCHES ";
                     query += "(SH_SUPPLY_COMPANY_ID, SH_SUPPLY_COMPANY_NAME, SH_COMPANY_BRANCH_TYPE, SH_COMPANY_BRANCH_NAME, SH_COMPANY_BRANCH_ADDRESS_TEXT, ";
-                    query += " SH_COMPANY_BRANCH_ADDRESS_GPS_LINK) ";
+                    query += " SH_COMPANY_BRANCH_ADDRESS_GPS_LINK ,";
+                    query += " SH_DATA_ENTRY_USER_ID , SH_DATA_ENTRY_EMPLOYEE_ID, ";
+                    query += " SH_ADDITION_DATE ) ";
                         query += "VALUES(@SH_SUPPLY_COMPANY_ID,@SH_SUPPLY_COMPANY_NAME,@SH_COMPANY_BRANCH_TYPE,@SH_COMPANY_BRANCH_NAME,@SH_COMPANY_BRANCH_ADDRESS_TEXT,@SH_COMPANY_BRANCH_ADDRESS_GPS_LINK)";
                     DatabaseConnection myconnection = new DatabaseConnection();
                     myconnection.openConnection();
@@ -149,6 +160,9 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_COMPANY_BRANCH_TYPE", branchetype);
                     cmd.Parameters.AddWithValue("@SH_COMPANY_BRANCH_ADDRESS_TEXT", branch_address_text_box.Text);
                     cmd.Parameters.AddWithValue("@SH_COMPANY_BRANCH_ADDRESS_GPS_LINK", branch_address_link_text_box.Text);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID );
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID",mEmployee.SH_ID ) ;
+                    cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now );
                     cmd.ExecuteNonQuery();
                     myconnection.closeConnection();
                     fillsupplierbranchesgridview();

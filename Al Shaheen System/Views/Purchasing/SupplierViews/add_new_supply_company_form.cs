@@ -13,9 +13,16 @@ namespace Al_Shaheen_System
 {
     public partial class add_new_supply_company_form : Form
     {
-        public add_new_supply_company_form()
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+        public add_new_supply_company_form(SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
+            mPermission = anyperm;
+            mAccount = anyAccount;
+            mPermission = anyperm;
+
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
@@ -26,7 +33,7 @@ namespace Al_Shaheen_System
         private void add_new_company_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (add_new_supply_company_form myform = new add_new_supply_company_form())
+            using (add_new_supply_company_form myform = new add_new_supply_company_form(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -68,6 +75,9 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_SUPPLY_COMPANY_TYPE", company_type_text_box);
                 cmd.Parameters.AddWithValue("@SH_SUPPLY_COMPANY_MOBILE" , company_mobile_text_box.Text);
                 cmd.Parameters.AddWithValue("@SH_SUPPLY_COMPANY_TELEPHONE" , company_telephone_text_box.Text);
+                cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mEmployee.SH_ID);
+                cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID",mAccount.SH_ID );
+                cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
                 cmd.ExecuteNonQuery();
                 myconnection.closeConnection();
                 MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);

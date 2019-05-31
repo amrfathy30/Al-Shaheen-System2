@@ -17,10 +17,22 @@ namespace Al_Shaheen_System
         List<SH_SUPPLY_COMPANY_BRANCHES> branchList = new List<SH_SUPPLY_COMPANY_BRANCHES>();
         List<SH_SUPPLIER_ITEMS> suppItemList = new List<SH_SUPPLIER_ITEMS>();
         SH_SUPPLY_COMPANY comp = new SH_SUPPLY_COMPANY();
-        public AllSelectedSupplierDataFrm(SH_SUPPLY_COMPANY anycompany)
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public AllSelectedSupplierDataFrm(SH_SUPPLY_COMPANY anycompany, SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyPermission)
         {
             InitializeComponent();
             comp = anycompany;
+
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPermission;
+
+
         }
 
         //select * from SH_SUPPLIER_ITEMS where SH_ITEM_ID=@id
@@ -51,7 +63,7 @@ namespace Al_Shaheen_System
         void fillGriditems()
         {
             suppItemList.Clear();
-            
+
             loadDataGridItems();
             if (suppItemList.Count > 0)
             {
@@ -77,7 +89,7 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    branchList.Add(new SH_SUPPLY_COMPANY_BRANCHES { SH_ID=long.Parse(reader["SH_ID"].ToString()),SH_SUPPLY_COMPANY_NAME=reader["SH_SUPPLY_COMPANY_NAME"].ToString(),SH_COMPANY_BRANCH_ADDRESS_GPS_LINK=reader["SH_COMPANY_BRANCH_ADDRESS_GPS_LINK"].ToString(),SH_COMPANY_BRANCH_ADDRESS_TEXT=reader["SH_COMPANY_BRANCH_ADDRESS_TEXT"].ToString(),SH_COMPANY_BRANCH_NAME=reader["SH_COMPANY_BRANCH_NAME"].ToString(),SH_COMPANY_BRANCH_TYPE=reader["SH_COMPANY_BRANCH_TYPE"].ToString() });
+                    branchList.Add(new SH_SUPPLY_COMPANY_BRANCHES { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_SUPPLY_COMPANY_NAME = reader["SH_SUPPLY_COMPANY_NAME"].ToString(), SH_COMPANY_BRANCH_ADDRESS_GPS_LINK = reader["SH_COMPANY_BRANCH_ADDRESS_GPS_LINK"].ToString(), SH_COMPANY_BRANCH_ADDRESS_TEXT = reader["SH_COMPANY_BRANCH_ADDRESS_TEXT"].ToString(), SH_COMPANY_BRANCH_NAME = reader["SH_COMPANY_BRANCH_NAME"].ToString(), SH_COMPANY_BRANCH_TYPE = reader["SH_COMPANY_BRANCH_TYPE"].ToString() });
                 }
 
                 myconnection.closeConnection();
@@ -98,7 +110,7 @@ namespace Al_Shaheen_System
                 dataGridViewBranch.Rows.Clear();
                 for (int i = 0; i < branchList.Count; i++)
                 {
-                    dataGridViewBranch.Rows.Add(new string[] { (i + 1).ToString(), branchList[i].SH_COMPANY_BRANCH_NAME, branchList[i].SH_COMPANY_BRANCH_TYPE, branchList[i].SH_COMPANY_BRANCH_ADDRESS_TEXT, branchList[i].SH_COMPANY_BRANCH_ADDRESS_GPS_LINK});
+                    dataGridViewBranch.Rows.Add(new string[] { (i + 1).ToString(), branchList[i].SH_COMPANY_BRANCH_NAME, branchList[i].SH_COMPANY_BRANCH_TYPE, branchList[i].SH_COMPANY_BRANCH_ADDRESS_TEXT, branchList[i].SH_COMPANY_BRANCH_ADDRESS_GPS_LINK });
                 }
             }
         }
@@ -116,14 +128,14 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    suppCompanyContactList.Add(new SH_SUPPLIER_COMPANY_CONTACTS{ SH_ID = long.Parse(reader["SH_ID"].ToString()),SH_SUPPLIER_COMPANY_CONTACT_EMAIL=reader["SH_SUPPLIER_COMPANY_CONTACT_EMAIL"].ToString(),SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE=reader["SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE"].ToString(),SH_SUPPLIER_COMPANY_CONTACT_NAME=reader["SH_SUPPLIER_COMPANY_CONTACT_NAME"].ToString() });
+                    suppCompanyContactList.Add(new SH_SUPPLIER_COMPANY_CONTACTS { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_SUPPLIER_COMPANY_CONTACT_EMAIL = reader["SH_SUPPLIER_COMPANY_CONTACT_EMAIL"].ToString(), SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE = reader["SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE"].ToString(), SH_SUPPLIER_COMPANY_CONTACT_NAME = reader["SH_SUPPLIER_COMPANY_CONTACT_NAME"].ToString() });
                 }
 
                 myconnection.closeConnection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE GETTING Supplier employees Contacts "+ ex.ToString());
+                MessageBox.Show("ERROR WHILE GETTING Supplier employees Contacts " + ex.ToString());
             }
         }
 
@@ -157,29 +169,29 @@ namespace Al_Shaheen_System
 
         private void buttonAddBranch_Click(object sender, EventArgs e)
         {
-            add_new_supply_company_branch myform = new add_new_supply_company_branch(comp);
-           
-                myform.ShowDialog();
-            
+            add_new_supply_company_branch myform = new add_new_supply_company_branch(comp, mEmployee,mAccount,mPermission);
+
+            myform.ShowDialog();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (AddNewItemForSupplierFrm myform = new AddNewItemForSupplierFrm(comp))
-            {
+            AddNewItemForSupplierFrm myform = new AddNewItemForSupplierFrm(comp ,mEmployee,mAccount,mPermission);
+            
                 myform.ShowDialog();
-            }
-        }
+        
+    }
 
         private void buttonAddEmployee_Click(object sender, EventArgs e)
         {
-            addSupplierCompanyContacts frm = new addSupplierCompanyContacts(comp);
+            addSupplierCompanyContacts frm = new addSupplierCompanyContacts(comp , mEmployee,mAccount,mPermission);
             frm.ShowDialog();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            AddNewItemForSupplierFrm frm = new AddNewItemForSupplierFrm(comp);
+            AddNewItemForSupplierFrm frm = new AddNewItemForSupplierFrm(comp , mEmployee,mAccount,mPermission);
             frm.ShowDialog();
         }
 

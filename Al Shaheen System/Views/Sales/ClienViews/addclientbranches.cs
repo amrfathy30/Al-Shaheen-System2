@@ -14,11 +14,23 @@ namespace Al_Shaheen_System
     public partial class addclientbranches : Form
     {
         SH_CLIENT_COMPANY mclient = new SH_CLIENT_COMPANY();
-        List<SH_CLIENTS_BRANCHES> client_branches = new List<SH_CLIENTS_BRANCHES>(); 
-        public addclientbranches(SH_CLIENT_COMPANY anyclient)
+        List<SH_CLIENTS_BRANCHES> client_branches = new List<SH_CLIENTS_BRANCHES>();
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public addclientbranches(SH_CLIENT_COMPANY anyclient ,SH_EMPLOYEES anyemp,SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
         {
             this.mclient = anyclient;
             InitializeComponent();
+
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
+
+
         }
         void fillclientbranchesgridview()
         {
@@ -56,10 +68,10 @@ namespace Al_Shaheen_System
         private void new_client_branch_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addclientbranches myform =  new addclientbranches(mclient))
-            {
+            addclientbranches myform = new addclientbranches(mclient,mEmployee,mAccount,mPermission);
+            
                 myform.ShowDialog();
-            }
+            
             this.Close();
         }
 
@@ -98,13 +110,27 @@ namespace Al_Shaheen_System
                 {
                     DatabaseConnection myconnection = new DatabaseConnection();
                     myconnection.openConnection();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO SH_CLIENTS_BRANCHES ( SH_CLIENT_ID , SH_CLIENT_COMPANY_NAME , SH_CLIENT_BRANCH_NAME , SH_CLIENT_BRANCH_TYPE , SH_CLIENT_BRANCH_ADDRESS_TEXT , SH_CLIENT_BRANCH_ADDRESS_GPS_LINK) VALUES (@SH_CLIENT_ID ,@SH_CLIENT_COMPANY_NAME , @SH_CLIENT_BRANCH_NAME ,@SH_CLIENT_BRANCH_TYPE , @SH_CLIENT_BRANCH_ADDRESS_TEXT , @SH_CLIENT_BRANCH_ADDRESS_GPS_LINK )", DatabaseConnection.mConnection);
+                    string query = "INSERT INTO SH_CLIENTS_BRANCHES(SH_CLIENT_ID, ";
+                    query += " SH_CLIENT_COMPANY_NAME, SH_CLIENT_BRANCH_NAME, ";
+                    query += "SH_CLIENT_BRANCH_TYPE, SH_CLIENT_BRANCH_ADDRESS_TEXT, ";
+                    query += "SH_CLIENT_BRANCH_ADDRESS_GPS_LINK ";
+                    query += " , SH_DATA_ENTRY_USER_ID , SH_DATA_ENTRY_EMPLOYEE_ID , SH_ADDITION_DATE ";
+                    query += ") VALUES ( @SH_CLIENT_ID, ";
+                    query += "@SH_CLIENT_COMPANY_NAME, @SH_CLIENT_BRANCH_NAME, ";
+                    query += "@SH_CLIENT_BRANCH_TYPE, @SH_CLIENT_BRANCH_ADDRESS_TEXT,";
+                    query += " @SH_CLIENT_BRANCH_ADDRESS_GPS_LINK ";
+                    query += " , SH_DATA_ENTRY_USER_ID , SH_DATA_ENTRY_EMPLOYEE_ID , SH_ADDITION_DATE ";
+                    query += ")";
+                    SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
                     cmd.Parameters.AddWithValue("@SH_CLIENT_ID", mclient.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_NAME", mclient.SH_CLIENT_COMPANY_NAME);
                     cmd.Parameters.AddWithValue("@SH_CLIENT_BRANCH_NAME", client_branch_name_text_box.Text);
                     cmd.Parameters.AddWithValue("@SH_CLIENT_BRANCH_TYPE", branchetype);
                     cmd.Parameters.AddWithValue("@SH_CLIENT_BRANCH_ADDRESS_TEXT", branch_address_text_box.Text);
                     cmd.Parameters.AddWithValue("@SH_CLIENT_BRANCH_ADDRESS_GPS_LINK", branch_address_link_text_box.Text);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mAccount.SH_EMP_ID);
+                    cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
                     cmd.ExecuteNonQuery();
                     myconnection.closeConnection();
                     fillclientbranchesgridview();

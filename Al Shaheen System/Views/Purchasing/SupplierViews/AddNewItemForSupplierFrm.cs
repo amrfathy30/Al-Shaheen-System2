@@ -17,10 +17,23 @@ namespace Al_Shaheen_System
         List<SH_SUPPLIER_ITEMS> supply_items = new List<SH_SUPPLIER_ITEMS>();
         SH_SUPPLY_COMPANY MComp = new SH_SUPPLY_COMPANY();
         DatabaseConnection myconnection = new DatabaseConnection();
-        public AddNewItemForSupplierFrm(SH_SUPPLY_COMPANY anycompany)
+
+
+        SH_EMPLOYEES mEmployees;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public AddNewItemForSupplierFrm(SH_SUPPLY_COMPANY anycompany , SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
             MComp = anycompany;
+
+            mEmployees = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
+
+
         }
 
         private void AddNewItemForSupplierFrm_Load(object sender, EventArgs e)
@@ -126,7 +139,10 @@ namespace Al_Shaheen_System
 
         long insertItem()
         {
-            string query = "insert into SH_ITEMS(SH_ITEM_NAME)values(@name)";
+            string query = "insert into SH_ITEMS(SH_ITEM_NAME, ";
+            query += " SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_EMPLOYEE_ID ,";
+            query += " SH_ADDITION_DATE";
+            query += ")values(@name ,@SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_EMPLOYEE_ID,@SH_ADDITION_DATE)";
             query += "SELECT SCOPE_IDENTITY() AS myidentity";
             try
             {
@@ -135,6 +151,9 @@ namespace Al_Shaheen_System
 
                 SqlCommand comm = new SqlCommand(query, DatabaseConnection.mConnection);
                 comm.Parameters.AddWithValue("@name", textBoxItemName.Text);
+                comm.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID",mAccount.SH_ID );
+                comm.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID",mAccount.SH_EMP_ID );
+                comm.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
 
 
 
@@ -163,7 +182,10 @@ namespace Al_Shaheen_System
       long  insertSupplierItem(long itm_id)
         {
 
-            string query = "insert into SH_SUPPLIER_ITEMS values(@item_ID,@Item_name,@supplier_id,@supplier_name)";
+            string query = "insert into SH_SUPPLIER_ITEMS "; 
+            query += "values(@item_ID,@Item_name,@supplier_id,@supplier_name ";
+            query += " ,@SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_EMPLOYEE_ID,@SH_ADDITION_DATE";
+            query += " ) ";
             //query += "SELECT SCOPE_IDENTITY() AS myidentity";
             try
             {
@@ -176,6 +198,9 @@ namespace Al_Shaheen_System
                 comm.Parameters.AddWithValue("@Item_name",textBoxItemName.Text );
                 comm.Parameters.AddWithValue("@supplier_id", MComp.SH_ID);
                 comm.Parameters.AddWithValue("@supplier_name", MComp.SH_SUPPLY_COMAPNY_NAME);
+                comm.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
+                comm.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mAccount.SH_EMP_ID);
+                comm.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
 
 
                 SqlDataReader reader = comm.ExecuteReader();
@@ -259,7 +284,7 @@ namespace Al_Shaheen_System
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddNewItemForSupplierFrm frm = new AddNewItemForSupplierFrm(MComp);
+            AddNewItemForSupplierFrm frm = new AddNewItemForSupplierFrm(MComp,mEmployees,mAccount,mPermission);
             frm.ShowDialog();
         }
 

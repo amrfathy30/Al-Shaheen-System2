@@ -15,10 +15,21 @@ namespace Al_Shaheen_System
     public partial class add_new_client_company_btn : Form
     {
         SH_CLIENT_COMPANY mclient = new SH_CLIENT_COMPANY();
-        public add_new_client_company_btn(SH_CLIENT_COMPANY anycompany)
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+        
+
+
+        public add_new_client_company_btn(SH_CLIENT_COMPANY anycompany , SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyaccount , SH_USER_PERMISIONS anyperm )
         {
             InitializeComponent();
             mclient = anycompany;
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = anyperm;
+
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
@@ -62,8 +73,15 @@ namespace Al_Shaheen_System
                             company_type_text_box = "دولى";
                         }
                         string query = "INSERT INTO SH_CLIENT_COMPANY";
-                        query += " (SH_CLIENT_COMPANY_NAME, SH_CLIENT_COMPANY_TYPE, SH_CLIENT_COMPANY_TELEPHONE,";
-                        query += "  SH_CLIENT_COMPANY_FAX_NUMBER,SH_CLIENT_COMPANY_MOBILE) VALUES(@SH_CLIENT_COMPANY_NAME,@SH_CLIENT_COMPANY_TYPE,@SH_CLIENT_COMPANY_TELEPHONE , @SH_CLIENT_COMPANY_FAX_NUMBER,@SH_CLIENT_COMPANY_MOBILE)";
+                        query += " (SH_CLIENT_COMPANY_NAME, SH_CLIENT_COMPANY_TYPE,";
+                        query += " SH_CLIENT_COMPANY_TELEPHONE, ";
+                        query += "  SH_CLIENT_COMPANY_FAX_NUMBER,SH_CLIENT_COMPANY_MOBILE ";
+                        query += ", SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_EMPLOYEE_ID,SH_ADDITION_DATE ";
+                        query += " ) VALUES ";
+                        query += "    (@SH_CLIENT_COMPANY_NAME,@SH_CLIENT_COMPANY_TYPE,@SH_CLIENT_COMPANY_TELEPHONE ,  ";
+                        query += "    @SH_CLIENT_COMPANY_FAX_NUMBER,@SH_CLIENT_COMPANY_MOBILE ";
+                        query += " , @SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_EMPLOYEE_ID,@SH_ADDITION_DATE ";
+                        query += " ) ";
                         try
                         {
                             DatabaseConnection myconnection = new DatabaseConnection();
@@ -75,6 +93,9 @@ namespace Al_Shaheen_System
                             
                             cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_FAX_NUMBER", client_company_fax_number_text_box.Text);
                             cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_MOBILE", textBoxMobile.Text);
+                            cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
+                            cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mAccount.SH_EMP_ID);
+                            cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
                             cmd.ExecuteNonQuery();
                             myconnection.closeConnection();
                             MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
@@ -104,7 +125,12 @@ namespace Al_Shaheen_System
                         }
 
                         string query = " UPDATE SH_CLIENT_COMPANY SET SH_CLIENT_COMPANY_NAME = @SH_CLIENT_COMPANY_NAME, ";
-                        query += "SH_CLIENT_COMPANY_TYPE = @SH_CLIENT_COMPANY_TYPE, SH_CLIENT_COMPANY_TELEPHONE = @SH_CLIENT_COMPANY_TELEPHONE, SH_CLIENT_COMPANY_MOBILE = @SH_CLIENT_COMPANY_MOBILE,SH_CLIENT_COMPANY_FAX_NUMBER =  @SH_CLIENT_COMPANY_FAX_NUMBER WHERE  SH_ID = @SH_ID ";
+                        query += "SH_CLIENT_COMPANY_TYPE = @SH_CLIENT_COMPANY_TYPE, SH_CLIENT_COMPANY_TELEPHONE = @SH_CLIENT_COMPANY_TELEPHONE, ";
+                        query += " SH_DATA_ENTRY_USER_ID = @SH_DATA_ENTRY_USER_ID, ";
+                        query += " SH_DATA_ENTRY_EMPLOYEE_ID = @SH_DATA_ENTRY_EMPLOYEE_ID ,";
+                        query += " SH_ADDITION_DATE = @SH_ADDITION_DATE , ";
+                        query += "   SH_CLIENT_COMPANY_MOBILE = @SH_CLIENT_COMPANY_MOBILE, ";
+                        query += "  SH_CLIENT_COMPANY_FAX_NUMBER =  @SH_CLIENT_COMPANY_FAX_NUMBER WHERE  SH_ID = @SH_ID ";
 
                         DatabaseConnection myconnection = new DatabaseConnection();
                         myconnection.openConnection();
@@ -115,6 +141,9 @@ namespace Al_Shaheen_System
                        
                         cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_FAX_NUMBER", client_company_fax_number_text_box.Text);
                         cmd.Parameters.AddWithValue("@SH_ID", mclient.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mAccount.SH_EMP_ID);
+                        cmd.Parameters.AddWithValue("@SH_ADDITION_DATE",DateTime.Now);
                         cmd.ExecuteNonQuery();
                         myconnection.closeConnection();
                         MessageBox.Show("تم التعديل بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);

@@ -23,9 +23,18 @@ namespace Al_Shaheen_System
 
         long mtotal_number_of_pallets = 0;
         long mtotal_number_of_bottels = 0;
-        public addnewcutprintedmaterial()
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public addnewcutprintedmaterial(SH_EMPLOYEES anyemp,SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyPermission)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPermission;
         }
 
         void loadspecificationsofcutprintedmaterial()
@@ -390,10 +399,10 @@ namespace Al_Shaheen_System
             }
             else
             {
-                using (addnewclientproduct myform = new addnewclientproduct(clients[clients_combo_box.SelectedIndex]))
-                {
+                addnewclientproduct myform = new addnewclientproduct(clients[clients_combo_box.SelectedIndex],mEmployee,mAccount,mPermission);
+                
                     myform.ShowDialog();
-                }
+                
             }
         }
 
@@ -568,10 +577,10 @@ namespace Al_Shaheen_System
         private void add_new_cutprinted_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewcutprintedmaterial myform= new addnewcutprintedmaterial())
-            {
+            addnewcutprintedmaterial myform = new addnewcutprintedmaterial(mEmployee,mAccount,mPermission);
+            
                 myform.ShowDialog();
-            }
+            
             this.Close();
         }
 

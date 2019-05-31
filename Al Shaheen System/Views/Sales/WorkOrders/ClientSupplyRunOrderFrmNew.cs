@@ -33,10 +33,22 @@ namespace Al_Shaheen_System
         List<SH_CLIENTS_PRODUCTS> client_products = new List<SH_CLIENTS_PRODUCTS>();
         SH_EMPLOYEES MEmployee = new SH_EMPLOYEES();
         List<SH_COLOR_PILLOW> color_pillows = new List<SH_COLOR_PILLOW>();
-        public ClientSupplyRunOrderFrmNew(SH_EMPLOYEES anyEmployee)
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+
+        public ClientSupplyRunOrderFrmNew(SH_EMPLOYEES anyEmployee , SH_EMPLOYEES anyemp ,SH_USER_ACCOUNTS anyAccount ,SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
             MEmployee = anyEmployee;
+
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
+
         }
         void getallitemtypes()
         {
@@ -621,7 +633,7 @@ namespace Al_Shaheen_System
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ClientSupplyRunOrderFrmNew frm = new ClientSupplyRunOrderFrmNew(MEmployee);
+            ClientSupplyRunOrderFrmNew frm = new ClientSupplyRunOrderFrmNew(MEmployee , mEmployee,mAccount, mPermission);
             frm.ShowDialog();
         }
 
@@ -1347,7 +1359,7 @@ namespace Al_Shaheen_System
                     addOrderWorkClient();
                     this.Hide();
         
-                    ClientSupplyRunOrderFrmNew frm = new ClientSupplyRunOrderFrmNew(MEmployee);
+                    ClientSupplyRunOrderFrmNew frm = new ClientSupplyRunOrderFrmNew(MEmployee, mEmployee,mAccount, mPermission);
                     frm.ShowDialog();
 
                 }
@@ -2714,7 +2726,7 @@ namespace Al_Shaheen_System
                 }
                 else
                 {
-                    client_portal myform = new client_portal(clients[clients_combo_box.SelectedIndex]);
+                    client_portal myform = new client_portal(clients[clients_combo_box.SelectedIndex],mEmployee,mAccount, mPermission);
 
                     myform.ShowDialog();
 

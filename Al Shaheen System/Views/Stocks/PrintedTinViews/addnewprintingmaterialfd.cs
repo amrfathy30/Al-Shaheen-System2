@@ -976,10 +976,10 @@ namespace Al_Shaheen_System
 
             }else
             {
-                using (addnewclientproduct myform = new addnewclientproduct(clients[clients_combo_box.SelectedIndex]))
-                {
+                addnewclientproduct myform = new addnewclientproduct(clients[clients_combo_box.SelectedIndex],mEmployee,mAccount,mPermission);
+                
                     myform.ShowDialog();
-                }
+                
             }
         }
 
@@ -1030,7 +1030,12 @@ namespace Al_Shaheen_System
                     MessageBox.Show("هذا الصنف موجود من قبل"  , "خطأ"  , MessageBoxButtons.OK , MessageBoxIcon.Error , MessageBoxDefaultButton.Button1 , MessageBoxOptions.RtlReading);
                 }else
                 {
-                    client_products.Add(new SH_PRODUCT_OF_CLIENTS_PARCELS() { SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID, SH_CLIENT_NAME = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME, SH_NO_BOTTLES_PER_SHEET = long.Parse(no_bottels_per_sheet.Text) ,SH_CLIENT_PRODUCT_ID = products[client_products_combo_box.SelectedIndex].SH_ID, SH_CLIENT_PRODUCT_NAME = products[client_products_combo_box.SelectedIndex].SH_PRODUCT_NAME });
+                    client_products.Add(new SH_PRODUCT_OF_CLIENTS_PARCELS() {
+                        SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID,
+                        SH_CLIENT_NAME = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                        SH_NO_BOTTLES_PER_SHEET = long.Parse(no_bottels_per_sheet.Text) ,
+                        SH_CLIENT_PRODUCT_ID = products[client_products_combo_box.SelectedIndex].SH_ID,
+                        SH_CLIENT_PRODUCT_NAME = products[client_products_combo_box.SelectedIndex].SH_PRODUCT_NAME });
                     total_number_of_bottel_per_sheet += long.Parse(no_bottels_per_sheet.Text);
                     total_number_of_bottels_per_sheet.Text = total_number_of_bottel_per_sheet.ToString();
                     fillclientproductsgridview();
@@ -1130,6 +1135,54 @@ namespace Al_Shaheen_System
         private void item_length_text_box_Leave(object sender, EventArgs e)
         {
            // double x = double.Parse()
+        }
+
+        private void film_code_text_box_TextChanged(object sender, EventArgs e)
+        {
+            string c_code = film_code_text_box.Text;
+            List<SH_PRODUCT_OF_CLIENTS_PARCELS> myparcels = new List<SH_PRODUCT_OF_CLIENTS_PARCELS>();
+            try
+            {
+                myconnection.openConnection();
+                string query = " ";
+                query += "  select SFCAP.* ";
+                query += " ,(SELECT CC.SH_CLIENT_COMPANY_NAME FROM SH_CLIENT_COMPANY CC WHERE CC.SH_ID =SFCAP.SH_CLIENT_ID) AS ";
+                query += " SH_CLIENT_COMPANY_NAME ,";
+                query += " (SELECT CP.SH_PRODUCT_NAME FROM SH_CLIENTS_PRODUCTS CP WHERE CP.SH_ID = SFCAP.SH_CLIENT_PRODUCT_ID) AS ";
+                query += "  SH_PRODUCT_NAME ";
+                query += " from SH_FILM_CLIENTS_AND_PRODUCTS SFCAP ";
+                query += " left ";
+                query += " join ";
+                query += " SH_CLIENT_PRODUCT_FILM SCPF ON ";
+                query += " SCPF.SH_ID = SFCAP.SH_CLIENT_PRODUCT_FILM_ID ";
+                query += " WHERE SCPF.SH_FILM_CODE = @SH_FILM_CODE ";
+                    
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@SH_FILM_CODE" , c_code);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    myparcels.Add(new SH_PRODUCT_OF_CLIENTS_PARCELS()
+                    {
+                        SH_CLIENT_ID = long.Parse(reader["SH_CLIENT_ID"].ToString()),
+                        SH_CLIENT_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString(),
+                        SH_CLIENT_PRODUCT_ID= long.Parse(reader["SH_CLIENT_PRODUCT_ID"].ToString()),
+                        SH_CLIENT_PRODUCT_NAME = reader["SH_PRODUCT_NAME"].ToString(),
+                        SH_NO_BOTTLES_PER_SHEET =  long.Parse(reader["SH_NO_BOTTELS_PER_SHEET"].ToString()),                                                                                              
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTInG PRinTED PARCEL inFo "+ex.ToString());
+            }
+            if (myparcels.Count > 0)
+            {
+                client_products = myparcels;
+                fillclientproductsgridview();
+            }
         }
     }
 }

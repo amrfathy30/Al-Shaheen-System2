@@ -15,7 +15,13 @@ namespace Al_Shaheen_System
     {
         List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
         long editeclientcompany = 0;
-        public all_clients_data()
+
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+        public all_clients_data(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
         }
@@ -63,10 +69,10 @@ namespace Al_Shaheen_System
             {
                 if (clients_grid_view.SelectedRows.Count > 0)
                 {
-                    using (addclientbranches myform = new addclientbranches(clients[clients_grid_view.SelectedRows[0].Index]))
-                    {
+                    addclientbranches myform = new addclientbranches(clients[clients_grid_view.SelectedRows[0].Index],mEmployee,mAccount,mPermission);
+                    
                         myform.ShowDialog();
-                    }
+                    
                 }
                 else
                 {
@@ -89,10 +95,10 @@ namespace Al_Shaheen_System
             {
                 if (clients_grid_view.SelectedRows.Count > 0)
                 {
-                    using (addnewclientproduct myform = new addnewclientproduct(clients[clients_grid_view.SelectedRows[0].Index]))
-                    {
+                    addnewclientproduct myform = new addnewclientproduct(clients[clients_grid_view.SelectedRows[0].Index], mEmployee, mAccount, mPermission);
+                    
                         myform.ShowDialog();
-                    }
+                    
                 }
                 else
                 {
@@ -147,10 +153,9 @@ namespace Al_Shaheen_System
             {
                 if (clients_grid_view.SelectedRows.Count > 0)
                 {
-                    using (addnewclientcompanycontacts myform = new addnewclientcompanycontacts(clients[clients_grid_view.SelectedRows[0].Index]))
-                    {
-                        myform.ShowDialog();
-                    }
+                    addnewclientcompanycontacts myform = new addnewclientcompanycontacts(clients[clients_grid_view.SelectedRows[0].Index],mEmployee,mAccount,mPermission);
+                      myform.ShowDialog();
+                    
                 }
                 else
                 {
@@ -165,10 +170,9 @@ namespace Al_Shaheen_System
             {
                 if (clients_grid_view.SelectedRows.Count > 0)
                 {
-                    using (add_new_client_company_btn myform = new add_new_client_company_btn(clients[clients_grid_view.SelectedRows[0].Index]))
-                    {
-                        myform.ShowDialog();
-                    }
+                    add_new_client_company_btn myform = new add_new_client_company_btn(clients[clients_grid_view.SelectedRows[0].Index], mEmployee, mAccount, mPermission);             
+                     myform.ShowDialog();
+                    
                 }
                 else
                 {
@@ -200,11 +204,11 @@ namespace Al_Shaheen_System
         {
 
             int row_index = e.RowIndex;
-            using (client_portal myform = new client_portal(clients[row_index]))
+            client_portal myform = new client_portal(clients[row_index], mEmployee, mAccount, mPermission);
 
-            {
+            
                 myform.ShowDialog();
-            }
+            
         }
     }
 }

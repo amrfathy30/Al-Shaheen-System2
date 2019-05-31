@@ -14,9 +14,18 @@ namespace Al_Shaheen_System
     public partial class all_suppliers_data : Form
     {
         List<SH_SUPPLY_COMPANY> SUPPLIERS = new List<SH_SUPPLY_COMPANY>();
-        public all_suppliers_data()
+
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+        public all_suppliers_data(SH_EMPLOYEES anyemp,SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
         }
 
         void loadsuppliersdata()
@@ -105,10 +114,10 @@ namespace Al_Shaheen_System
         {
             if (suppliers_grid_view.SelectedRows.Count > 0)
             {
-                using (AddNewItemForSupplierFrm myform = new AddNewItemForSupplierFrm(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index]))
-                {
+                AddNewItemForSupplierFrm myform = new AddNewItemForSupplierFrm(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index],mEmployee,mAccount,mPermission);
+                
                     myform.ShowDialog();
-                }
+                
             }
         }
 
@@ -133,7 +142,7 @@ namespace Al_Shaheen_System
         {
             if (suppliers_grid_view.SelectedRows.Count == 1)
             {
-                AllSelectedSupplierDataFrm frm = new AllSelectedSupplierDataFrm(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index]);
+                AllSelectedSupplierDataFrm frm = new AllSelectedSupplierDataFrm(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index],mEmployee,mAccount,mPermission);
                 frm.ShowDialog();
             }
             else
@@ -146,7 +155,7 @@ namespace Al_Shaheen_System
         {
             if (suppliers_grid_view.SelectedRows.Count == 1)
             {
-                AddNewItemForSupplierFrm frm = new AddNewItemForSupplierFrm(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index]);
+                AddNewItemForSupplierFrm frm = new AddNewItemForSupplierFrm(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index],mEmployee,mAccount,mPermission);
                 frm.ShowDialog();
             }else
             {
@@ -158,7 +167,7 @@ namespace Al_Shaheen_System
         {
             if (suppliers_grid_view.SelectedRows.Count == 1)
             {
-                add_new_supply_company_branch frm = new add_new_supply_company_branch(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index]);
+                add_new_supply_company_branch frm = new add_new_supply_company_branch(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index],mEmployee,mAccount,mPermission);
                 frm.ShowDialog();
             }
             else
@@ -171,7 +180,7 @@ namespace Al_Shaheen_System
         {
             if (suppliers_grid_view.SelectedRows.Count == 1)
             {
-                addSupplierCompanyContacts frm = new addSupplierCompanyContacts(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index]);
+                addSupplierCompanyContacts frm = new addSupplierCompanyContacts(SUPPLIERS[suppliers_grid_view.SelectedRows[0].Index],mEmployee,mAccount,mPermission);
                 frm.ShowDialog();
             }
             else

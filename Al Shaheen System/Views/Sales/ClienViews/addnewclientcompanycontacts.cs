@@ -16,10 +16,22 @@ namespace Al_Shaheen_System
         SH_CLIENT_COMPANY mclient = new SH_CLIENT_COMPANY();
         List<SH_CLIENT_COMPANY_CONTACTS> client_contacts = new List<SH_CLIENT_COMPANY_CONTACTS>();
         long editeclientconctactid = 0;
-        public addnewclientcompanycontacts(SH_CLIENT_COMPANY client)
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public addnewclientcompanycontacts(SH_CLIENT_COMPANY client , SH_EMPLOYEES anyemp,SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
             mclient = client;
+
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
+
+
         }
 
         void loadclientcompanyconatacts()
@@ -92,8 +104,14 @@ namespace Al_Shaheen_System
                     try
                     {
                         string query = "INSERT INTO SH_CLIENT_COMPANY_CONTACTS ";
-                        query += "(SH_CLIENT_COMPANY_ID, SH_CLIENT_COMPANY_CONTACT_NAME, SH_CLIENT_COMPANY_CONTACT_TELEPHONE, SH_CLIENT_COMPANY_CONTACT_EMAIL) ";
-                        query += " VALUES(@SH_CLIENT_COMPANY_ID,@SH_CLIENT_COMPANY_CONTACT_NAME,@SH_CLIENT_COMPANY_CONTACT_TELEPHONE,@SH_CLIENT_COMPANY_CONTACT_EMAIL)";
+                        query += "(SH_CLIENT_COMPANY_ID, SH_CLIENT_COMPANY_CONTACT_NAME, ";
+                        query += " SH_CLIENT_COMPANY_CONTACT_TELEPHONE, SH_CLIENT_COMPANY_CONTACT_EMAIL";
+                        query += " ,SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_EMPLOYEE_ID,SH_ADDITION_DATE";
+                        query += ") ";
+                        query += " VALUES(@SH_CLIENT_COMPANY_ID,@SH_CLIENT_COMPANY_CONTACT_NAME,";
+                        query += "@SH_CLIENT_COMPANY_CONTACT_TELEPHONE,@SH_CLIENT_COMPANY_CONTACT_EMAIL ,";
+                        query += " @SH_DATA_ENTRY_USER_ID, @SH_DATA_ENTRY_EMPLOYEE_ID, @SH_ADDITION_DATE";
+                        query += ")";
                         DatabaseConnection myconnection = new DatabaseConnection();
                         myconnection.openConnection();
                         SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
@@ -101,6 +119,9 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_CONTACT_NAME", client_company_contact_name.Text);
                         cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_CONTACT_TELEPHONE", client_company_contact_telephone_text_box.Text);
                         cmd.Parameters.AddWithValue("@SH_CLIENT_COMPANY_CONTACT_EMAIL", client_company_conact_email_text_box.Text);
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mAccount.SH_EMP_ID);
+                        cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("تم الحفظ بنجاح", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                         client_company_contact_name.Text = "";

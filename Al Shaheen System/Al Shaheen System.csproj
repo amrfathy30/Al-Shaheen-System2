@@ -81,6 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addnewclientproductfilm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addnewclientproductfilm.Designer.cs">
+      <DependentUpon>addnewclientproductfilm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Datasets\addition_permission_of_raw_tin.cs">
       <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
     </Compile>
@@ -89,6 +95,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
     </Compile>
+    <Compile Include="getallclientproductfilms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="getallclientproductfilms.Designer.cs">
+      <DependentUpon>getallclientproductfilms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SH_CLIENT_PRODUCT_FILM.cs" />
+    <Compile Include="SH_FILM_CLIENTS_AND_PRODUCTS.cs" />
     <Compile Include="Views\Sales\AllRequestOfPerfectProductFromSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -951,6 +965,12 @@
     <Compile Include="Views\waitingform.Designer.cs">
       <DependentUpon>waitingform.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addnewclientproductfilm.resx">
+      <DependentUpon>addnewclientproductfilm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="getallclientproductfilms.resx">
+      <DependentUpon>getallclientproductfilms.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Stocks\RawTinViews\adding_raw_material_quantites.rdlc" />
     <EmbeddedResource Include="Views\Sales\AllRequestOfPerfectProductFromSales.resx">
       <DependentUpon>AllRequestOfPerfectProductFromSales.cs</DependentUpon>
@@ -1390,6 +1410,24 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward-right-arrow-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backward-arrows-couple-pointing-to-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\forward-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\step-forward.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

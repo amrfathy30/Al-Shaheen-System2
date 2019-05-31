@@ -208,7 +208,10 @@ namespace Al_Shaheen_System
                 return true;
             if (txtEmpEmail.Text.Trim() == String.Empty)
                 return true;
-
+            if (social_insurance_number_text_box.Text.Trim() == String.Empty)
+                return true;
+            if (health_insurance_number_text_box.Text.Trim() == String.Empty)
+                return true;
             return false;
         }
         public static bool IsValidEmailId(string InputEmail)
@@ -225,16 +228,12 @@ namespace Al_Shaheen_System
 
             if (WithErrors() == true)
             {
-                MessageBox.Show("من فضلك اكمل باقى المعلومات");
-
+                MessageBox.Show("من فضلك اكمل باقى البيانات");
             }
-
-
             else
             {
                 if (txtTitle.Text.Trim() != "")
                 {
-
                     if (strFilePath == "")
                     {
                         if (ImageByteArray.Length != 0)
@@ -251,9 +250,11 @@ namespace Al_Shaheen_System
                     {
                         string query = "INSERT INTO SH_EMPLOYEES ";
                         query += "(SH_EMPLOYEE_NAME, SH_EMPLOYEE_NATIONAL_ID, SH_EMPLOYEE_ADDRESS, SH_EMPLOYEE_MOBILE, SH_EMPLOYEE_GENDER, SH_EMPLOYEE_EMAIL, SH_EMPLOYEMENT_DATE, SH_EMPLOYEE_FUNCTION_ID,";
-                        query += " SH_EMPLOYEE_FUNCTION_NAME, SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_USER_NAME, SH_DATA_ENTRY_EMPLOYEE_ID, SH_DATA_ENTRY_EMPLOYEE_NAME ,SH_DEPARTMENT_ID ,SH_DEPARTMENT_NAME ,SH_EMPLOYEE_IMAGE)";
+                        query += " SH_EMPLOYEE_FUNCTION_NAME, SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_USER_NAME, SH_DATA_ENTRY_EMPLOYEE_ID, SH_DATA_ENTRY_EMPLOYEE_NAME ,SH_DEPARTMENT_ID ,SH_DEPARTMENT_NAME ,SH_EMPLOYEE_IMAGE ";
+                        query += " , SH_SOCIAL_INSURANCE_NUMBER ,SH_HEALTH_INSURANCE_NUMBER )";
                         query += " VALUES(@SH_EMPLOYEE_NAME,@SH_EMPLOYEE_NATIONAL_ID,@SH_EMPLOYEE_ADDRESS,@SH_EMPLOYEE_MOBILE,@SH_EMPLOYEE_GENDER,@SH_EMPLOYEE_EMAIL,@SH_EMPLOYEMENT_DATE,@SH_EMPLOYEE_FUNCTION_ID,";
-                        query += "@SH_EMPLOYEE_FUNCTION_NAME,@SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_USER_NAME,@SH_DATA_ENTRY_EMPLOYEE_ID,@SH_DATA_ENTRY_EMPLOYEE_NAME , @SH_DEPARTMENT_ID , @SH_DEPARTMENT_NAME , @SH_EMPLOYEE_IMAGE)";
+                        query += " @SH_EMPLOYEE_FUNCTION_NAME,@SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_USER_NAME,@SH_DATA_ENTRY_EMPLOYEE_ID,@SH_DATA_ENTRY_EMPLOYEE_NAME , @SH_DEPARTMENT_ID , @SH_DEPARTMENT_NAME , @SH_EMPLOYEE_IMAGE ";
+                        query += " , @SH_SOCIAL_INSURANCE_NUMBER ,@SH_HEALTH_INSURANCE_NUMBER )";
                         DatabaseConnection myconnection = new DatabaseConnection();
                         myconnection.openConnection();
                         SqlCommand comm = new SqlCommand(query, DatabaseConnection.mConnection);
@@ -273,7 +274,6 @@ namespace Al_Shaheen_System
                         {
                             MessageBox.Show("ادخل نوع الموظف");
                         }
-
                         comm.Parameters.AddWithValue("@SH_EMPLOYEE_MOBILE", txtEmpMobile.Text);
                         comm.Parameters.AddWithValue("@SH_EMPLOYEE_EMAIL", txtEmpEmail.Text);
                         comm.Parameters.AddWithValue("@SH_EMPLOYEMENT_DATE", Convert.ToDateTime(dateTimePicker1.Text));
@@ -286,6 +286,8 @@ namespace Al_Shaheen_System
                         comm.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", memployee.SH_ID);
                         comm.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_NAME", memployee.SH_EMPLOYEE_NAME);
                         comm.Parameters.AddWithValue("@SH_EMPLOYEE_IMAGE", ImageByteArray);
+                        comm.Parameters.AddWithValue("@SH_SOCIAL_INSURANCE_NUMBER", social_insurance_number_text_box.Text );
+                        comm.Parameters.AddWithValue("@SH_HEALTH_INSURANCE_NUMBER", health_insurance_number_text_box.Text );
                         comm.ExecuteNonQuery();
                         myconnection.closeConnection();
                         MessageBox.Show(" تم تسجيل الموظف بنجاح");

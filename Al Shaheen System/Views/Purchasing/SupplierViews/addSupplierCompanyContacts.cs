@@ -16,10 +16,20 @@ namespace Al_Shaheen_System
         SH_SUPPLY_COMPANY Mcompany = new SH_SUPPLY_COMPANY();
         //List<SH_SUPPLY_COMPANY> suppliers = new List<SH_SUPPLY_COMPANY>();
         List<SH_SUPPLIER_COMPANY_CONTACTS> supply_contacts = new List<SH_SUPPLIER_COMPANY_CONTACTS>();
-        public addSupplierCompanyContacts(SH_SUPPLY_COMPANY comp)
+
+        SH_EMPLOYEES mEmployees;
+        SH_USER_ACCOUNTS mAccounts;
+        SH_USER_PERMISIONS mPermissions;
+
+
+
+        public addSupplierCompanyContacts(SH_SUPPLY_COMPANY comp , SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPermission)
         {
             InitializeComponent();
             Mcompany = comp;
+            mEmployees = anyemp;
+            mAccounts = anyAccount;
+            mPermissions = anyPermission;
         }
         void loadDataGridEmployees()
         {
@@ -91,8 +101,15 @@ namespace Al_Shaheen_System
                 if (current_contact  == -1)
                 {
                     string query = "INSERT INTO SH_SUPPLIER_COMPANY_CONTACTS";
-                    query += "(SH_SUPPLIER_COMPANY_CONTACT_NAME,SH_SUPPLIER_COMPANY_CONTACT_EMAIL,SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE,SH_SUPPLIER_COMPANY_CONTACT_ID)";
-                    query += "VALUES(@SH_SUPPLIER_COMPANY_CONTACT_NAME,@SH_SUPPLIER_COMPANY_CONTACT_EMAIL,@SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE,@SH_SUPPLIER_COMPANY_CONTACT_ID)";
+                    query += "(SH_SUPPLIER_COMPANY_CONTACT_NAME,SH_SUPPLIER_COMPANY_CONTACT_EMAIL,";
+                    query += " SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE,SH_SUPPLIER_COMPANY_CONTACT_ID ";
+                    query += " ,SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_EMPLOYEE_ID ";
+                    query += " , SH_ADDITION_DATE )";
+                    query += " VALUES( @SH_SUPPLIER_COMPANY_CONTACT_NAME,";
+                    query += " @SH_SUPPLIER_COMPANY_CONTACT_EMAIL,@SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE,";
+                    query += " @SH_SUPPLIER_COMPANY_CONTACT_ID ";
+                    query += ",@SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_EMPLOYEE_ID";
+                    query += " , @SH_ADDITION_DATE )";
                     try
                     {
                         DatabaseConnection myconnection = new DatabaseConnection();
@@ -102,6 +119,9 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_SUPPLIER_COMPANY_CONTACT_EMAIL", textBoxEmail.Text);
                         cmd.Parameters.AddWithValue("@SH_SUPPLIER_COMPANY_CONTACT_TELEPHONE", textBoxTelephone.Text);
                         cmd.Parameters.AddWithValue("@SH_SUPPLIER_COMPANY_CONTACT_ID", Mcompany.SH_ID);
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID",mAccounts.SH_ID );
+                        cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID",mAccounts.SH_EMP_ID );
+                        cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("تم الحفظ بنجاح");
                         buttonSave.Enabled = false;
@@ -137,7 +157,7 @@ namespace Al_Shaheen_System
         private void buttonNew_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            addSupplierCompanyContacts frm = new addSupplierCompanyContacts(Mcompany);
+            addSupplierCompanyContacts frm = new addSupplierCompanyContacts(Mcompany, mEmployees,mAccounts,mPermissions);
             frm.ShowDialog();
         }
     }

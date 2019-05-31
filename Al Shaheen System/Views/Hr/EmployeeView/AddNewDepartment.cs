@@ -93,6 +93,8 @@ namespace Al_Shaheen_System
                     comm.Parameters.AddWithValue("@deptName", textBox1.Text);
                     comm.Parameters.AddWithValue("@SH_DATA_ENTERED_BY", mAccount.SH_EMP_NAME);
                     comm.Parameters.AddWithValue("@SH_ADDATION_DATE", DateTime.Now);
+                    comm.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
+                    comm.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID",mEmployee.SH_ID );
                     comm.ExecuteNonQuery();
                     MessageBox.Show("تم تسجيل القسم بنجاح");
                     bttn_Save.Enabled = false;

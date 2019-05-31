@@ -94,8 +94,9 @@ namespace Al_Shaheen_System
                 long counter = 0;
                 while (reader.Read())
                 {
+                    counter++;
                     string[] mydata = new string[7];
-                    mydata[0] = (counter + 1).ToString();
+                    mydata[0] = (counter).ToString();
                     mydata[1] = reader["SH_CLIENT_COMPANY_NAME"].ToString();
                     mydata[2] = reader["SH_PRODUCT_NAME"].ToString();
                     mydata[3] = reader["product_size"].ToString();
@@ -103,6 +104,7 @@ namespace Al_Shaheen_System
                     mydata[5] = (long.Parse(reader["TOTAL_NO_CANS"].ToString()) / long.Parse(reader["NUMBER_OF_PALLETS"].ToString())).ToString();
                     mydata[6] = reader["TOTAL_NO_CANS"].ToString();
                     mydatatabel.Rows.Add(mydata);
+                   
                 }
                 
                 reader.Close();

@@ -632,10 +632,10 @@ namespace Al_Shaheen_System
             }
             else
             {
-                using (addnewclientproduct myform = new addnewclientproduct(clients[clients_combo_box.SelectedIndex]))
-                {
+                addnewclientproduct myform = new addnewclientproduct(clients[clients_combo_box.SelectedIndex],mEmployee,mAccount,mPermission);
+                
                     myform.ShowDialog();
-                }
+                
             }
         }
         void gettingproductsbyclientid()

@@ -115,6 +115,8 @@
             this.addition_permission_number = new System.Windows.Forms.TextBox();
             this.current_date_time_label = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label27 = new System.Windows.Forms.Label();
+            this.film_code_text_box = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.item_quantities_grid_view)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.Quantity_Group_Box.SuspendLayout();
@@ -370,7 +372,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(26, 574);
+            this.groupBox1.Location = new System.Drawing.Point(26, 639);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(588, 175);
             this.groupBox1.TabIndex = 12;
@@ -608,7 +610,7 @@
             this.save_data_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save_data_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.save_data_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.save_data_btn.Location = new System.Drawing.Point(655, 711);
+            this.save_data_btn.Location = new System.Drawing.Point(655, 778);
             this.save_data_btn.Name = "save_data_btn";
             this.save_data_btn.Size = new System.Drawing.Size(144, 36);
             this.save_data_btn.TabIndex = 22;
@@ -622,7 +624,7 @@
             this.new_record_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.new_record_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.new_record_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.new_record_btn.Location = new System.Drawing.Point(886, 711);
+            this.new_record_btn.Location = new System.Drawing.Point(940, 778);
             this.new_record_btn.Name = "new_record_btn";
             this.new_record_btn.Size = new System.Drawing.Size(142, 36);
             this.new_record_btn.TabIndex = 29;
@@ -636,7 +638,7 @@
             this.cancel_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancel_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancel_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cancel_btn.Location = new System.Drawing.Point(1136, 711);
+            this.cancel_btn.Location = new System.Drawing.Point(1137, 778);
             this.cancel_btn.Name = "cancel_btn";
             this.cancel_btn.Size = new System.Drawing.Size(138, 36);
             this.cancel_btn.TabIndex = 30;
@@ -669,7 +671,7 @@
             this.add_new_product.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_product.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_product.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_product.Location = new System.Drawing.Point(14, 69);
+            this.add_new_product.Location = new System.Drawing.Point(9, 132);
             this.add_new_product.Name = "add_new_product";
             this.add_new_product.Size = new System.Drawing.Size(158, 32);
             this.add_new_product.TabIndex = 46;
@@ -698,6 +700,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.film_code_text_box);
+            this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.remove_client_product);
             this.groupBox2.Controls.Add(this.add_new_client_product_btn);
             this.groupBox2.Controls.Add(this.no_bottels_per_sheet);
@@ -711,7 +715,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(26, 238);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(588, 326);
+            this.groupBox2.Size = new System.Drawing.Size(588, 395);
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "معلومات الأصناف بالفرخ الواحد  ";
@@ -723,7 +727,7 @@
             this.remove_client_product.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remove_client_product.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.remove_client_product.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.remove_client_product.Location = new System.Drawing.Point(14, 113);
+            this.remove_client_product.Location = new System.Drawing.Point(9, 176);
             this.remove_client_product.Name = "remove_client_product";
             this.remove_client_product.Size = new System.Drawing.Size(138, 34);
             this.remove_client_product.TabIndex = 60;
@@ -737,7 +741,7 @@
             this.add_new_client_product_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_client_product_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_client_product_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_client_product_btn.Location = new System.Drawing.Point(453, 113);
+            this.add_new_client_product_btn.Location = new System.Drawing.Point(448, 176);
             this.add_new_client_product_btn.Name = "add_new_client_product_btn";
             this.add_new_client_product_btn.Size = new System.Drawing.Size(129, 34);
             this.add_new_client_product_btn.TabIndex = 59;
@@ -748,7 +752,7 @@
             // no_bottels_per_sheet
             // 
             this.no_bottels_per_sheet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.no_bottels_per_sheet.Location = new System.Drawing.Point(298, 78);
+            this.no_bottels_per_sheet.Location = new System.Drawing.Point(293, 141);
             this.no_bottels_per_sheet.Name = "no_bottels_per_sheet";
             this.no_bottels_per_sheet.Size = new System.Drawing.Size(181, 26);
             this.no_bottels_per_sheet.TabIndex = 58;
@@ -757,7 +761,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(485, 84);
+            this.label12.Location = new System.Drawing.Point(480, 147);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(97, 20);
             this.label12.TabIndex = 57;
@@ -776,7 +780,7 @@
             this.PRODUCT_NAME,
             this.NUMBER_OF_BOTTLES_PER_SHEET});
             this.client_products_grid_view.GridColor = System.Drawing.SystemColors.ControlLightLight;
-            this.client_products_grid_view.Location = new System.Drawing.Point(11, 153);
+            this.client_products_grid_view.Location = new System.Drawing.Point(6, 216);
             this.client_products_grid_view.Name = "client_products_grid_view";
             this.client_products_grid_view.ReadOnly = true;
             this.client_products_grid_view.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -815,7 +819,7 @@
             this.client_products_combo_box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.client_products_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.client_products_combo_box.FormattingEnabled = true;
-            this.client_products_combo_box.Location = new System.Drawing.Point(14, 34);
+            this.client_products_combo_box.Location = new System.Drawing.Point(9, 97);
             this.client_products_combo_box.Name = "client_products_combo_box";
             this.client_products_combo_box.Size = new System.Drawing.Size(180, 28);
             this.client_products_combo_box.TabIndex = 54;
@@ -825,7 +829,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(216, 42);
+            this.label6.Location = new System.Drawing.Point(211, 105);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 20);
             this.label6.TabIndex = 55;
@@ -837,7 +841,7 @@
             this.clients_combo_box.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.clients_combo_box.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.clients_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clients_combo_box.Location = new System.Drawing.Point(309, 34);
+            this.clients_combo_box.Location = new System.Drawing.Point(304, 97);
             this.clients_combo_box.Name = "clients_combo_box";
             this.clients_combo_box.Size = new System.Drawing.Size(217, 28);
             this.clients_combo_box.TabIndex = 52;
@@ -847,7 +851,7 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(543, 42);
+            this.label37.Location = new System.Drawing.Point(538, 105);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(39, 20);
             this.label37.TabIndex = 53;
@@ -994,12 +998,29 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(514, 48);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(73, 25);
+            this.label27.TabIndex = 61;
+            this.label27.Text = "رقم الفيلم ";
+            // 
+            // film_code_text_box
+            // 
+            this.film_code_text_box.Location = new System.Drawing.Point(165, 45);
+            this.film_code_text_box.Name = "film_code_text_box";
+            this.film_code_text_box.Size = new System.Drawing.Size(356, 30);
+            this.film_code_text_box.TabIndex = 62;
+            this.film_code_text_box.TextChanged += new System.EventHandler(this.film_code_text_box_TextChanged);
+            // 
             // addnewprintingmaterialfd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1306, 768);
+            this.ClientSize = new System.Drawing.Size(1306, 826);
             this.Controls.Add(this.current_date_time_label);
             this.Controls.Add(this.stock_man_text_box);
             this.Controls.Add(this.addition_permission_number);
@@ -1140,5 +1161,7 @@
         private System.Windows.Forms.ComboBox technicien_man_2_text_box;
         private System.Windows.Forms.ComboBox technicien_man_1_text_box;
         private System.Windows.Forms.ComboBox stock_man_examin_text_box;
+        private System.Windows.Forms.TextBox film_code_text_box;
+        private System.Windows.Forms.Label label27;
     }
 }

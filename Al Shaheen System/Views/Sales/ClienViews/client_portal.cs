@@ -19,10 +19,21 @@ namespace Al_Shaheen_System
         List<SH_ITEM_SIZE> mSizes = new List<SH_ITEM_SIZE>();
         List<SH_FACE_COLOR> FACES = new List<SH_FACE_COLOR>();
         List<SH_CLIENT_COMPANY_CONTACTS> client_contacts = new List<SH_CLIENT_COMPANY_CONTACTS>();
-        public client_portal(SH_CLIENT_COMPANY anyclient)
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public client_portal(SH_CLIENT_COMPANY anyclient , SH_EMPLOYEES anyemp,SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
             mclient = anyclient;
+
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyperm;
+
         }
 
         private void client_name_label_Load(object sender, EventArgs e)
@@ -220,26 +231,26 @@ namespace Al_Shaheen_System
 
         private void addnew_client_branch_btn_Click(object sender, EventArgs e)
         {
-            using (addclientbranches myform = new addclientbranches(mclient))
-            {
+            addclientbranches myform = new addclientbranches(mclient,mEmployee,mAccount,mPermission);
+            
                 myform.ShowDialog();
-            }
+            
         }
 
         private void addnewclientcontact_Click(object sender, EventArgs e)
         {
-            using (addnewclientcompanycontacts myform = new addnewclientcompanycontacts(mclient))
-            {
+            addnewclientcompanycontacts myform = new addnewclientcompanycontacts(mclient,mEmployee,mAccount,mPermission) ;
+            
                 myform.ShowDialog();
-            }
+            
         }
 
         private void addnewclientproduct_Click(object sender, EventArgs e)
         {
-            using (addnewclientproduct myform = new addnewclientproduct(mclient))
-            {
+            addnewclientproduct myform = new addnewclientproduct(mclient,mEmployee,mAccount,mPermission);
+            
                 myform.ShowDialog();
-            }
+            
         }
 
         private void client_portal_Activated(object sender, EventArgs e)

@@ -87,7 +87,7 @@ namespace Al_Shaheen_System
 
         private void إضافةعميلجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            add_new_client_company_btn myform = new add_new_client_company_btn(null);
+            add_new_client_company_btn myform = new add_new_client_company_btn(null,mEmployee,mAccount,mPermission);
 
             myform.Show();
             
@@ -95,7 +95,7 @@ namespace Al_Shaheen_System
 
         private void إضافةموردجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            add_new_supply_company_form myform = new add_new_supply_company_form();
+            add_new_supply_company_form myform = new add_new_supply_company_form(mEmployee,mAccount,mPermission);
 
             myform.Show();
             
@@ -113,7 +113,7 @@ namespace Al_Shaheen_System
         {
             if (mPermission.SH_SHOW_ALL_CLIENTS == 1)
             {
-                all_clients_data myform = new all_clients_data();
+                all_clients_data myform = new all_clients_data(mEmployee,mAccount,mPermission);
 
                 myform.Show();
                 
@@ -212,7 +212,7 @@ namespace Al_Shaheen_System
 
         private void جميعالموريدينToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (all_suppliers_data myform = new all_suppliers_data())
+            using (all_suppliers_data myform = new all_suppliers_data(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -220,7 +220,7 @@ namespace Al_Shaheen_System
 
         private void إضافةالصفيحالمقصوصالمطبوعToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewcutprintedmaterial myform = new addnewcutprintedmaterial())
+            using (addnewcutprintedmaterial myform = new addnewcutprintedmaterial(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -648,10 +648,10 @@ namespace Al_Shaheen_System
 
         private void إضافةأمرتوريدجديدToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ClientSupplyRunOrderFrmNew myform = new ClientSupplyRunOrderFrmNew(mEmployee))
-            {
+            ClientSupplyRunOrderFrmNew myform = new ClientSupplyRunOrderFrmNew(mEmployee, mEmployee,mAccount,mPermission);
+            
                 myform.ShowDialog();
-            }
+            
         }
         void loadAllClientOrdersFromSales()
         {
@@ -801,6 +801,19 @@ namespace Al_Shaheen_System
         {
             all_receiving_permission_informations myform = new all_receiving_permission_informations(mEmployee, mAccount, mPermission);
             myform.Show();
+        }
+
+        private void إضافةفيلمجديدToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addnewclientproductfilm myform = new addnewclientproductfilm(mEmployee,mAccount,mPermission);
+            myform.Show();
+        }
+
+        private void جميعأفلامالطباعةToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            getallclientproductfilms myform = new getallclientproductfilms();
+            myform.Show();
+                
         }
     }
 }

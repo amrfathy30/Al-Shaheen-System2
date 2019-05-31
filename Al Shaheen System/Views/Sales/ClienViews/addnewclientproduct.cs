@@ -22,10 +22,22 @@ namespace Al_Shaheen_System
         List<SH_TWIST_OF_SIZE> twist_of_sizes = new List<SH_TWIST_OF_SIZE>();
         List<SH_TWIST_OF_TYPE> twist_of_types = new List<SH_TWIST_OF_TYPE>();
         DatabaseConnection myconnection = new DatabaseConnection();
-        public addnewclientproduct(SH_CLIENT_COMPANY anyclient)
+
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+
+        public addnewclientproduct(SH_CLIENT_COMPANY anyclient , SH_EMPLOYEES anyemp,SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm )
         {
             InitializeComponent();
             mclient = anyclient;
+
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyPerm;
+
+
         }
 
        
@@ -413,12 +425,16 @@ namespace Al_Shaheen_System
                                     query += " SH_PRINTING_TYPE, SH_BOTTLE_CAPACITY, SH_BOTTLE_HEIGHT , ";
                                     query += " SH_SECOND_FACE_ID , SH_SECOND_FACE_NAME , SH_SIZE_ID ,";
                                     query += " SH_SIZE_NAME , SH_TWIST_SIZE_ID,SH_TWIST_SIZE_NAME, ";
-                                    query += "SH_TWIST_TYPE,SH_TWIST_TYPE_ID,SH_TWIST_TYPE_KIND )";
+                                    query += "SH_TWIST_TYPE,SH_TWIST_TYPE_ID,SH_TWIST_TYPE_KIND ";
+                                    query += " , SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_EMPLOYEE_ID,SH_ADDITION_DATE";
+                                    query += ")";
                                     query += " VALUES(@SH_CLIENT_NAME,@SH_CLIENT_ID,@SH_PRODUCT_NAME,";
                                     query += " @SH_PRINTING_TYPE,@SH_BOTTLE_CAPACITY,@SH_BOTTLE_HEIGHT, ";
                                     query += " @SH_SECOND_FACE_ID , @SH_SECOND_FACE_NAME , @SH_SIZE_ID , ";
                                     query += " @SH_SIZE_NAME, @SH_TWIST_SIZE_ID,@SH_TWIST_SIZE_NAME ";
-                                    query += ",@SH_TWIST_TYPE,@SH_TWIST_TYPE_ID,@SH_TWIST_TYPE_KIND )";
+                                    query += ",@SH_TWIST_TYPE,@SH_TWIST_TYPE_ID,@SH_TWIST_TYPE_KIND ";
+                                    query += " , @SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_EMPLOYEE_ID,@SH_ADDITION_DATE";
+                                    query += " )";
                                     DatabaseConnection myconnection = new DatabaseConnection();
                                     myconnection.openConnection();
                                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
@@ -454,6 +470,9 @@ namespace Al_Shaheen_System
                                         cmd.Parameters.AddWithValue("@SH_TWIST_TYPE_KIND", 0);
 
                                     }
+                                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID );
+                                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mAccount.SH_EMP_ID);
+                                    cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
                                     cmd.ExecuteNonQuery();
                                     myconnection.closeConnection();
                                     mproduct.Clear();
