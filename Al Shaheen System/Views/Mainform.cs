@@ -204,7 +204,7 @@ namespace Al_Shaheen_System
 
         private void علبالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (addnewfinishedcan myform= new addnewfinishedcan(mEmployee,mAccount,mPermission))
+            using (returnfinishedcansform myform= new returnfinishedcansform(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -630,13 +630,7 @@ namespace Al_Shaheen_System
 
         }
 
-        private void أرصدةالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (allfinishedproductsdata myform = new allfinishedproductsdata())
-            {
-                myform.ShowDialog();
-            }
-        }
+       
 
         private void جميعالأصنافالمضافةToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -727,7 +721,7 @@ namespace Al_Shaheen_System
 
         private void علبمنتجتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            addnewfinishedcan myform = new addnewfinishedcan(mEmployee,mAccount,mPermission);
+            returnfinishedcansform myform = new returnfinishedcansform(mEmployee,mAccount,mPermission);
             myform.Show();
         }
 
@@ -781,7 +775,7 @@ namespace Al_Shaheen_System
 
         private void إرصدةالمنتجالتامToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            allfinishedproductsdata myform = new allfinishedproductsdata();
+            allfinishedproductsdata myform = new allfinishedproductsdata(mEmployee, mAccount, mPermission);
             myform.Show();
         }
 
@@ -814,6 +808,12 @@ namespace Al_Shaheen_System
             getallclientproductfilms myform = new getallclientproductfilms();
             myform.Show();
                 
+        }
+
+        private void جميعمستلزماتالانتاجToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            allproductionrequirementsforms myform = new allproductionrequirementsforms(mEmployee,mAccount,mPermission);
+            myform.Show();
         }
     }
 }

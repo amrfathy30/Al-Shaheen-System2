@@ -705,7 +705,8 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    stocks.Add(new SH_SHAHEEN_STOCK() { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString(), SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString() });
+                    stocks.Add(new SH_SHAHEEN_STOCK() {
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString(), SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString() });
                 }
                 myconnection.closeConnection();
             }

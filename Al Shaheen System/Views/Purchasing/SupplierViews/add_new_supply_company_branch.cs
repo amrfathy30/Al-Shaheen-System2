@@ -150,7 +150,7 @@ namespace Al_Shaheen_System
                     query += " SH_COMPANY_BRANCH_ADDRESS_GPS_LINK ,";
                     query += " SH_DATA_ENTRY_USER_ID , SH_DATA_ENTRY_EMPLOYEE_ID, ";
                     query += " SH_ADDITION_DATE ) ";
-                        query += "VALUES(@SH_SUPPLY_COMPANY_ID,@SH_SUPPLY_COMPANY_NAME,@SH_COMPANY_BRANCH_TYPE,@SH_COMPANY_BRANCH_NAME,@SH_COMPANY_BRANCH_ADDRESS_TEXT,@SH_COMPANY_BRANCH_ADDRESS_GPS_LINK)";
+                        query += "VALUES(@SH_SUPPLY_COMPANY_ID,@SH_SUPPLY_COMPANY_NAME,@SH_COMPANY_BRANCH_TYPE,@SH_COMPANY_BRANCH_NAME,@SH_COMPANY_BRANCH_ADDRESS_TEXT,@SH_COMPANY_BRANCH_ADDRESS_GPS_LINK,@SH_DATA_ENTRY_USER_ID , @SH_DATA_ENTRY_EMPLOYEE_ID,@SH_ADDITION_DATE)";
                     DatabaseConnection myconnection = new DatabaseConnection();
                     myconnection.openConnection();
                     SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);

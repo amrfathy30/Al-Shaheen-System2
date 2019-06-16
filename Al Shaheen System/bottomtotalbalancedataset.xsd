@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="bottomtotalbalancedataset" targetNamespace="http://tempuri.org/bottomtotalbalancedataset.xsd" xmlns:mstns="http://tempuri.org/bottomtotalbalancedataset.xsd" xmlns="http://tempuri.org/bottomtotalbalancedataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="bottomtotalbalancedataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="bottomtotalbalancedataset" msprop:Generator_UserDSName="bottomtotalbalancedataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="item_data" msprop:Generator_TableClassName="item_dataDataTable" msprop:Generator_TableVarName="tableitem_data" msprop:Generator_TablePropName="item_data" msprop:Generator_RowDeletingName="item_dataRowDeleting" msprop:Generator_RowChangingName="item_dataRowChanging" msprop:Generator_RowEvHandlerName="item_dataRowChangeEventHandler" msprop:Generator_RowDeletedName="item_dataRowDeleted" msprop:Generator_UserTableName="item_data" msprop:Generator_RowChangedName="item_dataRowChanged" msprop:Generator_RowEvArgName="item_dataRowChangeEvent" msprop:Generator_RowClassName="item_dataRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="m" msprop:Generator_ColumnVarNameInTable="columnm" msprop:Generator_ColumnPropNameInRow="m" msprop:Generator_ColumnPropNameInTable="mColumn" msprop:Generator_UserColumnName="m" type="xs:string" minOccurs="0" />
+              <xs:element name="item_material_type" msprop:Generator_ColumnVarNameInTable="columnitem_material_type" msprop:Generator_ColumnPropNameInRow="item_material_type" msprop:Generator_ColumnPropNameInTable="item_material_typeColumn" msprop:Generator_UserColumnName="item_material_type" type="xs:string" minOccurs="0" />
+              <xs:element name="printing_type" msprop:Generator_ColumnVarNameInTable="columnprinting_type" msprop:Generator_ColumnPropNameInRow="printing_type" msprop:Generator_ColumnPropNameInTable="printing_typeColumn" msprop:Generator_UserColumnName="printing_type" type="xs:string" minOccurs="0" />
+              <xs:element name="size_name" msprop:Generator_ColumnVarNameInTable="columnsize_name" msprop:Generator_ColumnPropNameInRow="size_name" msprop:Generator_ColumnPropNameInTable="size_nameColumn" msprop:Generator_UserColumnName="size_name" type="xs:string" minOccurs="0" />
+              <xs:element name="client_name" msprop:Generator_ColumnVarNameInTable="columnclient_name" msprop:Generator_ColumnPropNameInRow="client_name" msprop:Generator_ColumnPropNameInTable="client_nameColumn" msprop:Generator_UserColumnName="client_name" type="xs:string" minOccurs="0" />
+              <xs:element name="first_face" msprop:Generator_ColumnVarNameInTable="columnfirst_face" msprop:Generator_ColumnPropNameInRow="first_face" msprop:Generator_ColumnPropNameInTable="first_faceColumn" msprop:Generator_UserColumnName="first_face" type="xs:string" minOccurs="0" />
+              <xs:element name="second_face" msprop:Generator_ColumnVarNameInTable="columnsecond_face" msprop:Generator_ColumnPropNameInRow="second_face" msprop:Generator_ColumnPropNameInTable="second_faceColumn" msprop:Generator_UserColumnName="second_face" type="xs:string" minOccurs="0" />
+              <xs:element name="container_name" msprop:Generator_ColumnVarNameInTable="columncontainer_name" msprop:Generator_ColumnPropNameInRow="container_name" msprop:Generator_ColumnPropNameInTable="container_nameColumn" msprop:Generator_UserColumnName="container_name" type="xs:string" minOccurs="0" />
+              <xs:element name="no_items_per_container" msprop:Generator_ColumnVarNameInTable="columnno_items_per_container" msprop:Generator_ColumnPropNameInRow="no_items_per_container" msprop:Generator_ColumnPropNameInTable="no_items_per_containerColumn" msprop:Generator_UserColumnName="no_items_per_container" type="xs:string" minOccurs="0" />
+              <xs:element name="total_no_items" msprop:Generator_ColumnVarNameInTable="columntotal_no_items" msprop:Generator_ColumnPropNameInRow="total_no_items" msprop:Generator_ColumnPropNameInTable="total_no_itemsColumn" msprop:Generator_UserColumnName="total_no_items" type="xs:string" minOccurs="0" />
+              <xs:element name="usage" msprop:Generator_ColumnVarNameInTable="columnusage" msprop:Generator_ColumnPropNameInRow="usage" msprop:Generator_ColumnPropNameInTable="usageColumn" msprop:Generator_UserColumnName="usage" type="xs:string" minOccurs="0" />
+              <xs:element name="addition_date" msprop:Generator_ColumnVarNameInTable="columnaddition_date" msprop:Generator_ColumnPropNameInRow="addition_date" msprop:Generator_ColumnPropNameInTable="addition_dateColumn" msprop:Generator_UserColumnName="addition_date" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

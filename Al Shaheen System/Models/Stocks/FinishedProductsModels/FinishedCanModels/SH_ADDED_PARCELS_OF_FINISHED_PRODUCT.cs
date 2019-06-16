@@ -25,5 +25,8 @@ namespace Al_Shaheen_System
         public long SH_LAST_RECORD_NUMBER_OF_CANS { get; set; }
         public long SH_TOTAL_NUMBER_OF_CANS { get; set; }
         public DateTime SH_ADDITION_DATE { get; set; }
+        public String SH_PALLET_SIZE_TEXT { get; set; }
+        public long SH_PALLET_SIZE_LENGTH { get; set; }
+        public long SH_PALLET_SIZE_WIDTH { get; set; }
     }
 }

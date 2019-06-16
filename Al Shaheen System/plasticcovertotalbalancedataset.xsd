@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="plasticcovertotalbalancedataset" targetNamespace="http://tempuri.org/plasticcovertotalbalancedataset.xsd" xmlns:mstns="http://tempuri.org/plasticcovertotalbalancedataset.xsd" xmlns="http://tempuri.org/plasticcovertotalbalancedataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="plasticcovertotalbalancedataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="plasticcovertotalbalancedataset" msprop:Generator_UserDSName="plasticcovertotalbalancedataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="plasticcoverdatatabel" msprop:Generator_TableClassName="plasticcoverdatatabelDataTable" msprop:Generator_TableVarName="tableplasticcoverdatatabel" msprop:Generator_TablePropName="plasticcoverdatatabel" msprop:Generator_RowDeletingName="plasticcoverdatatabelRowDeleting" msprop:Generator_RowChangingName="plasticcoverdatatabelRowChanging" msprop:Generator_RowEvHandlerName="plasticcoverdatatabelRowChangeEventHandler" msprop:Generator_RowDeletedName="plasticcoverdatatabelRowDeleted" msprop:Generator_UserTableName="plasticcoverdatatabel" msprop:Generator_RowChangedName="plasticcoverdatatabelRowChanged" msprop:Generator_RowEvArgName="plasticcoverdatatabelRowChangeEvent" msprop:Generator_RowClassName="plasticcoverdatatabelRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="m" msprop:Generator_ColumnVarNameInTable="columnm" msprop:Generator_ColumnPropNameInRow="m" msprop:Generator_ColumnPropNameInTable="mColumn" msprop:Generator_UserColumnName="m" type="xs:string" minOccurs="0" />
+              <xs:element name="container_name" msprop:Generator_ColumnVarNameInTable="columncontainer_name" msprop:Generator_ColumnPropNameInRow="container_name" msprop:Generator_ColumnPropNameInTable="container_nameColumn" msprop:Generator_UserColumnName="container_name" type="xs:string" minOccurs="0" />
+              <xs:element name="no_items_per_container" msprop:Generator_ColumnVarNameInTable="columnno_items_per_container" msprop:Generator_ColumnPropNameInRow="no_items_per_container" msprop:Generator_ColumnPropNameInTable="no_items_per_containerColumn" msprop:Generator_UserColumnName="no_items_per_container" type="xs:string" minOccurs="0" />
+              <xs:element name="no_containers" msprop:Generator_ColumnVarNameInTable="columnno_containers" msprop:Generator_ColumnPropNameInRow="no_containers" msprop:Generator_ColumnPropNameInTable="no_containersColumn" msprop:Generator_UserColumnName="no_containers" type="xs:string" minOccurs="0" />
+              <xs:element name="total_no_items" msprop:Generator_ColumnVarNameInTable="columntotal_no_items" msprop:Generator_ColumnPropNameInRow="total_no_items" msprop:Generator_ColumnPropNameInTable="total_no_itemsColumn" msprop:Generator_UserColumnName="total_no_items" type="xs:string" minOccurs="0" />
+              <xs:element name="addition_date" msprop:Generator_ColumnVarNameInTable="columnaddition_date" msprop:Generator_ColumnPropNameInRow="addition_date" msprop:Generator_ColumnPropNameInTable="addition_dateColumn" msprop:Generator_UserColumnName="addition_date" type="xs:string" minOccurs="0" />
+              <xs:element name="client_name" msprop:Generator_ColumnVarNameInTable="columnclient_name" msprop:Generator_ColumnPropNameInRow="client_name" msprop:Generator_ColumnPropNameInTable="client_nameColumn" msprop:Generator_UserColumnName="client_name" type="xs:string" minOccurs="0" />
+              <xs:element name="pillow_color_name" msprop:Generator_ColumnVarNameInTable="columnpillow_color_name" msprop:Generator_ColumnPropNameInRow="pillow_color_name" msprop:Generator_ColumnPropNameInTable="pillow_color_nameColumn" msprop:Generator_UserColumnName="pillow_color_name" type="xs:string" minOccurs="0" />
+              <xs:element name="size_name" msprop:Generator_ColumnVarNameInTable="columnsize_name" msprop:Generator_ColumnPropNameInRow="size_name" msprop:Generator_ColumnPropNameInTable="size_nameColumn" msprop:Generator_UserColumnName="size_name" type="xs:string" minOccurs="0" />
+              <xs:element name="logo_or_not" msprop:Generator_ColumnVarNameInTable="columnlogo_or_not" msprop:Generator_ColumnPropNameInRow="logo_or_not" msprop:Generator_ColumnPropNameInTable="logo_or_notColumn" msprop:Generator_UserColumnName="logo_or_not" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

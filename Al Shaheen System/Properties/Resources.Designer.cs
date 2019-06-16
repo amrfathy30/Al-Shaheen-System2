@@ -83,6 +83,16 @@ namespace Al_Shaheen_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cb {
+            get {
+                object obj = ResourceManager.GetObject("cb", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap defaultitemimage {
             get {
                 object obj = ResourceManager.GetObject("defaultitemimage", resourceCulture);
@@ -153,6 +163,16 @@ namespace Al_Shaheen_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pallets_icons {
+            get {
+                object obj = ResourceManager.GetObject("pallets_icons", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shaheenlogo {
             get {
                 object obj = ResourceManager.GetObject("shaheenlogo", resourceCulture);
@@ -166,6 +186,46 @@ namespace Al_Shaheen_System.Properties {
         internal static System.Drawing.Bitmap step_forward {
             get {
                 object obj = ResourceManager.GetObject("step-forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Webp_net_resizeimage {
+            get {
+                object obj = ResourceManager.GetObject("Webp.net-resizeimage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Webp_net_resizeimage__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Webp.net-resizeimage (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Webp_net_resizeimage__2_ {
+            get {
+                object obj = ResourceManager.GetObject("Webp.net-resizeimage (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wooden_pallet_thumbnail_2x {
+            get {
+                object obj = ResourceManager.GetObject("wooden-pallet-thumbnail@2x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.allreceitsgridview = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +66,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.allreceitsgridview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.allreceitsgridview.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.allreceitsgridview.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.allreceitsgridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.allreceitsgridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allreceitsgridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -80,8 +90,10 @@
             this.Column11,
             this.Column12,
             this.Column13});
-            this.allreceitsgridview.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.allreceitsgridview.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.allreceitsgridview.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.allreceitsgridview.Location = new System.Drawing.Point(13, 91);
+            this.allreceitsgridview.MultiSelect = false;
             this.allreceitsgridview.Name = "allreceitsgridview";
             this.allreceitsgridview.ReadOnly = true;
             this.allreceitsgridview.Size = new System.Drawing.Size(1135, 617);
@@ -90,12 +102,18 @@
             // 
             // Column1
             // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.FillWeight = 40F;
+            this.Column1.Frozen = true;
             this.Column1.HeaderText = "م";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.Width = 40;
             // 
             // Column2
             // 
+            this.Column2.FillWeight = 86.33672F;
             this.Column2.HeaderText = "رقم الإذن ";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -104,66 +122,77 @@
             // 
             // Column3
             // 
+            this.Column3.FillWeight = 86.33672F;
             this.Column3.HeaderText = "تاريخ الإذن";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             // 
             // Column4
             // 
+            this.Column4.FillWeight = 86.33672F;
             this.Column4.HeaderText = "العميل";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
+            this.Column5.FillWeight = 86.33672F;
             this.Column5.HeaderText = "مكان التسليم";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
             // Column6
             // 
+            this.Column6.FillWeight = 86.33672F;
             this.Column6.HeaderText = "إسم السائق";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             // 
             // Column7
             // 
+            this.Column7.FillWeight = 86.33672F;
             this.Column7.HeaderText = "رقم السيارة";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
             // Column8
             // 
+            this.Column8.FillWeight = 86.33672F;
             this.Column8.HeaderText = "رقم التليفون";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
             // Column9
             // 
+            this.Column9.FillWeight = 86.33672F;
             this.Column9.HeaderText = "رقم الرخصة";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             // 
             // Column10
             // 
+            this.Column10.FillWeight = 86.33672F;
             this.Column10.HeaderText = "عدد البالتات";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
             // 
             // Column11
             // 
+            this.Column11.FillWeight = 86.33672F;
             this.Column11.HeaderText = "عدد الوش الخشب";
             this.Column11.Name = "Column11";
             this.Column11.ReadOnly = true;
             // 
             // Column12
             // 
+            this.Column12.FillWeight = 86.33672F;
             this.Column12.HeaderText = "عدد الفواصل الكرتون";
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
             // 
             // Column13
             // 
+            this.Column13.FillWeight = 86.33672F;
             this.Column13.HeaderText = "أمين المخزن";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;

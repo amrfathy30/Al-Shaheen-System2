@@ -19,10 +19,18 @@ namespace Al_Shaheen_System
 
         string productname = "";
 
+        long m = 0;
 
-        public allfinishedproductsdata()
+        SH_EMPLOYEES mEmployee;
+        SH_USER_ACCOUNTS mAccount;
+        SH_USER_PERMISIONS mPermission;
+
+        public allfinishedproductsdata(SH_EMPLOYEES anyemp, SH_USER_ACCOUNTS anyaccount , SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
+            mEmployee = anyemp;
+            mAccount = anyaccount;
+            mPermission = anyperm;
         }
       
 
@@ -194,32 +202,34 @@ namespace Al_Shaheen_System
                     mydata[0] = (counter).ToString();
                     mydata[1] = reader["SH_RAW_MATERIAL_TYPE"].ToString();
                     mydata[2] = reader["SH_USAGE"].ToString();
-                    mydata[3] = reader["SH_SIZE_NAME"].ToString();
+                    mydata[3] = reader["SIZE_NAME"].ToString();
                     mydata[4] = reader["SH_PRINTING_TYPE_NAME"].ToString();
-                    if (long.Parse(reader["SH_PRINTING_TYPE"].ToString())==0)
+                    if (long.Parse(reader["SH_PRINTING_TYPE"].ToString()) == 0)
                     {
-                        mydata[5] = reader["SH_CLIENT_PRODUCT_NAME"].ToString();
-                        mydata[6] = reader["SH_CLIENT_PRODUCT_SECOND_FACE"].ToString();
-                    }else
-                    {
-                        mydata[5] = reader["SH_FIRST_FACE_NAME"].ToString();
-                        mydata[6] = reader["SH_SECOND_FACE_NAME"].ToString();
+                        mydata[5] = reader["CLIENT_PRODUCT_NAME"].ToString();
+                        mydata[6] = reader["PRODUCT_SECOND_FACE"].ToString();
                     }
-                   
+                    else
+                    {
+                        mydata[5] = reader["FIRST_FACE"].ToString();
+                        mydata[6] = reader["SECOND_FACE"].ToString();
+                    }
+
                     mydata[7] = reader["SH_CONTAINER_NAME"].ToString();
-                    mydata[8] = reader["SH_TOTAL_NO_ITEMS"].ToString();
+                    mydata[8] = String.Format("{0:0,0.0}", long.Parse(reader["NO_ITEMS"].ToString()));
                     mydatatabel.Rows.Add(mydata);
                 }
 
-                
+
                 reader.Close();
                 myconnection.closeConnection();
                 finished_products_grid_view.DataSource = mydatatabel;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE GETTING RLT SPECIFICATION DATA "+ex.ToString());
+                MessageBox.Show("ERROR WHILE GETTING rlt SPECIFICATIONS " + ex.ToString());
             }
+
         }
 
         async Task fillPeelOffspecificationsgridview()
@@ -249,21 +259,21 @@ namespace Al_Shaheen_System
                     mydata[0] = (counter).ToString();
                     mydata[1] = reader["SH_RAW_MATERIAL_TYPE"].ToString();
                     mydata[2] = reader["SH_USAGE"].ToString();
-                    mydata[3] = reader["SH_SIZE_NAME"].ToString();
+                    mydata[3] = reader["SIZE_NAME"].ToString();
                     mydata[4] = reader["SH_PRINTING_TYPE_NAME"].ToString();
                     if (long.Parse(reader["SH_PRINTING_TYPE"].ToString()) == 0)
                     {
-                        mydata[5] = reader["SH_CLIENT_PRODUCT_NAME"].ToString();
-                        mydata[6] = reader["SH_CLIENT_PRODUCT_SECOND_FACE"].ToString();
+                        mydata[5] = reader["CLIENT_PRODUCT_NAME"].ToString();
+                        mydata[6] = reader["PRODUCT_SECOND_FACE"].ToString();
                     }
                     else
                     {
-                        mydata[5] = reader["SH_FIRST_FACE_NAME"].ToString();
-                        mydata[6] = reader["SH_SECOND_FACE_NAME"].ToString();
+                        mydata[5] = reader["FIRST_FACE"].ToString();
+                        mydata[6] = reader["SECOND_FACE"].ToString();
                     }
 
                     mydata[7] = reader["SH_CONTAINER_NAME"].ToString();
-                    mydata[8] = reader["SH_TOTAL_NO_ITEMS"].ToString();
+                    mydata[8] = String.Format("{0:0,0.0}", long.Parse(reader["NO_ITEMS"].ToString()));
                     mydatatabel.Rows.Add(mydata);
                 }
 
@@ -274,8 +284,9 @@ namespace Al_Shaheen_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHILE GETTING PEEL OFF SPECIFICATIONS "+ex.ToString());
+                MessageBox.Show("ERROR WHILE GETTING PEEL OFF SPECIFICATIONS " + ex.ToString());
             }
+
         }
 
         async Task fillbottomspecifications()
@@ -305,21 +316,21 @@ namespace Al_Shaheen_System
                         mydata[0] = (counter).ToString();
                         mydata[1] = reader["SH_RAW_MATERIAL_TYPE"].ToString();
                         mydata[2] = reader["SH_USAGE"].ToString();
-                        mydata[3] = reader["SH_SIZE_NAME"].ToString();
+                        mydata[3] = reader["SIZE_NAME"].ToString();
                         mydata[4] = reader["SH_PRINTING_TYPE_NAME"].ToString();
                         if (long.Parse(reader["SH_PRINTING_TYPE"].ToString()) == 0)
                         {
-                            mydata[5] = reader["SH_CLIENT_PRODUCT_NAME"].ToString();
-                            mydata[6] = reader["SH_CLIENT_PRODUCT_SECOND_FACE"].ToString();
+                            mydata[5] = reader["CLIENT_PRODUCT_NAME"].ToString();
+                            mydata[6] = reader["PRODUCT_SECOND_FACE"].ToString();
                         }
                         else
                         {
-                            mydata[5] = reader["SH_FIRST_FACE_NAME"].ToString();
-                            mydata[6] = reader["SH_SECOND_FACE_NAME"].ToString();
+                            mydata[5] = reader["FIRST_FACE"].ToString();
+                            mydata[6] = reader["SECOND_FACE"].ToString();
                         }
 
                         mydata[7] = reader["SH_CONTAINER_NAME"].ToString();
-                    mydata[8] = String.Format("{0:0,0.0}", long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()));
+                       mydata[8] = String.Format("{0:0,0.0}", long.Parse(reader["NO_ITEMS"].ToString()));
                         mydatatabel.Rows.Add(mydata);
                     }
 
@@ -364,21 +375,21 @@ namespace Al_Shaheen_System
                     mydata[0] = (counter).ToString();
                     mydata[1] = reader["SH_RAW_MATERIAL_TYPE"].ToString();
                     mydata[2] = reader["SH_USAGE"].ToString();
-                    mydata[3] = reader["SH_SIZE_NAME"].ToString();
+                    mydata[3] = reader["SIZE_NAME"].ToString();
                     mydata[4] = reader["SH_PRINTING_TYPE_NAME"].ToString();
                     if (long.Parse(reader["SH_PRINTING_TYPE"].ToString()) == 0)
                     {
-                        mydata[5] = reader["SH_CLIENT_PRODUCT_NAME"].ToString();
-                        mydata[6] = reader["SH_CLIENT_PRODUCT_SECOND_FACE"].ToString();
+                        mydata[5] = reader["CLIENT_PRODUCT_NAME"].ToString();
+                        mydata[6] = reader["PRODUCT_SECOND_FACE"].ToString();
                     }
                     else
                     {
-                        mydata[5] = reader["SH_FIRST_FACE_NAME"].ToString();
-                        mydata[6] = reader["SH_SECOND_FACE_NAME"].ToString();
+                        mydata[5] = reader["FIRST_FACE"].ToString();
+                        mydata[6] = reader["SECOND_FACE"].ToString();
                     }
 
                     mydata[7] = reader["SH_CONTAINER_NAME"].ToString();
-                    mydata[8] = String.Format("{0:0,0.0}", long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()));
+                    mydata[8] = String.Format("{0:0,0.0}", long.Parse(reader["NO_ITEMS"].ToString()));
                     mydatatabel.Rows.Add(mydata);
                 }
 
@@ -453,12 +464,12 @@ namespace Al_Shaheen_System
                     counter++;
                     string[] mydata = new string[7];
                     mydata[0] = (counter).ToString();
-                    mydata[1] = reader["SH_CLIENT_COMPANY_NAME"].ToString();
-                    mydata[2] = reader["SH_ITEM_SIZE"].ToString();
-                    mydata[3] = reader["SH_PILLOW_COLOR_NAME"].ToString();
+                    mydata[1] = reader["CLIENT_NAME"].ToString();
+                    mydata[2] = reader["SIZE_NAME"].ToString();
+                    mydata[3] = reader["PILLOW_COLOR_NAME"].ToString();
                     mydata[4] = reader["SH_CONTAINER_NAME"].ToString();
-                    mydata[5] = reader["SH_NO_OF_CONTAINERS"].ToString();
-                    mydata[6] = String.Format("{0:0,0.0}", long.Parse(reader["SH_TOTAL_NO_ITEMS"].ToString()));
+                    mydata[5] = reader["NO_ITEMS"].ToString();
+                    mydata[6] = String.Format("{0:0,0.0}", long.Parse(reader["TOTAL_NO_ITEMS"].ToString()));
           
                     mydatatabel.Rows.Add(mydata);
                 }
@@ -475,105 +486,107 @@ namespace Al_Shaheen_System
 
         private async void finished_can_btn_Click(object sender, EventArgs e)
         {
+            m = 0;
             await fillfinishedcanspecificationsgridview();
         }
 
         private async void mold_btn_Click(object sender, EventArgs e)
         {
+            m = -1;
             await fillmoldspecificationsgridview();
         }
 
         private async void rlt_btn_Click(object sender, EventArgs e)
         {
+            m = 3;
             await fillRltspecificationgridview();
         }
 
         private async void twist_of_btn_Click(object sender, EventArgs e)
         {
+            m = -1;
             await filltwistoffspecificationsgridview();
         }
 
         private async void peel_off_btn_Click(object sender, EventArgs e)
         {
+            m = 4;
             await fillPeelOffspecificationsgridview();
         }
 
         private async void bottom_btn_Click(object sender, EventArgs e)
         {
+            m = 1;
             await fillbottomspecifications();
         }
 
         private async void easy_open_btn_Click(object sender, EventArgs e)
         {
+            m = 2;
             await filleasyopenspecifications();
         }
 
         private async void general_face_properties_Click(object sender, EventArgs e)
         {
+            m = -1;
             await getallgeneral_face_properties();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            DGVPrinter printer = new DGVPrinter();
+            switch (m)
+            {
+                case 0:
+                    {
+                        //finishedcans
+                        printfinishedcanstotalbalanceform myform = new printfinishedcanstotalbalanceform(mEmployee,mAccount,mPermission);
+                        myform.Show();
+                        break;
+                    }
+                case 1:
+                    {
+                        //bottom
+                        printbottomtotalbalanceform myform = new printbottomtotalbalanceform(mEmployee,mAccount,mPermission);
+                        myform.Show();
+                        break;
+                    }
+                case 2:
+                    {
+                        //easy open 
+                        printeasyopentotalbalanceform myform = new printeasyopentotalbalanceform(mEmployee, mAccount, mPermission);
+                        myform.Show();
+                        break;
+                    }
+                case 3:
+                    {
+                        //rlt
+                        printrlttotalbalanceform myform = new printrlttotalbalanceform(mEmployee, mAccount, mPermission);
+                        myform.Show();
+                        break;
+                    }
+                case 4:
+                    {
+                        //peel off 
+                        printpeelofftotalbalanceform myform = new printpeelofftotalbalanceform(mEmployee, mAccount, mPermission);
+                        myform.Show();
+                        break;
+                    }
+                case 5:
+                    {
+                        //plastic cover
+                        printplasticcovertotalbalanceform myform = new printplasticcovertotalbalanceform(mEmployee, mAccount, mPermission);
+                        myform.Show();
+                        break;
+                    }
+                default:
+                    break;
+            }
 
-            printer.Title = "مصنع ال شاهين للتجارة والصناعة";
-
-            printer.SubTitle = "تقرير   "+productname;
-
-            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit |
-
-                StringFormatFlags.NoClip;
-
-            printer.PageNumbers = false;
-
-            printer.PageNumberInHeader = true;
-
-            printer.PorportionalColumns = false;
-
-            printer.HeaderCellAlignment = StringAlignment.Near;
-
-            printer.Footer = "ال شاهين للتجارة والصناعة";
-
-            printer.FooterSpacing = 15;
-
-
-
-            //// use saved settings
-
-            //if (null != myprintsettings)
-
-            //    printer.PrintDocument.PrinterSettings = myprintsettings;
-
-            //if (null != mypagesettings)
-
-            //    printer.PrintDocument.DefaultPageSettings = mypagesettings;
-
-
-
-            //if (DialogResult.OK == printer.DisplayPrintDialog())  // replace DisplayPrintDialog() 
-
-            //// with your own print dialog
-
-            //{
-
-            //    // save users' settings 
-
-            //    myprintsettings = printer.PrinterSettings;
-
-            //    mypagesettings = printer.PageSettings;
-
-
-
-            //    // print without displaying the printdialog
-
-            printer.PrintNoDisplay(finished_products_grid_view);
-
-        
-    }
+        }
 
         private async void plastic_cover_btn_Click(object sender, EventArgs e)
         {
+            m = 5;
             await getallplasticcoverspecifications();
         }
     }

@@ -96,31 +96,62 @@ namespace Al_Shaheen_System
 
         async Task getreceit_order_number()
         {
+            long mycount = 0;
             try
             {
                 myconnection.openConnection();
-                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+1)  AS Current_Identity from SH_RECEIVING_PERMISSION_INFORMATION", DatabaseConnection.mConnection);
+                SqlCommand cmd = new SqlCommand("SELECT (MAX(SH_ID)+684) AS lastedid FROM SH_RECEIVING_PERMISSION_INFORMATION  ", DatabaseConnection.mConnection);
                 SqlDataReader reader = cmd.ExecuteReader();
-                long current_id = 0;
+
                 if (reader.Read())
                 {
-                    current_id = long.Parse(reader["Current_Identity"].ToString());
+                    if (string.IsNullOrWhiteSpace(reader["lastedid"].ToString()))
+                    {
+                        reader.Close();
+                    }
+                    else
+                    {
+                        mycount = long.Parse(reader["lastedid"].ToString());
+                    }
                 }
+
                 reader.Close();
                 myconnection.closeConnection();
-
-                string cur_string = "";
-                long cur_size = current_id.ToString().Length;
-                for (int i = 0; i < 4 - cur_size; i++)
-                {
-                    cur_string += "0";
-                }
-                cur_string += current_id;
-                no_receiving_permission_number_text_box.Text = "SH_" + DateTime.Now.ToString("yy") + "-" + cur_string;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERROR WHIlE GETTING RECEIT ORDER NUMBER " + ex.ToString());
+                MessageBox.Show("Error while getting new permission number " + ex.ToString());
+            }
+
+
+            if (mycount == 0)
+            {
+                //there is the first rows in the db
+                string permissionnumber = "SH_";
+                
+                permissionnumber += DateTime.Now.ToString("yy");
+                permissionnumber += "-";
+                string currentr = 684.ToString();
+                for (int i = 0; i < 4 - 1; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += 1.ToString();
+                no_receiving_permission_number_text_box.Text = permissionnumber;
+            }
+            else
+            {
+                string permissionnumber = "SH_";
+                
+                permissionnumber += DateTime.Now.ToString("yy");
+                permissionnumber += "-";
+                string currentr = mycount.ToString();
+                for (int i = 0; i < 4 - currentr.Length; i++)
+                {
+                    permissionnumber += "0";
+                }
+                permissionnumber += mycount.ToString();
+                no_receiving_permission_number_text_box.Text = permissionnumber;
             }
         }
 
@@ -192,22 +223,42 @@ namespace Al_Shaheen_System
                                 //bottom data
                                 if (dismissed_containers[i].bottom_containers.Count > 0)
                                 {
-                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    if (dismissed_containers[i].bottom_containers[0].printing_type_index == 0)
+                                    {
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
                                     (i+1).ToString(),
                                     dismissed_containers[i].product_name,
                                     clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
                                     //dismissed_containers[i].bottom_containers[0].,
-                                     "قاع ",
+                                    "قاع" +"  "+dismissed_containers[i].bottom_containers[0].size_name+" "+dismissed_containers[i].bottom_containers[0].client_product_name+" "+dismissed_containers[i].bottom_containers[0].first_face_name+" / "+dismissed_containers[i].bottom_containers[0].product_second_face+" "+dismissed_containers[i].bottom_containers[0].second_face_name,
+
                                      dismissed_containers[i].bottom_containers[0].SH_CONTAINER_NAME,
                                     dismissed_containers[i].bottom_containers.Count.ToString(),
                                     dismissed_containers[i].bottom_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
+
+                                    }
+                                    else
+                                    {
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                    "قاع" +"  "+dismissed_containers[i].bottom_containers[0].size_name+" "+dismissed_containers[i].bottom_containers[0].first_face_name+" / "+dismissed_containers[i].bottom_containers[0].second_face_name,
+
+                                     dismissed_containers[i].bottom_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].bottom_containers.Count.ToString(),
+                                    dismissed_containers[i].bottom_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+
+                                    }
                                 }
-
-
-
-                                break;
+                                
+                                    
+                                    break;
                             }
                         case 2:
                             {
@@ -429,6 +480,8 @@ namespace Al_Shaheen_System
 
         private async void clientreceivalpermissionnumberform_Load(object sender, EventArgs e)
         {
+
+
             stock_man_text_box.Text = memployee.SH_EMPLOYEE_NAME;
             await fillstockscombobox();
             await getreceit_order_number();
@@ -514,6 +567,7 @@ namespace Al_Shaheen_System
                                 cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                                 cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
                                 cmd.Parameters.AddWithValue("@SH_ITEM_NAME", anydata.cans_parcels[0].SH_CLIENT_PRODUCT_NAME);
+                                cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER_SIZE", anydata.cans_parcels[0].SH_PALLET_SIZE_TEXT);
                                 cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", "بالتة");
                                 cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.cans_parcels[0].SH_TOTAL_NUMBER_OF_CANS);
                                 cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.cans_parcels.Count);
@@ -546,7 +600,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "قاع");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "قاع" + "  " + anydata.bottom_containers[0].size_name + " " + anydata.bottom_containers[0].client_product_name + " " + anydata.bottom_containers[0].first_face_name + " / " + anydata.bottom_containers[0].product_second_face + " " + anydata.bottom_containers[0].second_face_name);
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.bottom_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.bottom_containers[0].SH_TOTAL_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.bottom_containers.Count);
@@ -1398,7 +1452,7 @@ namespace Al_Shaheen_System
                 cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", maccount.SH_ID);
                 cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", memployee.SH_ID);
                 cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_CONTAINERS", anydata.plastic_cover_containers.Count);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_DIMISSAL_ITEMS", anydata.plastic_cover_containers.Count);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_DIMISSAL_ITEMS", anydata.total_no_of_items_of_selected_containers);
                 cmd.Parameters.AddWithValue("@SH_STOCK_MAN_ID", memployee.SH_ID);
                 cmd.Parameters.AddWithValue("@SH_STOCK_ID", stocks[stocks_combo_box.SelectedIndex].SH_ID);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -1409,6 +1463,7 @@ namespace Al_Shaheen_System
                 }
                 reader.Close();
                 myconnection.closeConnection();
+                return myid;
             }
             catch (Exception ex)
             {

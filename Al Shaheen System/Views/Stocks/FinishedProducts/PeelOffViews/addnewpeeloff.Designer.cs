@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.stock_man_name_text_box = new System.Windows.Forms.TextBox();
@@ -42,7 +42,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.suppliers_combo_box = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.stock_men_combo_box = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.sizes_combo_box = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -201,14 +200,6 @@
             this.label2.Size = new System.Drawing.Size(63, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "إسم المورد";
-            // 
-            // stock_men_combo_box
-            // 
-            this.stock_men_combo_box.FormattingEnabled = true;
-            this.stock_men_combo_box.Location = new System.Drawing.Point(484, 616);
-            this.stock_men_combo_box.Name = "stock_men_combo_box";
-            this.stock_men_combo_box.Size = new System.Drawing.Size(222, 21);
-            this.stock_men_combo_box.TabIndex = 7;
             // 
             // groupBox2
             // 
@@ -563,14 +554,14 @@
             this.PEEL_OFF_form_data_grid_view.AllowUserToDeleteRows = false;
             this.PEEL_OFF_form_data_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.PEEL_OFF_form_data_grid_view.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PEEL_OFF_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PEEL_OFF_form_data_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.PEEL_OFF_form_data_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PEEL_OFF_form_data_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -586,20 +577,20 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.PEEL_OFF_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.PEEL_OFF_form_data_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
             this.PEEL_OFF_form_data_grid_view.GridColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PEEL_OFF_form_data_grid_view.Location = new System.Drawing.Point(28, 650);
             this.PEEL_OFF_form_data_grid_view.Name = "PEEL_OFF_form_data_grid_view";
             this.PEEL_OFF_form_data_grid_view.ReadOnly = true;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PEEL_OFF_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PEEL_OFF_form_data_grid_view.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.PEEL_OFF_form_data_grid_view.Size = new System.Drawing.Size(955, 222);
             this.PEEL_OFF_form_data_grid_view.TabIndex = 10;
             // 
@@ -731,7 +722,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1014, 930);
-            this.Controls.Add(this.stock_men_combo_box);
             this.Controls.Add(this.date_text_box);
             this.Controls.Add(this.remove_quantity_btn);
             this.Controls.Add(this.add_new_quantity_btn);
@@ -802,7 +792,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox addition_permission_number_text_box;
         private System.Windows.Forms.ComboBox f1_printing_stat;
-        private System.Windows.Forms.ComboBox stock_men_combo_box;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox stocks_combo_box;
         private System.Windows.Forms.Label label9;

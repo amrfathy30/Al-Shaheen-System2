@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace Al_Shaheen_System
 {
-    public partial class addnewfinishedcan : Form
+    public partial class returnfinishedcansform : Form
     {
         List<SH_SHAHEEN_STOCK> stocks = new List<SH_SHAHEEN_STOCK>();
         List<SH_CLIENT_COMPANY> clients = new List<SH_CLIENT_COMPANY>();
         List<SH_CLIENTS_PRODUCTS> products = new List<SH_CLIENTS_PRODUCTS>();
-        List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT> parcels = new List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT>();
+        
         List<SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS> quantities = new List<SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS>();
         List<SH_CALCULATE_TOTAL_FINISHED_PRODUCT> specifications = new List<SH_CALCULATE_TOTAL_FINISHED_PRODUCT>();
-
+        List<SH_PALLETS_SIZES_INFORMATION> PALLETS_SIZES = new List<SH_PALLETS_SIZES_INFORMATION>();
         DatabaseConnection myconnection = new DatabaseConnection();
 
         SH_EMPLOYEES mEmployee;
@@ -191,42 +191,56 @@ namespace Al_Shaheen_System
 
 
 
-        long savefinishedcansquantities(SH_ADDED_PARCELS_OF_FINISHED_PRODUCT anyparcel,long sp_id)
+        void savefinishedcansquantities(SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS anyquantity,long sp_id)
         {
             try
             {
                 string query = "INSERT INTO SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS ";
                 query += " (SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID, SH_CLIENT_ID, SH_CLIENT_NAME, SH_CLIENT_PRODUCT_ID, SH_CLIENT_PRODUCT_NAME, SH_TOTAL_NUMBER_OF_PALLETS, SH_TOTAL_NUMBER_OF_CANS, ";
-                query += " SH_STOCK_NAME, SH_STOCK_ID, SH_ADDING_PERMISSION_NUMBER, SH_ADDITION_DATE) ";
+                query += " SH_STOCK_NAME, SH_STOCK_ID, SH_ADDING_PERMISSION_NUMBER, SH_ADDITION_DATE  ";
+                query += ", SH_PALLET_SIZE_TEXT ,SH_PALLET_LENGTH,SH_PALLET_WIDTH";
+                query += " )";
                 query += " VALUES(@SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID,@SH_CLIENT_ID,@SH_CLIENT_NAME,@SH_CLIENT_PRODUCT_ID,@SH_CLIENT_PRODUCT_NAME,@SH_TOTAL_NUMBER_OF_PALLETS";
-                query += ",@SH_TOTAL_NUMBER_OF_CANS,@SH_STOCK_NAME,@SH_STOCK_ID,@SH_ADDING_PERMISSION_NUMBER,@SH_ADDITION_DATE)";
+                query += ",@SH_TOTAL_NUMBER_OF_CANS,@SH_STOCK_NAME,@SH_STOCK_ID,@SH_ADDING_PERMISSION_NUMBER,@SH_ADDITION_DATE ";
+                query += ", @SH_PALLET_SIZE_TEXT ,@SH_PALLET_LENGTH,@SH_PALLET_WIDTH";
+                query += " )";
+
                 query += "SELECT SCOPE_IDENTITY() AS myidentity";
                 DatabaseConnection myconnection = new DatabaseConnection();
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query , DatabaseConnection.mConnection);
                 cmd.Parameters.AddWithValue("@SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID", sp_id);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", anyparcel.SH_CLIENT_ID);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_NAME", anyparcel.SH_CLIENT_NAME);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", anyparcel.SH_CLIENT_PRODUCT_ID);
-                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_NAME", anyparcel.SH_CLIENT_PRODUCT_NAME);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_PALLETS", 1);
-                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_CANS", anyparcel.SH_TOTAL_NUMBER_OF_CANS);
-                cmd.Parameters.AddWithValue("@SH_STOCK_NAME", anyparcel.SH_STOCK_NAME);
-                cmd.Parameters.AddWithValue("@SH_STOCK_ID", anyparcel.SH_STOCK_ID);
-                cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_NUMBER", anyparcel.SH_ADDING_PERMISSION_NUMBER);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", anyquantity.mparcels[0].SH_CLIENT_ID);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_NAME", anyquantity.mparcels[0].SH_CLIENT_NAME);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_ID", anyquantity.mparcels[0].SH_CLIENT_PRODUCT_ID);
+                cmd.Parameters.AddWithValue("@SH_CLIENT_PRODUCT_NAME", anyquantity.mparcels[0].SH_CLIENT_PRODUCT_NAME);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_PALLETS", anyquantity.mparcels.Count);
+                cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_CANS", anyquantity.mparcels[0].SH_TOTAL_NUMBER_OF_CANS);
+                cmd.Parameters.AddWithValue("@SH_PALLET_SIZE_TEXT" , PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].SIZE_TEXT);
+                cmd.Parameters.AddWithValue("@SH_PALLET_LENGTH", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].LENGTH);
+                cmd.Parameters.AddWithValue("@SH_PALLET_WIDTH", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].WIDTH);
+                cmd.Parameters.AddWithValue("@SH_STOCK_NAME", anyquantity.mparcels[0].SH_STOCK_NAME);
+                cmd.Parameters.AddWithValue("@SH_STOCK_ID", anyquantity.mparcels[0].SH_STOCK_ID);
+                cmd.Parameters.AddWithValue("@SH_ADDING_PERMISSION_NUMBER", anyquantity.mparcels[0].SH_ADDING_PERMISSION_NUMBER);
                 cmd.Parameters.AddWithValue("SH_ADDITION_DATE", DateTime.Now);
                 SqlDataReader reader = cmd.ExecuteReader();
+                long myid = 0;
                 if (reader.Read())
                 {
-                    return long.Parse(reader["myidentity"].ToString());
+                    myid =  long.Parse(reader["myidentity"].ToString());
                 }
                 myconnection.closeConnection();
+                for (int i = 0; i < anyquantity.mparcels.Count; i++)
+                {
+                    save_finished_cans_parcels(anyquantity.mparcels[i], sp_id, myid);
+                }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERROR WHILE SAVING FINISHED PRODUCT QUANTITES "+ex.ToString());
             }
-            return 0;
+           
         }
 
         void save_finished_cans_parcels(SH_ADDED_PARCELS_OF_FINISHED_PRODUCT anyparcel,long sp_id , long quantity_id )
@@ -237,9 +251,11 @@ namespace Al_Shaheen_System
                         query = "INSERT INTO SH_ADDED_PARCELS_OF_FINISHED_PRODUCT";
                         query += "(SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID, SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID, SH_CLIENT_ID, SH_CLIENT_PRODUCT_ID, SH_CLIENT_NAME, SH_ADDING_PERMISSION_NUMBER,";
                         query += "SH_CLIENT_PRODUCT_NAME, SH_STOCK_NAME, SH_STOCK_ID, SH_NUMBER_OF_CANS_LENGTH, SH_NUMBER_OF_CANS_WIDTH, SH_ADDITION_DATE, SH_TOTAL_NUMBER_OF_CANS,";
-                        query += "SH_LAST_RECORD_NUMBER_OF_CANS, SH_NUMBER_OF_CANS_HEIGHT)";
+                        query += "SH_LAST_RECORD_NUMBER_OF_CANS, SH_NUMBER_OF_CANS_HEIGHT ,SH_PALLET_SIZE_TEXT , SH_PALLET_SIZE_LENGTH ,SH_PALLET_SIZE_WIDTH)";
                         query += "VALUES(@SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS_ID,@SH_CALCULATE_TOTAL_FINISHED_PRODUCT_ID,@SH_CLIENT_ID,@SH_CLIENT_PRODUCT_ID,@SH_CLIENT_NAME,@SH_ADDING_PERMISSION_NUMBER,";
-                        query += "@SH_CLIENT_PRODUCT_NAME,@SH_STOCK_NAME,@SH_STOCK_ID,@SH_NUMBER_OF_CANS_LENGTH,@SH_NUMBER_OF_CANS_WIDTH,@SH_ADDITION_DATE,@SH_TOTAL_NUMBER_OF_CANS,@SH_LAST_RECORD_NUMBER_OF_CANS,@SH_NUMBER_OF_CANS_HEIGHT)";
+                        query += "@SH_CLIENT_PRODUCT_NAME,@SH_STOCK_NAME,@SH_STOCK_ID,@SH_NUMBER_OF_CANS_LENGTH,@SH_NUMBER_OF_CANS_WIDTH,@SH_ADDITION_DATE,@SH_TOTAL_NUMBER_OF_CANS,";
+                        query += "@SH_LAST_RECORD_NUMBER_OF_CANS,@SH_NUMBER_OF_CANS_HEIGHT , @SH_PALLET_SIZE_TEXT , @SH_PALLET_SIZE_LENGTH ,@SH_PALLET_SIZE_WIDTH)";
+
                         DatabaseConnection myconnection = new DatabaseConnection();
                         myconnection.openConnection();
                         SqlCommand cmd = new SqlCommand(query , DatabaseConnection.mConnection);
@@ -258,7 +274,9 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_TOTAL_NUMBER_OF_CANS" , anyparcel.SH_TOTAL_NUMBER_OF_CANS);
                         cmd.Parameters.AddWithValue("@SH_LAST_RECORD_NUMBER_OF_CANS", anyparcel.SH_LAST_RECORD_NUMBER_OF_CANS);
                         cmd.Parameters.AddWithValue("@SH_NUMBER_OF_CANS_HEIGHT" , anyparcel.SH_NUMBER_OF_CANS_HEIGHT);
-
+                        cmd.Parameters.AddWithValue("@SH_PALLET_SIZE_TEXT", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].SIZE_TEXT);
+                        cmd.Parameters.AddWithValue("@SH_PALLET_SIZE_LENGTH", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].LENGTH);
+                        cmd.Parameters.AddWithValue("@SH_PALLET_SIZE_WIDTH", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].WIDTH);
                         cmd.ExecuteNonQuery();
 
                         myconnection.closeConnection();
@@ -273,7 +291,7 @@ namespace Al_Shaheen_System
 
 
 
-        public addnewfinishedcan(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
+        public returnfinishedcansform(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyAccount , SH_USER_PERMISIONS anyPerm)
         {
             InitializeComponent();
             mEmployee = anyemp;
@@ -292,9 +310,12 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    stocks.Add(new SH_SHAHEEN_STOCK { SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString(), SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString() });
+                    stocks.Add(new SH_SHAHEEN_STOCK {
+                        SH_ID = long.Parse(reader["SH_ID"].ToString())
+                        ,
+                        SH_STOCK_NAME = reader["SH_STOCK_NAME"].ToString(), SH_STOCK_ADDRESS_TEXT = reader["SH_STOCK_ADDRESS_TEXT"].ToString(), SH_STOCK_ADDRESS_GPS = reader["SH_STOCK_ADDRESS_GPS"].ToString() });
                 }
-
+                reader.Close();
                 myconnection.closeConnection();
             }
             catch (Exception ex)
@@ -411,6 +432,32 @@ namespace Al_Shaheen_System
 
         private async void addnewfinishedcan_Load(object sender, EventArgs e)
         {
+            TOTAL_NUMBER_OF_PALLETS_LABEL.Text = "0";
+            PALLETS_SIZES.Add(new SH_PALLETS_SIZES_INFORMATION() {
+                LENGTH = 120,
+                SIZE_TEXT = "110*120",
+                WIDTH = 110
+
+            });
+            PALLETS_SIZES.Add(new SH_PALLETS_SIZES_INFORMATION()
+            {
+                LENGTH = 130,
+                SIZE_TEXT = "110*130",
+                WIDTH = 110
+
+            });
+            PALLETS_SIZES.Add(new SH_PALLETS_SIZES_INFORMATION()
+            {
+                LENGTH = 135,
+                SIZE_TEXT = "110*135",
+                WIDTH = 110
+
+            });
+            pallet_sizes_combo_box.Items.Clear();
+            for (int i = 0; i < PALLETS_SIZES.Count; i++)
+            {
+                pallet_sizes_combo_box.Items.Add(PALLETS_SIZES[i].SIZE_TEXT);
+            }
             await autogenerateadditionpermisionnumber();
             stock_man_name_text_box.Text = mEmployee.SH_EMPLOYEE_NAME;
             fillstockscombobox();
@@ -747,6 +794,7 @@ namespace Al_Shaheen_System
                 else
                 {
                     saveornot = true;
+                    List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT> parcels = new List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT>();
                     parcels.Add(new SH_ADDED_PARCELS_OF_FINISHED_PRODUCT() {
                         SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID ,
                         SH_CLIENT_NAME = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME ,
@@ -762,6 +810,13 @@ namespace Al_Shaheen_System
                         , SH_STOCK_NAME = stocks[stocks_combo_box.SelectedIndex].SH_STOCK_NAME 
                         , SH_TOTAL_NUMBER_OF_CANS = long.Parse(unsmiller_quanatity_cans_per_pallet_text_box.Text)} );
                     total_number_of_pallets++;
+                    TOTAL_NUMBER_OF_PALLETS_LABEL.Text = total_number_of_pallets.ToString();
+
+                    quantities.Add(new SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS() {
+
+                        mparcels = parcels
+                    });
+
                     fillparcelsgridview();
                 }
             }
@@ -806,13 +861,21 @@ namespace Al_Shaheen_System
                 else
                 {
                     saveornot = true;
+                    List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT> parcels = new List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT>();
+
                     for (int i = 0; i < long.Parse(number_of_pallets_text_box.Text); i++)
                     {
                         parcels.Add(new SH_ADDED_PARCELS_OF_FINISHED_PRODUCT() { SH_LAST_RECORD_NUMBER_OF_CANS = 0, SH_NUMBER_OF_CANS_HEIGHT = long.Parse(number_of_cans_height_text_box.Text), SH_ADDING_PERMISSION_NUMBER = adding_request_number_text_box.Text, SH_ADDITION_DATE = DateTime.Now, SH_CLIENT_ID = clients[clients_combo_box.SelectedIndex].SH_ID, SH_NUMBER_OF_CANS_LENGTH = long.Parse(number_of_cans_length_text_box.Text), SH_CLIENT_NAME = clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME, SH_CLIENT_PRODUCT_ID = products[client_products_combo_box.SelectedIndex].SH_ID, SH_NUMBER_OF_CANS_WIDTH = long.Parse(number_of_cans_width_text_box.Text), SH_STOCK_ID = stocks[stocks_combo_box.SelectedIndex].SH_ID, SH_STOCK_NAME = stocks[stocks_combo_box.SelectedIndex].SH_STOCK_NAME, SH_CLIENT_PRODUCT_NAME = products[client_products_combo_box.SelectedIndex].SH_PRODUCT_NAME, SH_TOTAL_NUMBER_OF_CANS = long.Parse(smiller_quanatity_cans_per_pallet_text_box.Text) });
                         total_number_of_pallets++;
+                        TOTAL_NUMBER_OF_PALLETS_LABEL.Text = total_number_of_pallets.ToString();
                         total_number_of_cans = long.Parse(smiller_quanatity_cans_per_pallet_text_box.Text) * long.Parse(number_of_pallets_text_box.Text);
-                        fillparcelsgridview();
+                       
                     }
+                    quantities.Add(new SH_ADDED_QUANTITES_OF_FINISHED_PRODUCTS()
+                    {
+                        mparcels = parcels
+                    });
+                    fillparcelsgridview();
                 }
             }
             if (saveornot)
@@ -830,7 +893,7 @@ namespace Al_Shaheen_System
         private void new_quantity_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            using (addnewfinishedcan myform = new addnewfinishedcan(mEmployee,mAccount,mPermission))
+            using (returnfinishedcansform myform = new returnfinishedcansform(mEmployee,mAccount,mPermission))
             {
                 myform.ShowDialog();
             }
@@ -838,12 +901,12 @@ namespace Al_Shaheen_System
         }
         void fillparcelsgridview()
         {
-            if (parcels.Count > 0)
+            if (quantities.Count > 0)
             {
                 parcels_grid_view.Rows.Clear();
-                for (int i = 0; i < parcels.Count; i++)
+                for (int i = 0; i < quantities.Count; i++)
                 {
-                    parcels_grid_view.Rows.Add(new string[] {  (i+1).ToString() , parcels[i].SH_CLIENT_NAME , parcels[i].SH_CLIENT_PRODUCT_NAME , 1.ToString() , parcels[i].SH_TOTAL_NUMBER_OF_CANS.ToString() , parcels[i].SH_TOTAL_NUMBER_OF_CANS.ToString() });
+                    parcels_grid_view.Rows.Add(new string[] {  (i+1).ToString() , quantities[i].mparcels[0].SH_CLIENT_NAME , quantities[i].mparcels[0].SH_CLIENT_PRODUCT_NAME , quantities[i].mparcels.Count.ToString(), quantities[i].mparcels[0].SH_TOTAL_NUMBER_OF_CANS.ToString() , quantities[i].mparcels[0].SH_TOTAL_NUMBER_OF_CANS.ToString() });
                 }
             }
         }
@@ -852,7 +915,137 @@ namespace Al_Shaheen_System
             this.Close();
         }
 
-        private void save_new_quantity_btn_Click(object sender, EventArgs e)
+
+        async Task<long> saveexchangepalletsquantities()
+        {
+
+            List<SH_INDIVIDUAL_PALLETS> mypallets = new List<SH_INDIVIDUAL_PALLETS>();
+
+            try
+            {
+                myconnection.openConnection();
+                string query = "select top("+total_number_of_pallets+")IDP.* from SH_INDIVIDUAL_PALLETS IDP ";
+                query += " left join SH_ADDED_QUANTITY_OF_PALLETS AQP ON ";
+                query += " AQP.SH_ID = IDP.SH_ADDED_QUANTITY_OF_PALLETS_ID ";
+                query += " LEFT JOIN SH_SPECIFICATION_OF_PALLETS SPP ON ";
+                query += " SPP.SH_ID = AQP.SH_SPECIFICATION_OF_PALLETS_ID ";
+                query += " where IDP.SH_ID not in (SELECT SH_INDIVIDUAL_PALLETS_ID FROM SH_EXCHANGE_OF_PALLETS ) ";
+                query += " and SPP.SH_PALLET_LENGTH = @palletlength AND SPP.SH_PALLET_WIDTH = @palletwidth ";
+                SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                cmd.Parameters.AddWithValue("@palletlength", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].LENGTH);
+                cmd.Parameters.AddWithValue("@palletwidth", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].WIDTH);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    mypallets.Add(new SH_INDIVIDUAL_PALLETS() {
+                        SH_ADDED_QUANTITY_OF_PALLETS_ID = long.Parse(reader["SH_ADDED_QUANTITY_OF_PALLETS_ID"].ToString()),
+                        SH_ADDTION_DATE = DateTime.Parse(reader["SH_ADDTION_DATE"].ToString()),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString()),
+                        SH_PALLET_SIZE_TEXT = reader["SH_PALLET_SIZE_TEXT"].ToString()
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING PALLETS DATA "+ex.ToString());
+            }
+
+
+
+
+
+            if (mypallets.Count > 0)
+            {
+
+
+
+                try
+                {
+                    myconnection.openConnection();
+                    string query = " INSERT INTO SH_EXCHANGE_QUANTITIES_OF_PALLETS ";
+                    query += " (SH_EXCHANGE_DATE, SH_ITEM_ADDITION_NUMBER, ";
+                    query += "         SH_NO_PALLETS, SH_DATA_ENTRY_USER_ID, ";
+                    query += "         SH_DATA_ENTRY_EMPLOYEE_ID, SH_PALLETS_SIZE_TEXT,";
+                    query += " SH_PALLETS_WIDTH, SH_PALLETS_LENGTH) ";
+                    query += "VALUES(@SH_EXCHANGE_DATE, @SH_ITEM_ADDITION_NUMBER, @SH_NO_PALLETS, ";
+                    query += " @SH_DATA_ENTRY_USER_ID, @SH_DATA_ENTRY_EMPLOYEE_ID, @SH_PALLETS_SIZE_TEXT ";
+                    query += ", @SH_PALLETS_WIDTH, @SH_PALLETS_LENGTH)  ";
+                    query += "SELECT SCOPE_IDENTITY() AS myidentity ";
+                    SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                    cmd.Parameters.AddWithValue("@SH_EXCHANGE_DATE", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@SH_ITEM_ADDITION_NUMBER", adding_request_number_text_box.Text);
+                    cmd.Parameters.AddWithValue("@SH_NO_PALLETS", mypallets.Count);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_EMPLOYEE_ID", mEmployee.SH_ID);
+                    cmd.Parameters.AddWithValue("@SH_PALLETS_SIZE_TEXT", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].SIZE_TEXT);
+                    cmd.Parameters.AddWithValue("@SH_PALLETS_WIDTH", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].WIDTH);
+                    cmd.Parameters.AddWithValue("@SH_PALLETS_LENGTH", PALLETS_SIZES[pallet_sizes_combo_box.SelectedIndex].LENGTH);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    long myid = 0;
+                    if (reader.Read())
+                    {
+                        myid = long.Parse(reader["myidentity"].ToString());
+                    }
+                    reader.Close();
+                    myconnection.closeConnection();
+                    await saveexchangedindividualpallets(myid, mypallets);
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR WHILE ExCHANGE PALLETS QUANTITIES " + ex.ToString());
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("  لا يوجد بالتات ليتم صرفها للمنتجات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+
+            return 0;
+        }
+
+
+        async Task saveexchangedindividualpallets(long ex_quantity , List<SH_INDIVIDUAL_PALLETS> pallets  )
+        {
+            for (int i = 0; i < pallets.Count; i++)
+            {
+
+
+                try
+                {
+                    myconnection.openConnection();
+                    string query = "INSERT INTO SH_EXCHANGE_OF_PALLETS ";
+                    query += "  (SH_EXCHANGE_DATE, SH_DATA_ENTRY_USER_ID, ";
+                    query += "  SH_DATA_ENTRY_EMPLOYEE_ID, ";
+                    query += " SH_INDIVIDUAL_PALLETS_ID ,SH_EXCHANGE_QUANTITIES_OF_PALLETS_ID) ";
+                    query += " VALUES(@SH_EXCHANGE_DATE, @SH_DATA_ENTRY_USER_ID, ";
+                    query += " @SH_DATA_ENTRY_EMPLOYEE_ID, @SH_INDIVIDUAL_PALLETS_ID ,@SH_EXCHANGE_QUANTITIES_OF_PALLETS_ID)";
+                    SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);
+                    cmd.Parameters.AddWithValue("SH_EXCHANGE_DATE", DateTime.Now);
+                    cmd.Parameters.AddWithValue("SH_DATA_ENTRY_USER_ID",mAccount.SH_ID);
+                    cmd.Parameters.AddWithValue("SH_DATA_ENTRY_EMPLOYEE_ID", mEmployee.SH_ID);
+                    cmd.Parameters.AddWithValue("SH_INDIVIDUAL_PALLETS_ID", pallets[i].SH_ID);
+                    cmd.Parameters.AddWithValue("SH_EXCHANGE_QUANTITIES_OF_PALLETS_ID", ex_quantity);
+
+                    cmd.ExecuteNonQuery();
+                    myconnection.closeConnection();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("ERROR WHILE SAVING ExCHANGED INDIViDUAL PALLETS " + ex.ToString());
+                }
+            }
+        }
+
+
+
+
+
+        private async void save_new_quantity_btn_Click(object sender, EventArgs e)
         {
             bool saveornot = true;
 
@@ -871,12 +1064,12 @@ namespace Al_Shaheen_System
                 {
                     saveornot = false;
                 }
-                
+
                 else if (string.IsNullOrEmpty(stocks_combo_box.Text))
                 {
                     saveornot = false;
                 }
-                else if (parcels.Count <=0)
+                else if (quantities.Count <= 0)
                 {
                     saveornot = false;
                 }
@@ -884,7 +1077,7 @@ namespace Al_Shaheen_System
 
                 {
                     saveornot = true;
-                  
+
                 }
             }
             else
@@ -901,14 +1094,14 @@ namespace Al_Shaheen_System
                 {
                     saveornot = false;
                 }
-                else  if (string.IsNullOrEmpty(stocks_combo_box.Text))
+                else if (string.IsNullOrEmpty(stocks_combo_box.Text))
                 {
                     saveornot = false;
                 }
-                else if (parcels.Count <=0)
+                else if (quantities.Count <= 0)
                 {
                     saveornot = true;
-                    
+
                 }
             }
             if (saveornot)
@@ -918,46 +1111,50 @@ namespace Al_Shaheen_System
 
 
                 Cursor.Current = Cursors.WaitCursor;
-                    if (parcels.Count > 0)
-                    {
+                if (quantities.Count > 0)
+                {
 
                     savenewpermssionnumber();
-                        for (int i = 0; i < parcels.Count; i++)
-                        {
-                        long sp_id = check_if_item_details_exists_or_not(parcels[i]);
-                        if (sp_id == 0)
-                        { 
-                    
-                            sp_id = savenewfinishedproductspecification(parcels[i]);
-                            qu_id = savefinishedcansquantities(parcels[i], sp_id);
-                            save_finished_cans_parcels(parcels[i],sp_id, qu_id);
-                        }
-                        else
-                        {
-                            updatecurrentfinishedproductspecification(parcels[i], sp_id);
-                            qu_id = savefinishedcansquantities(parcels[i], sp_id);
-                            save_finished_cans_parcels(parcels[i], sp_id, qu_id);
-
-                        }
-                    }
-                    
-                    MessageBox.Show("تم الحفظ ", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-                    this.Hide();
-                    using (addnewfinishedcan myform = new addnewfinishedcan(mEmployee, mAccount, mPermission))
+                    long res = await saveexchangepalletsquantities();
+                    if (res==1)
                     {
-                        myform.ShowDialog();
+                        for (int i = 0; i < quantities.Count; i++)
+                        {
+                            long sp_id = check_if_item_details_exists_or_not(quantities[i].mparcels[0]);
+                            if (sp_id == 0)
+                            {
+
+                                sp_id = savenewfinishedproductspecification(quantities[i].mparcels[0]);
+                                savefinishedcansquantities(quantities[i], sp_id);
+
+                            }
+                            else
+                            {
+                                updatecurrentfinishedproductspecification(quantities[i].mparcels[0], sp_id);
+                                savefinishedcansquantities(quantities[i], sp_id);
+
+
+                            }
+                        }
+
+                        Cursor.Current = Cursors.Default;
+                        MessageBox.Show("تم الحفظ ", "معلومات", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                        this.Hide();
+                        using (returnfinishedcansform myform = new returnfinishedcansform(mEmployee, mAccount, mPermission))
+                        {
+                            myform.ShowDialog();
+                        }
+                        this.Close();
+                    }else
+                    {
+                        MessageBox.Show("لم يتم الحفظ  ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+
                     }
-                    this.Close();
                 }
-                Cursor.Current = Cursors.Default;
-                this.Hide();
-                using (addnewfinishedcan myform = new addnewfinishedcan(mEmployee,mAccount,mPermission))
-                {
-                    myform.ShowDialog();
-                }
-                this.Close();
+
+
             }
-            
+
             else
             {
                 MessageBox.Show("الرجاء كتابة جميع البيانات بشكل صحيح ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);

@@ -87,6 +87,43 @@
     <Compile Include="addnewclientproductfilm.Designer.cs">
       <DependentUpon>addnewclientproductfilm.cs</DependentUpon>
     </Compile>
+    <Compile Include="alldialysalesform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="alldialysalesform.Designer.cs">
+      <DependentUpon>alldialysalesform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="allproductionrequirementsforms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="allproductionrequirementsforms.Designer.cs">
+      <DependentUpon>allproductionrequirementsforms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bottomtotalbalancedataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bottomtotalbalancedataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SH_SPECIFICATION_OF_CARTON_DIVIDERS.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_WOODEN_FACE.cs" />
+    <Compile Include="wooden_face_data_profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wooden_face_data_profile.Designer.cs">
+      <DependentUpon>wooden_face_data_profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="carton_data_profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="carton_data_profile.Designer.cs">
+      <DependentUpon>carton_data_profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="woodenfacepotalform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="woodenfacepotalform.Designer.cs">
+      <DependentUpon>woodenfacepotalform.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\Datasets\addition_permission_of_raw_tin.cs">
       <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
     </Compile>
@@ -95,14 +132,99 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
     </Compile>
+    <Compile Include="finishedcanstotalbalancedataset.cs">
+      <DependentUpon>finishedcanstotalbalancedataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="finishedcanstotalbalancedataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>finishedcanstotalbalancedataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="getallclientproductfilms.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="getallclientproductfilms.Designer.cs">
       <DependentUpon>getallclientproductfilms.cs</DependentUpon>
     </Compile>
+    <Compile Include="cartondividersportalform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cartondividersportalform.Designer.cs">
+      <DependentUpon>cartondividersportalform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pallets_portal_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pallets_portal_form.Designer.cs">
+      <DependentUpon>pallets_portal_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pallet_data_profile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pallet_data_profile.Designer.cs">
+      <DependentUpon>pallet_data_profile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="plasticcovertotalbalancedataset.cs">
+      <DependentUpon>plasticcovertotalbalancedataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="plasticcovertotalbalancedataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>plasticcovertotalbalancedataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="printbottomtotalbalanceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printbottomtotalbalanceform.Designer.cs">
+      <DependentUpon>printbottomtotalbalanceform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printeasyopentotalbalanceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printeasyopentotalbalanceform.Designer.cs">
+      <DependentUpon>printeasyopentotalbalanceform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printfinishedcanstotalbalanceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printfinishedcanstotalbalanceform.Designer.cs">
+      <DependentUpon>printfinishedcanstotalbalanceform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printpalletreturnrequistform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printpalletreturnrequistform.Designer.cs">
+      <DependentUpon>printpalletreturnrequistform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printpeelofftotalbalanceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printpeelofftotalbalanceform.Designer.cs">
+      <DependentUpon>printpeelofftotalbalanceform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printplasticcovertotalbalanceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printplasticcovertotalbalanceform.Designer.cs">
+      <DependentUpon>printplasticcovertotalbalanceform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printrlttotalbalanceform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printrlttotalbalanceform.Designer.cs">
+      <DependentUpon>printrlttotalbalanceform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="setreceivingpermissionnumberitems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="setreceivingpermissionnumberitems.Designer.cs">
+      <DependentUpon>setreceivingpermissionnumberitems.cs</DependentUpon>
+    </Compile>
     <Compile Include="SH_CLIENT_PRODUCT_FILM.cs" />
     <Compile Include="SH_FILM_CLIENTS_AND_PRODUCTS.cs" />
+    <Compile Include="SH_INDIVIDUAL_PALLETS.cs" />
+    <Compile Include="SH_PALLETS_SIZES_INFORMATION.cs" />
+    <Compile Include="SH_SPECIFICATION_OF_PALLETS.cs" />
     <Compile Include="Views\Sales\AllRequestOfPerfectProductFromSales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -968,8 +1090,60 @@
     <EmbeddedResource Include="addnewclientproductfilm.resx">
       <DependentUpon>addnewclientproductfilm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="alldialysalesform.resx">
+      <DependentUpon>alldialysalesform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="allproductionrequirementsforms.resx">
+      <DependentUpon>allproductionrequirementsforms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bottomtotalbalancereport.rdlc" />
+    <EmbeddedResource Include="wooden_face_data_profile.resx">
+      <DependentUpon>wooden_face_data_profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="carton_data_profile.resx">
+      <DependentUpon>carton_data_profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="woodenfacepotalform.resx">
+      <DependentUpon>woodenfacepotalform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="finishedcanstotalbalance_report.rdlc" />
     <EmbeddedResource Include="getallclientproductfilms.resx">
       <DependentUpon>getallclientproductfilms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cartondividersportalform.resx">
+      <DependentUpon>cartondividersportalform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pallets_portal_form.resx">
+      <DependentUpon>pallets_portal_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pallet_data_profile.resx">
+      <DependentUpon>pallet_data_profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plasticcovertotalbalancereport.rdlc" />
+    <EmbeddedResource Include="printbottomtotalbalanceform.resx">
+      <DependentUpon>printbottomtotalbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printeasyopentotalbalanceform.resx">
+      <DependentUpon>printeasyopentotalbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printfinishedcanstotalbalanceform.resx">
+      <DependentUpon>printfinishedcanstotalbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printpalletreturnrequistform.resx">
+      <DependentUpon>printpalletreturnrequistform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printpeelofftotalbalanceform.resx">
+      <DependentUpon>printpeelofftotalbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printplasticcovertotalbalanceform.resx">
+      <DependentUpon>printplasticcovertotalbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printrlttotalbalanceform.resx">
+      <DependentUpon>printrlttotalbalanceform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="returnrequistofpallets.rdlc" />
+    <EmbeddedResource Include="setreceivingpermissionnumberitems.resx">
+      <DependentUpon>setreceivingpermissionnumberitems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Stocks\RawTinViews\adding_raw_material_quantites.rdlc" />
     <EmbeddedResource Include="Views\Sales\AllRequestOfPerfectProductFromSales.resx">
@@ -1341,6 +1515,17 @@
     <EmbeddedResource Include="Views\waitingform.resx">
       <DependentUpon>waitingform.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bottomtotalbalancedataset.xsc">
+      <DependentUpon>bottomtotalbalancedataset.xsd</DependentUpon>
+    </None>
+    <None Include="bottomtotalbalancedataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>bottomtotalbalancedataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="bottomtotalbalancedataset.xss">
+      <DependentUpon>bottomtotalbalancedataset.xsd</DependentUpon>
+    </None>
     <None Include="Database\Datasets\addition_permission_of_raw_tin.xsc">
       <DependentUpon>addition_permission_of_raw_tin.xsd</DependentUpon>
     </None>
@@ -1364,7 +1549,29 @@
     <None Include="Database\Datasets\client_receival_order_report_dataset.xss">
       <DependentUpon>client_receival_order_report_dataset.xsd</DependentUpon>
     </None>
+    <None Include="finishedcanstotalbalancedataset.xsc">
+      <DependentUpon>finishedcanstotalbalancedataset.xsd</DependentUpon>
+    </None>
+    <None Include="finishedcanstotalbalancedataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>finishedcanstotalbalancedataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="finishedcanstotalbalancedataset.xss">
+      <DependentUpon>finishedcanstotalbalancedataset.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
+    <None Include="plasticcovertotalbalancedataset.xsc">
+      <DependentUpon>plasticcovertotalbalancedataset.xsd</DependentUpon>
+    </None>
+    <None Include="plasticcovertotalbalancedataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>plasticcovertotalbalancedataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="plasticcovertotalbalancedataset.xss">
+      <DependentUpon>plasticcovertotalbalancedataset.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\SH_QUANTITY_OF_RAW_MATERIAL.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1428,6 +1635,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\step-forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pallets_icons.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wooden-pallet-thumbnail%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Webp.net-resizeimage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Webp.net-resizeimage %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Webp.net-resizeimage %281%29.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,5 +21,6 @@ namespace Al_Shaheen_System
         public string SH_ADDING_PERMISSION_NUMBER { get; set; }
         public string SH_WORK_ORDER_NUMBER { get; set; }
         public DateTime SH_ADDITION_DATE { get; set; }
+        public  List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT> mparcels = new List<SH_ADDED_PARCELS_OF_FINISHED_PRODUCT>();
     }
 }

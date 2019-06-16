@@ -24,6 +24,10 @@ namespace Al_Shaheen_System
         public all_clients_data(SH_EMPLOYEES anyemp , SH_USER_ACCOUNTS anyAccount, SH_USER_PERMISIONS anyperm)
         {
             InitializeComponent();
+
+            mEmployee = anyemp;
+            mAccount = anyAccount;
+            mPermission = anyperm;
         }
         void load_clients_data()
         {
@@ -185,9 +189,9 @@ namespace Al_Shaheen_System
         {
             //MessageBox.Show("activated");
             //Message_label.Text = "activated";
-            load_clients_data();
-            fillclientsgridview();
-            Message_label.Text = "";
+            //load_clients_data();
+            //fillclientsgridview();
+            //Message_label.Text = "";
 
         }
 

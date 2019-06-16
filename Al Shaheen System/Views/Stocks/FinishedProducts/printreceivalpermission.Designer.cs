@@ -35,7 +35,7 @@
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.reportViewer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Al_Shaheen_System.print_client_receit_order.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Al_Shaheen_System.Views.Stocks.FinishedProducts.print_client_receit_order.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.PageCountMode = Microsoft.Reporting.WinForms.PageCountMode.Actual;

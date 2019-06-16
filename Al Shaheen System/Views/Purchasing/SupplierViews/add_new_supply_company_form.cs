@@ -22,6 +22,7 @@ namespace Al_Shaheen_System
             mPermission = anyperm;
             mAccount = anyAccount;
             mPermission = anyperm;
+            mEmployee = anyemp;
 
         }
 
@@ -64,7 +65,7 @@ namespace Al_Shaheen_System
 
             string query = "INSERT INTO SH_SUPPLY_COMPANY ";
             query += "(SH_SUPPLY_COMAPNY_NAME, SH_SUPPLY_COMPANY_TYPE, SH_SUPPLY_COMPANY_MOBILE, ";
-            query += "SH_SUPPLY_COMPANY_TELEPHONE) VALUES( @SH_SUPPLY_COMAPNY_NAME,@SH_SUPPLY_COMPANY_TYPE,@SH_SUPPLY_COMPANY_MOBILE,@SH_SUPPLY_COMPANY_TELEPHONE)";
+            query += " SH_SUPPLY_COMPANY_TELEPHONE  ,SH_DATA_ENTRY_EMPLOYEE_ID, SH_DATA_ENTRY_USER_ID, SH_ADDITION_DATE ) VALUES( @SH_SUPPLY_COMAPNY_NAME,@SH_SUPPLY_COMPANY_TYPE,@SH_SUPPLY_COMPANY_MOBILE,@SH_SUPPLY_COMPANY_TELEPHONE,@SH_DATA_ENTRY_EMPLOYEE_ID,@SH_DATA_ENTRY_USER_ID,@SH_ADDITION_DATE)";
 
             try
             {

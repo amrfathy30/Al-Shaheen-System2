@@ -485,6 +485,7 @@
             this.no_items_per_container_text_box.Name = "no_items_per_container_text_box";
             this.no_items_per_container_text_box.Size = new System.Drawing.Size(132, 30);
             this.no_items_per_container_text_box.TabIndex = 34;
+            this.no_items_per_container_text_box.TextChanged += new System.EventHandler(this.no_items_per_container_text_box_TextChanged);
             // 
             // label4
             // 

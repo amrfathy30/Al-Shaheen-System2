@@ -1,6 +1,6 @@
 ﻿namespace Al_Shaheen_System
 {
-    partial class addnewfinishedcan
+    partial class returnfinishedcansform
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.stock_man_name_text_box = new System.Windows.Forms.TextBox();
             this.stocks_combo_box = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -90,7 +91,10 @@
             this.pallets_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.number_of_cans_per_pallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.total_number_of_cans_per_pallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stock_man_name_text_box = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pallet_sizes_combo_box = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -112,6 +116,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TOTAL_NUMBER_OF_PALLETS_LABEL);
+            this.groupBox1.Controls.Add(this.label26);
+            this.groupBox1.Controls.Add(this.pallet_sizes_combo_box);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.add_new_product);
@@ -122,7 +130,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(27, 106);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(942, 504);
+            this.groupBox1.Size = new System.Drawing.Size(942, 551);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "معلومات البالته ";
@@ -134,12 +142,20 @@
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.label24);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(7, 430);
+            this.groupBox3.Location = new System.Drawing.Point(7, 480);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(916, 65);
             this.groupBox3.TabIndex = 53;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "مكان التخزين ";
+            // 
+            // stock_man_name_text_box
+            // 
+            this.stock_man_name_text_box.Enabled = false;
+            this.stock_man_name_text_box.Location = new System.Drawing.Point(70, 21);
+            this.stock_man_name_text_box.Name = "stock_man_name_text_box";
+            this.stock_man_name_text_box.Size = new System.Drawing.Size(266, 30);
+            this.stock_man_name_text_box.TabIndex = 27;
             // 
             // stocks_combo_box
             // 
@@ -595,7 +611,7 @@
             this.add_new_pallets_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.add_new_pallets_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add_new_pallets_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.add_new_pallets_btn.Location = new System.Drawing.Point(27, 616);
+            this.add_new_pallets_btn.Location = new System.Drawing.Point(27, 663);
             this.add_new_pallets_btn.Name = "add_new_pallets_btn";
             this.add_new_pallets_btn.Size = new System.Drawing.Size(174, 41);
             this.add_new_pallets_btn.TabIndex = 37;
@@ -655,14 +671,14 @@
             this.parcels_grid_view.AllowUserToDeleteRows = false;
             this.parcels_grid_view.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.parcels_grid_view.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.parcels_grid_view.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.parcels_grid_view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.parcels_grid_view.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.index,
@@ -671,19 +687,19 @@
             this.pallets_number,
             this.number_of_cans_per_pallet,
             this.total_number_of_cans_per_pallet});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.parcels_grid_view.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.parcels_grid_view.DefaultCellStyle = dataGridViewCellStyle2;
             this.parcels_grid_view.GridColor = System.Drawing.SystemColors.ControlLightLight;
-            this.parcels_grid_view.Location = new System.Drawing.Point(27, 663);
+            this.parcels_grid_view.Location = new System.Drawing.Point(27, 710);
             this.parcels_grid_view.Name = "parcels_grid_view";
             this.parcels_grid_view.ReadOnly = true;
-            this.parcels_grid_view.Size = new System.Drawing.Size(942, 260);
+            this.parcels_grid_view.Size = new System.Drawing.Size(942, 219);
             this.parcels_grid_view.TabIndex = 41;
             // 
             // index
@@ -722,15 +738,43 @@
             this.total_number_of_cans_per_pallet.Name = "total_number_of_cans_per_pallet";
             this.total_number_of_cans_per_pallet.ReadOnly = true;
             // 
-            // stock_man_name_text_box
+            // label7
             // 
-            this.stock_man_name_text_box.Enabled = false;
-            this.stock_man_name_text_box.Location = new System.Drawing.Point(70, 21);
-            this.stock_man_name_text_box.Name = "stock_man_name_text_box";
-            this.stock_man_name_text_box.Size = new System.Drawing.Size(266, 30);
-            this.stock_man_name_text_box.TabIndex = 27;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(762, 439);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 25);
+            this.label7.TabIndex = 54;
+            this.label7.Text = "مقاس البالتة ";
             // 
-            // addnewfinishedcan
+            // pallet_sizes_combo_box
+            // 
+            this.pallet_sizes_combo_box.FormattingEnabled = true;
+            this.pallet_sizes_combo_box.Location = new System.Drawing.Point(518, 436);
+            this.pallet_sizes_combo_box.Name = "pallet_sizes_combo_box";
+            this.pallet_sizes_combo_box.Size = new System.Drawing.Size(231, 33);
+            this.pallet_sizes_combo_box.TabIndex = 55;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(352, 439);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(142, 25);
+            this.label26.TabIndex = 56;
+            this.label26.Text = "إجمالى عدد البالتات ";
+            // 
+            // TOTAL_NUMBER_OF_PALLETS_LABEL
+            // 
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL.AutoSize = true;
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL.ForeColor = System.Drawing.Color.Red;
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL.Location = new System.Drawing.Point(273, 439);
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL.Name = "TOTAL_NUMBER_OF_PALLETS_LABEL";
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL.Size = new System.Drawing.Size(75, 25);
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL.TabIndex = 57;
+            this.TOTAL_NUMBER_OF_PALLETS_LABEL.Text = "label28";
+            // 
+            // returnfinishedcansform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -745,7 +789,7 @@
             this.Controls.Add(this.label27);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Name = "addnewfinishedcan";
+            this.Name = "returnfinishedcansform";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -831,5 +875,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn number_of_cans_per_pallet;
         private System.Windows.Forms.DataGridViewTextBoxColumn total_number_of_cans_per_pallet;
         private System.Windows.Forms.TextBox stock_man_name_text_box;
+        private System.Windows.Forms.ComboBox pallet_sizes_combo_box;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label TOTAL_NUMBER_OF_PALLETS_LABEL;
     }
 }
