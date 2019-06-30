@@ -71,42 +71,6 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="report_current_datetime">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!report_current_datetime.Value</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                  <Language>ar-EG</Language>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>report_current_datetime</rd:DefaultName>
-        <Top>1.41194in</Top>
-        <Left>3.89111in</Left>
-        <Height>0.25in</Height>
-        <Width>2.06598in</Width>
-        <ZIndex>2</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-          <Direction>RTL</Direction>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox7">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -114,7 +78,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>تاريخ طباعة الإذن </Value>
+                <Value>التــــــــــاريخ</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                   <Language>ar-EG</Language>
@@ -131,7 +95,7 @@
         <Left>6.09173in</Left>
         <Height>0.25in</Height>
         <Width>0.98958in</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -151,7 +115,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>إسم العميل </Value>
+                <Value>إسم العمـــــيل </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                   <Language>ar-EG</Language>
@@ -168,7 +132,7 @@
         <Left>6.09173in</Left>
         <Height>0.25in</Height>
         <Width>0.98958in</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -205,7 +169,7 @@
         <Left>3.89111in</Left>
         <Height>0.25in</Height>
         <Width>2.07292in</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -241,7 +205,7 @@
         <Left>2.66541in</Left>
         <Height>0.25in</Height>
         <Width>1.08334in</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -278,7 +242,7 @@
         <Left>0.24875in</Left>
         <Height>0.25in</Height>
         <Width>2.34722in</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -837,7 +801,7 @@
         <Left>0.23834in</Left>
         <Height>0.4375in</Height>
         <Width>6.84299in</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -883,11 +847,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox26</rd:DefaultName>
-        <Top>3.44667in</Top>
-        <Left>6.08132in</Left>
+        <Top>2.97097in</Top>
+        <Left>6.08129in</Left>
         <Height>0.25in</Height>
         <Width>0.98958in</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -919,11 +883,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>no_pallets_text_parameter</rd:DefaultName>
-        <Top>3.44667in</Top>
-        <Left>4.14499in</Left>
+        <Top>2.97097in</Top>
+        <Left>4.14496in</Left>
         <Height>0.25in</Height>
         <Width>1.70987in</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -959,11 +923,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
-        <Top>3.76611in</Top>
-        <Left>6.08132in</Left>
+        <Top>2.97097in</Top>
+        <Left>3.00137in</Left>
         <Height>0.25in</Height>
         <Width>0.98958in</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -995,11 +959,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>no_wooden_face_text_parameter</rd:DefaultName>
-        <Top>3.78in</Top>
-        <Left>4.14499in</Left>
+        <Top>2.98486in</Top>
+        <Left>1.06504in</Left>
         <Height>0.25in</Height>
         <Width>1.72376in</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1035,11 +999,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox30</rd:DefaultName>
-        <Top>4.09944in</Top>
-        <Left>6.08132in</Left>
+        <Top>3.29042in</Top>
+        <Left>6.0674in</Left>
         <Height>0.25in</Height>
         <Width>0.98959in</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1071,11 +1035,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>carton_divider_text_parameter</rd:DefaultName>
-        <Top>4.09944in</Top>
-        <Left>4.14499in</Left>
+        <Top>3.29042in</Top>
+        <Left>4.13107in</Left>
         <Height>0.25in</Height>
         <Width>1.72376in</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1112,11 +1076,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox32</rd:DefaultName>
-        <Top>5.17583in</Top>
+        <Top>3.80083in</Top>
         <Left>6.08133in</Left>
         <Height>0.25in</Height>
         <Width>0.98958in</Width>
-        <ZIndex>15</ZIndex>
+        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1149,11 +1113,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>driver_name_text_parameter</rd:DefaultName>
-        <Top>5.17583in</Top>
+        <Top>3.80083in</Top>
         <Left>4.25147in</Left>
         <Height>0.25in</Height>
         <Width>1.67437in</Width>
-        <ZIndex>16</ZIndex>
+        <ZIndex>15</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1185,11 +1149,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox34</rd:DefaultName>
-        <Top>5.17583in</Top>
+        <Top>3.80083in</Top>
         <Left>2.61952in</Left>
         <Height>0.25in</Height>
         <Width>1.11882in</Width>
-        <ZIndex>17</ZIndex>
+        <ZIndex>16</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1222,11 +1186,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>car_number_text_box</rd:DefaultName>
-        <Top>5.17583in</Top>
+        <Top>3.80083in</Top>
         <Left>0.21327in</Left>
         <Height>0.25in</Height>
         <Width>2.25694in</Width>
-        <ZIndex>18</ZIndex>
+        <ZIndex>17</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1239,11 +1203,11 @@
         </Style>
       </Textbox>
       <Line Name="Line1">
-        <Top>5.01958in</Top>
+        <Top>3.64458in</Top>
         <Left>0.20286in</Left>
         <Height>0in</Height>
         <Width>6.86806in</Width>
-        <ZIndex>19</ZIndex>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1252,10 +1216,10 @@
       </Line>
       <Line Name="Line2">
         <Top>2.03in</Top>
-        <Left>0.27383in</Left>
+        <Left>0.30933in</Left>
         <Height>0in</Height>
         <Width>6.83256in</Width>
-        <ZIndex>20</ZIndex>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1282,11 +1246,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox36</rd:DefaultName>
-        <Top>5.54041in</Top>
+        <Top>4.16541in</Top>
         <Left>6.08133in</Left>
         <Height>0.25in</Height>
         <Width>0.98958in</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1319,11 +1283,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>lisence_number_text_parameter</rd:DefaultName>
-        <Top>5.54041in</Top>
+        <Top>4.16541in</Top>
         <Left>4.25147in</Left>
         <Height>0.25in</Height>
         <Width>1.67437in</Width>
-        <ZIndex>22</ZIndex>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1340,7 +1304,7 @@
         <Left>0.24875in</Left>
         <Height>0in</Height>
         <Width>6.85764in</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1348,11 +1312,11 @@
         </Style>
       </Line>
       <Line Name="Line4">
-        <Top>6.00916in</Top>
+        <Top>4.63416in</Top>
         <Left>0.27385in</Left>
         <Height>0in</Height>
         <Width>6.86804in</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>23</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1383,7 +1347,7 @@
         <Left>2.66541in</Left>
         <Height>0.25in</Height>
         <Width>1.09028in</Width>
-        <ZIndex>25</ZIndex>
+        <ZIndex>24</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1420,7 +1384,7 @@
         <Left>0.25916in</Left>
         <Height>0.25in</Height>
         <Width>2.33681in</Width>
-        <ZIndex>26</ZIndex>
+        <ZIndex>25</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1452,79 +1416,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox42</rd:DefaultName>
-        <Top>6.0786in</Top>
+        <Top>4.7036in</Top>
         <Left>0.86067in</Left>
         <Height>0.28125in</Height>
         <Width>5.08523in</Width>
-        <ZIndex>27</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox43">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>  و فى حالة عدم رد الأمانة سوف يتم مطالبتكم  بالقيمة المالية لما لم يتم رده إلينا </Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox43</rd:DefaultName>
-        <Top>4.5543in</Top>
-        <Left>0.24875in</Left>
-        <Height>0.23958in</Height>
-        <Width>6.83256in</Width>
-        <ZIndex>28</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox44">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ملحوظة  : يوجد لدى سيادتكم بصفة أمانة ترد فى خلال شهر من تاربخة كالتالى </Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox44</rd:DefaultName>
-        <Top>3.03in</Top>
-        <Left>2.38187in</Left>
-        <Height>0.25in</Height>
-        <Width>4.68904in</Width>
-        <ZIndex>29</ZIndex>
+        <ZIndex>26</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1554,11 +1450,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>16.36543cm</Top>
+        <Top>12.87293cm</Top>
         <Left>15.717cm</Left>
         <Height>0.6cm</Height>
         <Width>2.24302cm</Width>
-        <ZIndex>30</ZIndex>
+        <ZIndex>27</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1586,11 +1482,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>16.33043cm</Top>
+        <Top>12.83793cm</Top>
         <Left>8.2183cm</Left>
         <Height>0.635cm</Height>
         <Width>7.08419cm</Width>
-        <ZIndex>31</ZIndex>
+        <ZIndex>28</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1620,11 +1516,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox41</rd:DefaultName>
-        <Top>6.44308in</Top>
+        <Top>5.06808in</Top>
         <Left>2.08278in</Left>
         <Height>0.25in</Height>
         <Width>1.08333in</Width>
-        <ZIndex>32</ZIndex>
+        <ZIndex>29</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1654,11 +1550,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox41</rd:DefaultName>
-        <Top>5.58366in</Top>
+        <Top>4.20866in</Top>
         <Left>2.61952in</Left>
         <Height>0.25in</Height>
         <Width>1.16124in</Width>
-        <ZIndex>33</ZIndex>
+        <ZIndex>30</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1686,11 +1582,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>14.2175cm</Top>
+        <Top>10.725cm</Top>
         <Left>0.5417cm</Left>
         <Height>0.6cm</Height>
         <Width>5.68854cm</Width>
-        <ZIndex>34</ZIndex>
+        <ZIndex>31</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1722,7 +1618,148 @@
         <Left>0.69553cm</Left>
         <Height>0.6cm</Height>
         <Width>5.89824cm</Width>
-        <ZIndex>35</ZIndex>
+        <ZIndex>32</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>ملحوظة : البالتات والوش الخشب والفواصل يتم ردها فى خلال 30 يوم من تاريخ إصدار الإذن و فى حالة عدم ردهم قبل الموعد يتم إضافة أسعارهم على الحساب  </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>علما بان   </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>سعر البالتة الواحدة  150 جنية مصرى  -           </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>         سعر الفاصل الكرتون 20  جنية مصرى  -           </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value> سعر الوش الخشـب   50  جنية مصرى  -           </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>14.11266cm</Top>
+        <Left>0.69558cm</Left>
+        <Height>2.90187cm</Height>
+        <Width>17.44482cm</Width>
+        <ZIndex>33</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <TopBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </TopBorder>
+          <BottomBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </BottomBorder>
+          <LeftBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </LeftBorder>
+          <RightBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </RightBorder>
+          <BackgroundColor>LightGrey</BackgroundColor>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="report_current_datetime">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!report_creation_date.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>report_current_datetime</rd:DefaultName>
+        <Top>3.5155cm</Top>
+        <Left>9.88342cm</Left>
+        <Height>0.6cm</Height>
+        <Width>5.26522cm</Width>
+        <ZIndex>34</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1734,7 +1771,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>17.31792cm</Height>
+    <Height>17.37084cm</Height>
     <Style>
       <Border>
         <Style>None</Style>
@@ -1742,7 +1779,7 @@
       <BackgroundColor>White</BackgroundColor>
     </Style>
   </Body>
-  <Width>19.50953cm</Width>
+  <Width>19.53599cm</Width>
   <Page>
     <PageHeader>
       <Height>2.5cm</Height>
@@ -1824,15 +1861,6 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="report_current_datetime">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>=Globals!ExecutionTime</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="client_name_text_parameter">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
@@ -1866,6 +1894,10 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="stock_man_name_text_parameter">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="report_creation_date">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

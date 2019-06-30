@@ -14,5 +14,13 @@ namespace Al_Shaheen_System
         public string SH_CONTAINER_NAME { get; set; }
         public long SH_TOTAL_NO_ITEMS { get; set; }
         public DateTime SH_ADDITION_DATE { get; set; }
+
+
+        public string size_name { get; set; }
+        public string first_face_name { get; set; }
+        public string second_face_name { get; set; }
+        public string product_second_face { get; set; }
+        public long printing_type_index { get; set; }
+        public string client_product_name { get; set; }
     }
 }

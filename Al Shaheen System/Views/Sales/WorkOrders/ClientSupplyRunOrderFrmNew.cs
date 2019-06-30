@@ -38,7 +38,7 @@ namespace Al_Shaheen_System
         SH_USER_ACCOUNTS mAccount;
         SH_USER_PERMISIONS mPermission;
 
-
+        
 
         public ClientSupplyRunOrderFrmNew(SH_EMPLOYEES anyEmployee , SH_EMPLOYEES anyemp ,SH_USER_ACCOUNTS anyAccount ,SH_USER_PERMISIONS anyPerm)
         {
@@ -478,7 +478,7 @@ namespace Al_Shaheen_System
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    branchList.Add(new SH_CLIENTS_BRANCHES { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_CLIENT_BRANCH_NAME = reader["SH_CLIENT_BRANCH_NAME"].ToString(), SH_CLIENT_BRANCH_ADDRESS_TEXT = reader["SH_CLIENT_BRANCH_ADDRESS_TEXT"].ToString(), SH_CLIENT_COMPANY_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString() });
+                    branchList.Add(new SH_CLIENTS_BRANCHES { SH_ID = long.Parse(reader["SH_ID"].ToString()), SH_CLIENT_BRANCH_NAME = reader["SH_CLIENT_BRANCH_NAME"].ToString(), SH_CLIENT_BRANCH_ADDRESS_TEXT = reader["SH_CLIENT_BRANCH_ADDRESS_TEXT"].ToString(), SH_CLIENT_COMPANY_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString()});
                 }
 
                 myconnection.closeConnection();
@@ -498,7 +498,7 @@ namespace Al_Shaheen_System
             {
                 for (int i = 0; i < branchList.Count; i++)
                 {
-                    comboBoxClientsBranches.Items.Add(branchList[i].SH_CLIENT_BRANCH_ADDRESS_TEXT);
+                    comboBoxClientsBranches.Items.Add(branchList[i].SH_CLIENT_BRANCH_NAME);
 
                 }
             }
@@ -608,7 +608,7 @@ namespace Al_Shaheen_System
             loadclientbranchesCombo();
             for (int i = 0; i < mclientBranches.Count; i++)
             {
-                comboBoxClientsBranches.Items.Add(mclientBranches[i].SH_CLIENT_BRANCH_ADDRESS_TEXT);
+                comboBoxClientsBranches.Items.Add(mclientBranches[i].SH_CLIENT_BRANCH_NAME);
             }
 
 

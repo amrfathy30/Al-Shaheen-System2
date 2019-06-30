@@ -99,13 +99,44 @@
     <Compile Include="allproductionrequirementsforms.Designer.cs">
       <DependentUpon>allproductionrequirementsforms.cs</DependentUpon>
     </Compile>
+    <Compile Include="allsaledquantitiesinformationform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="allsaledquantitiesinformationform.Designer.cs">
+      <DependentUpon>allsaledquantitiesinformationform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="allsolditemsfullinformationdetails.cs" />
     <Compile Include="bottomtotalbalancedataset.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>bottomtotalbalancedataset.xsd</DependentUpon>
     </Compile>
+    <Compile Include="printer_request_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printer_request_form.Designer.cs">
+      <DependentUpon>printer_request_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printsumary_receiving_permission_items.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printsumary_receiving_permission_items.Designer.cs">
+      <DependentUpon>printsumary_receiving_permission_items.cs</DependentUpon>
+    </Compile>
     <Compile Include="SH_SPECIFICATION_OF_CARTON_DIVIDERS.cs" />
     <Compile Include="SH_SPECIFICATION_OF_WOODEN_FACE.cs" />
+    <Compile Include="summarysoldquantitiesinformation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>summarysoldquantitiesinformation.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="summary_receiving_information_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="summary_receiving_information_form.Designer.cs">
+      <DependentUpon>summary_receiving_information_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="summary_receiving_information_quantity_data.cs" />
     <Compile Include="wooden_face_data_profile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1096,7 +1127,20 @@
     <EmbeddedResource Include="allproductionrequirementsforms.resx">
       <DependentUpon>allproductionrequirementsforms.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="allsaledquantitiesinformationform.resx">
+      <DependentUpon>allsaledquantitiesinformationform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bottomtotalbalancereport.rdlc" />
+    <EmbeddedResource Include="printer_request_form.resx">
+      <DependentUpon>printer_request_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printsumary_receiving_permission_items.resx">
+      <DependentUpon>printsumary_receiving_permission_items.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="summary_receiving_information_form.resx">
+      <DependentUpon>summary_receiving_information_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="summary_sold_quanititiesbydatereport.rdlc" />
     <EmbeddedResource Include="wooden_face_data_profile.resx">
       <DependentUpon>wooden_face_data_profile.cs</DependentUpon>
     </EmbeddedResource>
@@ -1582,6 +1626,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="summarysoldquantitiesinformation.xsc">
+      <DependentUpon>summarysoldquantitiesinformation.xsd</DependentUpon>
+    </None>
+    <None Include="summarysoldquantitiesinformation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>summarysoldquantitiesinformation.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="summarysoldquantitiesinformation.xss">
+      <DependentUpon>summarysoldquantitiesinformation.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

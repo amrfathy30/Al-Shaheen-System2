@@ -39,6 +39,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.clients_text_box = new System.Windows.Forms.ComboBox();
+            this.monitor_two_combo_box = new System.Windows.Forms.ComboBox();
+            this.monitor_one_combo_box = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.examination_record_number_textbox = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.save_return_pallet_btn = new System.Windows.Forms.Button();
@@ -55,6 +62,12 @@
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.monitors_two = new System.Windows.Forms.ComboBox();
+            this.monitors_one = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.examination_record_number_text_box = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.save_new_pallets_quantity_btn = new System.Windows.Forms.Button();
@@ -92,21 +105,10 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.examination_record_number_text_box = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.monitors_one = new System.Windows.Forms.ComboBox();
-            this.monitors_two = new System.Windows.Forms.ComboBox();
-            this.monitor_two_combo_box = new System.Windows.Forms.ComboBox();
-            this.monitor_one_combo_box = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.examination_record_number_textbox = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.clients_text_box = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.client_branches_combo_box = new System.Windows.Forms.ComboBox();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -116,8 +118,8 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clients_pallets_records_grid_view)).BeginInit();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -224,6 +226,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label26);
+            this.panel2.Controls.Add(this.client_branches_combo_box);
             this.panel2.Controls.Add(this.clients_text_box);
             this.panel2.Controls.Add(this.monitor_two_combo_box);
             this.panel2.Controls.Add(this.monitor_one_combo_box);
@@ -250,6 +254,69 @@
             this.panel2.Size = new System.Drawing.Size(850, 460);
             this.panel2.TabIndex = 18;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // clients_text_box
+            // 
+            this.clients_text_box.FormattingEnabled = true;
+            this.clients_text_box.Location = new System.Drawing.Point(40, 165);
+            this.clients_text_box.Name = "clients_text_box";
+            this.clients_text_box.Size = new System.Drawing.Size(224, 28);
+            this.clients_text_box.TabIndex = 28;
+            this.clients_text_box.SelectedIndexChanged += new System.EventHandler(this.clients_text_box_SelectedIndexChanged);
+            // 
+            // monitor_two_combo_box
+            // 
+            this.monitor_two_combo_box.FormattingEnabled = true;
+            this.monitor_two_combo_box.Location = new System.Drawing.Point(465, 173);
+            this.monitor_two_combo_box.Name = "monitor_two_combo_box";
+            this.monitor_two_combo_box.Size = new System.Drawing.Size(254, 28);
+            this.monitor_two_combo_box.TabIndex = 27;
+            // 
+            // monitor_one_combo_box
+            // 
+            this.monitor_one_combo_box.FormattingEnabled = true;
+            this.monitor_one_combo_box.Location = new System.Drawing.Point(465, 128);
+            this.monitor_one_combo_box.Name = "monitor_one_combo_box";
+            this.monitor_one_combo_box.Size = new System.Drawing.Size(254, 28);
+            this.monitor_one_combo_box.TabIndex = 26;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(725, 181);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(63, 20);
+            this.label30.TabIndex = 25;
+            this.label30.Text = "مراقب (2)";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(725, 136);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(63, 20);
+            this.label31.TabIndex = 24;
+            this.label31.Text = "مراقب (1)";
+            // 
+            // examination_record_number_textbox
+            // 
+            this.examination_record_number_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.examination_record_number_textbox.Location = new System.Drawing.Point(465, 88);
+            this.examination_record_number_textbox.Name = "examination_record_number_textbox";
+            this.examination_record_number_textbox.Size = new System.Drawing.Size(254, 26);
+            this.examination_record_number_textbox.TabIndex = 23;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(725, 91);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(106, 20);
+            this.label32.TabIndex = 22;
+            this.label32.Text = "رقم محضر الفحص";
             // 
             // label23
             // 
@@ -312,7 +379,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(372, 214);
+            this.label14.Location = new System.Drawing.Point(743, 231);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(45, 20);
             this.label14.TabIndex = 9;
@@ -339,9 +406,9 @@
             // 
             this.stock_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stock_combo_box.FormattingEnabled = true;
-            this.stock_combo_box.Location = new System.Drawing.Point(38, 211);
+            this.stock_combo_box.Location = new System.Drawing.Point(465, 223);
             this.stock_combo_box.Name = "stock_combo_box";
-            this.stock_combo_box.Size = new System.Drawing.Size(226, 28);
+            this.stock_combo_box.Size = new System.Drawing.Size(254, 28);
             this.stock_combo_box.TabIndex = 6;
             // 
             // label13
@@ -430,6 +497,60 @@
             this.panel1.Size = new System.Drawing.Size(856, 460);
             this.panel1.TabIndex = 16;
             this.panel1.Enter += new System.EventHandler(this.panel1_Enter);
+            // 
+            // monitors_two
+            // 
+            this.monitors_two.FormattingEnabled = true;
+            this.monitors_two.Location = new System.Drawing.Point(485, 173);
+            this.monitors_two.Name = "monitors_two";
+            this.monitors_two.Size = new System.Drawing.Size(254, 28);
+            this.monitors_two.TabIndex = 21;
+            // 
+            // monitors_one
+            // 
+            this.monitors_one.FormattingEnabled = true;
+            this.monitors_one.Location = new System.Drawing.Point(485, 128);
+            this.monitors_one.Name = "monitors_one";
+            this.monitors_one.Size = new System.Drawing.Size(254, 28);
+            this.monitors_one.TabIndex = 20;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(745, 181);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(63, 20);
+            this.label29.TabIndex = 19;
+            this.label29.Text = "مراقب (2)";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(745, 136);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(63, 20);
+            this.label28.TabIndex = 18;
+            this.label28.Text = "مراقب (1)";
+            // 
+            // examination_record_number_text_box
+            // 
+            this.examination_record_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.examination_record_number_text_box.Location = new System.Drawing.Point(485, 88);
+            this.examination_record_number_text_box.Name = "examination_record_number_text_box";
+            this.examination_record_number_text_box.Size = new System.Drawing.Size(254, 26);
+            this.examination_record_number_text_box.TabIndex = 17;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(745, 91);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(106, 20);
+            this.label27.TabIndex = 16;
+            this.label27.Text = "رقم محضر الفحص";
             // 
             // label24
             // 
@@ -801,131 +922,6 @@
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Al_Shaheen_System.Properties.Resources.Webp_net_resizeimage;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(262, 236);
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(745, 91);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(106, 20);
-            this.label27.TabIndex = 16;
-            this.label27.Text = "رقم محضر الفحص";
-            // 
-            // examination_record_number_text_box
-            // 
-            this.examination_record_number_text_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.examination_record_number_text_box.Location = new System.Drawing.Point(485, 88);
-            this.examination_record_number_text_box.Name = "examination_record_number_text_box";
-            this.examination_record_number_text_box.Size = new System.Drawing.Size(254, 26);
-            this.examination_record_number_text_box.TabIndex = 17;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(745, 136);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(64, 20);
-            this.label28.TabIndex = 18;
-            this.label28.Text = "مراقب (1)";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(745, 181);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(64, 20);
-            this.label29.TabIndex = 19;
-            this.label29.Text = "مراقب (2)";
-            // 
-            // monitors_one
-            // 
-            this.monitors_one.FormattingEnabled = true;
-            this.monitors_one.Location = new System.Drawing.Point(485, 128);
-            this.monitors_one.Name = "monitors_one";
-            this.monitors_one.Size = new System.Drawing.Size(254, 28);
-            this.monitors_one.TabIndex = 20;
-            // 
-            // monitors_two
-            // 
-            this.monitors_two.FormattingEnabled = true;
-            this.monitors_two.Location = new System.Drawing.Point(485, 173);
-            this.monitors_two.Name = "monitors_two";
-            this.monitors_two.Size = new System.Drawing.Size(254, 28);
-            this.monitors_two.TabIndex = 21;
-            // 
-            // monitor_two_combo_box
-            // 
-            this.monitor_two_combo_box.FormattingEnabled = true;
-            this.monitor_two_combo_box.Location = new System.Drawing.Point(465, 173);
-            this.monitor_two_combo_box.Name = "monitor_two_combo_box";
-            this.monitor_two_combo_box.Size = new System.Drawing.Size(254, 28);
-            this.monitor_two_combo_box.TabIndex = 27;
-            // 
-            // monitor_one_combo_box
-            // 
-            this.monitor_one_combo_box.FormattingEnabled = true;
-            this.monitor_one_combo_box.Location = new System.Drawing.Point(465, 128);
-            this.monitor_one_combo_box.Name = "monitor_one_combo_box";
-            this.monitor_one_combo_box.Size = new System.Drawing.Size(254, 28);
-            this.monitor_one_combo_box.TabIndex = 26;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(725, 181);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(64, 20);
-            this.label30.TabIndex = 25;
-            this.label30.Text = "مراقب (2)";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(725, 136);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(64, 20);
-            this.label31.TabIndex = 24;
-            this.label31.Text = "مراقب (1)";
-            // 
-            // examination_record_number_textbox
-            // 
-            this.examination_record_number_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.examination_record_number_textbox.Location = new System.Drawing.Point(465, 88);
-            this.examination_record_number_textbox.Name = "examination_record_number_textbox";
-            this.examination_record_number_textbox.Size = new System.Drawing.Size(254, 26);
-            this.examination_record_number_textbox.TabIndex = 23;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(725, 91);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(106, 20);
-            this.label32.TabIndex = 22;
-            this.label32.Text = "رقم محضر الفحص";
-            // 
-            // clients_text_box
-            // 
-            this.clients_text_box.FormattingEnabled = true;
-            this.clients_text_box.Location = new System.Drawing.Point(40, 165);
-            this.clients_text_box.Name = "clients_text_box";
-            this.clients_text_box.Size = new System.Drawing.Size(224, 28);
-            this.clients_text_box.TabIndex = 28;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -936,6 +932,34 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(841, 430);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Al_Shaheen_System.Properties.Resources.Webp_net_resizeimage;
+            this.pictureBox1.Location = new System.Drawing.Point(2, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(262, 236);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(353, 218);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(64, 20);
+            this.label26.TabIndex = 30;
+            this.label26.Text = "فرع العميل";
+            // 
+            // client_branches_combo_box
+            // 
+            this.client_branches_combo_box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.client_branches_combo_box.FormattingEnabled = true;
+            this.client_branches_combo_box.Location = new System.Drawing.Point(39, 210);
+            this.client_branches_combo_box.Name = "client_branches_combo_box";
+            this.client_branches_combo_box.Size = new System.Drawing.Size(225, 28);
+            this.client_branches_combo_box.TabIndex = 29;
             // 
             // pallet_data_profile
             // 
@@ -957,7 +981,7 @@
             this.Name = "pallet_data_profile";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
-            this.Text = "الملف التعربفى بالبالتات";
+            this.Text = "بيانات البالتات ";
             this.Load += new System.EventHandler(this.pallet_data_profile_Load);
             this.tabPage2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -971,8 +995,8 @@
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clients_pallets_records_grid_view)).EndInit();
             this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1058,5 +1082,7 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.ComboBox clients_text_box;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ComboBox client_branches_combo_box;
     }
 }

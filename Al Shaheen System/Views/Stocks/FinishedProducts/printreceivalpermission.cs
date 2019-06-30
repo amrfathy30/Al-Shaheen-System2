@@ -168,18 +168,19 @@ namespace Al_Shaheen_System
             //crystalReportViewer2.Refresh();
 
             
-            ReportParameter[] myparm = new ReportParameter[10];
+            ReportParameter[] myparm = new ReportParameter[11];
             myparm[0] = new ReportParameter("no_client_order_number", order_number, true);
             myparm[1] = new ReportParameter("client_branch_text_parameter", client_branch, true);
             myparm[2] = new ReportParameter("client_name_text_parameter", client_name, true);
-            myparm[3] = new ReportParameter("no_pallets_text_parameter", SH_NO_PALLETS.ToString()+ " * 200 جنية مصرى ", true);
-            myparm[4] = new ReportParameter("no_wooden_face_text_parameter",  SH_NO_WOOD_WINCHES.ToString()+ " * 50 جنية مصرى", true);
-            myparm[5] = new ReportParameter("carton_divider_text_parameter", SH_CARDBOARD_DIVIDERS.ToString()+ " * 12 جنية مصرى", true);
+            myparm[3] = new ReportParameter("no_pallets_text_parameter", SH_NO_PALLETS.ToString(), true);
+            myparm[4] = new ReportParameter("no_wooden_face_text_parameter",  SH_NO_WOOD_WINCHES.ToString(), true);
+            myparm[5] = new ReportParameter("carton_divider_text_parameter", SH_CARDBOARD_DIVIDERS.ToString(), true);
             myparm[6] = new ReportParameter("driver_name_text_parameter", SH_DRIVER_NAME, true);
             myparm[7] = new ReportParameter("car_number_text_box", SH_DRIVER_CAR_NUMBER, true);
             myparm[8] = new ReportParameter("lisence_number_text_parameter", SH_DRIVER_LICENSE_NUMBER, true);
             myparm[9] = new ReportParameter("stock_man_name_text_parameter", stock_man_name, true);
-         
+            myparm[10] = new ReportParameter("report_creation_date", SH_ADDITION_DATE.ToString(), true);
+          
             this.reportViewer1.LocalReport.SetParameters(myparm);
             this.reportViewer1.LocalReport.DataSources.Add(
                       new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", mdatatabel)

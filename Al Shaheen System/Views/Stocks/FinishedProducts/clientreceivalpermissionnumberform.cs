@@ -262,26 +262,40 @@ namespace Al_Shaheen_System
                             }
                         case 2:
                             {
-                                //rlt data
+                                //RLT data
                                 if (dismissed_containers[i].rlt_containers.Count > 0)
                                 {
-                                    try
+                                    if (dismissed_containers[i].rlt_containers[0].printing_type_index == 0)
                                     {
                                         dismissed_containers_grid_view.Rows.Add(new string[] {
                                     (i+1).ToString(),
                                     dismissed_containers[i].product_name,
-                                     clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
                                     //dismissed_containers[i].bottom_containers[0].,
-                                     "RLT",
-                                    dismissed_containers[i].rlt_containers[0].SH_CONTAINER_NAME,
+                                    "RLT" +"  "+dismissed_containers[i].rlt_containers[0].size_name+" "+dismissed_containers[i].rlt_containers[0].client_product_name+" "+dismissed_containers[i].rlt_containers[0].first_face_name+" / "+dismissed_containers[i].rlt_containers[0].product_second_face+" "+dismissed_containers[i].rlt_containers[0].second_face_name,
+
+                                     dismissed_containers[i].rlt_containers[0].SH_CONTAINER_NAME,
                                     dismissed_containers[i].rlt_containers.Count.ToString(),
                                     dismissed_containers[i].rlt_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
+
                                     }
-                                    catch (Exception ex)
+                                    else
                                     {
-                                        MessageBox.Show("ERRO WILE fill rlt DaTA TO diSmissEd GRiD vIEW " + ex.ToString());
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                    "RLT" +"  "+dismissed_containers[i].rlt_containers[0].size_name+" "+dismissed_containers[i].rlt_containers[0].first_face_name+" / "+dismissed_containers[i].rlt_containers[0].second_face_name,
+
+                                     dismissed_containers[i].rlt_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].rlt_containers.Count.ToString(),
+                                    dismissed_containers[i].rlt_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+
                                     }
                                 }
 
@@ -290,20 +304,41 @@ namespace Al_Shaheen_System
                             }
                         case 3:
                             {
-                                //easy open data 
+                                //EASY OPEN  data
                                 if (dismissed_containers[i].easy_open_containers.Count > 0)
                                 {
-                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    if (dismissed_containers[i].easy_open_containers[0].printing_type_index == 0)
+                                    {
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
                                     (i+1).ToString(),
                                     dismissed_containers[i].product_name,
-                                     clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
                                     //dismissed_containers[i].bottom_containers[0].,
-                                     "إيزى أوبن ",
+                                    "إيزى أوبن" +"  "+dismissed_containers[i].easy_open_containers[0].size_name+" "+dismissed_containers[i].easy_open_containers[0].client_product_name+" "+dismissed_containers[i].easy_open_containers[0].first_face_name+" / "+dismissed_containers[i].easy_open_containers[0].product_second_face+" "+dismissed_containers[i].easy_open_containers[0].second_face_name,
+
                                      dismissed_containers[i].easy_open_containers[0].SH_CONTAINER_NAME,
                                     dismissed_containers[i].easy_open_containers.Count.ToString(),
                                     dismissed_containers[i].easy_open_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
+
+                                    }
+                                    else
+                                    {
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                    "إيزى أوبن" +"  "+dismissed_containers[i].easy_open_containers[0].size_name+" "+dismissed_containers[i].easy_open_containers[0].first_face_name+" / "+dismissed_containers[i].easy_open_containers[0].second_face_name,
+
+                                     dismissed_containers[i].easy_open_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].easy_open_containers.Count.ToString(),
+                                    dismissed_containers[i].easy_open_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+
+                                    }
                                 }
 
 
@@ -311,20 +346,42 @@ namespace Al_Shaheen_System
                             }
                         case 4:
                             {
-                                //peel off
+
+                                //PEEL OFF   data
                                 if (dismissed_containers[i].peel_off_containers.Count > 0)
                                 {
-                                    dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    if (dismissed_containers[i].peel_off_containers[0].printing_type_index == 0)
+                                    {
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
                                     (i+1).ToString(),
                                     dismissed_containers[i].product_name,
-                                     clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
                                     //dismissed_containers[i].bottom_containers[0].,
-                                     "إيزى أوبن",
-                                    dismissed_containers[i].peel_off_containers[0].SH_CONTAINER_NAME,
+                                    "بيل أوف" +"  "+dismissed_containers[i].peel_off_containers[0].size_name+" "+dismissed_containers[i].peel_off_containers[0].client_product_name+" "+dismissed_containers[i].peel_off_containers[0].first_face_name+" / "+dismissed_containers[i].peel_off_containers[0].product_second_face+" "+dismissed_containers[i].peel_off_containers[0].second_face_name,
+
+                                     dismissed_containers[i].peel_off_containers[0].SH_CONTAINER_NAME,
                                     dismissed_containers[i].peel_off_containers.Count.ToString(),
                                     dismissed_containers[i].peel_off_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
                                     dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
                                 });
+
+                                    }
+                                    else
+                                    {
+                                        dismissed_containers_grid_view.Rows.Add(new string[] {
+                                    (i+1).ToString(),
+                                    dismissed_containers[i].product_name,
+                                    clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
+                                    //dismissed_containers[i].bottom_containers[0].,
+                                    "بيل أوف" +"  "+dismissed_containers[i].peel_off_containers[0].size_name+" "+dismissed_containers[i].peel_off_containers[0].first_face_name+" / "+dismissed_containers[i].peel_off_containers[0].second_face_name,
+
+                                     dismissed_containers[i].peel_off_containers[0].SH_CONTAINER_NAME,
+                                    dismissed_containers[i].peel_off_containers.Count.ToString(),
+                                    dismissed_containers[i].peel_off_containers[0].SH_TOTAL_NO_ITEMS.ToString(),
+                                    dismissed_containers[i].total_no_of_items_of_selected_containers.ToString()
+                                });
+
+                                    }
                                 }
                                 break;
                             }
@@ -338,7 +395,7 @@ namespace Al_Shaheen_System
                                     dismissed_containers[i].product_name,
                                      clients[clients_combo_box.SelectedIndex].SH_CLIENT_COMPANY_NAME,
                                     //dismissed_containers[i].bottom_containers[0].,
-                                     "تويست أوف",
+                                        "تويست أوف" + " - " +dismissed_containers[i].twist_of_containers[0].twist_of_size_name+" - "+dismissed_containers[i].twist_of_containers[0].client_product_name +" "+dismissed_containers[i].twist_of_containers[0].pillow_color_name +" - "+dismissed_containers[i].twist_of_containers[0].type_kind+" "+dismissed_containers[i].twist_of_containers[0].twist_of_type,
                                     dismissed_containers[i].twist_of_containers[0].SH_CONTAINER_NAME,
                                     dismissed_containers[i].twist_of_containers.Count.ToString(),
                                     dismissed_containers[i].twist_of_containers[0].SH_NO_ITEMS.ToString(),
@@ -567,7 +624,7 @@ namespace Al_Shaheen_System
                                 cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                                 cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
                                 cmd.Parameters.AddWithValue("@SH_ITEM_NAME", anydata.cans_parcels[0].SH_CLIENT_PRODUCT_NAME);
-                                cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER_SIZE", anydata.cans_parcels[0].SH_PALLET_SIZE_TEXT);
+                              //  cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER_SIZE", anydata.cans_parcels[0].SH_PALLET_SIZE_TEXT);
                                 cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", "بالتة");
                                 cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.cans_parcels[0].SH_TOTAL_NUMBER_OF_CANS);
                                 cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.cans_parcels.Count);
@@ -627,7 +684,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "RLT");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "RLT" + "  " + anydata.rlt_containers[0].size_name + " " + anydata.rlt_containers[0].client_product_name + " " + anydata.bottom_containers[0].first_face_name + " / " + anydata.bottom_containers[0].product_second_face + " " + anydata.bottom_containers[0].second_face_name);
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.rlt_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.rlt_containers[0].SH_TOTAL_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.rlt_containers.Count);
@@ -654,7 +711,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "إيزى أوبن");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "إيزى أوبن"+ "  " + anydata.easy_open_containers[0].size_name + " " + anydata.easy_open_containers[0].client_product_name + " " + anydata.easy_open_containers[0].first_face_name + " / " + anydata.easy_open_containers[0].product_second_face + " " + anydata.easy_open_containers[0].second_face_name);
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.easy_open_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.easy_open_containers[0].SH_TOTAL_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.easy_open_containers.Count);
@@ -681,7 +738,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "بيل أوف");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "بيل أوف" + "  " + anydata.peel_off_containers[0].size_name + " " + anydata.peel_off_containers[0].client_product_name + " " + anydata.peel_off_containers[0].first_face_name + " / " + anydata.peel_off_containers[0].product_second_face + " " + anydata.peel_off_containers[0].second_face_name);
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.peel_off_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.peel_off_containers[0].SH_TOTAL_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.peel_off_containers.Count);
@@ -708,7 +765,7 @@ namespace Al_Shaheen_System
                         cmd.Parameters.AddWithValue("@SH_ITEM_RECEIT_NUMBER", no_receiving_permission_number_text_box.Text + item_code);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_INFORMATION_ID", rec_id);
                         cmd.Parameters.AddWithValue("@SH_RECEIVING_PERMISSION_NUMBER", no_receiving_permission_number_text_box.Text);
-                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "تويست أوف");
+                        cmd.Parameters.AddWithValue("@SH_ITEM_NAME", "تويست أوف" + " - " + anydata.twist_of_containers[0].twist_of_size_name + " - " + anydata.twist_of_containers[0].client_product_name + " " + anydata.twist_of_containers[0].pillow_color_name + " - " + anydata.twist_of_containers[0].type_kind + " " + anydata.twist_of_containers[0].twist_of_type);
                         cmd.Parameters.AddWithValue("@SH_ITEM_CONTAINER", anydata.twist_of_containers[0].SH_CONTAINER_NAME);
                         cmd.Parameters.AddWithValue("@SH_NO_ITEMS_PER_CONTAINER", anydata.twist_of_containers[0].SH_NO_ITEMS);
                         cmd.Parameters.AddWithValue("@SH_NO_CONTAINERS", anydata.twist_of_containers.Count);

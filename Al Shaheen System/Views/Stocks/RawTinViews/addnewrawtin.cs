@@ -356,23 +356,27 @@ namespace Al_Shaheen_System
         async Task  save_raw_tin_quantites(long specification_id ,SH_QUANTITY_OF_RAW_MATERIAL myquantity )
         {
 
-            long current_quantity_id = 0;
-           
+            long current_quantity_id = 0;          
                 try
                 {
                     string query = "INSERT INTO SH_QUANTITY_OF_RAW_MATERIAL ";
-                    query += "( SH_SPECIFICATION_OF_RAW_MATERIAL_ID,SH_ADDING_PERMISSION_DATE, SH_ITEM_LENGTH, SH_ITEM_WIDTH,";
-                    query += " SH_ITEM_THICKNESS, SH_ITEM_INTENSITY, SH_ITEM_TEMPER, SH_ITEM_FINISH, ";
-                    query += " SH_ITEM_COATING,SH_SUPPLIER_NAME, SH_ITEM_TYPE,SH_ITEM_NAME, ";
+                    query += "( SH_SPECIFICATION_OF_RAW_MATERIAL_ID,SH_ADDING_PERMISSION_DATE, SH_ITEM_LENGTH ,";
+                    query += " SH_ITEM_WIDTH ,";
+                    query += " SH_ITEM_THICKNESS , SH_ITEM_INTENSITY , SH_ITEM_TEMPER , SH_ITEM_FINISH , ";
+                    query += " SH_ITEM_COATING , SH_SUPPLIER_NAME , SH_ITEM_TYPE,SH_ITEM_NAME, ";
                     query += " SH_ITEM_CODE,SH_ADDING_NUMBER, SH_ITEM_SHEET_WEIGHT, SH_TOTAL_NUMBER_OF_PACKAGES, ";
                     query += " SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE, SH_NET_WEIGHT,";
                     query += " SH_STOCK_NAME, SH_ADDITION_DATE, SH_ITEM_GROSS_WEIGHT ";
                     query += " ,SH_DATA_ENTRY_USER_ID,SH_DATA_ENTRY_USER_NAME, ";
                     query += " SH_DATA_ENTRY_EMPLOYEE_ID,SH_DATA_ENTRY_EMPLOYEE_NAME)VALUES( ";
-                    query += " @SH_SPECIFICATION_OF_RAW_MATERIAL_ID,@SH_ADDING_PERMISSION_DATE,@SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS";
-                    query += " , @SH_ITEM_INTENSITY,@SH_ITEM_TEMPER,@SH_ITEM_FINISH,@SH_ITEM_COATING,@SH_SUPPLIER_NAME,@SH_ITEM_TYPE";
-                    query += " , @SH_ITEM_NAME,@SH_ITEM_CODE,@SH_ADDING_NUMBER,@SH_ITEM_SHEET_WEIGHT,@SH_TOTAL_NUMBER_OF_PACKAGES,";
-                    query += " @SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE,@SH_NET_WEIGHT,@SH_STOCK_NAME,@SH_ADDITION_DATE,";
+                    query += " @SH_SPECIFICATION_OF_RAW_MATERIAL_ID,@SH_ADDING_PERMISSION_DATE, ";
+                    query += " @SH_ITEM_LENGTH,@SH_ITEM_WIDTH,@SH_ITEM_THICKNESS";
+                    query += " , @SH_ITEM_INTENSITY,@SH_ITEM_TEMPER,@SH_ITEM_FINISH,@SH_ITEM_COATING, ";
+                    query += "  @SH_SUPPLIER_NAME,@SH_ITEM_TYPE";
+                    query += " , @SH_ITEM_NAME,@SH_ITEM_CODE,@SH_ADDING_NUMBER,@SH_ITEM_SHEET_WEIGHT, ";
+                    query += " @SH_TOTAL_NUMBER_OF_PACKAGES,";
+                    query += " @SH_TOTAL_NUMBER_OF_SHEETS_OF_PACKAGE,@SH_NET_WEIGHT,@SH_STOCK_NAME, ";
+                    query += " @SH_ADDITION_DATE,";
                     query += " @SH_ITEM_GROSS_WEIGHT ";
                     query += " , @SH_DATA_ENTRY_USER_ID,@SH_DATA_ENTRY_USER_NAME, ";
                     query += " @SH_DATA_ENTRY_EMPLOYEE_ID,@SH_DATA_ENTRY_EMPLOYEE_NAME";
@@ -518,13 +522,14 @@ namespace Al_Shaheen_System
             try
             {
                 string query = "INSERT INTO SH_EXAMINATION_OF_RAW_MATERIAL ";
-                query += "(SH_EXAMINATION_ORDER_NUMBER , SH_SPECIFICATION_OF_RAW_MATERIAL_ID, SH_QUANTITY_OF_RAW_MATERIAL_ID,";
-                query += "SH_DATE_EXAMINATION, SH_STOCK_MAN_NAME, SH_TOTAL_NO_PARCELS, SH_STOCK_NAME, ";
-                query += "SH_TOTAL_NO_SHEETS, SH_GROSS_WEIGHT, SH_NET_WEIGHT, SH_TECHNICAL_MAN,";
-                query += "SH_EXAMINATION_RESULT, SH_ADDITION_DATE,SH_ITEM_STAT) VALUES(@SH_EXAMINATION_ORDER_NUMBER, @SH_SPECIFICATION_OF_RAW_MATERIAL_ID ";
-                query += ",@SH_QUANTITY_OF_RAW_MATERIAL_ID,@SH_DATE_EXAMINATION,@SH_STOCK_MAN_NAME,@SH_TOTAL_NO_PARCELS,";
-                query += "@SH_STOCK_NAME,@SH_TOTAL_NO_SHEETS,@SH_GROSS_WEIGHT,@SH_NET_WEIGHT,@SH_TECHNICAL_MAN";
-                query += ",@SH_EXAMINATION_RESULT,@SH_ADDITION_DATE,@SH_ITEM_STAT) SELECT SCOPE_IDENTITY() AS myidentity";
+                query += "( SH_EXAMINATION_ORDER_NUMBER , SH_SPECIFICATION_OF_RAW_MATERIAL_ID, SH_QUANTITY_OF_RAW_MATERIAL_ID ,";
+                query += "  SH_DATE_EXAMINATION, SH_STOCK_MAN_NAME, SH_TOTAL_NO_PARCELS, SH_STOCK_NAME , ";
+                query += "  SH_TOTAL_NO_SHEETS , SH_GROSS_WEIGHT , SH_NET_WEIGHT, SH_TECHNICAL_MAN , ";
+                query += "  SH_EXAMINATION_RESULT, SH_ADDITION_DATE , SH_ITEM_STAT ) VALUES  ";
+                query += "  (@SH_EXAMINATION_ORDER_NUMBER , @SH_SPECIFICATION_OF_RAW_MATERIAL_ID   ";
+                query += "  ,@SH_QUANTITY_OF_RAW_MATERIAL_ID , @SH_DATE_EXAMINATION , @SH_STOCK_MAN_NAME , @SH_TOTAL_NO_PARCELS , ";
+                query += "  @SH_STOCK_NAME , @SH_TOTAL_NO_SHEETS , @SH_GROSS_WEIGHT , @SH_NET_WEIGHT, @SH_TECHNICAL_MAN  ";
+                query += "  ,@SH_EXAMINATION_RESULT , @SH_ADDITION_DATE , @SH_ITEM_STAT ) SELECT SCOPE_IDENTITY() AS myidentity  ";
                
                 myconnection.openConnection();
                 SqlCommand cmd = new SqlCommand(query, DatabaseConnection.mConnection);

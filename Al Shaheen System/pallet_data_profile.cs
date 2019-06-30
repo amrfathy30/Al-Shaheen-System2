@@ -21,7 +21,7 @@ namespace Al_Shaheen_System
         List<SH_SPECIFICATION_OF_PALLETS> pallets_specifications = new List<SH_SPECIFICATION_OF_PALLETS>();
         List<SH_EMPLOYEES> stock_men = new List<SH_EMPLOYEES>();
 
-
+        List<SH_CLIENTS_BRANCHES> client_branches = new List<SH_CLIENTS_BRANCHES>();
         SH_EMPLOYEES mEmployee;
         SH_USER_ACCOUNTS mAccount;
         SH_USER_PERMISIONS mPermission;
@@ -780,7 +780,7 @@ namespace Al_Shaheen_System
                     query += ", SH_PALLET_SIZE_TEXT ";
                     query += "    ,SH_DATA_ENTRY_EMPLOYEE_ID, ";
                     query += "  SH_DATA_ENTRY_USER_ID, ";
-                    query += " SH_CLIENT_ID , SH_RETURN_PERMISSION_NUMBER ,SH_PALLETS_RETURN_REQUIST_NUMBER ,";
+                    query += " SH_CLIENT_ID ,SH_CLIENT_BRANCH_ID, SH_RETURN_PERMISSION_NUMBER ,SH_PALLETS_RETURN_REQUIST_NUMBER ,";
                     query += " SH_ADDITION_DATE, SH_STOCK_MAN_ID, ";
                     query += " SH_SIZE_WIDTH, SH_SIZE_LENGTH, ";
                     query += " SH_QUANTITY_NO_ITEMS, ";
@@ -792,7 +792,7 @@ namespace Al_Shaheen_System
                     query += ", @SH_PALLET_SIZE_TEXT , ";
                     query += " @SH_DATA_ENTRY_EMPLOYEE_ID, ";
                     query += " @SH_DATA_ENTRY_USER_ID , ";
-                    query += " @SH_CLIENT_ID , @SH_RETURN_PERMISSION_NUMBER ,@SH_PALLETS_RETURN_REQUIST_NUMBER ,";
+                    query += " @SH_CLIENT_ID , @SH_CLIENT_BRANCH_ID, @SH_RETURN_PERMISSION_NUMBER ,@SH_PALLETS_RETURN_REQUIST_NUMBER ,";
                     query += " @SH_ADDITION_DATE, @SH_STOCK_MAN_ID, @SH_SIZE_WIDTH, ";
                     query += " @SH_SIZE_LENGTH, @SH_QUANTITY_NO_ITEMS, ";
                     query += " @SH_STOCK_ID  )";
@@ -802,6 +802,7 @@ namespace Al_Shaheen_System
                     cmd.Parameters.AddWithValue("@SH_DATA_ENTRY_USER_ID", mAccount.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[clients_text_box.SelectedIndex].SH_ID);
                     cmd.Parameters.AddWithValue("@SH_ADDITION_DATE", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@SH_CLIENT_BRANCH_ID", client_branches[client_branches_combo_box.SelectedIndex].SH_ID);
                     cmd.Parameters.AddWithValue("@SH_STOCK_MAN_ID", mEmployee.SH_ID);
                     cmd.Parameters.AddWithValue("@SH_SIZE_WIDTH", p_width);
                     cmd.Parameters.AddWithValue("@SH_SIZE_LENGTH", p_length);
@@ -1058,6 +1059,55 @@ namespace Al_Shaheen_System
         private void label10_Click(object sender, EventArgs e)
         {
 
+        }
+        async Task getallclientbranchdata()
+        {
+            client_branches.Clear();
+            try
+            {
+                myconnection.openConnection();
+                SqlCommand cmd = new SqlCommand("SH_GET_ALL_CLIENT_BRANCHES_DATA", DatabaseConnection.mConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@SH_CLIENT_ID", clients[clients_text_box.SelectedIndex].SH_ID);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    client_branches.Add(new SH_CLIENTS_BRANCHES()
+                    {
+                        SH_CLIENT_BRANCH_ADDRESS_GPS_LINK = reader["SH_CLIENT_BRANCH_ADDRESS_GPS_LINK"].ToString(),
+                        SH_CLIENT_BRANCH_ADDRESS_TEXT = reader["SH_CLIENT_BRANCH_ADDRESS_TEXT"].ToString(),
+                        SH_CLIENT_BRANCH_NAME = reader["SH_CLIENT_BRANCH_NAME"].ToString(),
+                        SH_CLIENT_BRANCH_TYPE = reader["SH_CLIENT_BRANCH_TYPE"].ToString(),
+                        SH_CLIENT_COMPANY_NAME = reader["SH_CLIENT_COMPANY_NAME"].ToString(),
+                        SH_ID = long.Parse(reader["SH_ID"].ToString())
+                    });
+                }
+                reader.Close();
+                myconnection.closeConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR WHILE GETTING CLIENT BRANCH DATA " + ex.ToString());
+            }
+        }
+        async Task fillclientbranchescombobox()
+        {
+            await getallclientbranchdata();
+            client_branches_combo_box.Items.Clear();
+            if (client_branches.Count > 0)
+            {
+                for (int i = 0; i < client_branches.Count; i++)
+                {
+                    client_branches_combo_box.Items.Add(client_branches[i].SH_CLIENT_BRANCH_NAME);
+                }
+            }
+        }
+        private async void clients_text_box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(clients_text_box.Text))
+            {
+                await fillclientbranchescombobox();
+            }
         }
     }
 }

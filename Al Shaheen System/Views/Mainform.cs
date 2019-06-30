@@ -815,5 +815,11 @@ namespace Al_Shaheen_System
             allproductionrequirementsforms myform = new allproductionrequirementsforms(mEmployee,mAccount,mPermission);
             myform.Show();
         }
+
+        private void الكمياتفىأذونالإستلامToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            summary_receiving_information_form myform = new summary_receiving_information_form(mEmployee,mAccount,mPermission);
+            myform.Show();
+        }
     }
 }

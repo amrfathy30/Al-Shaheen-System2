@@ -388,7 +388,7 @@
             // comboBoxourFactory
             // 
             this.comboBoxourFactory.FormattingEnabled = true;
-            this.comboBoxourFactory.Location = new System.Drawing.Point(78, 25);
+            this.comboBoxourFactory.Location = new System.Drawing.Point(69, 36);
             this.comboBoxourFactory.Name = "comboBoxourFactory";
             this.comboBoxourFactory.Size = new System.Drawing.Size(161, 28);
             this.comboBoxourFactory.TabIndex = 28;
